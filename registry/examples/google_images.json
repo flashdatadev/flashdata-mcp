@@ -1,0 +1,7 @@
+{
+  "name": "google_images",
+  "arguments": {
+    "query": "solar panel diagram",
+    "num": 20
+  }
+}

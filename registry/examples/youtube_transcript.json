@@ -1,0 +1,8 @@
+{
+  "name": "youtube_transcript",
+  "arguments": {
+    "video_id": "dQw4w9WgXcQ",
+    "language": "en",
+    "auto": true
+  }
+}

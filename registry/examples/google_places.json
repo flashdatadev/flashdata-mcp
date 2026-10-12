@@ -1,0 +1,7 @@
+{
+  "name": "google_places",
+  "arguments": {
+    "query": "coffee shops in Singapore",
+    "num": 20
+  }
+}

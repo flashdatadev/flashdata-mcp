@@ -1,0 +1,122 @@
+[
+  {
+    "source": "google_search",
+    "title": "Export Google Search SERP rankings with source URLs",
+    "tool": "google_search",
+    "guide": "guides/google_search.md",
+    "request": "examples/google_search.json",
+    "documentation": "https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide"
+  },
+  {
+    "source": "google_news",
+    "title": "Build a source-linked Google News topic digest",
+    "tool": "google_news",
+    "guide": "guides/google_news.md",
+    "request": "examples/google_news.json",
+    "documentation": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide"
+  },
+  {
+    "source": "google_images",
+    "title": "Filter Google Images by dimensions and retain source pages",
+    "tool": "google_images",
+    "guide": "guides/google_images.md",
+    "request": "examples/google_images.json",
+    "documentation": "https://flashdata.dev/docs/sources/google_images?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-guide"
+  },
+  {
+    "source": "google_shopping",
+    "title": "Compare Google Shopping price-label snapshots",
+    "tool": "google_shopping",
+    "guide": "guides/google_shopping.md",
+    "request": "examples/google_shopping.json",
+    "documentation": "https://flashdata.dev/docs/sources/google_shopping?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-guide"
+  },
+  {
+    "source": "google_videos",
+    "title": "Group Google video search results by website",
+    "tool": "google_videos",
+    "guide": "guides/google_videos.md",
+    "request": "examples/google_videos.json",
+    "documentation": "https://flashdata.dev/docs/sources/google_videos?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-guide"
+  },
+  {
+    "source": "google_places",
+    "title": "Shortlist local businesses by rating and review count",
+    "tool": "google_places",
+    "guide": "guides/google_places.md",
+    "request": "examples/google_places.json",
+    "documentation": "https://flashdata.dev/docs/sources/google_places?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-guide"
+  },
+  {
+    "source": "youtube_search",
+    "title": "Export YouTube video candidates by keyword",
+    "tool": "youtube_search",
+    "guide": "guides/youtube_search.md",
+    "request": "examples/youtube_search.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-guide"
+  },
+  {
+    "source": "youtube_search_extended",
+    "title": "Map channels across a larger YouTube result set",
+    "tool": "youtube_search_extended",
+    "guide": "guides/youtube_search_extended.md",
+    "request": "examples/youtube_search_extended.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-guide"
+  },
+  {
+    "source": "youtube_metadata",
+    "title": "Create a YouTube metadata and chapters brief",
+    "tool": "youtube_metadata",
+    "guide": "guides/youtube_metadata.md",
+    "request": "examples/youtube_metadata.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_metadata?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-guide"
+  },
+  {
+    "source": "youtube_transcript",
+    "title": "Read timestamped YouTube transcripts for citations",
+    "tool": "youtube_transcript",
+    "guide": "guides/youtube_transcript.md",
+    "request": "examples/youtube_transcript.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_transcript?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-guide"
+  },
+  {
+    "source": "youtube_captions",
+    "title": "Retrieve uploader captions for a subtitle export",
+    "tool": "youtube_captions",
+    "guide": "guides/youtube_captions.md",
+    "request": "examples/youtube_captions.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_captions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-guide"
+  },
+  {
+    "source": "youtube_trainability",
+    "title": "Inspect YouTube Creative Commons license labels",
+    "tool": "youtube_trainability",
+    "guide": "guides/youtube_trainability.md",
+    "request": "examples/youtube_trainability.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-guide"
+  },
+  {
+    "source": "youtube_channel",
+    "title": "Snapshot a channel and its recent video inventory",
+    "tool": "youtube_channel",
+    "guide": "guides/youtube_channel.md",
+    "request": "examples/youtube_channel.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_channel?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-guide"
+  },
+  {
+    "source": "youtube_suggestions",
+    "title": "Build a YouTube autocomplete keyword research sheet",
+    "tool": "youtube_suggestions",
+    "guide": "guides/youtube_suggestions.md",
+    "request": "examples/youtube_suggestions.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-guide"
+  },
+  {
+    "source": "youtube_download",
+    "title": "Deliver a YouTube clip to S3 or customer cloud storage",
+    "tool": "youtube_download",
+    "guide": "guides/youtube_download.md",
+    "request": "examples/youtube_download.json",
+    "documentation": "https://flashdata.dev/docs/sources/youtube_download?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-guide"
+  }
+]

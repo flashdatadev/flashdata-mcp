@@ -10,6 +10,8 @@ To connect without running this local package, use the separate
 are maintained in this repository. The registration describes the hosted
 endpoint; it does not publish this local package to npm.
 
+For task-specific hosted examples, use the [15-capability MCP guide index](https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/README.md#all-15-capabilities): Google Search, News, Images, Shopping, video search and Places; YouTube search, extended search, metadata, transcripts, uploader captions, license labels, channels, autocomplete and delivery to customer storage. Each guide includes request JSON, selected output fields, limits, costs and the corresponding FlashData documentation.
+
 This directory is a complete, standalone project. Use its contents as the root of your GitHub repository, including `.github/` and `.gitignore`. Installation and tests require no files from another checkout.
 
 ## Agent Skill

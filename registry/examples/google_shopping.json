@@ -1,0 +1,9 @@
+{
+  "name": "google_shopping",
+  "arguments": {
+    "query": "wireless headphones",
+    "gl": "us",
+    "hl": "en",
+    "num": 10
+  }
+}

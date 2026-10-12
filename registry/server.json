@@ -1,10 +1,10 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/flashdata",
-  "title": "FlashData",
-  "description": "Google Search, YouTube data and transcripts, and media downloads to your cloud storage.",
-  "version": "0.1.0",
-  "websiteUrl": "https://flashdata.dev/mcp",
+  "title": "Google & YouTube Search, Transcripts and Data - FlashData",
+  "description": "Google & YouTube data: search, news, images, shopping, places, transcripts, captions and downloads.",
+  "version": "0.2.0",
+  "websiteUrl": "https://flashdata.dev/mcp?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4",
   "remotes": [
     {
       "type": "streamable-http",
@@ -19,5 +19,107 @@
         }
       ]
     }
-  ]
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "capabilityIndex": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/README.md",
+        "guideBaseUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "billing": "Paid API queries use FlashData Credits; examples are free.",
+        "capabilities": [
+          {
+            "tool": "google_search",
+            "title": "Google Search",
+            "guide": "google_search.md",
+            "documentation": "https://flashdata.dev/docs/sources/google_search"
+          },
+          {
+            "tool": "google_news",
+            "title": "Google News",
+            "guide": "google_news.md",
+            "documentation": "https://flashdata.dev/docs/sources/google_news"
+          },
+          {
+            "tool": "google_images",
+            "title": "Google Images",
+            "guide": "google_images.md",
+            "documentation": "https://flashdata.dev/docs/sources/google_images"
+          },
+          {
+            "tool": "google_shopping",
+            "title": "Google Shopping",
+            "guide": "google_shopping.md",
+            "documentation": "https://flashdata.dev/docs/sources/google_shopping"
+          },
+          {
+            "tool": "google_videos",
+            "title": "Google Video Search",
+            "guide": "google_videos.md",
+            "documentation": "https://flashdata.dev/docs/sources/google_videos"
+          },
+          {
+            "tool": "google_places",
+            "title": "Google Places",
+            "guide": "google_places.md",
+            "documentation": "https://flashdata.dev/docs/sources/google_places"
+          },
+          {
+            "tool": "youtube_search",
+            "title": "YouTube Search",
+            "guide": "youtube_search.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_search"
+          },
+          {
+            "tool": "youtube_search_extended",
+            "title": "YouTube Extended Search",
+            "guide": "youtube_search_extended.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_search_extended"
+          },
+          {
+            "tool": "youtube_metadata",
+            "title": "YouTube Metadata",
+            "guide": "youtube_metadata.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_metadata"
+          },
+          {
+            "tool": "youtube_transcript",
+            "title": "YouTube Transcript",
+            "guide": "youtube_transcript.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_transcript"
+          },
+          {
+            "tool": "youtube_captions",
+            "title": "YouTube Captions",
+            "guide": "youtube_captions.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_captions"
+          },
+          {
+            "tool": "youtube_trainability",
+            "title": "YouTube License Metadata",
+            "guide": "youtube_trainability.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_trainability"
+          },
+          {
+            "tool": "youtube_channel",
+            "title": "YouTube Channel",
+            "guide": "youtube_channel.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_channel"
+          },
+          {
+            "tool": "youtube_suggestions",
+            "title": "YouTube Autocomplete",
+            "guide": "youtube_suggestions.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_suggestions"
+          },
+          {
+            "tool": "youtube_download",
+            "title": "YouTube Download",
+            "guide": "youtube_download.md",
+            "documentation": "https://flashdata.dev/docs/sources/youtube_download"
+          }
+        ]
+      }
+    }
+  }
 }

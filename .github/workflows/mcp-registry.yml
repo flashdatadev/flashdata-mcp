@@ -36,6 +36,8 @@ jobs:
           with urlopen(schema_url, timeout=30) as response:
               schema = json.load(response)
           Draft7Validator(schema, format_checker=FormatChecker()).validate(manifest)
+          extension = manifest.get('_meta', {}).get('io.modelcontextprotocol.registry/publisher-provided', {})
+          assert len(json.dumps(extension, ensure_ascii=False, separators=(',', ':')).encode()) <= 4096
           print(f"Validated {manifest['name']} version {manifest['version']}")
           PY
 
@@ -83,7 +85,7 @@ jobs:
           with urlopen(url, timeout=30) as response:
               published = json.load(response)
           server = published['server']
-          for field in ('name', 'version', 'title', 'description', 'websiteUrl', 'remotes'):
+          for field in ('name', 'version', 'title', 'description', 'websiteUrl', 'remotes', '_meta'):
               assert server[field] == manifest[field], f'Published {field} differs from the manifest'
           assert not server.get('packages'), 'Unexpected package registration'
           official = published['_meta']['io.modelcontextprotocol.registry/official']
