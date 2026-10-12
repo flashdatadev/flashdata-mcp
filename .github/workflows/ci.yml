@@ -17,6 +17,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run check:package
+      - run: npm run check:claude-plugin
       - run: npm run test:install
       - run: npm audit --audit-level=high
       - run: npm pack

@@ -1,0 +1,15 @@
+{
+  "name": "flashdata",
+  "description": "FlashData research tools and skills, maintained by FlashData.",
+  "owner": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "plugins": [
+    {
+      "name": "flashdata",
+      "source": "./plugins/claude",
+      "description": "Source-backed web and YouTube research with FlashData MCP. Queries consume FlashData Credits."
+    }
+  ]
+}

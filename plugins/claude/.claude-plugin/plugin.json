@@ -1,0 +1,28 @@
+{
+  "name": "flashdata",
+  "displayName": "FlashData",
+  "version": "0.1.0",
+  "description": "Research the web and YouTube with source links, transcript timestamps, and FlashData MCP. Queries consume FlashData Credits.",
+  "author": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "homepage": "https://flashdata.dev/mcp",
+  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "license": "MIT",
+  "keywords": ["flashdata", "research", "search", "youtube", "transcripts", "mcp"],
+  "icon": "./assets/logo.svg",
+  "documentationUrl": "https://flashdata.dev/mcp",
+  "supportUrl": "https://github.com/flashdata-dev/flashdata-mcp/issues",
+  "privacyPolicyUrl": "https://flashdata.dev/legal/privacy",
+  "termsOfServiceUrl": "https://flashdata.dev/legal/terms",
+  "userConfig": {
+    "flashdata_api_key": {
+      "type": "string",
+      "title": "FlashData API key",
+      "description": "Your key from https://flashdata.dev/app/api-keys. Queries consume FlashData Credits; account reads and pricing checks are free.",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}
