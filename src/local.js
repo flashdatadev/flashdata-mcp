@@ -2,6 +2,7 @@ const { randomUUID } = require('node:crypto');
 const { ErrorCode, McpError } = require('@modelcontextprotocol/sdk/types.js');
 const { SOURCE_CATALOG } = require('./catalog/sourceCatalog');
 const { createMcpServer } = require('./mcp/server');
+const { createToolHandlers } = require('./mcp/toolHandlers');
 const { createDataApiClient } = require('./mcp/dataApiClient');
 const { createJobApiClient } = require('./mcp/jobApiClient');
 const { createMemoryResultStore } = require('./mcp/memoryResultStore');
@@ -36,7 +37,7 @@ function loadLocalConfig(env = process.env) {
   };
 }
 
-function createLocalServer(config) {
+function createLocalOptions(config) {
   const { secret, dataOrigin, managementOrigin, timeoutMs } = config;
   const managementApi = createDataApiClient({ baseUrl: managementOrigin, timeoutMs });
   const dataApi = createDataApiClient({ baseUrl: dataOrigin, timeoutMs });
@@ -71,7 +72,7 @@ function createLocalServer(config) {
       resultOrigin: trustedResultOrigin };
   }
 
-  const server = createMcpServer({
+  return {
     secret, getIdentity, dataApi, managementApi, resultStore,
     accountReads: { read(name, _identity, args = {}) {
       const query = new URLSearchParams(args).toString();
@@ -81,9 +82,18 @@ function createLocalServer(config) {
     jobApi: { read({ identity, ...request }) {
       return createJobApiClient({ baseUrl: managementOrigin, resultOrigin: identity.resultOrigin, timeoutMs }).read(request);
     } },
-  });
-  server.onclose = () => resultStore.clear();
+  };
+}
+
+function createLocalTools(config) {
+  return createToolHandlers({ ...createLocalOptions(config), chunkResults: false });
+}
+
+function createLocalServer(config) {
+  const options = createLocalOptions(config);
+  const server = createMcpServer(options);
+  server.onclose = () => options.resultStore.clear();
   return server;
 }
 
-module.exports = { createLocalServer, loadLocalConfig, safeOrigin };
+module.exports = { createLocalServer, createLocalTools, loadLocalConfig, safeOrigin };

@@ -1,8 +1,8 @@
-# FlashData MCP
+# FlashData CLI and MCP
 
-Use Google Search, YouTube data, and downloads to your cloud storage from an MCP client. This MIT-licensed package implements the tools and calls the FlashData REST APIs directly. It does not proxy a hosted MCP connection.
+Use Google Search, YouTube data, and downloads to your cloud storage from a terminal, Agent, or MCP client. This MIT-licensed package implements the tools and calls the FlashData REST APIs directly. It does not proxy a hosted MCP connection.
 
-This is a release candidate. Source code is available at [flashdata-dev/flashdata-mcp](https://github.com/flashdata-dev/flashdata-mcp). The package name `@flashdata/mcp` is provisional until publisher ownership is confirmed; this project has not been published to npm. Install from source using the steps below.
+Source code is available at [flashdata-dev/flashdata-mcp](https://github.com/flashdata-dev/flashdata-mcp). The npm package `@flashdata-dev/mcp` provides two commands: `flashdata` for single-call JSON output and `flashdata-mcp` for persistent stdio MCP.
 
 To connect without running this local package, use the separate
 [FlashData hosted MCP service](https://flashdata.dev/mcp). Its
@@ -32,7 +32,7 @@ Example requests:
 - “Find three relevant YouTube videos, compare their available transcripts, and cite timestamps. Keep the work within my approved query budget.”
 - “Compare this search snapshot with the previous one and prepare source-linked records for my knowledge base.”
 
-The skills.sh directory uses aggregated installation telemetry for discovery; a successful installation is separate from directory ranking or security-audit approval. This Skill is MIT-licensed under this repository's license. The local `@flashdata/mcp` npm package remains unpublished.
+The skills.sh directory uses aggregated installation telemetry for discovery; a successful installation is separate from directory ranking or security-audit approval. This Skill is MIT-licensed under this repository's license. The Skill does not require the local npm package.
 
 ## Cursor plugin
 
@@ -50,7 +50,7 @@ Support: [support@flashdata.dev](mailto:support@flashdata.dev). See [Security](S
 
 ## Gemini CLI extension
 
-The [Gemini CLI extension](https://geminicli.com/docs/extensions/) bundles the same FlashData research Skill and hosted MCP connection. It requires Gemini CLI and a FlashData account; it does not run this repository's local Node.js MCP server or require the unpublished `@flashdata/mcp` package.
+The [Gemini CLI extension](https://geminicli.com/docs/extensions/) bundles the same FlashData research Skill and hosted MCP connection. It requires Gemini CLI and a FlashData account; it does not run this repository's local Node.js MCP server or require the local npm package.
 
 Install from the public repository:
 
@@ -82,9 +82,9 @@ The plugin is contained in `plugins/claude/` so it does not ship this repository
 ## Repository layout
 
 ```text
-bin/                      stdio executable
-src/                      MCP server, tools, API clients and local cache
-test/                     isolated protocol and cache tests
+bin/                      JSON CLI and stdio MCP executables
+src/                      shared tool execution, MCP adapter, API clients and local cache
+test/                     isolated CLI, protocol, HTTP security and cache tests
 scripts/                  package checks and installation verification
 skills/flashdata/         portable Agent Skill and research recipes
 .cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
@@ -133,7 +133,55 @@ For a local clone, configure Claude Desktop (or another stdio MCP client) with a
 
 Use the full path to Node if your desktop app cannot find it. On Windows, use an escaped Windows path. Keep credentials in your client's protected configuration, not in a prompt, URL, committed file, or command-line argument.
 
-You can also install the reviewed artifact with `npm install /absolute/path/flashdata-mcp-0.1.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. A public `npx` command will be documented after publication.
+You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.1.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
+
+## Agent CLI
+
+The package also provides `flashdata`, a single-call JSON CLI. It shares the MCP schemas, source permissions and API clients. Run `node bin/flashdata.js` in a source checkout, or install the npm package:
+
+```sh
+npm install --global @flashdata-dev/mcp@0.1.0
+flashdata --help
+```
+
+Without a global installation, select the executable explicitly:
+
+```sh
+npx --yes --package=@flashdata-dev/mcp@0.1.0 flashdata tools
+npx --yes --package=@flashdata-dev/mcp@0.1.0 flashdata call get_pricing
+```
+
+For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.1.0", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
+
+Set `FLASHDATA_API_KEY` through your environment or secret manager. Do not put real keys in shell history or command arguments. Start with free discovery and pricing:
+
+```sh
+flashdata tools
+flashdata call get_pricing
+flashdata call get_pricing --input pricing.json
+```
+
+`pricing.json` contains `{"source":"google_search","request_count":1}`. `tools` returns the currently authorized tool names, descriptions and JSON input schemas; a fully authorized key has 21 CLI tools. The persistent MCP-only `get_result` is omitted because CLI results are returned whole.
+
+Supply arguments with `--input <file>` or `--input -` for stdin. Input must be a JSON object, up to 256 KiB. Use stdin or a protected temporary file for download storage credentials; do not commit it. The CLI does not save keys or inputs.
+
+For a paid async web search, create `query.json` containing `{"query":"home battery storage","num":3,"mode":"async"}`, then run:
+
+```sh
+flashdata call google_search --input query.json
+```
+
+The result includes a job id. Put that actual id in `job.json`, for example `{"job_id":"job_REPLACE_WITH_RETURNED_ID"}`, and read it with:
+
+```sh
+flashdata call get_job --input job.json > result.json
+```
+
+A pending or processing job means work is still running. Repeat only the free `get_job` read as needed, respecting API limits; do not resubmit the query. Completed jobs include their original JSON in `result.output`. Failed jobs return `ok: false` and exit 1. `submit_batch` and `youtube_download` use the same schemas shown by `tools`; downloads always run asynchronously.
+
+`tools` and `call` write exactly one JSON object to stdout with `ok` and `result`; call output also includes `tool`. Local failures use `error: {code, message}`. Exit status 0 means the operation succeeded, 1 means a tool/API error, and 2 means invalid command, input or configuration. A successful pending-job read is not completed work. `--help` and `--version` print text and require no key. Normal operation prints no diagnostics to stderr.
+
+CLI results are not chunked or kept in a cache. Redirect stdout to preserve large results (API responses remain bounded to 4 MiB). If a paid submission returns `query_outcome_unknown`, is interrupted, or loses its output, check Jobs before trying again: the query may already have been charged. The CLI never automatically retries or polls.
 
 ## Tools and billing
 
@@ -178,7 +226,7 @@ Completed jobs use the signed result URL returned by Management. The result orig
 
 The local server uses stdio. The FlashData hosted endpoint continues to use Streamable HTTP. This project implements the public tool contract independently and connects to FlashData through REST APIs. This package does not implement OAuth, scraping, provider credentials, a credit ledger, or a local worker.
 
-Responses over 16,000 UTF-16 code units are split into JSON text chunks. Use `result_id` and `next_offset`, concatenate in order, then parse JSON. The in-memory store holds at most four results, each for ten minutes; restart clears it. The limit is per local process, and results are not shared with the hosted MCP cache. Each complete JSON response is limited to 4 MiB. Async JSON results retain the API's 24-hour window; media retention follows customer storage.
+In stdio MCP, responses over 16,000 UTF-16 code units are split into JSON text chunks. Use `result_id` and `next_offset`, concatenate in order, then parse JSON. The in-memory store holds at most four results, each for ten minutes; restart clears it. The limit is per local process, and results are not shared with the hosted MCP cache. Each complete JSON response is limited to 4 MiB. Async JSON results retain the API's 24-hour window; media retention follows customer storage.
 
 ## Development and packaging
 
@@ -190,9 +238,9 @@ npm run test:install
 npm pack
 ```
 
-Tests spawn an actual SDK stdio client against isolated local HTTP fixtures. They cover discovery, authorization changes, account reads, argument validation, query/download/batch forwarding, unknown POST outcomes, credential-free result delivery and bounded Unicode result caching. They do not contact paid providers or require Redis/MongoDB.
+Tests spawn both an actual SDK stdio client and the JSON CLI against isolated local HTTP fixtures. They cover discovery, authorization changes, account reads, argument validation, query/download/batch forwarding, unknown POST outcomes, credential-free result delivery and bounded Unicode result caching. They do not contact paid providers or require Redis/MongoDB.
 
-`npm run test:install` also installs the packed tarball into an empty temporary project and runs the stdio contract against its installed executable.
+`npm run test:install` also installs the packed tarball into an empty temporary project and runs both the stdio and JSON CLI contracts against the installed executables.
 
 `npm pack` runs tests and verifies the file allowlist. The npm tarball contains the CLI, source, README, license and notices; it excludes tests, credentials, private backend code, deployment files and node_modules. A source repository should also retain tests, scripts, the lockfile, and the CI workflow.
 

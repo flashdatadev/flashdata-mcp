@@ -27,7 +27,7 @@ Then try a bounded research request, such as finding three relevant videos, comp
 
 ## Platform and publication status
 
-This package is configured for Claude Code using a fixed HTTPS MCP endpoint and a sensitive `userConfig` API-key setting. It runs no local server and installs no executable or dependency. It does not require the unpublished `@flashdata/mcp` npm package.
+This package is configured for Claude Code using a fixed HTTPS MCP endpoint and a sensitive `userConfig` API-key setting. It runs no local server and installs no executable or dependency. It does not require the local FlashData npm package.
 
 The Skill is portable, but authenticated MCP support differs across Claude apps. Cowork does not prompt for required `userConfig` values without defaults; Chat connects fixed remote MCP URLs through its Connectors interface. Installing this plugin alone is not a completed account connection on those surfaces. See the [official support table](https://claude.com/docs/plugins/platform-support).
 

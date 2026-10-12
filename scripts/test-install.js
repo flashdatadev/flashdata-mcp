@@ -14,9 +14,10 @@ try {
   runNpm(['install', '--prefix', temporary, '--ignore-scripts', '--no-audit', '--no-fund', path.join(temporary, packed.filename)], {
     ...options, stdio: 'inherit',
   });
-  execFileSync(process.execPath, ['--test', path.join(root, 'test/stdio.test.js')], {
+  execFileSync(process.execPath, ['--test', path.join(root, 'test/stdio.test.js'), path.join(root, 'test/cli.test.js')], {
     cwd: temporary, stdio: 'inherit', env: {
       ...process.env,
+      FLASHDATA_CLI_TEST_BIN: path.join(temporary, 'node_modules', manifest.name, manifest.bin.flashdata),
       FLASHDATA_MCP_TEST_BIN: path.join(temporary, 'node_modules', manifest.name, manifest.bin['flashdata-mcp']),
     },
   });

@@ -21,7 +21,7 @@ The source repository includes a local MCP implementation:
 
 It requires Node.js 22.18 or newer. After the user authorizes installation, follow that repository's current setup instructions: install its dependencies with `npm ci`, configure `FLASHDATA_API_KEY` in the client's protected environment, and run `node` with the absolute path to `bin/flashdata-mcp.js`.
 
-The `@flashdata/mcp` npm name is not a published installation path at this skill's release. Do not suggest `npx @flashdata/mcp` unless publication is independently verified. Installing the Skill with `npx skills add` is a separate operation from installing or configuring this MCP server.
+For npm installation, follow the repository's current README and verify the package version is available. The package name is `@flashdata-dev/mcp`; it has two executables, so npx requires an explicit `--package` and executable name. Installing the Skill with `npx skills add` is a separate operation from installing or configuring this MCP server.
 
 ## Free connection check
 
