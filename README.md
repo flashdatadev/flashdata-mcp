@@ -12,11 +12,36 @@ endpoint; it does not publish this local package to npm.
 
 This directory is a complete, standalone project. Use its contents as the root of your GitHub repository, including `.github/` and `.gitignore`. Installation and tests require no files from another checkout.
 
+## Agent Skill
+
+The [FlashData Skill](skills/flashdata/SKILL.md) helps an agent use an existing FlashData MCP connection for source-backed web and video research. It includes recipes for video research, comparing search snapshots, and preparing knowledge-base records.
+
+Install the Skill into your project with the [skills CLI](https://skills.sh/docs):
+
+```sh
+npx skills add flashdata-dev/flashdata-mcp --skill flashdata
+```
+
+Select your agent when prompted, or add `--agent codex` (or another supported agent). The default scope is the current project; use `--global` only if you want a user-wide installation. Review the Skill before installation.
+
+This installs instructions and references, not the MCP executable or an account connection. Connect FlashData separately using the [hosted setup](https://flashdata.dev/mcp) or the local instructions below. The Skill contains no API keys and submits no queries during installation. Queries made through MCP use your existing FlashData Credits; account reads can verify a connection for free.
+
+Example requests:
+
+- “Use FlashData to estimate the cost of one web search without running it.”
+- “Find three relevant YouTube videos, compare their available transcripts, and cite timestamps. Keep the work within my approved query budget.”
+- “Compare this search snapshot with the previous one and prepare source-linked records for my knowledge base.”
+
+The skills.sh directory uses aggregated installation telemetry for discovery; a successful installation is separate from directory ranking or security-audit approval. This Skill is MIT-licensed under this repository's license. The local `@flashdata/mcp` npm package remains unpublished.
+
+## Repository layout
+
 ```text
 bin/                      stdio executable
 src/                      MCP server, tools, API clients and local cache
 test/                     isolated protocol and cache tests
 scripts/                  package checks and installation verification
+skills/flashdata/         portable Agent Skill and research recipes
 .github/workflows/ci.yml  continuous integration
 package.json              package metadata and commands
 package-lock.json         reproducible dependency installation
