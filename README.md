@@ -36,6 +36,38 @@ Example requests:
 
 The skills.sh directory uses aggregated installation telemetry for discovery; a successful installation is separate from directory ranking or security-audit approval. This Skill is MIT-licensed under this repository's license. The Skill does not require the local npm package.
 
+### Task-specific Skills
+
+Choose an independent Skill for the data task you need. Each contains its own connection/cost guidance, MCP request example, representative output and source-specific workflow; the general `flashdata` research Skill remains available.
+
+| Need | Skill | Deliverable |
+| --- | --- | --- |
+| Google Search and SERP snapshots | [google-search](skills/google-search/SKILL.md) | Export Google results with their rank, URL and snippet, then compare like-for-like snapshots when the user supplies a prior capture. |
+| Google News topic digest | [google-news](skills/google-news/SKILL.md) | Turn a bounded Google News search into a digest grouped by publisher, with original links and publication labels. |
+| Google Images search and source attribution | [google-image-search](skills/google-image-search/SKILL.md) | Build an image reference shortlist with source attribution and dimension checks using the returned metadata. |
+| Google Shopping price snapshots | [google-shopping](skills/google-shopping/SKILL.md) | Compare a bounded set of shopping results and retain a reproducible price-label snapshot. |
+| Google video search across websites | [google-video-search](skills/google-video-search/SKILL.md) | Find video result pages across websites and show which publishers or platforms they come from. |
+| Google Places local business shortlist | [google-places](skills/google-places/SKILL.md) | Create a local business shortlist with explicit rating and review-count criteria. |
+| YouTube video search shortlist | [youtube-search](skills/youtube-search/SKILL.md) | Produce a small, inspectable list of YouTube video candidates without paying for unrelated enrichment. |
+| YouTube extended search and channel mapping | [youtube-extended-search](skills/youtube-extended-search/SKILL.md) | Map the channels represented in a larger set of YouTube search results while retaining a video-level audit trail. |
+| YouTube metadata and video chapters | [youtube-metadata](skills/youtube-metadata/SKILL.md) | Create a compact video brief and chapter navigation using fields actually returned for a known video. |
+| YouTube transcripts with timestamped citations | [youtube-transcript](skills/youtube-transcript/SKILL.md) | Produce a source-backed transcript brief with video links and exact segment timestamps. |
+| YouTube uploader captions and subtitle export | [youtube-captions](skills/youtube-captions/SKILL.md) | Prepare an SRT or VTT subtitle file from an existing uploader-provided track in the requested language. |
+| YouTube Creative Commons license metadata | [youtube-license-check](skills/youtube-license-check/SKILL.md) | Record the API license classification for a video without turning it into a permission decision. |
+| YouTube channel data and recent videos | [youtube-channel](skills/youtube-channel/SKILL.md) | Build a dated inventory of a channel and the recent videos returned for its handle. |
+| YouTube autocomplete keyword research | [youtube-autocomplete](skills/youtube-autocomplete/SKILL.md) | Create a keyword ideation sheet from the autocomplete phrases returned for a bounded set of prefixes. |
+| YouTube download to S3 or customer storage | [youtube-download](skills/youtube-download/SKILL.md) | Deliver the authorized video, audio or clip to the user-selected storage destination and return its verified completion status. |
+
+Install only the task Skills you want, for example:
+
+```sh
+npx skills add flashdata-dev/flashdata-mcp --skill google-search --skill youtube-transcript
+```
+
+The CLI's `--list` option lists available Skills before installing. Each selected Skill is self-contained; sibling Skills are not required. Skill names are shared across the ecosystem, so review an existing installation before replacing a same-named Skill from another publisher. Public source, installation and skills.sh indexing are separate milestones. Instructions are free; FlashData API queries are paid.
+
+These new top-level Skills are also discoverable by clients that scan the repository's `skills/` directory. This source update is not a new Cursor or Gemini marketplace approval. The contained Claude plugin continues to bundle its existing shared research Skill.
+
 ## Cursor plugin
 
 This repository also contains a [Cursor plugin](https://cursor.com/docs/plugins): the same research Skill plus a connection to the hosted FlashData MCP service. The plugin does not run the local Node.js server or require an npm installation. Marketplace review and listing are separate from this public source release.
