@@ -1,0 +1,21 @@
+{
+  "name": "flashdata",
+  "version": "0.1.0",
+  "description": "Source-backed web and YouTube research with FlashData MCP, transcript timestamps, and reusable research skills. API queries consume FlashData Credits.",
+  "mcpServers": {
+    "flashdata": {
+      "httpUrl": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "${FLASHDATA_API_KEY}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "FlashData API key",
+      "description": "Your FlashData API key from https://flashdata.dev/app/api-keys. Queries consume FlashData Credits; account reads and pricing checks are free.",
+      "envVar": "FLASHDATA_API_KEY",
+      "sensitive": true
+    }
+  ]
+}

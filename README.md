@@ -48,6 +48,24 @@ After configuration, invoke `/flashdata` and ask: “Quote one Google search usi
 
 Support: [support@flashdata.dev](mailto:support@flashdata.dev). See [Security](SECURITY.md), [FlashData terms](https://flashdata.dev/legal/terms), and [privacy](https://flashdata.dev/legal/privacy).
 
+## Gemini CLI extension
+
+The [Gemini CLI extension](https://geminicli.com/docs/extensions/) bundles the same FlashData research Skill and hosted MCP connection. It requires Gemini CLI and a FlashData account; it does not run this repository's local Node.js MCP server or require the unpublished `@flashdata/mcp` package.
+
+Install from the public repository:
+
+```sh
+gemini extensions install https://github.com/flashdata-dev/flashdata-mcp
+```
+
+Review the extension when prompted. Enter your own FlashData API key into the installation setting, not Agent chat. [gemini-extension.json](gemini-extension.json) declares the key as a sensitive setting so Gemini CLI uses the system keychain and masks the input. The repository contains only an environment-variable placeholder. To change the key later, run `gemini extensions config flashdata`.
+
+Restart Gemini CLI after installing or changing the configuration. Run `gemini extensions list` to check the installation, and use `/mcp` and `/skills list` in an interactive session to inspect the FlashData connection and Skill. If an existing Gemini MCP setting also uses the name `flashdata`, that user setting takes precedence; use one intended connection rather than maintaining duplicates.
+
+For a free FlashData check, ask: “Use the FlashData skill to quote one Google search with `get_pricing`, source `google_search`, request_count `1`. Do not run the search or any other paid query.” Skill activation and tool execution remain subject to your Gemini CLI permissions. The extension is MIT-licensed and has no separate fee. FlashData queries consume your Credits; account reads and pricing checks are free. Gemini model access and its usage limits are separate from FlashData. Google's [June 2026 transition notice](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli) moves individual/free access to Antigravity CLI; Gemini CLI remains available through supported enterprise licenses and paid API keys. This extension has been validated for Gemini CLI, not Antigravity CLI.
+
+For local development, run `gemini extensions link /absolute/path/to/flashdata-mcp` and restart the CLI. The extension uses Streamable HTTP (`httpUrl`) and automatically discovers `skills/flashdata/`; no additional commands or persistent context file are required. GitHub installation and [Gemini gallery](https://geminicli.com/extensions/) indexing are separate milestones; a public repository is not proof of a live gallery listing.
+
 ## Repository layout
 
 ```text
@@ -58,6 +76,7 @@ scripts/                  package checks and installation verification
 skills/flashdata/         portable Agent Skill and research recipes
 .cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
 mcp.json                  hosted MCP connection for the Cursor plugin
+gemini-extension.json     Gemini CLI hosted MCP and sensitive key setting
 assets/logo.svg           FlashData plugin logo
 .github/workflows/ci.yml  continuous integration
 package.json              package metadata and commands
