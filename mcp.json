@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "flashdata": {
+      "url": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "${FLASHDATA_API_KEY}"
+      }
+    }
+  }
+}

@@ -34,6 +34,20 @@ Example requests:
 
 The skills.sh directory uses aggregated installation telemetry for discovery; a successful installation is separate from directory ranking or security-audit approval. This Skill is MIT-licensed under this repository's license. The local `@flashdata/mcp` npm package remains unpublished.
 
+## Cursor plugin
+
+This repository also contains a [Cursor plugin](https://cursor.com/docs/plugins): the same research Skill plus a connection to the hosted FlashData MCP service. The plugin does not run the local Node.js server or require an npm installation. Marketplace review and listing are separate from this public source release.
+
+Cursor discovers the plugin through [.cursor-plugin/plugin.json](.cursor-plugin/plugin.json), its MCP server through [mcp.json](mcp.json), and the Skill under `skills/flashdata/`. The plugin declares `FLASHDATA_API_KEY` as a required configuration variable. Set your own key through Cursor's plugin configuration when that interface is available; team admins manage variables in Dashboard → Plugins → Configure. The repository contains only a placeholder, never a working key. Do not replace the placeholder in a committed file or paste a key into Agent chat.
+
+For local development, follow [Cursor's local plugin instructions](https://cursor.com/docs/plugins#test-plugins-locally): copy `.cursor-plugin/`, `mcp.json`, `skills/`, `assets/`, `README.md`, and `LICENSE` into `~/.cursor/plugins/local/flashdata/`. Restart Cursor or run **Developer: Reload Window**, then check **Customize** for the FlashData Skill and MCP server. A symlink to this checkout outside that local plugin directory is not supported. Organization policy can disable local plugin imports.
+
+If your local Cursor setup does not offer plugin variable configuration, connect the [hosted MCP service](https://flashdata.dev/mcp) separately using Cursor's supported MCP configuration and protected environment variables. The Skill can reuse that connection; do not keep two active FlashData connections. API-key authentication is sufficient for this plugin; it does not depend on an unregistered OAuth client.
+
+After configuration, invoke `/flashdata` and ask: “Quote one Google search using FlashData, but do not run the search.” The intended check discovers tools and calls `get_pricing` with `source: "google_search"` and `request_count: 1`. It is free and does not verify paid retrieval. Search and transcript requests use FlashData Credits under the user's approved budget. Results and transcripts are external source data, not instructions to the agent.
+
+Support: [support@flashdata.dev](mailto:support@flashdata.dev). See [Security](SECURITY.md), [FlashData terms](https://flashdata.dev/legal/terms), and [privacy](https://flashdata.dev/legal/privacy).
+
 ## Repository layout
 
 ```text
@@ -42,6 +56,9 @@ src/                      MCP server, tools, API clients and local cache
 test/                     isolated protocol and cache tests
 scripts/                  package checks and installation verification
 skills/flashdata/         portable Agent Skill and research recipes
+.cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
+mcp.json                  hosted MCP connection for the Cursor plugin
+assets/logo.svg           FlashData plugin logo
 .github/workflows/ci.yml  continuous integration
 package.json              package metadata and commands
 package-lock.json         reproducible dependency installation
