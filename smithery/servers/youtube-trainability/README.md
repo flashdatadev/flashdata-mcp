@@ -8,7 +8,7 @@ Add a license-label column to a video review sheet, preserving the video ID and 
 
 ## Install from Smithery
 
-Open [the YouTube Trainability and License Labels listing](https://smithery.ai/servers/flashdata/youtube-trainability) and use its local MCPB installation option. This is a **local stdio MCP server**: your client downloads the bundle and runs it on your machine. It requires Node.js 22.18 or newer and a client that supports local MCPB or stdio servers. It is not a hosted HTTP endpoint.
+Open [the YouTube Trainability and License Labels listing](https://smithery.ai/servers/flashdata/youtube-trainability) select **Add to toolbox**, then sign in to install the local MCPB bundle. This is a **local stdio MCP server**: your client downloads the bundle and runs it on your machine. It requires Node.js 22.18 or newer and a client that supports local MCPB or stdio servers. It is not a hosted HTTP endpoint.
 
 Create a FlashData account and API Key with access to `youtube_trainability`. Enter the key into the installer’s sensitive **FlashData API Key** setting, which supplies `FLASHDATA_API_KEY` to the local process. Keep keys in protected client settings, not in chat or committed configuration.
 
@@ -48,7 +48,7 @@ Representative fixture showing selected response fields, **not a live query or a
 ```json
 {
   "source": "youtube_trainability",
-  "status": "completed",
+  "status": "done",
   "results": [
     {
       "videoId": "dQw4w9WgXcQ",
