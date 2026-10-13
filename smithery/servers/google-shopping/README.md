@@ -8,7 +8,7 @@ Capture a product shortlist and compare later snapshots by productId or link, ke
 
 ## Install from Smithery
 
-Open [the Google Shopping listing](https://smithery.ai/servers/flashdata/google-shopping) and use its local MCPB installation option. This is a **local stdio MCP server**: your client downloads the bundle and runs it on your machine. It requires Node.js 22.18 or newer and a client that supports local MCPB or stdio servers. It is not a hosted HTTP endpoint.
+Open [the Google Shopping listing](https://smithery.ai/servers/flashdata/google-shopping) select **Add to toolbox**, then sign in to install the local MCPB bundle. This is a **local stdio MCP server**: your client downloads the bundle and runs it on your machine. It requires Node.js 22.18 or newer and a client that supports local MCPB or stdio servers. It is not a hosted HTTP endpoint.
 
 Create a FlashData account and API Key with access to `google_shopping`. Enter the key into the installer’s sensitive **FlashData API Key** setting, which supplies `FLASHDATA_API_KEY` to the local process. Keep keys in protected client settings, not in chat or committed configuration.
 
@@ -51,7 +51,7 @@ Representative fixture showing selected response fields, **not a live query or a
 ```json
 {
   "source": "google_shopping",
-  "status": "completed",
+  "status": "done",
   "results": [
     {
       "shopping": [
