@@ -1,0 +1,73 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.flashdata-dev/google-search",
+  "title": "Google Search — FlashData",
+  "description": "Google Search rankings, URLs and snippets for localized SERP research. Paid FlashData API.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "source": "github",
+    "subfolder": "registry/servers/google-search"
+  },
+  "websiteUrl": "https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "c9069c0ca030cb32c0049716cf996838b5b4d9e1d5cb0540231e781a5d0ac959",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FLASHDATA_API_KEY",
+          "description": "Your FlashData API Key with google_search access. Get a key at https://flashdata.dev/app/api-keys; data calls are paid.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "source": "google_search",
+        "tools": [
+          "google_search",
+          "get_job",
+          "get_result",
+          "get_pricing"
+        ],
+        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/google_search.md",
+        "task": "Export Google Search SERP rankings with source URLs",
+        "inputExample": {
+          "name": "google_search",
+          "arguments": {
+            "query": "battery recycling research",
+            "gl": "us",
+            "hl": "en",
+            "num": 10
+          }
+        },
+        "useResult": "Read results[0].organic; retain position, title, link and snippet together with created_at. Save separate snapshots before comparing rankings.",
+        "limits": "One page is one query. Ranking depends on query and location; actual result count may be lower than requested. Search snippets are not article full text.",
+        "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
+        "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
+        "apiKeyUrl": "https://flashdata.dev/app/api-keys",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "documentation": "https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide"
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.flashdata-dev/google-places",
+  "title": "Google Places — FlashData",
+  "description": "Google Places businesses, addresses, ratings and review counts. Paid FlashData API.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "source": "github",
+    "subfolder": "registry/servers/google-places"
+  },
+  "websiteUrl": "https://flashdata.dev/docs/sources/google_places?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-guide",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "48f38e97cc5c658a895be2d26df1af92471ad0d6e3e81874cf5e8ce3253baa6b",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FLASHDATA_API_KEY",
+          "description": "Your FlashData API Key with google_places access. Get a key at https://flashdata.dev/app/api-keys; data calls are paid.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "source": "google_places",
+        "tools": [
+          "google_places",
+          "get_job",
+          "get_result",
+          "get_pricing"
+        ],
+        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/google_places.md",
+        "task": "Shortlist local businesses by rating and review count",
+        "inputExample": {
+          "name": "google_places",
+          "arguments": {
+            "query": "coffee shops in Singapore",
+            "num": 20
+          }
+        },
+        "useResult": "Read results[0].places. Keep entries with rating at least 4.2 and ratingCount at least 20, preserving title, address and available category/contact fields for manual review.",
+        "limits": "Ratings and contact information can be absent. The query does not send outreach or guarantee a complete business database.",
+        "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
+        "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
+        "apiKeyUrl": "https://flashdata.dev/app/api-keys",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "documentation": "https://flashdata.dev/docs/sources/google_places?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-guide"
+      }
+    }
+  }
+}

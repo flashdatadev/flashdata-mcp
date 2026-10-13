@@ -1,0 +1,73 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.flashdata-dev/google-news",
+  "title": "Google News — FlashData",
+  "description": "Google News articles with publishers, date labels and links for topic briefs. Paid FlashData API.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "source": "github",
+    "subfolder": "registry/servers/google-news"
+  },
+  "websiteUrl": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "682969937d0ab4ea6049042304e3727096fece4402b1b9bc705768542200ff70",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FLASHDATA_API_KEY",
+          "description": "Your FlashData API Key with google_news access. Get a key at https://flashdata.dev/app/api-keys; data calls are paid.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "source": "google_news",
+        "tools": [
+          "google_news",
+          "get_job",
+          "get_result",
+          "get_pricing"
+        ],
+        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/google_news.md",
+        "task": "Build a source-linked Google News topic digest",
+        "inputExample": {
+          "name": "google_news",
+          "arguments": {
+            "query": "battery recycling",
+            "gl": "us",
+            "hl": "en",
+            "num": 10
+          }
+        },
+        "useResult": "Read results[0].news and group entries by source. Keep title, link, source, date and snippet; preserve relative date labels rather than inventing absolute publication times.",
+        "limits": "This call reads one news snapshot. Scheduling and delivering a recurring digest belong to your application. It does not retrieve article full text.",
+        "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
+        "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
+        "apiKeyUrl": "https://flashdata.dev/app/api-keys",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "documentation": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide"
+      }
+    }
+  }
+}

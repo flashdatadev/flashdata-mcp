@@ -1,0 +1,72 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.flashdata-dev/youtube-autocomplete",
+  "title": "YouTube Autocomplete — FlashData",
+  "description": "YouTube autocomplete suggestions by query prefix, language and region. Paid FlashData API.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "source": "github",
+    "subfolder": "registry/servers/youtube-autocomplete"
+  },
+  "websiteUrl": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-guide",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "876c40a143ae18f835bc4728e7a9390cba47e4cd1707d1111326c9496d7000b3",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FLASHDATA_API_KEY",
+          "description": "Your FlashData API Key with youtube_suggestions access. Get a key at https://flashdata.dev/app/api-keys; data calls are paid.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "source": "youtube_suggestions",
+        "tools": [
+          "youtube_suggestions",
+          "get_job",
+          "get_result",
+          "get_pricing"
+        ],
+        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/youtube_suggestions.md",
+        "task": "Build a YouTube autocomplete keyword research sheet",
+        "inputExample": {
+          "name": "youtube_suggestions",
+          "arguments": {
+            "query": "battery recycling",
+            "language": "en",
+            "region": "US"
+          }
+        },
+        "useResult": "Read the suggestion strings in results[0]. Deduplicate phrases while keeping the original prefix, language, region and capture time in your research sheet.",
+        "limits": "Autocomplete returns phrases, not video results or search-volume estimates. A suggestion is not evidence of demand size.",
+        "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
+        "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
+        "apiKeyUrl": "https://flashdata.dev/app/api-keys",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "documentation": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-guide"
+      }
+    }
+  }
+}

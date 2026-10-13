@@ -1,0 +1,84 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.flashdata-dev/youtube-download",
+  "title": "YouTube Download to Cloud Storage — FlashData",
+  "description": "Deliver YouTube video, audio or clips to your cloud storage asynchronously. Paid FlashData API.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "source": "github",
+    "subfolder": "registry/servers/youtube-download"
+  },
+  "websiteUrl": "https://flashdata.dev/docs/sources/youtube_download?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-guide",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "80efd5261574e3834a543fce15e25383755d366175213093c18a5f2de50e78fa",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FLASHDATA_API_KEY",
+          "description": "Your FlashData API Key with youtube_download access. Get a key at https://flashdata.dev/app/api-keys; data calls are paid.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "source": "youtube_download",
+        "tools": [
+          "youtube_download",
+          "get_job",
+          "get_result",
+          "get_pricing"
+        ],
+        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/youtube_download.md",
+        "task": "Deliver a YouTube clip to S3 or customer cloud storage",
+        "inputExample": {
+          "name": "youtube_download",
+          "arguments": {
+            "video_id": "jNQXAC9IVRw",
+            "mode": "async",
+            "download_type": "audio_video",
+            "video_quality": "<=720",
+            "output_format": "mp4",
+            "start_at": "00:00:00",
+            "end_at": "00:00:10",
+            "storage": {
+              "storage_type": "s3",
+              "storage_url": "your-media-bucket",
+              "access_key": "YOUR_ACCESS_KEY",
+              "secret_key": "YOUR_SECRET_KEY",
+              "region": "us-east-1",
+              "object_prefix": "flashdata-clips"
+            }
+          }
+        },
+        "useResult": "Submit once, save the returned id, and call get_job with job_id until job.status is completed. Read output.results[0] for file_url, file_size, downloaded_bytes and output_format. Pending or processing is not completed delivery.",
+        "limits": "Only asynchronous delivery is supported. Supply your own destination and credentials; media access and retention follow your storage settings. Private object URLs are not public download links. Charges reserve Credits and settle by uploaded bytes.",
+        "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
+        "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
+        "apiKeyUrl": "https://flashdata.dev/app/api-keys",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "documentation": "https://flashdata.dev/docs/sources/youtube_download?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-guide"
+      }
+    }
+  }
+}

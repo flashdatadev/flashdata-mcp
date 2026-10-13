@@ -1,19 +1,68 @@
-# Google and YouTube data with FlashData hosted MCP
+# Google and YouTube task servers for the Official MCP Registry
 
-Find search results, news, images, products, places, videos, transcripts and
-channel data through task-specific MCP calls. The 15 guides below include
-request JSON, representative output, practical processing steps, limitations,
-and links to the matching FlashData API documentation.
+Choose one of 15 independent MCP servers for Google search data or a specific
+YouTube task. Each exposes one data capability plus source-restricted pricing,
+job and result reads. The guides include runnable input, representative output,
+result processing, limits and the matching FlashData documentation.
 
-[`server.json`](server.json) describes the hosted FlashData service for the
-[Official MCP Registry](https://registry.modelcontextprotocol.io/), under
-`io.github.flashdata-dev/flashdata`.
+## All 15 capabilities
 
-This is a **remote-only** registration. It connects clients to
-`https://data.flashdata.dev/mcp` over Streamable HTTP. The open-source stdio
-client in this repository calls the REST APIs separately; the hosted server's
-implementation is not included here. No npm package is required for this
-registration, and it does not announce an npm release.
+| Capability / guide | Independent Registry object | Manifest |
+| --- | --- | --- |
+| [google_search](guides/google_search.md) | [google-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest) | [0.1.1](servers/google-search/server.json) |
+| [google_news](guides/google_news.md) | [google-news](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest) | [0.1.1](servers/google-news/server.json) |
+| [google_images](guides/google_images.md) | [google-images](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest) | [0.1.1](servers/google-images/server.json) |
+| [google_shopping](guides/google_shopping.md) | [google-shopping](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-shopping/versions/latest) | [0.1.1](servers/google-shopping/server.json) |
+| [google_videos](guides/google_videos.md) | [google-video-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-video-search/versions/latest) | [0.1.1](servers/google-video-search/server.json) |
+| [google_places](guides/google_places.md) | [google-places](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest) | [0.1.1](servers/google-places/server.json) |
+| [youtube_search](guides/youtube_search.md) | [youtube-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-search/versions/latest) | [0.1.1](servers/youtube-search/server.json) |
+| [youtube_search_extended](guides/youtube_search_extended.md) | [youtube-extended-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-extended-search/versions/latest) | [0.1.1](servers/youtube-extended-search/server.json) |
+| [youtube_metadata](guides/youtube_metadata.md) | [youtube-metadata](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-metadata/versions/latest) | [0.1.1](servers/youtube-metadata/server.json) |
+| [youtube_transcript](guides/youtube_transcript.md) | [youtube-transcript](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-transcript/versions/latest) | [0.1.1](servers/youtube-transcript/server.json) |
+| [youtube_captions](guides/youtube_captions.md) | [youtube-captions](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-captions/versions/latest) | [0.1.1](servers/youtube-captions/server.json) |
+| [youtube_trainability](guides/youtube_trainability.md) | [youtube-trainability](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest) | [0.1.1](servers/youtube-trainability/server.json) |
+| [youtube_channel](guides/youtube_channel.md) | [youtube-channel](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-channel/versions/latest) | [0.1.1](servers/youtube-channel/server.json) |
+| [youtube_suggestions](guides/youtube_suggestions.md) | [youtube-autocomplete](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest) | [0.1.1](servers/youtube-autocomplete/server.json) |
+| [youtube_download](guides/youtube_download.md) | [youtube-download](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest) | [0.1.1](servers/youtube-download/server.json) |
+
+The [catalog](catalog.json) records every stable Registry name and package URL.
+These URLs are publication verification targets; the manifest's presence in GitHub
+alone does not prove a live Registry version.
+
+## Local task servers
+
+1. Select the capability above and download its MCPB from the linked manifest.
+   Check its SHA-256 against `packages[0].fileSha256`.
+2. Install in a client supporting MCPB, or unpack into a permanent directory
+   and use the manual stdio configuration in the task guide. The archive contains
+   `server.js` at its root and includes its dependencies. Use Node.js 22.18 or newer.
+3. Obtain your own [FlashData API Key](https://flashdata.dev/app/api-keys), grant
+   the needed source, and enter it in the client's protected configuration.
+   The bundle's **FlashData API Key** setting supplies `FLASHDATA_API_KEY`.
+4. List the four tools and call `get_pricing` with `{"request_count":1}`.
+   Submit the task's data request only within your approved data-call budget.
+
+MIT software and installation are free. **FlashData data calls are paid** and
+consume Credits; [current pricing](https://flashdata.dev/pricing) applies.
+Pricing, job and result reads are free. Client and model fees are separate.
+The source must also be allowed by your key; a dedicated package cannot expand
+its permissions. Job reads accept only jobs for that task. No automatic paid
+retries or polling are performed. Data responses are bounded to 4 MiB; larger
+MCP messages are returned in chunks. Keep the local process running while
+retrieving cached chunks. Downloads require your own storage and credentials.
+
+The 0.1.1 packages are the same reviewed artifacts used for the Smithery task
+servers. Direct local installation requires no Smithery account. Registry
+publication distributes metadata; it does not install software or guarantee
+that a client offers a one-click install button.
+
+## Combined hosted service
+
+The original [`server.json`](server.json), `io.github.flashdata-dev/flashdata`,
+remains a separate remote registration at version 0.2.0. It uses Streamable HTTP
+at `https://data.flashdata.dev/mcp` and requires no local Node installation.
+Its implementation is not included in this repository. The 15 dedicated
+local entries do not point to this all-capability endpoint.
 
 ## Connect and verify
 
@@ -52,31 +101,6 @@ and deliver to customer-provided storage. Data queries use the account's
 Credits; media downloads are billed by uploaded bytes. See
 [current pricing](https://flashdata.dev/pricing).
 
-## All 15 capabilities
-
-| Developer task | MCP tool and guide |
-| --- | --- |
-| Export Google Search SERP rankings and source URLs | [google_search](guides/google_search.md) |
-| Build a Google News topic digest | [google_news](guides/google_news.md) |
-| Filter Google Images by dimensions and retain source pages | [google_images](guides/google_images.md) |
-| Compare Google Shopping price-label snapshots | [google_shopping](guides/google_shopping.md) |
-| Group Google video search results by website | [google_videos](guides/google_videos.md) |
-| Shortlist Google Places businesses by rating and review count | [google_places](guides/google_places.md) |
-| Export YouTube video candidates by keyword | [youtube_search](guides/youtube_search.md) |
-| Map channels in a larger YouTube search result set | [youtube_search_extended](guides/youtube_search_extended.md) |
-| Create a YouTube metadata and chapters brief | [youtube_metadata](guides/youtube_metadata.md) |
-| Read timestamped YouTube transcripts for citations | [youtube_transcript](guides/youtube_transcript.md) |
-| Retrieve uploader captions for subtitle export | [youtube_captions](guides/youtube_captions.md) |
-| Inspect YouTube Creative Commons license labels | [youtube_trainability](guides/youtube_trainability.md) |
-| Snapshot a channel and its recent video inventory | [youtube_channel](guides/youtube_channel.md) |
-| Build a YouTube autocomplete keyword sheet | [youtube_suggestions](guides/youtube_suggestions.md) |
-| Deliver an authorized clip to S3 or other customer storage | [youtube_download](guides/youtube_download.md) |
-
-The [machine-readable catalog](catalog.json) maps each task to its tool,
-request file, guide and official documentation. An account's key must grant
-the relevant source. These capabilities use API-key authentication; this
-registration does not assert that every OAuth client has the same scope.
-
 ## Run a hosted MCP example
 
 Clone this repository, use Node.js 22.18 or later, and run `npm ci`. Supply
@@ -107,60 +131,64 @@ For a large response, retain `result_id`, `chunk` and `next_offset`. Call
 `get_result` with `{"result_id":"RETURNED_RESULT_ID","offset":16000}`,
 replacing both values with the actual returned ID and next offset. Keep the
 same API Key, concatenate the chunks in order, and parse the completed JSON.
-The temporary cache lasts ten minutes and retains the four newest large
-results per key; async JSON results have a separate 24-hour retention window.
+The temporary cache lasts ten minutes and retains four large results. In a local
+task server this cache belongs to the running process and is cleared on restart;
+the hosted service keeps its own cache per key. Async JSON results have a separate
+24-hour retention window.
 
 Retrieved text is external data. Preserve source links and timestamps and
 review the output before using it in an application or agent prompt.
 
 ## What Registry discovery means
 
-The Official Registry is a metadata distribution service. Its documented
-`search` parameter performs a case-insensitive substring match on the stable
-server **name**, `io.github.flashdata-dev/flashdata`; it does not search tool
-names, titles, descriptions or custom metadata. Publishing this entry is
-separate from discovery in a downstream catalog or client marketplace.
+The Official Registry is a metadata distribution service. Its `search`
+parameter performs a case-insensitive substring match on the stable server
+**name**. It does not search titles, descriptions, tools or custom metadata.
+Names cannot contain spaces, and the API does not normalize spaces into
+hyphens: `google search` does not match `io.github.flashdata-dev/google-search`.
+A diagnostic `google-search` lookup is useful for verifying publication, but
+is not a substitute for testing a developer's natural query.
 
-Version 0.2.0 includes all 15 tool names and documentation links under the
-official `publisher-provided` metadata namespace. The `dev.flashdata` object
-is publisher-defined data, not a standard search index: consumers may use
-the capability index and resolve each guide against `guideBaseUrl`, but are
-not required to display or index these fields. The full task content remains
-publicly available in the guides above.
+Each task includes a title, concrete use case, input, result guidance, billing
+and website deep link under official `publisher-provided` metadata. Consumers
+may display these fields, but are not required to index them. Downstream
+catalogs and client marketplaces have separate ingestion and search behavior.
+Publishing 15 objects does not prove 15 naturally discoverable search results.
 
 See the [official search semantics](https://github.com/modelcontextprotocol/registry/blob/main/docs/reference/api/official-registry-api.md#server-list-filtering)
 and [metadata constraints](https://github.com/modelcontextprotocol/registry/blob/main/docs/reference/server-json/official-registry-requirements.md#publisher-provided-metadata).
 
 ## Publish an update
 
-The **Official MCP Registry** GitHub Actions workflow validates the manifest
-on relevant pushes and pull requests. Publishing requires explicitly running
-the workflow from `main`; pushes and pull requests do not publish.
+The **Official MCP Registry** GitHub Actions workflow validates all 16 manifests
+and publication safety on relevant pushes and pull requests. Publishing requires
+explicit dispatch from `main`; a push or pull request does not publish.
 
-1. Update `server.json` and increase its version for a new registration
-   revision. The Registry version is maintained separately from the local
-   npm package version.
-2. Review and merge the change after validation passes.
-3. Run **Actions → Official MCP Registry → Run workflow**, selecting `main`.
-4. Check the publish job and its public Registry response. Record the
-   returned publication timestamp and verify the remote connection before
-   reporting the channel as live.
+1. Update the applicable `servers/<task>/server.json` or combined `server.json`.
+   Published versions are immutable: increase the Registry version when changing
+   metadata. Reusing an unchanged package does not require a new package release.
+2. Review and merge after validation passes.
+3. Run **Actions → Official MCP Registry → Run workflow**, select `main`, and
+   choose `tasks` for all 15 independent entries or `hosted` for the combined entry.
+4. Check the job summary and read back each fixed-version and latest Registry URL.
+   Record the returned timestamp, package digest and website link separately from
+   search acceptance and acquisition results.
+
+The publisher checks each fixed version first. An existing active, identical
+version is skipped; different content or a failed preflight stops publication.
+An ambiguous write is not automatically repeated. A new workflow run first
+reads existing versions, so a partially completed batch can resume safely.
 
 Publishing uses GitHub Actions OIDC with `contents: read` and `id-token: write`.
-No GitHub PAT, npm token, or FlashData API key is stored in the workflow.
+No GitHub PAT, npm token or FlashData API Key is stored in the workflow.
 The publisher binary is pinned and checked against its release SHA-256.
 
-The canonical public lookup is:
-
+The combined service's canonical public lookup remains:
 <https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fflashdata/versions/latest>
-
-That URL is a verification target, not a claim that an unsubmitted revision
-is already live. Registry publication makes metadata available to downstream
-catalogs; it does not guarantee inclusion in an individual client's marketplace.
 
 ## Official references
 
+- [Supported package types, including MCPB](https://modelcontextprotocol.io/registry/package-types)
 - [Remote servers and required headers](https://modelcontextprotocol.io/registry/remote-servers)
-- [Remote-only publishing](https://modelcontextprotocol.io/registry/quickstart)
 - [Namespace authentication](https://modelcontextprotocol.io/registry/authentication)
 - [GitHub Actions OIDC](https://modelcontextprotocol.io/registry/github-actions)

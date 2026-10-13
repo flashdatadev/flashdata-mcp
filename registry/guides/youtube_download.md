@@ -6,7 +6,27 @@ Deliver an authorized clip to your own storage and keep a manifest for downstrea
 
 ## Connect and check cost
 
-Follow the [hosted MCP setup](../README.md#connect-and-verify) using your own FlashData API Key, with access to `youtube_download`. The Official Registry entry connects to the hosted service; no local MCP server is needed. For the runnable SDK examples, clone this repository and run `npm ci` with Node.js 22.18 or later. Supply `FLASHDATA_API_KEY` through your environment or secret manager.
+The dedicated Registry server is [`io.github.flashdata-dev/youtube-download`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest), with the local [MCPB package](https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/youtube-download/server.json). It runs on your machine with Node.js 22.18+ and exposes only `youtube_download`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+
+In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `youtube_download`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
+
+For manual stdio setup, unpack the bundle into a permanent directory and configure:
+
+```json
+{
+  "mcpServers": {
+    "youtube-download": {
+      "command": "node",
+      "args": ["/absolute/path/to/unpacked/youtube-download/server.js"],
+      "env": {"FLASHDATA_API_KEY": "YOUR_API_KEY"}
+    }
+  }
+}
+```
+
+Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed for the bundle. Keep the key in protected client settings, never in chat or committed configuration. These are the same reviewed 0.1.1 runtime artifacts distributed on Smithery; the release tag identifies their build, not an extra account requirement for direct local use. The full [runtime limits](../README.md#local-task-servers) apply.
+
+A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"request_count":1}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
 
 Call `get_pricing` with `{"source":"youtube_download","request_count":1}` before running the data request. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Download pricing is per delivered byte volume, not per request.
 
@@ -37,9 +57,9 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
 }
 ```
 
-Copy the request outside the repository, replace the video and storage placeholders with your authorized destination, and restrict the file permissions. Run the helper with that private file path; do not commit or paste storage credentials into chat.
+Copy the request outside the repository, replace the video and storage placeholders with your authorized destination, and restrict the file permissions. The optional combined hosted helper (`node registry/examples/call-tool.mjs /absolute/path/to/private-request.json`) accepts that private file; do not commit or paste storage credentials into chat.
 
-The helper sends one tool call and prints its structured response. It does not automatically retry paid submissions or poll jobs. [Request file](../examples/youtube_download.json).
+The hosted helper sends one tool call and prints its structured response. It does not automatically retry paid submissions or poll jobs. [Request file](../examples/youtube_download.json).
 
 ## Use the result
 

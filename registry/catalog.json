@@ -5,7 +5,11 @@
     "tool": "google_search",
     "guide": "guides/google_search.md",
     "request": "examples/google_search.json",
-    "documentation": "https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide"
+    "documentation": "https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide",
+    "registryName": "io.github.flashdata-dev/google-search",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest",
+    "manifest": "servers/google-search/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb"
   },
   {
     "source": "google_news",
@@ -13,7 +17,11 @@
     "tool": "google_news",
     "guide": "guides/google_news.md",
     "request": "examples/google_news.json",
-    "documentation": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide"
+    "documentation": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide",
+    "registryName": "io.github.flashdata-dev/google-news",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest",
+    "manifest": "servers/google-news/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb"
   },
   {
     "source": "google_images",
@@ -21,7 +29,11 @@
     "tool": "google_images",
     "guide": "guides/google_images.md",
     "request": "examples/google_images.json",
-    "documentation": "https://flashdata.dev/docs/sources/google_images?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-guide"
+    "documentation": "https://flashdata.dev/docs/sources/google_images?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-guide",
+    "registryName": "io.github.flashdata-dev/google-images",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest",
+    "manifest": "servers/google-images/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-images-0.1.1.mcpb"
   },
   {
     "source": "google_shopping",
@@ -29,7 +41,11 @@
     "tool": "google_shopping",
     "guide": "guides/google_shopping.md",
     "request": "examples/google_shopping.json",
-    "documentation": "https://flashdata.dev/docs/sources/google_shopping?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-guide"
+    "documentation": "https://flashdata.dev/docs/sources/google_shopping?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-guide",
+    "registryName": "io.github.flashdata-dev/google-shopping",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-shopping/versions/latest",
+    "manifest": "servers/google-shopping/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-shopping-0.1.1.mcpb"
   },
   {
     "source": "google_videos",
@@ -37,7 +53,11 @@
     "tool": "google_videos",
     "guide": "guides/google_videos.md",
     "request": "examples/google_videos.json",
-    "documentation": "https://flashdata.dev/docs/sources/google_videos?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-guide"
+    "documentation": "https://flashdata.dev/docs/sources/google_videos?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-guide",
+    "registryName": "io.github.flashdata-dev/google-video-search",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-video-search/versions/latest",
+    "manifest": "servers/google-video-search/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-video-search-0.1.1.mcpb"
   },
   {
     "source": "google_places",
@@ -45,7 +65,11 @@
     "tool": "google_places",
     "guide": "guides/google_places.md",
     "request": "examples/google_places.json",
-    "documentation": "https://flashdata.dev/docs/sources/google_places?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-guide"
+    "documentation": "https://flashdata.dev/docs/sources/google_places?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-guide",
+    "registryName": "io.github.flashdata-dev/google-places",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest",
+    "manifest": "servers/google-places/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb"
   },
   {
     "source": "youtube_search",
@@ -53,7 +77,11 @@
     "tool": "youtube_search",
     "guide": "guides/youtube_search.md",
     "request": "examples/youtube_search.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-guide",
+    "registryName": "io.github.flashdata-dev/youtube-search",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-search/versions/latest",
+    "manifest": "servers/youtube-search/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-search-0.1.1.mcpb"
   },
   {
     "source": "youtube_search_extended",
@@ -61,7 +89,11 @@
     "tool": "youtube_search_extended",
     "guide": "guides/youtube_search_extended.md",
     "request": "examples/youtube_search_extended.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-guide",
+    "registryName": "io.github.flashdata-dev/youtube-extended-search",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-extended-search/versions/latest",
+    "manifest": "servers/youtube-extended-search/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-extended-search-0.1.1.mcpb"
   },
   {
     "source": "youtube_metadata",
@@ -69,7 +101,11 @@
     "tool": "youtube_metadata",
     "guide": "guides/youtube_metadata.md",
     "request": "examples/youtube_metadata.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_metadata?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_metadata?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-guide",
+    "registryName": "io.github.flashdata-dev/youtube-metadata",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-metadata/versions/latest",
+    "manifest": "servers/youtube-metadata/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-metadata-0.1.1.mcpb"
   },
   {
     "source": "youtube_transcript",
@@ -77,7 +113,11 @@
     "tool": "youtube_transcript",
     "guide": "guides/youtube_transcript.md",
     "request": "examples/youtube_transcript.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_transcript?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_transcript?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-guide",
+    "registryName": "io.github.flashdata-dev/youtube-transcript",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-transcript/versions/latest",
+    "manifest": "servers/youtube-transcript/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-transcript-0.1.1.mcpb"
   },
   {
     "source": "youtube_captions",
@@ -85,7 +125,11 @@
     "tool": "youtube_captions",
     "guide": "guides/youtube_captions.md",
     "request": "examples/youtube_captions.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_captions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_captions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-guide",
+    "registryName": "io.github.flashdata-dev/youtube-captions",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-captions/versions/latest",
+    "manifest": "servers/youtube-captions/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-captions-0.1.1.mcpb"
   },
   {
     "source": "youtube_trainability",
@@ -93,7 +137,11 @@
     "tool": "youtube_trainability",
     "guide": "guides/youtube_trainability.md",
     "request": "examples/youtube_trainability.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-guide",
+    "registryName": "io.github.flashdata-dev/youtube-trainability",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest",
+    "manifest": "servers/youtube-trainability/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb"
   },
   {
     "source": "youtube_channel",
@@ -101,7 +149,11 @@
     "tool": "youtube_channel",
     "guide": "guides/youtube_channel.md",
     "request": "examples/youtube_channel.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_channel?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_channel?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-guide",
+    "registryName": "io.github.flashdata-dev/youtube-channel",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-channel/versions/latest",
+    "manifest": "servers/youtube-channel/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-channel-0.1.1.mcpb"
   },
   {
     "source": "youtube_suggestions",
@@ -109,7 +161,11 @@
     "tool": "youtube_suggestions",
     "guide": "guides/youtube_suggestions.md",
     "request": "examples/youtube_suggestions.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-guide",
+    "registryName": "io.github.flashdata-dev/youtube-autocomplete",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest",
+    "manifest": "servers/youtube-autocomplete/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb"
   },
   {
     "source": "youtube_download",
@@ -117,6 +173,10 @@
     "tool": "youtube_download",
     "guide": "guides/youtube_download.md",
     "request": "examples/youtube_download.json",
-    "documentation": "https://flashdata.dev/docs/sources/youtube_download?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-guide"
+    "documentation": "https://flashdata.dev/docs/sources/youtube_download?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-guide",
+    "registryName": "io.github.flashdata-dev/youtube-download",
+    "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest",
+    "manifest": "servers/youtube-download/server.json",
+    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb"
   }
 ]

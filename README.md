@@ -7,10 +7,11 @@ Source code is available at [flashdata-dev/flashdata-mcp](https://github.com/fla
 To connect without running this local package, use the separate
 [FlashData hosted MCP service](https://flashdata.dev/mcp). Its
 [Official MCP Registry manifest and publishing instructions](https://github.com/flashdata-dev/flashdata-mcp/tree/main/registry)
-are maintained in this repository. The registration describes the hosted
-endpoint; it does not publish this local package to npm.
+are maintained in this repository. The combined registration describes the hosted
+endpoint. The Registry also has separate manifests for 15 local task servers;
+each references a source-restricted MCPB bundle. Neither path publishes to npm.
 
-For task-specific hosted examples, use the [15-capability MCP guide index](https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/README.md#all-15-capabilities): Google Search, News, Images, Shopping, video search and Places; YouTube search, extended search, metadata, transcripts, uploader captions, license labels, channels, autocomplete and delivery to customer storage. Each guide includes request JSON, selected output fields, limits, costs and the corresponding FlashData documentation.
+For independent Registry entries and task-specific examples, use the [15-capability MCP guide index](https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/README.md#all-15-capabilities): Google Search, News, Images, Shopping, video search and Places; YouTube search, extended search, metadata, transcripts, uploader captions, license labels, channels, autocomplete and delivery to customer storage. Each guide includes request JSON, selected output fields, limits, costs and the corresponding FlashData documentation.
 
 For a local server focused on one capability, see the [15 independent Smithery task servers](smithery/README.md). Each MCPB bundle has one data tool plus pricing, job and result reads restricted to that source. Installation is free; FlashData data calls use paid Credits.
 

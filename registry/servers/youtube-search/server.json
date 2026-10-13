@@ -1,0 +1,71 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.flashdata-dev/youtube-search",
+  "title": "YouTube Search — FlashData",
+  "description": "YouTube keyword search with filters and up to 20 requested videos. Paid FlashData API.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "source": "github",
+    "subfolder": "registry/servers/youtube-search"
+  },
+  "websiteUrl": "https://flashdata.dev/docs/sources/youtube_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-guide",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-search-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "df4f1c7eb1e0db43f70c660e712869076917658ee0f64c344af90abf826fdad7",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FLASHDATA_API_KEY",
+          "description": "Your FlashData API Key with youtube_search access. Get a key at https://flashdata.dev/app/api-keys; data calls are paid.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "dev.flashdata": {
+        "source": "youtube_search",
+        "tools": [
+          "youtube_search",
+          "get_job",
+          "get_result",
+          "get_pricing"
+        ],
+        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/youtube_search.md",
+        "task": "Export YouTube video candidates by keyword",
+        "inputExample": {
+          "name": "youtube_search",
+          "arguments": {
+            "query": "battery recycling",
+            "max_results": 10
+          }
+        },
+        "useResult": "Read results[0].results. Retain videoId, title, channel, channelUrl, viewCount and duration. Construct a watch URL from each videoId for traceable follow-up research.",
+        "limits": "max_results is 1 to 20; actual results can be fewer. Metadata and transcript enrichment are separate paid calls.",
+        "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
+        "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
+        "apiKeyUrl": "https://flashdata.dev/app/api-keys",
+        "pricingUrl": "https://flashdata.dev/pricing",
+        "documentation": "https://flashdata.dev/docs/sources/youtube_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-guide"
+      }
+    }
+  }
+}
