@@ -1,25 +1,34 @@
 const { randomUUID } = require('node:crypto');
 const { listTools, queryPayload, validateTool } = require('./toolCatalog');
 const { CHUNK_CHARACTERS, ACCOUNT_READ_TOOLS } = require('./resultChunks');
+const { assertTaskSource, listTaskTools } = require('./taskTools');
 
 function toolResult(body, isError = false) {
   return { content: [{ type: 'text', text: JSON.stringify(body) }], structuredContent: body, isError };
 }
 
 function createToolHandlers({ identity: fixedIdentity, getIdentity = async () => fixedIdentity, secret,
-  requestId: fixedRequestId, dataApi, jobApi, managementApi, accountReads, resultStore, onCall = () => {}, chunkResults = true }) {
+  requestId: fixedRequestId, dataApi, jobApi, managementApi, accountReads, resultStore, onCall = () => {}, chunkResults = true,
+  taskSource }) {
+  if (taskSource !== undefined) assertTaskSource(taskSource);
   async function list() {
-    const tools = listTools((await getIdentity()).scopes);
+    const scopes = (await getIdentity()).scopes;
+    const tools = taskSource ? listTaskTools(taskSource, scopes) : listTools(scopes);
     return { tools: chunkResults ? tools : tools.filter(tool => tool.name !== 'get_result') };
   }
   async function call({ name, arguments: args = {} }) {
     if (!chunkResults && name === 'get_result') {
       return toolResult({ code: 'unknown_tool', message: 'get_result is only available in a persistent MCP session. CLI calls return complete JSON.' }, true);
     }
-    const identity = await getIdentity();
+    const grantedIdentity = await getIdentity();
+    const identity = taskSource ? { ...grantedIdentity, scopes: grantedIdentity.scopes.filter(source => source === taskSource) } : grantedIdentity;
+    if (taskSource && !listTaskTools(taskSource, identity.scopes).some(tool => tool.name === name)) {
+      return toolResult({ code: 'source_forbidden', message: 'This task server and API Key do not grant this tool.' }, true);
+    }
     const requestId = fixedRequestId || `req_${randomUUID()}`;
     const invalid = validateTool(name, args);
     if (invalid) return toolResult(invalid, true);
+    if (taskSource && name === 'get_pricing' && args.source === undefined) args = { ...args, source: taskSource };
     const scopes = name === 'submit_batch' ? [...new Set(args.queries.map((item) => item.source))]
       : ['get_pricing', 'get_usage'].includes(name) ? (args.source ? [args.source] : [])
         : ['get_job', 'get_result', ...ACCOUNT_READ_TOOLS].includes(name) ? [] : [name];
@@ -42,7 +51,7 @@ function createToolHandlers({ identity: fixedIdentity, getIdentity = async () =>
       const query = new URLSearchParams(args).toString();
       response = await managementApi.request({ method: 'GET', path: `/v2/usage${query ? `?${query}` : ''}`, secret, requestId });
     } else if (name === 'get_job') {
-      response = await jobApi.read({ jobId: args.job_id, secret, requestId, identity });
+      response = await jobApi.read({ jobId: args.job_id, secret, requestId, identity, allowedSource: taskSource });
     } else {
       const request = name === 'submit_batch'
         ? { method: 'POST', path: '/v1/queries/batch', body: { queries: args.queries.map((item) => queryPayload(item.source, item)) } }

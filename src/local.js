@@ -89,8 +89,8 @@ function createLocalTools(config) {
   return createToolHandlers({ ...createLocalOptions(config), chunkResults: false });
 }
 
-function createLocalServer(config) {
-  const options = createLocalOptions(config);
+function createLocalServer(config, { taskSource, serverInfo } = {}) {
+  const options = { ...createLocalOptions(config), taskSource, serverInfo };
   const server = createMcpServer(options);
   server.onclose = () => options.resultStore.clear();
   return server;

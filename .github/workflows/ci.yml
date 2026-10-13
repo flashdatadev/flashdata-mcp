@@ -19,5 +19,9 @@ jobs:
       - run: npm run check:package
       - run: npm run check:claude-plugin
       - run: npm run test:install
+      - run: npm run build:smithery
+      - run: node --test test/task-servers.test.js
+        env:
+          FLASHDATA_TASK_BUNDLE_DIR: dist/smithery
       - run: npm audit --audit-level=high
       - run: npm pack

@@ -1,0 +1,95 @@
+{
+  "version": "0.1.0",
+  "tasks": [
+    {
+      "source": "google_search",
+      "slug": "google-search",
+      "title": "Google Search",
+      "summary": "Search Google for ranked web pages, titles, URLs and snippets. Build localized SERP snapshots for research and comparison."
+    },
+    {
+      "source": "google_news",
+      "slug": "google-news",
+      "title": "Google News",
+      "summary": "Search Google News for articles, publishers, date labels and source links. Turn a topic into a traceable news briefing."
+    },
+    {
+      "source": "google_images",
+      "slug": "google-images",
+      "title": "Google Images",
+      "summary": "Find Google Images results with image URLs, dimensions and original source pages. Build an attributable image research inventory."
+    },
+    {
+      "source": "google_shopping",
+      "slug": "google-shopping",
+      "title": "Google Shopping",
+      "summary": "Search Google Shopping for products, merchants and price labels. Collect comparable offer snapshots with product IDs and source links."
+    },
+    {
+      "source": "google_videos",
+      "slug": "google-video-search",
+      "title": "Google Video Search",
+      "summary": "Search Google Videos across websites. Retrieve video titles, links, sources and available durations for a cross-site video inventory."
+    },
+    {
+      "source": "google_places",
+      "slug": "google-places",
+      "title": "Google Places",
+      "summary": "Search for local businesses and places with addresses, available ratings and review counts. Build location-specific research shortlists."
+    },
+    {
+      "source": "youtube_search",
+      "slug": "youtube-search",
+      "title": "YouTube Search",
+      "summary": "Search YouTube videos by keyword with date, duration, feature and sorting filters. Return video IDs, channels and available statistics."
+    },
+    {
+      "source": "youtube_search_extended",
+      "slug": "youtube-extended-search",
+      "title": "YouTube Extended Search",
+      "summary": "Search larger YouTube video result sets, with up to 700 requested results. Map recurring channels and topics from structured video records."
+    },
+    {
+      "source": "youtube_metadata",
+      "slug": "youtube-metadata",
+      "title": "YouTube Metadata",
+      "summary": "Read YouTube video details, descriptions, statistics and available chapters. Inspect formats or prepare timestamped chapter navigation."
+    },
+    {
+      "source": "youtube_transcript",
+      "slug": "youtube-transcript",
+      "title": "YouTube Transcript",
+      "summary": "Retrieve available YouTube transcript text with start and end timestamps. Build cited summaries, searchable notes and transcript exports."
+    },
+    {
+      "source": "youtube_captions",
+      "slug": "youtube-captions",
+      "title": "YouTube Captions",
+      "summary": "Retrieve YouTube uploader captions with timed segments. Prepare subtitle exports and inspect the language and caption-track type."
+    },
+    {
+      "source": "youtube_trainability",
+      "slug": "youtube-trainability",
+      "title": "YouTube Trainability and License Labels",
+      "summary": "Inspect a YouTube video’s Creative Commons license classification. Record the returned license-label signal for a separate rights review."
+    },
+    {
+      "source": "youtube_channel",
+      "slug": "youtube-channel",
+      "title": "YouTube Channel Data",
+      "summary": "Read a YouTube channel profile and recent videos by handle. Capture channel identifiers and a bounded recent-upload inventory."
+    },
+    {
+      "source": "youtube_suggestions",
+      "slug": "youtube-autocomplete",
+      "title": "YouTube Autocomplete",
+      "summary": "Get YouTube search suggestions for a query prefix, language and region. Build keyword idea sheets from actual autocomplete phrases."
+    },
+    {
+      "source": "youtube_download",
+      "slug": "youtube-download",
+      "title": "YouTube Download to Cloud Storage",
+      "summary": "Deliver YouTube video, audio or clips to your own S3 or other supported cloud storage. Track asynchronous delivery and its output manifest."
+    }
+  ]
+}

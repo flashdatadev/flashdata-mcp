@@ -3,7 +3,7 @@ const { CallToolRequestSchema, ListToolsRequestSchema } = require('@modelcontext
 const { createToolHandlers } = require('./toolHandlers');
 
 function createMcpServer(options) {
-  const server = new Server({ name: 'flashdata', version: require('../../package.json').version }, { capabilities: { tools: {} } });
+  const server = new Server(options.serverInfo || { name: 'flashdata', version: require('../../package.json').version }, { capabilities: { tools: {} } });
   const tools = createToolHandlers(options);
   server.setRequestHandler(ListToolsRequestSchema, tools.list);
   server.setRequestHandler(CallToolRequestSchema, ({ params }) => tools.call(params));

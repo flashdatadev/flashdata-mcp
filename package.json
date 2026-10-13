@@ -44,12 +44,13 @@
   ],
   "scripts": {
     "start": "node bin/flashdata-mcp.js",
-    "test": "node --test test/memory-store.test.js test/stdio.test.js test/http-security.test.js test/cli.test.js",
+    "test": "node --test test/memory-store.test.js test/stdio.test.js test/http-security.test.js test/cli.test.js test/task-servers.test.js",
     "test:install": "node scripts/test-install.js",
     "check:package": "node scripts/check-package.js",
     "sync:claude-plugin": "node scripts/sync-claude-plugin.js",
     "check:claude-plugin": "node scripts/sync-claude-plugin.js --check",
-    "prepack": "npm test && npm run check:package"
+    "prepack": "npm test && npm run check:package",
+    "build:smithery": "node scripts/build-smithery.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.31.0",
@@ -64,5 +65,8 @@
     "google-search",
     "youtube",
     "transcript"
-  ]
+  ],
+  "devDependencies": {
+    "fflate": "0.8.3"
+  }
 }

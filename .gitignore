@@ -9,3 +9,5 @@ test-results/
 .npmrc
 *.pem
 *.key
+dist/
+*.mcpb

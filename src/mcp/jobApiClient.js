@@ -5,9 +5,13 @@ function createJobApiClient({ baseUrl, resultOrigin, timeoutMs = 65000, http = a
   const management = createDataApiClient({ baseUrl, timeoutMs, http });
   const trustedResultOrigin = resultOrigin ? new URL(resultOrigin).origin : null;
   return {
-    async read({ jobId, secret, requestId }) {
+    async read({ jobId, secret, requestId, allowedSource }) {
       const path = `/v2/jobs/${encodeURIComponent(jobId)}`;
       const status = await management.request({ method: 'GET', path, secret, requestId });
+      // Check provenance before returning job details or following its signed result link.
+      if (allowedSource && status.status === 200 && status.body.job?.source !== allowedSource) {
+        return { status: 403, body: { code: 'source_forbidden', message: 'This job does not belong to this task server.' } };
+      }
       if (status.status !== 200 || status.body.job?.status !== 'completed') return status;
       try {
         const link = await http.request({
