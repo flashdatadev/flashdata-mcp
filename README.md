@@ -38,25 +38,25 @@ The skills.sh directory uses aggregated installation telemetry for discovery; a 
 
 ### Task-specific Skills
 
-Choose an independent Skill for the data task you need. Each contains its own connection/cost guidance, MCP request example, representative output and source-specific workflow; the general `flashdata` research Skill remains available.
+Choose a Skill for the capability you need. Each includes example requests, a terminal quick start, MCP usage, parameters and practical ways to use the results. The general `flashdata` research Skill remains available.
 
-| Need | Skill | Deliverable |
+| Capability | Skill | Examples |
 | --- | --- | --- |
-| Google Search and SERP snapshots | [google-search](skills/google-search/SKILL.md) | Export Google results with their rank, URL and snippet, then compare like-for-like snapshots when the user supplies a prior capture. |
-| Google News topic digest | [google-news](skills/google-news/SKILL.md) | Turn a bounded Google News search into a digest grouped by publisher, with original links and publication labels. |
-| Google Images search and source attribution | [google-image-search](skills/google-image-search/SKILL.md) | Build an image reference shortlist with source attribution and dimension checks using the returned metadata. |
-| Google Shopping price snapshots | [google-shopping](skills/google-shopping/SKILL.md) | Compare a bounded set of shopping results and retain a reproducible price-label snapshot. |
-| Google video search across websites | [google-video-search](skills/google-video-search/SKILL.md) | Find video result pages across websites and show which publishers or platforms they come from. |
-| Google Places local business shortlist | [google-places](skills/google-places/SKILL.md) | Create a local business shortlist with explicit rating and review-count criteria. |
-| YouTube video search shortlist | [youtube-search](skills/youtube-search/SKILL.md) | Produce a small, inspectable list of YouTube video candidates without paying for unrelated enrichment. |
-| YouTube extended search and channel mapping | [youtube-extended-search](skills/youtube-extended-search/SKILL.md) | Map the channels represented in a larger set of YouTube search results while retaining a video-level audit trail. |
-| YouTube metadata and video chapters | [youtube-metadata](skills/youtube-metadata/SKILL.md) | Create a compact video brief and chapter navigation using fields actually returned for a known video. |
-| YouTube transcripts with timestamped citations | [youtube-transcript](skills/youtube-transcript/SKILL.md) | Produce a source-backed transcript brief with video links and exact segment timestamps. |
-| YouTube uploader captions and subtitle export | [youtube-captions](skills/youtube-captions/SKILL.md) | Prepare an SRT or VTT subtitle file from an existing uploader-provided track in the requested language. |
-| YouTube Creative Commons license metadata | [youtube-license-check](skills/youtube-license-check/SKILL.md) | Record the API license classification for a video without turning it into a permission decision. |
-| YouTube channel data and recent videos | [youtube-channel](skills/youtube-channel/SKILL.md) | Build a dated inventory of a channel and the recent videos returned for its handle. |
-| YouTube autocomplete keyword research | [youtube-autocomplete](skills/youtube-autocomplete/SKILL.md) | Create a keyword ideation sheet from the autocomplete phrases returned for a bounded set of prefixes. |
-| YouTube download to S3 or customer storage | [youtube-download](skills/youtube-download/SKILL.md) | Deliver the authorized video, audio or clip to the user-selected storage destination and return its verified completion status. |
+| Google Search | [google-search](skills/google-search/SKILL.md) | Web research, site searches, PDF discovery and localized SERPs. |
+| Google News | [google-news](skills/google-news/SKILL.md) | Topic coverage, company news and linked news briefings. |
+| Google Image Search | [google-image-search](skills/google-image-search/SKILL.md) | Image references, diagrams and filtering by returned dimensions. |
+| Google Shopping | [google-shopping](skills/google-shopping/SKILL.md) | Product discovery and comparing listed merchant offers. |
+| Google Video Search | [google-video-search](skills/google-video-search/SKILL.md) | Tutorials, demonstrations and video discovery across websites. |
+| Google Places Search | [google-places](skills/google-places/SKILL.md) | Local business lists with addresses and available ratings. |
+| YouTube Search | [youtube-search](skills/youtube-search/SKILL.md) | Video discovery using date, duration, subtitle and sorting filters. |
+| YouTube Extended Search | [youtube-extended-search](skills/youtube-extended-search/SKILL.md) | Larger video datasets and creator discovery, up to 700 requested results. |
+| YouTube Video Metadata | [youtube-metadata](skills/youtube-metadata/SKILL.md) | Video details, statistics, chapters and format inspection. |
+| YouTube Transcripts | [youtube-transcript](skills/youtube-transcript/SKILL.md) | Video summaries, timestamped quotes and transcript exports. |
+| YouTube Captions | [youtube-captions](skills/youtube-captions/SKILL.md) | Uploader captions and local SRT/WebVTT conversion. |
+| YouTube Channel Data | [youtube-channel](skills/youtube-channel/SKILL.md) | Channel profiles, recent uploads and video CSV exports. |
+| YouTube Autocomplete | [youtube-autocomplete](skills/youtube-autocomplete/SKILL.md) | Keyword ideas and suggestions by language and region. |
+| YouTube License Check | [youtube-license-check](skills/youtube-license-check/SKILL.md) | Creative Commons license-label classification and its interpretation. |
+| YouTube Video and Audio Download | [youtube-download](skills/youtube-download/SKILL.md) | Video, audio or clips delivered to customer cloud storage. |
 
 Install only the task Skills you want, for example:
 
