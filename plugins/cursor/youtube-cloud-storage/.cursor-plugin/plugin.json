@@ -1,0 +1,36 @@
+{
+  "name": "youtube-cloud-storage-flashdata",
+  "displayName": "YouTube Download to Cloud Storage — FlashData",
+  "version": "0.1.0",
+  "description": "Deliver YouTube video, audio or clips to your own S3 or other supported cloud storage. Track asynchronous delivery and its output manifest. Uses the paid FlashData API.",
+  "author": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_download",
+  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "license": "MIT",
+  "keywords": [
+    "youtube-download",
+    "youtube-to-s3",
+    "mcp",
+    "model-context-protocol",
+    "flashdata",
+    "cursor"
+  ],
+  "logo": "assets/logo.svg",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "FLASHDATA_API_KEY": {
+        "type": "string",
+        "title": "FlashData API key",
+        "description": "FlashData API key from https://flashdata.dev/app/api-keys with youtube_download enabled. Data calls use paid Credits; pricing and job reads are free.",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "FLASHDATA_API_KEY"
+    ]
+  }
+}

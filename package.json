@@ -52,7 +52,10 @@
     "prepack": "npm test && npm run check:package",
     "build:smithery": "node scripts/build-smithery.js",
     "build:npm-tasks": "node scripts/build-npm-tasks.js",
-    "test:npm-tasks": "node scripts/test-npm-tasks.js"
+    "test:npm-tasks": "node scripts/test-npm-tasks.js",
+    "sync:task-integrations": "node scripts/sync-task-integrations.js",
+    "check:task-integrations": "node scripts/sync-task-integrations.js --check",
+    "test:task-integrations": "node --test test/task-integrations.test.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.31.0",

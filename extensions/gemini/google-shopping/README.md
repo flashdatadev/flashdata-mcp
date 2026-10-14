@@ -1,0 +1,181 @@
+# Google Shopping for Gemini CLI — FlashData
+
+Capture product identifiers, merchant names and displayed prices for later comparison. Store the original currency labels rather than treating them as normalized numbers.
+
+`@flashdata-dev/google-shopping` exposes **google_shopping** and the supporting reads for that task. It runs locally and calls the FlashData API. Node.js **22.18 or newer** and a FlashData API key with this source enabled are required.
+
+[Inputs, outputs and source documentation](https://flashdata.dev/docs/sources/google_shopping) · [Get an API key](https://flashdata.dev/app/api-keys) · [Current API pricing](https://flashdata.dev/pricing)
+
+**The MIT software is free to install. FlashData API data calls are paid and consume Credits.** Pricing and job reads are free. MCP client/model fees are separate.
+
+## Install in Gemini CLI
+
+Install from this extension's repository (GitHub installation and gallery indexing are separate):
+
+```sh
+gemini extensions install https://github.com/flashdata-dev/google-shopping-gemini
+```
+
+Review the extension and enter your own FlashData API key at the sensitive setting prompt. To change it later, run `gemini extensions config google-shopping-flashdata`. Restart Gemini CLI after configuration. Run `gemini extensions list`, `gemini skills list --all` and `gemini mcp list` to inspect installation, Skill availability and connection.
+
+Node.js **22.18 or newer**, npm and Git must be available. The extension starts `npx --yes @flashdata-dev/google-shopping@0.1.0 mcp`; first launch downloads the pinned package. Local evaluation also supports `gemini extensions install /absolute/path/to/this-extension`. Model access and fees are separate; this does not claim Antigravity CLI compatibility.
+
+## Use in Gemini CLI
+
+Activate the `google-shopping-flashdata` Skill and use the `google-shopping-flashdata` MCP server. Its tools are `google_shopping`, `get_pricing`, `get_job` and `get_result`. The server rejects other sources and their jobs even when your API key has broader permissions. If you install several FlashData task integrations, choose the supporting tools from this task's server.
+
+First check the connection without a paid data request:
+
+> Use google-shopping-flashdata to call get_pricing for google_shopping, request_count 1. Do not submit a data query.
+
+After approving the API cost, try:
+
+> Search Google Shopping once for wireless headphones in the US. Return 10 requested offers with product identifiers, merchant names, original price labels and source URLs.
+
+The source tool accepts these flat arguments (example values; replace them for your task):
+
+```json
+{
+  "query": "wireless headphones",
+  "gl": "us",
+  "hl": "en",
+  "num": 10
+}
+```
+
+MCP success data is in `structuredContent`; the terminal examples below wrap it under `result`. For asynchronous calls retain the returned `id`, call this server's `get_job` with `job_id`, and read `output` after completion. For chunked MCP responses follow `result_id` and `next_offset` with `get_result` on the same server. Never automatically repeat a paid submission after a timeout.
+
+[Full input schema](skills/google-shopping-flashdata/references/schema.json) · [Example arguments](skills/google-shopping-flashdata/references/query.json)
+
+## Run with npx
+
+Set `FLASHDATA_API_KEY` in your shell environment or secret manager. Keep the real value out of chat, committed files and command arguments. These first checks do not submit a data query:
+
+```sh
+npx --yes @flashdata-dev/google-shopping@0.1.0 --help
+npx --yes @flashdata-dev/google-shopping@0.1.0 tools
+npx --yes @flashdata-dev/google-shopping@0.1.0 call get_pricing
+```
+
+Save the following as `query.json`. It uses flat tool arguments; no REST `params` wrapper is needed.
+
+```json
+{
+  "query": "wireless headphones",
+  "gl": "us",
+  "hl": "en",
+  "num": 10
+}
+```
+
+This command performs **one paid data request** and writes its response to a file:
+
+```sh
+npx --yes @flashdata-dev/google-shopping@0.1.0 call google_shopping --input query.json > result.json
+```
+
+Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-shopping@0.1.0` and use `npx flashdata-google-shopping` with the same arguments.
+
+## Record a merchant offer snapshot
+
+The CLI returns `{"ok":true,"tool":"...","result":...}`. Check `ok` and the API/job status before consuming data. Save this as `process-result.cjs` and run `node process-result.cjs`:
+
+```js
+const response = JSON.parse(require('node:fs').readFileSync('result.json', 'utf8'));
+if (!response.ok) throw new Error('The request failed; inspect the response before retrying.');
+const offers = response.result.results[0].shopping ?? [];
+console.log(JSON.stringify(offers.map(x => ({
+  id: x.productId ?? x.link, title: x.title, merchant: x.source, priceLabel: x.price, url: x.link
+})), null, 2));
+```
+
+Selected fields from a **representative fixture**, not a live response or a guarantee that every field/result will be present. This is the content inside the CLI's `result` property:
+
+```json
+{
+  "source": "google_shopping",
+  "status": "done",
+  "results": [
+    {
+      "shopping": [
+        {
+          "title": "wireless headphones",
+          "link": "https://example.com/research",
+          "snippet": "Search fixture",
+          "position": 1,
+          "productId": "product-1",
+          "price": "$49.00",
+          "source": "Example merchant"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-10-12T00:00:00Z",
+  "http_status": 200,
+  "request_id": "fixture-request"
+}
+```
+
+Currency-formatted price labels are not normalized numeric prices. This does not calculate exchange rates or guarantee stock, checkout prices or complete market coverage.
+
+## Parameters
+
+| Parameter | Type | Required | Default and constraints |
+| --- | --- | --- | --- |
+| `query` | string | Yes |  |
+| `gl` | string | No | Pattern: `^[A-Za-z]{2}$`. Country code. Set explicitly when needed; omitted values use the search provider’s behavior. |
+| `hl` | string | No | Pattern: `^[A-Za-z0-9-]+$`. Interface language. Set explicitly when needed; omitted values use the search provider’s behavior. |
+| `location` | string | No |  |
+| `num` | integer | No | Range: 1–100. Requested result count. Actual count varies by query and search type; no fixed value is added when omitted. |
+| `page` | integer | No | Range: 1–100. Requested page. Set explicitly for pagination; each page is a separate query. |
+| `tbs` | string | No |  |
+| `autocorrect` | boolean | No |  |
+| `mode` | string | No | Default: `"realtime"`. Allowed: `realtime`, `async`. |
+
+The package includes `schema.json` with the complete nested schema and `examples/query.json`. The `tools` command also returns the current schemas permitted by your key. Fields supplied by the remote source may be missing; preserve original values and source links.
+
+## Jobs, errors and billing
+
+For a longer-running query, set `mode` to `"async"`. Save the returned `result.id`, create `job.json` with that job ID, and read it without submitting again:
+
+```json
+{"job_id":"job_REPLACE_WITH_RETURNED_ID"}
+```
+
+```sh
+npx --yes @flashdata-dev/google-shopping@0.1.0 call get_job --input job.json > result.json
+```
+
+`pending` or `processing` means wait and read the same job later; `completed` provides the original JSON under `result.output`. The package never polls or retries paid submissions automatically. A timeout or lost response may still represent charged work: check Jobs before another submission. Each requested search page is a separate paid query; result count is not request count.
+
+CLI exit codes are 0 for a successful operation, 1 for an API/tool failure and 2 for invalid local input/configuration. Input is limited to 256 KiB and each API response to 4 MiB. CLI outputs complete JSON. Async JSON results have a 24-hour availability window.
+
+## Connect an MCP client
+
+This same package starts a persistent stdio server with the `mcp` subcommand:
+
+```json
+{
+  "mcpServers": {
+    "google-shopping": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/google-shopping@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+Use `npx.cmd` on Windows if your client requires it. Enter your own key through protected client settings. The four tools are `google_shopping`, `get_pricing`, `get_job` and `get_result`; the source is fixed, and job reads reject jobs belonging to other sources. API key permissions are rechecked on each operation.
+
+MCP responses longer than 16,000 UTF-16 code units use `result_id`, `chunk` and `next_offset`. Read the remaining chunks with `get_result` in the same running server, concatenate them in order, then parse JSON. The process retains at most four results for ten minutes. The one-shot CLI has no `get_result` command because it returns the whole response.
+
+Optional environment settings are `FLASHDATA_REQUEST_TIMEOUT_MS` (1000–120000, default 65000), `FLASHDATA_DATA_API_URL` and `FLASHDATA_MANAGEMENT_API_URL`. Custom URLs must be trusted HTTPS origins; loopback HTTP is accepted for local tests. The package does not load `.env` files automatically.
+
+Support: [support@flashdata.dev](mailto:support@flashdata.dev) · [Source and issue tracker](https://github.com/flashdata-dev/flashdata-mcp) · [FlashData terms](https://flashdata.dev/legal/terms) · [Privacy](https://flashdata.dev/legal/privacy). This is an independent FlashData integration, not an official Google or YouTube package.

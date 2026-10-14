@@ -1,0 +1,36 @@
+{
+  "name": "youtube-metadata-flashdata",
+  "displayName": "YouTube Metadata — FlashData",
+  "version": "0.1.0",
+  "description": "Read YouTube video details, descriptions, statistics and available chapters. Inspect formats or prepare timestamped chapter navigation. Uses the paid FlashData API.",
+  "author": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_metadata",
+  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "license": "MIT",
+  "keywords": [
+    "youtube-metadata",
+    "youtube-video-chapters",
+    "mcp",
+    "model-context-protocol",
+    "flashdata",
+    "cursor"
+  ],
+  "logo": "assets/logo.svg",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "FLASHDATA_API_KEY": {
+        "type": "string",
+        "title": "FlashData API key",
+        "description": "FlashData API key from https://flashdata.dev/app/api-keys with youtube_metadata enabled. Data calls use paid Credits; pricing and job reads are free.",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "FLASHDATA_API_KEY"
+    ]
+  }
+}

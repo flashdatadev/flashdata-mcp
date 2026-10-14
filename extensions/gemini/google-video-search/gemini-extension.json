@@ -1,0 +1,26 @@
+{
+  "name": "google-video-search-flashdata",
+  "version": "0.1.0",
+  "description": "Search Google Videos across websites. Retrieve video titles, links, sources and available durations for a cross-site video inventory. Uses the paid FlashData API.",
+  "mcpServers": {
+    "google-video-search-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/google-video-search@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "FlashData API key",
+      "description": "FlashData API key from https://flashdata.dev/app/api-keys with google_videos enabled. Data calls use paid Credits; pricing and job reads are free.",
+      "envVar": "FLASHDATA_API_KEY",
+      "sensitive": true
+    }
+  ]
+}

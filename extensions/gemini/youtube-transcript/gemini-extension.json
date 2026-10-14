@@ -1,0 +1,26 @@
+{
+  "name": "youtube-transcript-flashdata",
+  "version": "0.1.0",
+  "description": "Retrieve available YouTube transcript text with start and end timestamps. Build cited summaries, searchable notes and transcript exports. Uses the paid FlashData API.",
+  "mcpServers": {
+    "youtube-transcript-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/youtube-transcript@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "FlashData API key",
+      "description": "FlashData API key from https://flashdata.dev/app/api-keys with youtube_transcript enabled. Data calls use paid Credits; pricing and job reads are free.",
+      "envVar": "FLASHDATA_API_KEY",
+      "sensitive": true
+    }
+  ]
+}

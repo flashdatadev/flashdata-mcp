@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "google-images-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/google-images@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  }
+}

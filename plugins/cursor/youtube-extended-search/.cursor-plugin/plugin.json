@@ -1,0 +1,36 @@
+{
+  "name": "youtube-extended-search-flashdata",
+  "displayName": "YouTube Extended Search — FlashData",
+  "version": "0.1.0",
+  "description": "Search larger YouTube video result sets, with up to 700 requested results. Map recurring channels and topics from structured video records. Uses the paid FlashData API.",
+  "author": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended",
+  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "license": "MIT",
+  "keywords": [
+    "youtube-extended-search",
+    "youtube-search-700-results",
+    "mcp",
+    "model-context-protocol",
+    "flashdata",
+    "cursor"
+  ],
+  "logo": "assets/logo.svg",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "FLASHDATA_API_KEY": {
+        "type": "string",
+        "title": "FlashData API key",
+        "description": "FlashData API key from https://flashdata.dev/app/api-keys with youtube_search_extended enabled. Data calls use paid Credits; pricing and job reads are free.",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "FLASHDATA_API_KEY"
+    ]
+  }
+}

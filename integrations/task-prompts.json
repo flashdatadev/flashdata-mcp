@@ -1,0 +1,17 @@
+{
+  "google_search": "Search Google for battery recycling research in the US, in English. Make one request for 10 results and return a table of position, title, source URL and snippet.",
+  "google_news": "Find Google News coverage of battery recycling. Make one request for 10 articles, group them by publisher, and preserve each original date label and article link.",
+  "google_images": "Find 20 Google Images results for solar panel diagrams. Keep images with a returned width of at least 1000 pixels, and list each image URL, source page and dimensions.",
+  "google_shopping": "Search Google Shopping once for wireless headphones in the US. Return 10 requested offers with product identifiers, merchant names, original price labels and source URLs.",
+  "google_videos": "Search Google Videos once for battery recycling process demonstrations. Request 10 results and group the returned titles, URLs and available durations by website.",
+  "google_places": "Search once for coffee shops in Singapore. Request 20 places, then make a shortlist from returned ratings of at least 4.2 and at least 20 reviews, keeping the addresses.",
+  "youtube_search": "Find 10 YouTube videos about battery recycling with one standard search. Return the video IDs, watch URLs, channels and available durations.",
+  "youtube_search_extended": "Run one extended YouTube search for battery recycling with 100 requested results. Count the returned videos by channel and state the actual sample size.",
+  "youtube_metadata": "Read metadata for YouTube video dQw4w9WgXcQ once, including chapters but excluding formats. Turn any returned chapter boundaries into timestamped navigation links.",
+  "youtube_transcript": "Retrieve the existing English automatic transcript for YouTube video dQw4w9WgXcQ once. Produce notes with timestamped citations; report a missing track without transcribing or switching tracks.",
+  "youtube_captions": "Retrieve the English uploader captions for YouTube video dQw4w9WgXcQ once, with auto=false. Convert the returned timed segments to SRT locally; report a missing track without substituting another.",
+  "youtube_trainability": "Inspect the license-label classification for YouTube video dQw4w9WgXcQ with one request. Record the raw permitted field beside the video ID, without treating it as training authorization.",
+  "youtube_channel": "Read the @jawed channel profile and request 10 recent videos once. Save the channel ID and returned video IDs, titles and available view counts as a dated snapshot.",
+  "youtube_suggestions": "Get YouTube autocomplete suggestions for battery recycling in English and the US with one request. Return unique phrases while preserving the query and locale; do not estimate search volume.",
+  "youtube_download": "Prepare a 10-second MP4 delivery of YouTube video jNQXAC9IVRw to my own S3 bucket. First confirm the destination, credentials, rights and byte-based cost approval. After I approve, submit once, retain the job ID, and inspect the completed delivery manifest. Never retry the paid submission automatically."
+}

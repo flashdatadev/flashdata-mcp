@@ -85,6 +85,8 @@ These new top-level Skills are also discoverable by clients that scan the reposi
 
 ## Cursor plugin
 
+For a single task, choose one of the [15 independent Cursor plugins](integrations/README.md). Each has its own manifest, Skill and source-restricted npm server. The root marketplace manifest registers them alongside the combined plugin below; public Marketplace listing remains subject to Cursor review.
+
 This repository also contains a [Cursor plugin](https://cursor.com/docs/plugins): the same research Skill plus a connection to the hosted FlashData MCP service. The plugin does not run the local Node.js server or require an npm installation. Marketplace review and listing are separate from this public source release.
 
 Cursor discovers the plugin through [.cursor-plugin/plugin.json](.cursor-plugin/plugin.json), its MCP server through [mcp.json](mcp.json), and the Skill under `skills/flashdata/`. The plugin declares `FLASHDATA_API_KEY` as a required configuration variable. Set your own key through Cursor's plugin configuration when that interface is available; team admins manage variables in Dashboard → Plugins → Configure. The repository contains only a placeholder, never a working key. Do not replace the placeholder in a committed file or paste a key into Agent chat.
@@ -98,6 +100,8 @@ After configuration, invoke `/flashdata` and ask: “Quote one Google search usi
 Support: [support@flashdata.dev](mailto:support@flashdata.dev). See [Security](SECURITY.md), [FlashData terms](https://flashdata.dev/legal/terms), and [privacy](https://flashdata.dev/legal/privacy).
 
 ## Gemini CLI extension
+
+For a single task, choose one of the [15 independent Gemini extensions](integrations/README.md). Each has its own repository, sensitive API-key setting, Skill and source-restricted npm server. Repository installation and gallery discovery are verified separately. The combined hosted extension remains available below.
 
 The [Gemini CLI extension](https://geminicli.com/docs/extensions/) bundles the same FlashData research Skill and hosted MCP connection. It requires Gemini CLI and a FlashData account; it does not run this repository's local Node.js MCP server or require the local npm package.
 
@@ -136,6 +140,10 @@ src/                      shared tool execution, MCP adapter, API clients and lo
 test/                     isolated CLI, protocol, HTTP security and cache tests
 scripts/                  package checks and installation verification
 npm/                      15 task package definitions and developer guides
+integrations/             Cursor/Gemini task catalog and native example prompts
+plugins/cursor/           15 self-contained source-specific Cursor plugins
+extensions/gemini/        15 self-contained Gemini extension release directories
+.cursor-plugin/marketplace.json Cursor combined and task plugin registry
 skills/flashdata/         portable Agent Skill and research recipes
 .cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
 mcp.json                  hosted MCP connection for the Cursor plugin

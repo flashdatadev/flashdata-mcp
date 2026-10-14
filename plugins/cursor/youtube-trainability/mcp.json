@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "youtube-trainability-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/youtube-trainability@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  }
+}

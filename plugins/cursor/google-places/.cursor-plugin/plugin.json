@@ -1,0 +1,36 @@
+{
+  "name": "google-places-flashdata",
+  "displayName": "Google Places — FlashData",
+  "version": "0.1.0",
+  "description": "Search for local businesses and places with addresses, available ratings and review counts. Build location-specific research shortlists. Uses the paid FlashData API.",
+  "author": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/google_places",
+  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "license": "MIT",
+  "keywords": [
+    "google-places",
+    "local-business-search",
+    "mcp",
+    "model-context-protocol",
+    "flashdata",
+    "cursor"
+  ],
+  "logo": "assets/logo.svg",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "FLASHDATA_API_KEY": {
+        "type": "string",
+        "title": "FlashData API key",
+        "description": "FlashData API key from https://flashdata.dev/app/api-keys with google_places enabled. Data calls use paid Credits; pricing and job reads are free.",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "FLASHDATA_API_KEY"
+    ]
+  }
+}

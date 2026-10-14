@@ -1,0 +1,36 @@
+{
+  "name": "google-images-flashdata",
+  "displayName": "Google Images — FlashData",
+  "version": "0.1.0",
+  "description": "Find Google Images results with image URLs, dimensions and original source pages. Build an attributable image research inventory. Uses the paid FlashData API.",
+  "author": {
+    "name": "FlashData",
+    "email": "support@flashdata.dev"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/google_images",
+  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "license": "MIT",
+  "keywords": [
+    "google-images",
+    "image-search",
+    "mcp",
+    "model-context-protocol",
+    "flashdata",
+    "cursor"
+  ],
+  "logo": "assets/logo.svg",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "FLASHDATA_API_KEY": {
+        "type": "string",
+        "title": "FlashData API key",
+        "description": "FlashData API key from https://flashdata.dev/app/api-keys with google_images enabled. Data calls use paid Credits; pricing and job reads are free.",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "FLASHDATA_API_KEY"
+    ]
+  }
+}

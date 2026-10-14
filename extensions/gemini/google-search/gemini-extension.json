@@ -1,0 +1,26 @@
+{
+  "name": "google-search-flashdata",
+  "version": "0.1.0",
+  "description": "Search Google for ranked web pages, titles, URLs and snippets. Build localized SERP snapshots for research and comparison. Uses the paid FlashData API.",
+  "mcpServers": {
+    "google-search-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/google-search@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "FlashData API key",
+      "description": "FlashData API key from https://flashdata.dev/app/api-keys with google_search enabled. Data calls use paid Credits; pricing and job reads are free.",
+      "envVar": "FLASHDATA_API_KEY",
+      "sensitive": true
+    }
+  ]
+}

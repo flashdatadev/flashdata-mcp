@@ -1,0 +1,26 @@
+{
+  "name": "youtube-cloud-storage-flashdata",
+  "version": "0.1.0",
+  "description": "Deliver YouTube video, audio or clips to your own S3 or other supported cloud storage. Track asynchronous delivery and its output manifest. Uses the paid FlashData API.",
+  "mcpServers": {
+    "youtube-cloud-storage-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/youtube-cloud-storage@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "FlashData API key",
+      "description": "FlashData API key from https://flashdata.dev/app/api-keys with youtube_download enabled. Data calls use paid Credits; pricing and job reads are free.",
+      "envVar": "FLASHDATA_API_KEY",
+      "sensitive": true
+    }
+  ]
+}

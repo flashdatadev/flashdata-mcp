@@ -1,0 +1,26 @@
+{
+  "name": "google-shopping-flashdata",
+  "version": "0.1.0",
+  "description": "Search Google Shopping for products, merchants and price labels. Collect comparable offer snapshots with product IDs and source links. Uses the paid FlashData API.",
+  "mcpServers": {
+    "google-shopping-flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@flashdata-dev/google-shopping@0.1.0",
+        "mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "${FLASHDATA_API_KEY}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "FlashData API key",
+      "description": "FlashData API key from https://flashdata.dev/app/api-keys with google_shopping enabled. Data calls use paid Credits; pricing and job reads are free.",
+      "envVar": "FLASHDATA_API_KEY",
+      "sensitive": true
+    }
+  ]
+}

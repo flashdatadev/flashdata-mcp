@@ -1,0 +1,167 @@
+[
+  {
+    "source": "google_search",
+    "name": "google-search-flashdata",
+    "title": "Google Search",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/google-search@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/google_search",
+    "cursorDirectory": "plugins/cursor/google-search",
+    "geminiDirectory": "extensions/gemini/google-search",
+    "geminiRepository": "https://github.com/flashdata-dev/google-search-gemini"
+  },
+  {
+    "source": "google_news",
+    "name": "google-news-flashdata",
+    "title": "Google News",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/google-news@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/google_news",
+    "cursorDirectory": "plugins/cursor/google-news",
+    "geminiDirectory": "extensions/gemini/google-news",
+    "geminiRepository": "https://github.com/flashdata-dev/google-news-gemini"
+  },
+  {
+    "source": "google_images",
+    "name": "google-images-flashdata",
+    "title": "Google Images",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/google-images@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/google_images",
+    "cursorDirectory": "plugins/cursor/google-images",
+    "geminiDirectory": "extensions/gemini/google-images",
+    "geminiRepository": "https://github.com/flashdata-dev/google-images-gemini"
+  },
+  {
+    "source": "google_shopping",
+    "name": "google-shopping-flashdata",
+    "title": "Google Shopping",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/google-shopping@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/google_shopping",
+    "cursorDirectory": "plugins/cursor/google-shopping",
+    "geminiDirectory": "extensions/gemini/google-shopping",
+    "geminiRepository": "https://github.com/flashdata-dev/google-shopping-gemini"
+  },
+  {
+    "source": "google_videos",
+    "name": "google-video-search-flashdata",
+    "title": "Google Video Search",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/google-video-search@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/google_videos",
+    "cursorDirectory": "plugins/cursor/google-video-search",
+    "geminiDirectory": "extensions/gemini/google-video-search",
+    "geminiRepository": "https://github.com/flashdata-dev/google-video-search-gemini"
+  },
+  {
+    "source": "google_places",
+    "name": "google-places-flashdata",
+    "title": "Google Places",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/google-places@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/google_places",
+    "cursorDirectory": "plugins/cursor/google-places",
+    "geminiDirectory": "extensions/gemini/google-places",
+    "geminiRepository": "https://github.com/flashdata-dev/google-places-gemini"
+  },
+  {
+    "source": "youtube_search",
+    "name": "youtube-search-flashdata",
+    "title": "YouTube Search",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-search@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_search",
+    "cursorDirectory": "plugins/cursor/youtube-search",
+    "geminiDirectory": "extensions/gemini/youtube-search",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-search-gemini"
+  },
+  {
+    "source": "youtube_search_extended",
+    "name": "youtube-extended-search-flashdata",
+    "title": "YouTube Extended Search",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-extended-search@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended",
+    "cursorDirectory": "plugins/cursor/youtube-extended-search",
+    "geminiDirectory": "extensions/gemini/youtube-extended-search",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-extended-search-gemini"
+  },
+  {
+    "source": "youtube_metadata",
+    "name": "youtube-metadata-flashdata",
+    "title": "YouTube Metadata",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-metadata@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_metadata",
+    "cursorDirectory": "plugins/cursor/youtube-metadata",
+    "geminiDirectory": "extensions/gemini/youtube-metadata",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-metadata-gemini"
+  },
+  {
+    "source": "youtube_transcript",
+    "name": "youtube-transcript-flashdata",
+    "title": "YouTube Transcript",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-transcript@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_transcript",
+    "cursorDirectory": "plugins/cursor/youtube-transcript",
+    "geminiDirectory": "extensions/gemini/youtube-transcript",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-transcript-gemini"
+  },
+  {
+    "source": "youtube_captions",
+    "name": "youtube-captions-flashdata",
+    "title": "YouTube Captions",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-captions@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_captions",
+    "cursorDirectory": "plugins/cursor/youtube-captions",
+    "geminiDirectory": "extensions/gemini/youtube-captions",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-captions-gemini"
+  },
+  {
+    "source": "youtube_trainability",
+    "name": "youtube-trainability-flashdata",
+    "title": "YouTube Creative Commons License Metadata",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-trainability@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_trainability",
+    "cursorDirectory": "plugins/cursor/youtube-trainability",
+    "geminiDirectory": "extensions/gemini/youtube-trainability",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-trainability-gemini"
+  },
+  {
+    "source": "youtube_channel",
+    "name": "youtube-channel-flashdata",
+    "title": "YouTube Channel Data",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-channel@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_channel",
+    "cursorDirectory": "plugins/cursor/youtube-channel",
+    "geminiDirectory": "extensions/gemini/youtube-channel",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-channel-gemini"
+  },
+  {
+    "source": "youtube_suggestions",
+    "name": "youtube-autocomplete-flashdata",
+    "title": "YouTube Autocomplete",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-autocomplete@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions",
+    "cursorDirectory": "plugins/cursor/youtube-autocomplete",
+    "geminiDirectory": "extensions/gemini/youtube-autocomplete",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-autocomplete-gemini"
+  },
+  {
+    "source": "youtube_download",
+    "name": "youtube-cloud-storage-flashdata",
+    "title": "YouTube Download to Cloud Storage",
+    "version": "0.1.0",
+    "npmPackage": "@flashdata-dev/youtube-cloud-storage@0.1.0",
+    "homepage": "https://flashdata.dev/docs/sources/youtube_download",
+    "cursorDirectory": "plugins/cursor/youtube-cloud-storage",
+    "geminiDirectory": "extensions/gemini/youtube-cloud-storage",
+    "geminiRepository": "https://github.com/flashdata-dev/youtube-cloud-storage-gemini"
+  }
+]
