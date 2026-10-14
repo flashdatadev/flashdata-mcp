@@ -1,5 +1,5 @@
 name: MCP package
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
@@ -19,6 +19,8 @@ jobs:
       - run: npm run check:package
       - run: npm run check:claude-plugin
       - run: npm run test:install
+      - run: npm run build:npm-tasks
+      - run: npm run test:npm-tasks
       - run: npm run build:smithery
       - run: node --test test/task-servers.test.js
         env:

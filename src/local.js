@@ -85,8 +85,8 @@ function createLocalOptions(config) {
   };
 }
 
-function createLocalTools(config) {
-  return createToolHandlers({ ...createLocalOptions(config), chunkResults: false });
+function createLocalTools(config, { taskSource } = {}) {
+  return createToolHandlers({ ...createLocalOptions(config), chunkResults: false, taskSource });
 }
 
 function createLocalServer(config, { taskSource, serverInfo } = {}) {

@@ -1,12 +1,12 @@
 {
   "name": "@flashdata-dev/mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "FlashData CLI and MCP server for Google Search, YouTube data and media delivery to customer storage",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flashdata-dev/flashdata-mcp.git"
   },
-  "homepage": "https://github.com/flashdata-dev/flashdata-mcp#readme",
+  "homepage": "https://flashdata.dev/mcp?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined",
   "bugs": {
     "url": "https://github.com/flashdata-dev/flashdata-mcp/issues"
   },
@@ -50,7 +50,9 @@
     "sync:claude-plugin": "node scripts/sync-claude-plugin.js",
     "check:claude-plugin": "node scripts/sync-claude-plugin.js --check",
     "prepack": "npm test && npm run check:package",
-    "build:smithery": "node scripts/build-smithery.js"
+    "build:smithery": "node scripts/build-smithery.js",
+    "build:npm-tasks": "node scripts/build-npm-tasks.js",
+    "test:npm-tasks": "node scripts/test-npm-tasks.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.31.0",

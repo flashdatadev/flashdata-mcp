@@ -9,6 +9,8 @@ const { Client } = require('@modelcontextprotocol/sdk/client/index.js');
 const { StdioClientTransport } = require('@modelcontextprotocol/sdk/client/stdio.js');
 const { SOURCE_CATALOG } = require('../src/catalog/sourceCatalog');
 const { tasks, version } = require('../smithery/tasks.json');
+const npmEntries = process.env.FLASHDATA_TASK_NPM_INDEX
+  ? JSON.parse(fs.readFileSync(process.env.FLASHDATA_TASK_NPM_INDEX, 'utf8')) : null;
 
 test('all 15 fixed task servers enforce source boundaries over real stdio', async t => {
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'flashdata-task-contract-'));
@@ -48,8 +50,12 @@ test('all 15 fixed task servers enforce source boundaries over real stdio', asyn
     jobStatus = 'completed';
     const directory = path.join(temporary, task.slug);
     fs.mkdirSync(directory);
-    const bin = path.join(directory, 'server.js');
-    if (process.env.FLASHDATA_TASK_BUNDLE_DIR) {
+    const npmEntry = npmEntries?.find(entry => entry.source === task.source);
+    let bin = path.join(directory, 'server.js');
+    if (npmEntries) {
+      assert.ok(npmEntry, `Missing installed npm task ${task.source}`);
+      bin = npmEntry.bin;
+    } else if (process.env.FLASHDATA_TASK_BUNDLE_DIR) {
       const archive = unzipSync(fs.readFileSync(path.join(process.env.FLASHDATA_TASK_BUNDLE_DIR, `flashdata-${task.slug}-${version}.mcpb`)));
       for (const [relative, bytes] of Object.entries(archive)) {
         const target = path.resolve(directory, relative);
@@ -62,7 +68,7 @@ test('all 15 fixed task servers enforce source boundaries over real stdio', asyn
       fs.writeFileSync(bin, `require(${JSON.stringify(path.join(__dirname, '../src/mcp/runTaskServer'))}).runTaskServer(${JSON.stringify(task.source)}, {name:${JSON.stringify(`flashdata-${task.slug}`)},version:${JSON.stringify(version)}});`);
     }
     const client = new Client({ name: 'task-contract', version: '1.0.0' });
-    const transport = new StdioClientTransport({ command: process.execPath, args: [bin], stderr: 'pipe', env: {
+    const transport = new StdioClientTransport({ command: process.execPath, args: npmEntry ? [bin, 'mcp'] : [bin], stderr: 'pipe', env: {
       FLASHDATA_API_KEY: 'test-fixture-api-key', FLASHDATA_MANAGEMENT_API_URL: origin, FLASHDATA_DATA_API_URL: origin,
       // Neither a source override nor a broad API Key may widen a fixed entry point.
       FLASHDATA_TASK_SOURCE: 'google_search',
@@ -72,7 +78,7 @@ test('all 15 fixed task servers enforce source boundaries over real stdio', asyn
     try {
       await client.connect(transport);
       assert.equal(client.getServerVersion().name, `flashdata-${task.slug}`);
-      assert.equal(client.getServerVersion().version, version);
+      assert.equal(client.getServerVersion().version, npmEntry?.version ?? version);
       const tools = (await client.listTools()).tools;
       assert.deepEqual(new Set(tools.map(tool => tool.name)), new Set([task.source, 'get_pricing', 'get_job', 'get_result']));
       assert.deepEqual(tools.find(tool => tool.name === 'get_pricing').inputSchema.properties.source.enum, [task.source]);
@@ -82,7 +88,7 @@ test('all 15 fixed task servers enforce source boundaries over real stdio', asyn
       for (const other of tasks.filter(item => item.source !== task.source)) {
         const example = require(`../registry/examples/${other.source}.json`);
         assert.equal((await call(other.source, example.arguments)).structuredContent.code, 'source_forbidden');
-        assert.equal((await call('get_pricing', { source: other.source })).structuredContent.code, 'source_forbidden');
+        assert.ok(['source_forbidden', 'invalid_arguments'].includes((await call('get_pricing', { source: other.source })).structuredContent.code));
       }
       for (const name of ['submit_batch', 'get_usage', 'get_balance', 'get_limits']) {
         assert.equal((await call(name, {})).structuredContent.code, 'source_forbidden');

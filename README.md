@@ -17,6 +17,18 @@ For a local server focused on one capability, see the [15 independent Smithery t
 
 This directory is a complete, standalone project. Use its contents as the root of your GitHub repository, including `.github/` and `.gitignore`. Installation and tests require no files from another checkout.
 
+## Choose a task package
+
+For one capability, choose one of the [15 task packages](https://github.com/flashdata-dev/flashdata-mcp/blob/main/npm/README.md). Each has one executable, one data source and its own examples, input schema and documentation. It runs as a JSON CLI or as a stdio MCP server using the `mcp` subcommand. For example:
+
+```sh
+npx --yes @flashdata-dev/google-news@0.1.0 --help
+npx --yes @flashdata-dev/google-news@0.1.0 tools
+npx --yes @flashdata-dev/google-news@0.1.0 call get_pricing
+```
+
+The last two commands require your API key in `FLASHDATA_API_KEY` and make only free reads. Task packages expose three CLI tools (the selected source, `get_pricing`, `get_job`) or four MCP tools (also `get_result`). They reject other sources and cross-source job reads, even with a broadly authorized key. The combined package below remains available for workflows that need several capabilities. Installation is free; FlashData API queries are paid.
+
 ## Agent Skill
 
 The [FlashData Skill](skills/flashdata/SKILL.md) helps an agent use an existing FlashData MCP connection for source-backed web and video research. It includes recipes for video research, comparing search snapshots, and preparing knowledge-base records.
@@ -123,6 +135,7 @@ bin/                      JSON CLI and stdio MCP executables
 src/                      shared tool execution, MCP adapter, API clients and local cache
 test/                     isolated CLI, protocol, HTTP security and cache tests
 scripts/                  package checks and installation verification
+npm/                      15 task package definitions and developer guides
 skills/flashdata/         portable Agent Skill and research recipes
 .cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
 mcp.json                  hosted MCP connection for the Cursor plugin
@@ -170,25 +183,25 @@ For a local clone, configure Claude Desktop (or another stdio MCP client) with a
 
 Use the full path to Node if your desktop app cannot find it. On Windows, use an escaped Windows path. Keep credentials in your client's protected configuration, not in a prompt, URL, committed file, or command-line argument.
 
-You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.1.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
+You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.2.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
 
 ## Agent CLI
 
 The package also provides `flashdata`, a single-call JSON CLI. It shares the MCP schemas, source permissions and API clients. Run `node bin/flashdata.js` in a source checkout, or install the npm package:
 
 ```sh
-npm install --global @flashdata-dev/mcp@0.1.0
+npm install --global @flashdata-dev/mcp@0.2.0
 flashdata --help
 ```
 
 Without a global installation, select the executable explicitly:
 
 ```sh
-npx --yes --package=@flashdata-dev/mcp@0.1.0 flashdata tools
-npx --yes --package=@flashdata-dev/mcp@0.1.0 flashdata call get_pricing
+npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata tools
+npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata call get_pricing
 ```
 
-For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.1.0", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
+For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.2.0", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
 
 Set `FLASHDATA_API_KEY` through your environment or secret manager. Do not put real keys in shell history or command arguments. Start with free discovery and pricing:
 
@@ -272,12 +285,16 @@ npm ci
 npm test
 npm run check:package
 npm run test:install
+npm run build:npm-tasks
+npm run test:npm-tasks
 npm pack
 ```
 
 Tests spawn both an actual SDK stdio client and the JSON CLI against isolated local HTTP fixtures. They cover discovery, authorization changes, account reads, argument validation, query/download/batch forwarding, unknown POST outcomes, credential-free result delivery and bounded Unicode result caching. They do not contact paid providers or require Redis/MongoDB.
 
 `npm run test:install` also installs the packed tarball into an empty temporary project and runs both the stdio and JSON CLI contracts against the installed executables.
+
+`npm run build:npm-tasks` builds 15 source-restricted tarballs in `dist/npm`, including each package’s schema, example and guide. `npm run test:npm-tasks` installs those tarballs together in an empty project and tests every actual CLI and MCP executable. See [RELEASING.md](https://github.com/flashdata-dev/flashdata-mcp/blob/main/RELEASING.md) for versioning and publication.
 
 `npm pack` runs tests and verifies the file allowlist. The npm tarball contains the CLI, source, README, license and notices; it excludes tests, credentials, private backend code, deployment files and node_modules. A source repository should also retain tests, scripts, the lockfile, and the CI workflow.
 
