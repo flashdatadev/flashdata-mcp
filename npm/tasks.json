@@ -199,7 +199,7 @@
     },
     {
       "source": "youtube_download",
-      "slug": "youtube-download",
+      "slug": "youtube-cloud-storage",
       "title": "YouTube Download to Cloud Storage",
       "description": "Deliver YouTube video, audio or clips to your own S3 or other supported cloud storage. Track asynchronous delivery and its output manifest. CLI and MCP via the paid FlashData API.",
       "keywords": [

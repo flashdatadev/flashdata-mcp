@@ -20,7 +20,7 @@ Requires Node.js 22.18 or newer and your own FlashData API key with the selected
 | [YouTube Creative Commons License Metadata](docs/youtube-trainability/README.md) | [`@flashdata-dev/youtube-trainability`](https://www.npmjs.com/package/@flashdata-dev/youtube-trainability) | `youtube_trainability` |
 | [YouTube Channel Data](docs/youtube-channel/README.md) | [`@flashdata-dev/youtube-channel`](https://www.npmjs.com/package/@flashdata-dev/youtube-channel) | `youtube_channel` |
 | [YouTube Autocomplete](docs/youtube-autocomplete/README.md) | [`@flashdata-dev/youtube-autocomplete`](https://www.npmjs.com/package/@flashdata-dev/youtube-autocomplete) | `youtube_suggestions` |
-| [YouTube Download to Cloud Storage](docs/youtube-download/README.md) | [`@flashdata-dev/youtube-download`](https://www.npmjs.com/package/@flashdata-dev/youtube-download) | `youtube_download` |
+| [YouTube Download to Cloud Storage](docs/youtube-cloud-storage/README.md) | [`@flashdata-dev/youtube-cloud-storage`](https://www.npmjs.com/package/@flashdata-dev/youtube-cloud-storage) | `youtube_download` |
 
 ## Run a task
 

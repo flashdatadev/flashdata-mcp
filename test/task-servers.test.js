@@ -77,7 +77,7 @@ test('all 15 fixed task servers enforce source boundaries over real stdio', asyn
     transport.stderr.on('data', chunk => { stderr += chunk; });
     try {
       await client.connect(transport);
-      assert.equal(client.getServerVersion().name, `flashdata-${task.slug}`);
+      assert.equal(client.getServerVersion().name, npmEntry?.command ?? `flashdata-${task.slug}`);
       assert.equal(client.getServerVersion().version, npmEntry?.version ?? version);
       const tools = (await client.listTools()).tools;
       assert.deepEqual(new Set(tools.map(tool => tool.name)), new Set([task.source, 'get_pricing', 'get_job', 'get_result']));
