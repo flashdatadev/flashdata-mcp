@@ -8,7 +8,7 @@
     "homepage": "https://flashdata.dev/docs/sources/google_search",
     "cursorDirectory": "plugins/cursor/google-search",
     "geminiDirectory": "extensions/gemini/google-search",
-    "geminiRepository": "https://github.com/flashdata-dev/google-search-gemini"
+    "geminiRepository": "https://github.com/rocosen/google-search-gemini"
   },
   {
     "source": "google_news",
@@ -19,7 +19,7 @@
     "homepage": "https://flashdata.dev/docs/sources/google_news",
     "cursorDirectory": "plugins/cursor/google-news",
     "geminiDirectory": "extensions/gemini/google-news",
-    "geminiRepository": "https://github.com/flashdata-dev/google-news-gemini"
+    "geminiRepository": "https://github.com/rocosen/google-news-gemini"
   },
   {
     "source": "google_images",
@@ -30,7 +30,7 @@
     "homepage": "https://flashdata.dev/docs/sources/google_images",
     "cursorDirectory": "plugins/cursor/google-images",
     "geminiDirectory": "extensions/gemini/google-images",
-    "geminiRepository": "https://github.com/flashdata-dev/google-images-gemini"
+    "geminiRepository": "https://github.com/rocosen/google-images-gemini"
   },
   {
     "source": "google_shopping",
@@ -41,7 +41,7 @@
     "homepage": "https://flashdata.dev/docs/sources/google_shopping",
     "cursorDirectory": "plugins/cursor/google-shopping",
     "geminiDirectory": "extensions/gemini/google-shopping",
-    "geminiRepository": "https://github.com/flashdata-dev/google-shopping-gemini"
+    "geminiRepository": "https://github.com/rocosen/google-shopping-gemini"
   },
   {
     "source": "google_videos",
@@ -52,7 +52,7 @@
     "homepage": "https://flashdata.dev/docs/sources/google_videos",
     "cursorDirectory": "plugins/cursor/google-video-search",
     "geminiDirectory": "extensions/gemini/google-video-search",
-    "geminiRepository": "https://github.com/flashdata-dev/google-video-search-gemini"
+    "geminiRepository": "https://github.com/rocosen/google-video-search-gemini"
   },
   {
     "source": "google_places",
@@ -63,7 +63,7 @@
     "homepage": "https://flashdata.dev/docs/sources/google_places",
     "cursorDirectory": "plugins/cursor/google-places",
     "geminiDirectory": "extensions/gemini/google-places",
-    "geminiRepository": "https://github.com/flashdata-dev/google-places-gemini"
+    "geminiRepository": "https://github.com/rocosen/google-places-gemini"
   },
   {
     "source": "youtube_search",
@@ -74,7 +74,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_search",
     "cursorDirectory": "plugins/cursor/youtube-search",
     "geminiDirectory": "extensions/gemini/youtube-search",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-search-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-search-gemini"
   },
   {
     "source": "youtube_search_extended",
@@ -85,7 +85,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended",
     "cursorDirectory": "plugins/cursor/youtube-extended-search",
     "geminiDirectory": "extensions/gemini/youtube-extended-search",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-extended-search-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-extended-search-gemini"
   },
   {
     "source": "youtube_metadata",
@@ -96,7 +96,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_metadata",
     "cursorDirectory": "plugins/cursor/youtube-metadata",
     "geminiDirectory": "extensions/gemini/youtube-metadata",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-metadata-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-metadata-gemini"
   },
   {
     "source": "youtube_transcript",
@@ -107,7 +107,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_transcript",
     "cursorDirectory": "plugins/cursor/youtube-transcript",
     "geminiDirectory": "extensions/gemini/youtube-transcript",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-transcript-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-transcript-gemini"
   },
   {
     "source": "youtube_captions",
@@ -118,7 +118,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_captions",
     "cursorDirectory": "plugins/cursor/youtube-captions",
     "geminiDirectory": "extensions/gemini/youtube-captions",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-captions-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-captions-gemini"
   },
   {
     "source": "youtube_trainability",
@@ -129,7 +129,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_trainability",
     "cursorDirectory": "plugins/cursor/youtube-trainability",
     "geminiDirectory": "extensions/gemini/youtube-trainability",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-trainability-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-trainability-gemini"
   },
   {
     "source": "youtube_channel",
@@ -140,7 +140,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_channel",
     "cursorDirectory": "plugins/cursor/youtube-channel",
     "geminiDirectory": "extensions/gemini/youtube-channel",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-channel-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-channel-gemini"
   },
   {
     "source": "youtube_suggestions",
@@ -151,7 +151,7 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions",
     "cursorDirectory": "plugins/cursor/youtube-autocomplete",
     "geminiDirectory": "extensions/gemini/youtube-autocomplete",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-autocomplete-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-autocomplete-gemini"
   },
   {
     "source": "youtube_download",
@@ -162,6 +162,6 @@
     "homepage": "https://flashdata.dev/docs/sources/youtube_download",
     "cursorDirectory": "plugins/cursor/youtube-cloud-storage",
     "geminiDirectory": "extensions/gemini/youtube-cloud-storage",
-    "geminiRepository": "https://github.com/flashdata-dev/youtube-cloud-storage-gemini"
+    "geminiRepository": "https://github.com/rocosen/youtube-cloud-storage-gemini"
   }
 ]

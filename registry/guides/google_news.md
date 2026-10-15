@@ -6,7 +6,7 @@ Turn a research topic into a news brief that retains publishers, links and origi
 
 ## Connect and check cost
 
-The dedicated Registry server is [`io.github.flashdata-dev/google-news`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest), with the local [MCPB package](https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/google-news/server.json). It runs on your machine with Node.js 22.18+ and exposes only `google_news`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+The dedicated Registry server is [`io.github.flashdata-dev/google-news`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest), with the local [MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/google-news/server.json). It runs on your machine with Node.js 22.18+ and exposes only `google_news`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `google_news`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 

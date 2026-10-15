@@ -9,7 +9,7 @@ const { SOURCE_CATALOG } = require('../src/catalog/sourceCatalog');
 const root = path.resolve(__dirname, '..');
 const check = process.argv.includes('--check');
 const version = '0.1.0';
-const repository = 'https://github.com/flashdata-dev/flashdata-mcp';
+const repository = 'https://github.com/rocosen/flashdata-mcp';
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 const read = relative => fs.readFileSync(path.join(root, relative), 'utf8').replace(/\r\n/g, '\n');
 const files = new Map();
@@ -19,7 +19,7 @@ assert.deepEqual(Object.keys(prompts).sort(), tasks.map(task => task.source).sor
 
 for (const task of tasks) {
   const name = `${task.slug}-flashdata`;
-  const geminiRepository = `https://github.com/flashdata-dev/${task.slug}-gemini`;
+  const geminiRepository = `https://github.com/rocosen/${task.slug}-gemini`;
   const npmPackage = `@flashdata-dev/${task.slug}@${npmVersion}`;
   const description = task.description.replace('CLI and MCP via', 'Uses');
   const homepage = `https://flashdata.dev/docs/sources/${task.source}`;

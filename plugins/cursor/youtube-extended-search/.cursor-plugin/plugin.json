@@ -8,7 +8,7 @@
     "email": "support@flashdata.dev"
   },
   "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended",
-  "repository": "https://github.com/flashdata-dev/flashdata-mcp",
+  "repository": "https://github.com/rocosen/flashdata-mcp",
   "license": "MIT",
   "keywords": [
     "youtube-extended-search",

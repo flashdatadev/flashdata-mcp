@@ -7,7 +7,7 @@ Research the web and YouTube with FlashData MCP. Find relevant search results an
 Use an up-to-date Claude Code installation; the documented configuration commands require version 2.1.285 or later. Add FlashData's own marketplace and install the plugin:
 
 ```sh
-claude plugin marketplace add flashdata-dev/flashdata-mcp
+claude plugin marketplace add rocosen/flashdata-mcp
 claude plugin install flashdata@flashdata
 ```
 
@@ -36,8 +36,8 @@ This is distribution through FlashData's own GitHub marketplace. It is not an An
 ## Support and maintenance
 
 - [MCP setup and documentation](https://flashdata.dev/mcp)
-- [Support issues](https://github.com/flashdata-dev/flashdata-mcp/issues) or [support@flashdata.dev](mailto:support@flashdata.dev)
+- [Support issues](https://github.com/rocosen/flashdata-mcp/issues) or [support@flashdata.dev](mailto:support@flashdata.dev)
 - [Privacy](https://flashdata.dev/legal/privacy) and [terms](https://flashdata.dev/legal/terms)
-- [Source and license](https://github.com/flashdata-dev/flashdata-mcp)
+- [Source and license](https://github.com/rocosen/flashdata-mcp)
 
 Maintainers: the bundled `skills/`, `assets/`, and `LICENSE` are generated copies of the repository's shared sources. Edit the shared originals, then run `npm run sync:claude-plugin` at the repository root and commit the updated copies. `npm run check:claude-plugin` verifies they match. Keep every component inside this plugin directory, and increment the plugin version for later releases.

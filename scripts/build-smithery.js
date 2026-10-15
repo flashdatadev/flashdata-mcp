@@ -56,8 +56,8 @@ try {
     const manifest = { manifest_version: '0.3', name, display_name: `${task.title} — FlashData`, version: catalog.version,
       description: `${task.summary} Free local installation; FlashData API calls are paid.`, long_description: description,
       author: { name: 'FlashData', email: 'support@flashdata.dev', url: 'https://flashdata.dev' },
-      homepage, documentation: homepage, support: 'https://github.com/flashdata-dev/flashdata-mcp/issues',
-      repository: { type: 'git', url: 'https://github.com/flashdata-dev/flashdata-mcp' }, license: 'MIT',
+      homepage, documentation: homepage, support: 'https://github.com/rocosen/flashdata-mcp/issues',
+      repository: { type: 'git', url: 'https://github.com/rocosen/flashdata-mcp' }, license: 'MIT',
       privacy_policies: ['https://flashdata.dev/legal/privacy'],
       server: { type: 'node', entry_point: 'server.js', mcp_config: { command: 'node', args: ['${__dirname}/server.js'],
         env: { FLASHDATA_API_KEY: '${user_config.api_key}' } } },
@@ -78,7 +78,7 @@ try {
     fs.writeFileSync(path.join(output, `${task.slug}.release.json`), json(payload));
     fs.writeFileSync(path.join(output, `${task.slug}.metadata.json`), json({ displayName: manifest.display_name, description,
       homepage, repositoryUrl: manifest.repository.url, license: 'MIT', unlisted: false,
-      iconUrl: 'https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg' }));
+      iconUrl: 'https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg' }));
     index.push({ source: task.source, qualifiedName, version: catalog.version, filename, bytes: bundle.length,
       sha256: createHash('sha256').update(bundle).digest('hex'), tools: tools.map(tool => tool.name) });
     process.stdout.write(`${qualifiedName}: ${bundle.length} bytes, ${tools.length} tools\n`);
