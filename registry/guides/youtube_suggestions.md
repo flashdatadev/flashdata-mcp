@@ -6,7 +6,7 @@ Explore suggested query phrases before choosing topics for video discovery.
 
 ## Connect and check cost
 
-The dedicated Registry server is [`io.github.flashdata-dev/youtube-autocomplete`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest), with the local [MCPB package](https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/youtube-autocomplete/server.json). It runs on your machine with Node.js 22.18+ and exposes only `youtube_suggestions`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+The dedicated Registry server is [`io.github.flashdata-dev/youtube-autocomplete`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest), with the local [MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/youtube-autocomplete/server.json). It runs on your machine with Node.js 22.18+ and exposes only `youtube_suggestions`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `youtube_suggestions`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 

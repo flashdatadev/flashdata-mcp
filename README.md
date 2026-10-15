@@ -2,16 +2,16 @@
 
 Use Google Search, YouTube data, and downloads to your cloud storage from a terminal, Agent, or MCP client. This MIT-licensed package implements the tools and calls the FlashData REST APIs directly. It does not proxy a hosted MCP connection.
 
-Source code is available at [flashdata-dev/flashdata-mcp](https://github.com/flashdata-dev/flashdata-mcp). The npm package `@flashdata-dev/mcp` provides two commands: `flashdata` for single-call JSON output and `flashdata-mcp` for persistent stdio MCP.
+Source code is available at [rocosen/flashdata-mcp](https://github.com/rocosen/flashdata-mcp). The npm package `@flashdata-dev/mcp` provides two commands: `flashdata` for single-call JSON output and `flashdata-mcp` for persistent stdio MCP.
 
 To connect without running this local package, use the separate
 [FlashData hosted MCP service](https://flashdata.dev/mcp). Its
-[Official MCP Registry manifest and publishing instructions](https://github.com/flashdata-dev/flashdata-mcp/tree/main/registry)
+[Official MCP Registry manifest and publishing instructions](https://github.com/rocosen/flashdata-mcp/tree/main/registry)
 are maintained in this repository. The combined registration describes the hosted
 endpoint. The Registry also has separate manifests for 15 local task servers;
 each references a source-restricted MCPB bundle. Neither path publishes to npm.
 
-For independent Registry entries and task-specific examples, use the [15-capability MCP guide index](https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/README.md#all-15-capabilities): Google Search, News, Images, Shopping, video search and Places; YouTube search, extended search, metadata, transcripts, uploader captions, license labels, channels, autocomplete and delivery to customer storage. Each guide includes request JSON, selected output fields, limits, costs and the corresponding FlashData documentation.
+For independent Registry entries and task-specific examples, use the [15-capability MCP guide index](https://github.com/rocosen/flashdata-mcp/blob/main/registry/README.md#all-15-capabilities): Google Search, News, Images, Shopping, video search and Places; YouTube search, extended search, metadata, transcripts, uploader captions, license labels, channels, autocomplete and delivery to customer storage. Each guide includes request JSON, selected output fields, limits, costs and the corresponding FlashData documentation.
 
 For a local server focused on one capability, see the [15 independent Smithery task servers](smithery/README.md). Each MCPB bundle has one data tool plus pricing, job and result reads restricted to that source. Installation is free; FlashData data calls use paid Credits.
 
@@ -19,7 +19,7 @@ This directory is a complete, standalone project. Use its contents as the root o
 
 ## Choose a task package
 
-For one capability, choose one of the [15 task packages](https://github.com/flashdata-dev/flashdata-mcp/blob/main/npm/README.md). Each has one executable, one data source and its own examples, input schema and documentation. It runs as a JSON CLI or as a stdio MCP server using the `mcp` subcommand. For example:
+For one capability, choose one of the [15 task packages](https://github.com/rocosen/flashdata-mcp/blob/main/npm/README.md). Each has one executable, one data source and its own examples, input schema and documentation. It runs as a JSON CLI or as a stdio MCP server using the `mcp` subcommand. For example:
 
 ```sh
 npx --yes @flashdata-dev/google-news@0.1.0 --help
@@ -36,7 +36,7 @@ The [FlashData Skill](skills/flashdata/SKILL.md) helps an agent use an existing 
 Install the Skill into your project with the [skills CLI](https://skills.sh/docs):
 
 ```sh
-npx skills add flashdata-dev/flashdata-mcp --skill flashdata
+npx skills add rocosen/flashdata-mcp --skill flashdata
 ```
 
 Select your agent when prompted, or add `--agent codex` (or another supported agent). The default scope is the current project; use `--global` only if you want a user-wide installation. Review the Skill before installation.
@@ -76,7 +76,7 @@ Choose a Skill for the capability you need. Each includes example requests, a te
 Install only the task Skills you want, for example:
 
 ```sh
-npx skills add flashdata-dev/flashdata-mcp --skill google-search --skill youtube-transcript
+npx skills add rocosen/flashdata-mcp --skill google-search --skill youtube-transcript
 ```
 
 The CLI's `--list` option lists available Skills before installing. Each selected Skill is self-contained; sibling Skills are not required. Skill names are shared across the ecosystem, so review an existing installation before replacing a same-named Skill from another publisher. Public source, installation and skills.sh indexing are separate milestones. Instructions are free; FlashData API queries are paid.
@@ -108,7 +108,7 @@ The [Gemini CLI extension](https://geminicli.com/docs/extensions/) bundles the s
 Install from the public repository:
 
 ```sh
-gemini extensions install https://github.com/flashdata-dev/flashdata-mcp
+gemini extensions install https://github.com/rocosen/flashdata-mcp
 ```
 
 Review the extension when prompted. Enter your own FlashData API key into the installation setting, not Agent chat. [gemini-extension.json](gemini-extension.json) declares the key as a sensitive setting so Gemini CLI uses the system keychain and masks the input. The repository contains only an environment-variable placeholder. To change the key later, run `gemini extensions config flashdata`.
@@ -124,7 +124,7 @@ For local development, run `gemini extensions link /absolute/path/to/flashdata-m
 The [Claude plugin](plugins/claude/README.md) bundles the shared research Skill and a hosted MCP connection. Install through FlashData's own GitHub marketplace:
 
 ```sh
-claude plugin marketplace add flashdata-dev/flashdata-mcp
+claude plugin marketplace add rocosen/flashdata-mcp
 claude plugin install flashdata@flashdata
 ```
 
@@ -166,7 +166,7 @@ Requires Node.js 22.18 or newer and a FlashData API key from [your console](http
 Clone the repository and install its dependencies:
 
 ```sh
-git clone https://github.com/flashdata-dev/flashdata-mcp.git
+git clone https://github.com/rocosen/flashdata-mcp.git
 cd flashdata-mcp
 npm ci
 export FLASHDATA_API_KEY='YOUR_API_KEY'
@@ -302,7 +302,7 @@ Tests spawn both an actual SDK stdio client and the JSON CLI against isolated lo
 
 `npm run test:install` also installs the packed tarball into an empty temporary project and runs both the stdio and JSON CLI contracts against the installed executables.
 
-`npm run build:npm-tasks` builds 15 source-restricted tarballs in `dist/npm`, including each package’s schema, example and guide. `npm run test:npm-tasks` installs those tarballs together in an empty project and tests every actual CLI and MCP executable. See [RELEASING.md](https://github.com/flashdata-dev/flashdata-mcp/blob/main/RELEASING.md) for versioning and publication.
+`npm run build:npm-tasks` builds 15 source-restricted tarballs in `dist/npm`, including each package’s schema, example and guide. `npm run test:npm-tasks` installs those tarballs together in an empty project and tests every actual CLI and MCP executable. See [RELEASING.md](https://github.com/rocosen/flashdata-mcp/blob/main/RELEASING.md) for versioning and publication.
 
 `npm pack` runs tests and verifies the file allowlist. The npm tarball contains the CLI, source, README, license and notices; it excludes tests, credentials, private backend code, deployment files and node_modules. A source repository should also retain tests, scripts, the lockfile, and the CI workflow.
 

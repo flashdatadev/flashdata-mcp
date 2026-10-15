@@ -6,7 +6,7 @@ Developers building search-result datasets can retain rank, title, URL and snipp
 
 ## Connect and check cost
 
-The dedicated Registry server is [`io.github.flashdata-dev/google-search`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest), with the local [MCPB package](https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/google-search/server.json). It runs on your machine with Node.js 22.18+ and exposes only `google_search`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+The dedicated Registry server is [`io.github.flashdata-dev/google-search`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest), with the local [MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/google-search/server.json). It runs on your machine with Node.js 22.18+ and exposes only `google_search`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `google_search`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 

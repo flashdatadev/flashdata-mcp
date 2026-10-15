@@ -13,7 +13,7 @@ Search Google’s video results for demonstrations or tutorials, then group the 
 Install from this extension's repository (GitHub installation and gallery indexing are separate):
 
 ```sh
-gemini extensions install https://github.com/flashdata-dev/google-video-search-gemini
+gemini extensions install https://github.com/rocosen/google-video-search-gemini
 ```
 
 Review the extension and enter your own FlashData API key at the sensitive setting prompt. To change it later, run `gemini extensions config google-video-search-flashdata`. Restart Gemini CLI after configuration. Run `gemini extensions list`, `gemini skills list --all` and `gemini mcp list` to inspect installation, Skill availability and connection.
@@ -176,4 +176,4 @@ MCP responses longer than 16,000 UTF-16 code units use `result_id`, `chunk` and 
 
 Optional environment settings are `FLASHDATA_REQUEST_TIMEOUT_MS` (1000–120000, default 65000), `FLASHDATA_DATA_API_URL` and `FLASHDATA_MANAGEMENT_API_URL`. Custom URLs must be trusted HTTPS origins; loopback HTTP is accepted for local tests. The package does not load `.env` files automatically.
 
-Support: [support@flashdata.dev](mailto:support@flashdata.dev) · [Source and issue tracker](https://github.com/flashdata-dev/flashdata-mcp) · [FlashData terms](https://flashdata.dev/legal/terms) · [Privacy](https://flashdata.dev/legal/privacy). This is an independent FlashData integration, not an official Google or YouTube package.
+Support: [support@flashdata.dev](mailto:support@flashdata.dev) · [Source and issue tracker](https://github.com/rocosen/flashdata-mcp) · [FlashData terms](https://flashdata.dev/legal/terms) · [Privacy](https://flashdata.dev/legal/privacy). This is an independent FlashData integration, not an official Google or YouTube package.

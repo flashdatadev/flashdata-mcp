@@ -6,21 +6,21 @@ Installation is free. FlashData data calls consume paid Credits; client/model an
 
 | Task | Cursor plugin source | Gemini extension repository | Data tool |
 | --- | --- | --- | --- |
-| Google Search | [google-search-flashdata](../plugins/cursor/google-search/README.md) | [google-search-flashdata](https://github.com/flashdata-dev/google-search-gemini) | `google_search` |
-| Google News | [google-news-flashdata](../plugins/cursor/google-news/README.md) | [google-news-flashdata](https://github.com/flashdata-dev/google-news-gemini) | `google_news` |
-| Google Images | [google-images-flashdata](../plugins/cursor/google-images/README.md) | [google-images-flashdata](https://github.com/flashdata-dev/google-images-gemini) | `google_images` |
-| Google Shopping | [google-shopping-flashdata](../plugins/cursor/google-shopping/README.md) | [google-shopping-flashdata](https://github.com/flashdata-dev/google-shopping-gemini) | `google_shopping` |
-| Google Video Search | [google-video-search-flashdata](../plugins/cursor/google-video-search/README.md) | [google-video-search-flashdata](https://github.com/flashdata-dev/google-video-search-gemini) | `google_videos` |
-| Google Places | [google-places-flashdata](../plugins/cursor/google-places/README.md) | [google-places-flashdata](https://github.com/flashdata-dev/google-places-gemini) | `google_places` |
-| YouTube Search | [youtube-search-flashdata](../plugins/cursor/youtube-search/README.md) | [youtube-search-flashdata](https://github.com/flashdata-dev/youtube-search-gemini) | `youtube_search` |
-| YouTube Extended Search | [youtube-extended-search-flashdata](../plugins/cursor/youtube-extended-search/README.md) | [youtube-extended-search-flashdata](https://github.com/flashdata-dev/youtube-extended-search-gemini) | `youtube_search_extended` |
-| YouTube Metadata | [youtube-metadata-flashdata](../plugins/cursor/youtube-metadata/README.md) | [youtube-metadata-flashdata](https://github.com/flashdata-dev/youtube-metadata-gemini) | `youtube_metadata` |
-| YouTube Transcript | [youtube-transcript-flashdata](../plugins/cursor/youtube-transcript/README.md) | [youtube-transcript-flashdata](https://github.com/flashdata-dev/youtube-transcript-gemini) | `youtube_transcript` |
-| YouTube Captions | [youtube-captions-flashdata](../plugins/cursor/youtube-captions/README.md) | [youtube-captions-flashdata](https://github.com/flashdata-dev/youtube-captions-gemini) | `youtube_captions` |
-| YouTube Creative Commons License Metadata | [youtube-trainability-flashdata](../plugins/cursor/youtube-trainability/README.md) | [youtube-trainability-flashdata](https://github.com/flashdata-dev/youtube-trainability-gemini) | `youtube_trainability` |
-| YouTube Channel Data | [youtube-channel-flashdata](../plugins/cursor/youtube-channel/README.md) | [youtube-channel-flashdata](https://github.com/flashdata-dev/youtube-channel-gemini) | `youtube_channel` |
-| YouTube Autocomplete | [youtube-autocomplete-flashdata](../plugins/cursor/youtube-autocomplete/README.md) | [youtube-autocomplete-flashdata](https://github.com/flashdata-dev/youtube-autocomplete-gemini) | `youtube_suggestions` |
-| YouTube Download to Cloud Storage | [youtube-cloud-storage-flashdata](../plugins/cursor/youtube-cloud-storage/README.md) | [youtube-cloud-storage-flashdata](https://github.com/flashdata-dev/youtube-cloud-storage-gemini) | `youtube_download` |
+| Google Search | [google-search-flashdata](../plugins/cursor/google-search/README.md) | [google-search-flashdata](https://github.com/rocosen/google-search-gemini) | `google_search` |
+| Google News | [google-news-flashdata](../plugins/cursor/google-news/README.md) | [google-news-flashdata](https://github.com/rocosen/google-news-gemini) | `google_news` |
+| Google Images | [google-images-flashdata](../plugins/cursor/google-images/README.md) | [google-images-flashdata](https://github.com/rocosen/google-images-gemini) | `google_images` |
+| Google Shopping | [google-shopping-flashdata](../plugins/cursor/google-shopping/README.md) | [google-shopping-flashdata](https://github.com/rocosen/google-shopping-gemini) | `google_shopping` |
+| Google Video Search | [google-video-search-flashdata](../plugins/cursor/google-video-search/README.md) | [google-video-search-flashdata](https://github.com/rocosen/google-video-search-gemini) | `google_videos` |
+| Google Places | [google-places-flashdata](../plugins/cursor/google-places/README.md) | [google-places-flashdata](https://github.com/rocosen/google-places-gemini) | `google_places` |
+| YouTube Search | [youtube-search-flashdata](../plugins/cursor/youtube-search/README.md) | [youtube-search-flashdata](https://github.com/rocosen/youtube-search-gemini) | `youtube_search` |
+| YouTube Extended Search | [youtube-extended-search-flashdata](../plugins/cursor/youtube-extended-search/README.md) | [youtube-extended-search-flashdata](https://github.com/rocosen/youtube-extended-search-gemini) | `youtube_search_extended` |
+| YouTube Metadata | [youtube-metadata-flashdata](../plugins/cursor/youtube-metadata/README.md) | [youtube-metadata-flashdata](https://github.com/rocosen/youtube-metadata-gemini) | `youtube_metadata` |
+| YouTube Transcript | [youtube-transcript-flashdata](../plugins/cursor/youtube-transcript/README.md) | [youtube-transcript-flashdata](https://github.com/rocosen/youtube-transcript-gemini) | `youtube_transcript` |
+| YouTube Captions | [youtube-captions-flashdata](../plugins/cursor/youtube-captions/README.md) | [youtube-captions-flashdata](https://github.com/rocosen/youtube-captions-gemini) | `youtube_captions` |
+| YouTube Creative Commons License Metadata | [youtube-trainability-flashdata](../plugins/cursor/youtube-trainability/README.md) | [youtube-trainability-flashdata](https://github.com/rocosen/youtube-trainability-gemini) | `youtube_trainability` |
+| YouTube Channel Data | [youtube-channel-flashdata](../plugins/cursor/youtube-channel/README.md) | [youtube-channel-flashdata](https://github.com/rocosen/youtube-channel-gemini) | `youtube_channel` |
+| YouTube Autocomplete | [youtube-autocomplete-flashdata](../plugins/cursor/youtube-autocomplete/README.md) | [youtube-autocomplete-flashdata](https://github.com/rocosen/youtube-autocomplete-gemini) | `youtube_suggestions` |
+| YouTube Download to Cloud Storage | [youtube-cloud-storage-flashdata](../plugins/cursor/youtube-cloud-storage/README.md) | [youtube-cloud-storage-flashdata](https://github.com/rocosen/youtube-cloud-storage-gemini) | `youtube_download` |
 
 ## Installation and directory status
 
@@ -29,7 +29,7 @@ Cursor uses the root [.cursor-plugin/marketplace.json](../.cursor-plugin/marketp
 Gemini CLI installs each extension from its own repository URL. For example:
 
 ```sh
-gemini extensions install https://github.com/flashdata-dev/google-news-gemini
+gemini extensions install https://github.com/rocosen/google-news-gemini
 ```
 
 Enter the API key at the sensitive setting prompt, then restart the CLI. Repository availability and [gallery](https://geminicli.com/extensions/) indexing are separate. The gallery automatically crawls public repositories with the `gemini-cli-extension` topic; 15 local directories alone do not create 15 gallery entries. Each extension's complete publishable source is under [extensions/gemini](../extensions/gemini).

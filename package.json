@@ -4,11 +4,11 @@
   "description": "FlashData CLI and MCP server for Google Search, YouTube data and media delivery to customer storage",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flashdata-dev/flashdata-mcp.git"
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git"
   },
   "homepage": "https://flashdata.dev/mcp?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined",
   "bugs": {
-    "url": "https://github.com/flashdata-dev/flashdata-mcp/issues"
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
   },
   "license": "MIT",
   "publishConfig": {
