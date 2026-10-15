@@ -3,16 +3,16 @@
   "name": "io.github.flashdata-dev/google-places",
   "title": "Google Places — FlashData",
   "description": "Google Places businesses, addresses, ratings and review counts. Paid FlashData API.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
-    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "url": "https://github.com/rocosen/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/google-places"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/google_places?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,7 +22,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb",
+      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb",
       "version": "0.1.1",
       "fileSha256": "48f38e97cc5c658a895be2d26df1af92471ad0d6e3e81874cf5e8ce3253baa6b",
       "transport": {
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/google_places.md",
+        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_places.md",
         "task": "Shortlist local businesses by rating and review count",
         "inputExample": {
           "name": "google_places",

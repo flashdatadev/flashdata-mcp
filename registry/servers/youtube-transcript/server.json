@@ -3,16 +3,16 @@
   "name": "io.github.flashdata-dev/youtube-transcript",
   "title": "YouTube Transcript — FlashData",
   "description": "YouTube transcript text with timestamps from existing caption tracks. Paid FlashData API.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
-    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "url": "https://github.com/rocosen/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-transcript"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_transcript?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,7 +22,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-transcript-0.1.1.mcpb",
+      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-transcript-0.1.1.mcpb",
       "version": "0.1.1",
       "fileSha256": "b06c28de3ac271d1be7f558cbe47437bb10203d3f2f7ba598a83d6f556b3718d",
       "transport": {
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/youtube_transcript.md",
+        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_transcript.md",
         "task": "Read timestamped YouTube transcripts for citations",
         "inputExample": {
           "name": "youtube_transcript",

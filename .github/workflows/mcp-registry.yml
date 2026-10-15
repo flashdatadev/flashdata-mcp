@@ -49,6 +49,14 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check OIDC namespace ownership
+        env:
+          REGISTRY_REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          if [ "$REGISTRY_REPOSITORY_OWNER" != 'flashdata-dev' ]; then
+            echo '::error::This repository owner cannot publish io.github.flashdata-dev/*. Use the original namespace owner authentication described in registry/README.md.'
+            exit 1
+          fi
       - name: Install pinned publisher
         working-directory: ${{ runner.temp }}
         run: |

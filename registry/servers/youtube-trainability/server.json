@@ -3,16 +3,16 @@
   "name": "io.github.flashdata-dev/youtube-trainability",
   "title": "YouTube License Metadata — FlashData",
   "description": "YouTube Creative Commons license-label metadata, not training authorization. Paid FlashData API.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
-    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "url": "https://github.com/rocosen/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-trainability"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,7 +22,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb",
+      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb",
       "version": "0.1.1",
       "fileSha256": "9f91933afb7050a9e8765d162ff2da7faa8beb275a8a6773d98890a97874afe8",
       "transport": {
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md",
+        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md",
         "task": "Inspect YouTube Creative Commons license labels",
         "inputExample": {
           "name": "youtube_trainability",

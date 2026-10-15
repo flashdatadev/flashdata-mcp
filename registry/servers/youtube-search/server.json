@@ -3,16 +3,16 @@
   "name": "io.github.flashdata-dev/youtube-search",
   "title": "YouTube Search — FlashData",
   "description": "YouTube keyword search with filters and up to 20 requested videos. Paid FlashData API.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
-    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "url": "https://github.com/rocosen/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-search"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,7 +22,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-search-0.1.1.mcpb",
+      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-search-0.1.1.mcpb",
       "version": "0.1.1",
       "fileSha256": "df4f1c7eb1e0db43f70c660e712869076917658ee0f64c344af90abf826fdad7",
       "transport": {
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/youtube_search.md",
+        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_search.md",
         "task": "Export YouTube video candidates by keyword",
         "inputExample": {
           "name": "youtube_search",

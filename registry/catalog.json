@@ -9,7 +9,7 @@
     "registryName": "io.github.flashdata-dev/google-search",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest",
     "manifest": "servers/google-search/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb"
   },
   {
     "source": "google_news",
@@ -21,7 +21,7 @@
     "registryName": "io.github.flashdata-dev/google-news",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest",
     "manifest": "servers/google-news/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb"
   },
   {
     "source": "google_images",
@@ -33,7 +33,7 @@
     "registryName": "io.github.flashdata-dev/google-images",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest",
     "manifest": "servers/google-images/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-images-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-images-0.1.1.mcpb"
   },
   {
     "source": "google_shopping",
@@ -45,7 +45,7 @@
     "registryName": "io.github.flashdata-dev/google-shopping",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-shopping/versions/latest",
     "manifest": "servers/google-shopping/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-shopping-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-shopping-0.1.1.mcpb"
   },
   {
     "source": "google_videos",
@@ -57,7 +57,7 @@
     "registryName": "io.github.flashdata-dev/google-video-search",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-video-search/versions/latest",
     "manifest": "servers/google-video-search/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-video-search-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-video-search-0.1.1.mcpb"
   },
   {
     "source": "google_places",
@@ -69,7 +69,7 @@
     "registryName": "io.github.flashdata-dev/google-places",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest",
     "manifest": "servers/google-places/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb"
   },
   {
     "source": "youtube_search",
@@ -81,7 +81,7 @@
     "registryName": "io.github.flashdata-dev/youtube-search",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-search/versions/latest",
     "manifest": "servers/youtube-search/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-search-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-search-0.1.1.mcpb"
   },
   {
     "source": "youtube_search_extended",
@@ -93,7 +93,7 @@
     "registryName": "io.github.flashdata-dev/youtube-extended-search",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-extended-search/versions/latest",
     "manifest": "servers/youtube-extended-search/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-extended-search-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-extended-search-0.1.1.mcpb"
   },
   {
     "source": "youtube_metadata",
@@ -105,7 +105,7 @@
     "registryName": "io.github.flashdata-dev/youtube-metadata",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-metadata/versions/latest",
     "manifest": "servers/youtube-metadata/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-metadata-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-metadata-0.1.1.mcpb"
   },
   {
     "source": "youtube_transcript",
@@ -117,7 +117,7 @@
     "registryName": "io.github.flashdata-dev/youtube-transcript",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-transcript/versions/latest",
     "manifest": "servers/youtube-transcript/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-transcript-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-transcript-0.1.1.mcpb"
   },
   {
     "source": "youtube_captions",
@@ -129,7 +129,7 @@
     "registryName": "io.github.flashdata-dev/youtube-captions",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-captions/versions/latest",
     "manifest": "servers/youtube-captions/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-captions-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-captions-0.1.1.mcpb"
   },
   {
     "source": "youtube_trainability",
@@ -141,7 +141,7 @@
     "registryName": "io.github.flashdata-dev/youtube-trainability",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest",
     "manifest": "servers/youtube-trainability/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb"
   },
   {
     "source": "youtube_channel",
@@ -153,7 +153,7 @@
     "registryName": "io.github.flashdata-dev/youtube-channel",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-channel/versions/latest",
     "manifest": "servers/youtube-channel/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-channel-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-channel-0.1.1.mcpb"
   },
   {
     "source": "youtube_suggestions",
@@ -165,7 +165,7 @@
     "registryName": "io.github.flashdata-dev/youtube-autocomplete",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest",
     "manifest": "servers/youtube-autocomplete/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb"
   },
   {
     "source": "youtube_download",
@@ -177,6 +177,6 @@
     "registryName": "io.github.flashdata-dev/youtube-download",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest",
     "manifest": "servers/youtube-download/server.json",
-    "packageUrl": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb"
+    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb"
   }
 ]

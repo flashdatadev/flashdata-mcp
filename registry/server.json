@@ -3,7 +3,7 @@
   "name": "io.github.flashdata-dev/flashdata",
   "title": "Google & YouTube Search, Transcripts and Data - FlashData",
   "description": "Google & YouTube data: search, news, images, shopping, places, transcripts, captions and downloads.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "websiteUrl": "https://flashdata.dev/mcp?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4",
   "remotes": [
     {
@@ -23,8 +23,8 @@
   "_meta": {
     "io.modelcontextprotocol.registry/publisher-provided": {
       "dev.flashdata": {
-        "capabilityIndex": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/README.md",
-        "guideBaseUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/",
+        "capabilityIndex": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/README.md",
+        "guideBaseUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/",
         "pricingUrl": "https://flashdata.dev/pricing",
         "billing": "Paid API queries use FlashData Credits; examples are free.",
         "capabilities": [

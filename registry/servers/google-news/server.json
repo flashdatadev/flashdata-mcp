@@ -3,16 +3,16 @@
   "name": "io.github.flashdata-dev/google-news",
   "title": "Google News — FlashData",
   "description": "Google News articles with publishers, date labels and links for topic briefs. Paid FlashData API.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
-    "url": "https://github.com/flashdata-dev/flashdata-mcp",
+    "url": "https://github.com/rocosen/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/google-news"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/flashdata-dev/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,7 +22,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdata-dev/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb",
+      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb",
       "version": "0.1.1",
       "fileSha256": "682969937d0ab4ea6049042304e3727096fece4402b1b9bc705768542200ff70",
       "transport": {
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/flashdata-dev/flashdata-mcp/blob/main/registry/guides/google_news.md",
+        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_news.md",
         "task": "Build a source-linked Google News topic digest",
         "inputExample": {
           "name": "google_news",
