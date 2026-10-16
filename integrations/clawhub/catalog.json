@@ -1,0 +1,305 @@
+{
+  "owner": "rocosen",
+  "skills": [
+    {
+      "source": "google_search",
+      "slug": "google-search-flashdata",
+      "displayName": "Google Search — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/google-search-flashdata",
+      "npmPackage": "@flashdata-dev/google-search@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/google-search@0.1.0 flashdata-google-search",
+      "homepage": "https://flashdata.dev/docs/sources/google_search?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "google-search",
+        "web-research",
+        "serp"
+      ],
+      "scenario": "Find sources for an agent answer"
+    },
+    {
+      "source": "google_news",
+      "slug": "google-news-flashdata",
+      "displayName": "Google News — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/google-news-flashdata",
+      "npmPackage": "@flashdata-dev/google-news@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/google-news@0.1.0 flashdata-google-news",
+      "homepage": "https://flashdata.dev/docs/sources/google_news?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "google-news",
+        "news-search",
+        "briefing"
+      ],
+      "scenario": "Prepare a sourced news briefing"
+    },
+    {
+      "source": "google_images",
+      "slug": "google-image-search-flashdata",
+      "displayName": "Google Images — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/google-image-search-flashdata",
+      "npmPackage": "@flashdata-dev/google-images@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/google-images@0.1.0 flashdata-google-images",
+      "homepage": "https://flashdata.dev/docs/sources/google_images?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "google-images",
+        "image-search",
+        "visual-research"
+      ],
+      "scenario": "Build an image reference inventory"
+    },
+    {
+      "source": "google_shopping",
+      "slug": "google-shopping-flashdata",
+      "displayName": "Google Shopping — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/google-shopping-flashdata",
+      "npmPackage": "@flashdata-dev/google-shopping@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/google-shopping@0.1.0 flashdata-google-shopping",
+      "homepage": "https://flashdata.dev/docs/sources/google_shopping?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "google-shopping",
+        "product-search",
+        "price-comparison"
+      ],
+      "scenario": "Compare listed product offers"
+    },
+    {
+      "source": "google_videos",
+      "slug": "google-video-search-flashdata",
+      "displayName": "Google Video Search — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/google-video-search-flashdata",
+      "npmPackage": "@flashdata-dev/google-video-search@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/google-video-search@0.1.0 flashdata-google-video-search",
+      "homepage": "https://flashdata.dev/docs/sources/google_videos?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "google-videos",
+        "video-search",
+        "tutorials"
+      ],
+      "scenario": "Find demonstrations across video websites"
+    },
+    {
+      "source": "google_places",
+      "slug": "google-places-flashdata",
+      "displayName": "Google Places — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/google-places-flashdata",
+      "npmPackage": "@flashdata-dev/google-places@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/google-places@0.1.0 flashdata-google-places",
+      "homepage": "https://flashdata.dev/docs/sources/google_places?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "google-places",
+        "local-search",
+        "places"
+      ],
+      "scenario": "Shortlist local places from returned evidence"
+    },
+    {
+      "source": "youtube_search",
+      "slug": "youtube-search-flashdata",
+      "displayName": "YouTube Search — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-search-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-search@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-search@0.1.0 flashdata-youtube-search",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_search?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-search",
+        "video-discovery",
+        "tutorials"
+      ],
+      "scenario": "Find videos for a learning shortlist"
+    },
+    {
+      "source": "youtube_search_extended",
+      "slug": "youtube-extended-search-flashdata",
+      "displayName": "YouTube Extended Search — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-extended-search-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-extended-search@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-extended-search@0.1.0 flashdata-youtube-extended-search",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-search",
+        "datasets",
+        "creator-research"
+      ],
+      "scenario": "Map channels covering a research topic"
+    },
+    {
+      "source": "youtube_metadata",
+      "slug": "youtube-metadata-flashdata",
+      "displayName": "YouTube Metadata — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-metadata-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-metadata@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-metadata@0.1.0 flashdata-youtube-metadata",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_metadata?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-metadata",
+        "video-chapters",
+        "video-details"
+      ],
+      "scenario": "Turn a video into a chapter navigation card"
+    },
+    {
+      "source": "youtube_transcript",
+      "slug": "youtube-transcript-flashdata",
+      "displayName": "YouTube Transcript — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-transcript-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-transcript@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-transcript@0.1.0 flashdata-youtube-transcript",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_transcript?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-transcript",
+        "video-notes",
+        "timestamps"
+      ],
+      "scenario": "Create notes with timestamped citations"
+    },
+    {
+      "source": "youtube_captions",
+      "slug": "youtube-captions-flashdata",
+      "displayName": "YouTube Captions — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-captions-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-captions@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-captions@0.1.0 flashdata-youtube-captions",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_captions?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-captions",
+        "subtitles",
+        "srt"
+      ],
+      "scenario": "Export an existing uploader subtitle track"
+    },
+    {
+      "source": "youtube_trainability",
+      "slug": "youtube-license-check-flashdata",
+      "displayName": "YouTube Creative Commons License Metadata — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-license-check-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-trainability@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-trainability@0.1.0 flashdata-youtube-trainability",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-license",
+        "creative-commons",
+        "metadata"
+      ],
+      "scenario": "Record a license-label observation for rights review"
+    },
+    {
+      "source": "youtube_channel",
+      "slug": "youtube-channel-flashdata",
+      "displayName": "YouTube Channel Data — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-channel-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-channel@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-channel@0.1.0 flashdata-youtube-channel",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_channel?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-channel",
+        "recent-videos",
+        "channel-research"
+      ],
+      "scenario": "Make a dated recent-upload inventory"
+    },
+    {
+      "source": "youtube_suggestions",
+      "slug": "youtube-autocomplete-flashdata",
+      "displayName": "YouTube Autocomplete — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-autocomplete-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-autocomplete@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-autocomplete@0.1.0 flashdata-youtube-autocomplete",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task",
+      "categories": [
+        "research",
+        "integrations"
+      ],
+      "topics": [
+        "youtube-autocomplete",
+        "keyword-research",
+        "search-suggestions"
+      ],
+      "scenario": "Build a topic idea sheet from autocomplete"
+    },
+    {
+      "source": "youtube_download",
+      "slug": "youtube-download-flashdata",
+      "displayName": "YouTube Download to Cloud Storage — FlashData",
+      "version": "1.0.0",
+      "directory": "integrations/clawhub/skills/youtube-download-flashdata",
+      "npmPackage": "@flashdata-dev/youtube-cloud-storage@0.1.0",
+      "command": "npx --yes --package=@flashdata-dev/youtube-cloud-storage@0.1.0 flashdata-youtube-cloud-storage",
+      "homepage": "https://flashdata.dev/docs/sources/youtube_download?utm_source=clawhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task",
+      "categories": [
+        "integrations",
+        "automation"
+      ],
+      "topics": [
+        "youtube-download",
+        "cloud-storage",
+        "media-ingestion"
+      ],
+      "scenario": "Deliver an approved media clip to customer storage"
+    }
+  ]
+}
