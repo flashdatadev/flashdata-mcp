@@ -53,7 +53,8 @@ test('30 actual integration manifests launch the pinned public task packages wit
       FLASHDATA_DATA_API_URL: origin, FLASHDATA_MANAGEMENT_API_URL: origin,
     } });
     try {
-      await client.connect(transport);
+      // Cold npx installs on Windows can exceed the SDK's 60-second initialization timeout.
+      await client.connect(transport, { timeout: process.platform === 'win32' ? 180_000 : 60_000 });
       const tools = (await client.listTools()).tools;
       assert.deepEqual(tools.map(tool => tool.name).sort(), [task.source, 'get_pricing', 'get_job', 'get_result'].sort());
       assert.deepEqual(tools.find(tool => tool.name === 'get_pricing').inputSchema.properties.source.enum, [task.source]);

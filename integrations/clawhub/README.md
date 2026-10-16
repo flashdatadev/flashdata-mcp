@@ -1,6 +1,6 @@
 # FlashData task skills for ClawHub / OpenClaw
 
-**Release preparation — not published.** These 15 independent skill bundles are prepared for ClawHub. The publisher approved MIT-0 for these bundles and authorized the local ClawHub CLI as `rocosen` on 2026-10-16. Candidate names and install commands are not evidence of live listings. Actual platform IDs, URLs and scan receipts must be recorded after publication.
+**Published on 2026-10-16.** All 15 independent skills are available as version `1.0.0` under [rocosen on ClawHub](https://clawhub.ai/rocosen). The publisher approved MIT-0 for these bundles and authorized the local ClawHub CLI. Each listing passed its security scan; anonymous browser checks confirmed all 15 pages, their version, documentation links and registration entry points. Public availability does not establish search discovery or customer conversion.
 
 Each skill has one data source, a concrete agent task, pinned npm CLI, input/output examples, protected API-key requirements, source-specific docs and cost/limit disclosures. The skill instructions are prepared for ClawHub’s mandatory MIT-0 license; this does not relicense the FlashData CLI or make the paid FlashData API free.
 
@@ -55,4 +55,5 @@ The local CLI returns JSON. The agent may format that data as cited answers, tab
 - Existing installed-CLI contract suite passed: 15 source cases plus the parent test (16 tests). Local fixtures cover source isolation, query routing, job reads, pending states, revoked keys, complete Unicode results and credential-free result downloads.
 - Frontmatter and 57 JSON examples validated; generated schemas match the installed published packages.
 - ClawHub CLI 0.23.3 dry-run: 15/15 `would-publish`, latest version null. No upload or submission.
-- OpenClaw agent execution, ClawHub security approval, public installation, search discovery, outbound navigation and conversion remain unverified.
+- All 15 releases were subsequently submitted, passed ClawHub security checks and became public. Anonymous browser checks followed each Documentation link to its matching FlashData page, with the channel UTM preserved and a registration entry point visible.
+- OpenClaw agent execution, public installation, search discovery and conversion are separate acceptance checks; publication alone does not establish them.
