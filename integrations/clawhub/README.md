@@ -1,6 +1,6 @@
 # FlashData task skills for ClawHub / OpenClaw
 
-**Release preparation — not published.** These 15 independent skill bundles are local candidates for ClawHub. MIT-0 approval and local ClawHub CLI authorization are pending. The rocosen web account is signed in. Candidate names and install commands are not evidence of live listings. Actual platform IDs, URLs and scan receipts must be recorded after publication.
+**Release preparation — not published.** These 15 independent skill bundles are prepared for ClawHub. The publisher approved MIT-0 for these bundles and authorized the local ClawHub CLI as `rocosen` on 2026-10-16. Candidate names and install commands are not evidence of live listings. Actual platform IDs, URLs and scan receipts must be recorded after publication.
 
 Each skill has one data source, a concrete agent task, pinned npm CLI, input/output examples, protected API-key requirements, source-specific docs and cost/limit disclosures. The skill instructions are prepared for ClawHub’s mandatory MIT-0 license; this does not relicense the FlashData CLI or make the paid FlashData API free.
 
