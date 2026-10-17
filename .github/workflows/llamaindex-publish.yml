@@ -1,0 +1,57 @@
+name: Publish LlamaIndex integration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: llamaindex-pypi-publish
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.repository == 'rocosen/flashdata-mcp' && github.ref_type == 'tag' && startsWith(github.ref_name, 'llamaindex-v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: packages/llamaindex
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: '3.11'
+      - run: uv sync --frozen
+      - name: Verify release tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          uv run --frozen python - <<'PY'
+          import os, tomllib
+          from pathlib import Path
+          project = tomllib.loads(Path('pyproject.toml').read_text())['project']
+          assert project['name'] == 'llama-index-tools-flashdata'
+          assert os.environ['RELEASE_TAG'] == 'llamaindex-v' + project['version']
+          PY
+      - run: uv run --frozen ruff check .
+      - run: uv run --frozen ruff format --check .
+      - run: uv run --frozen pytest -q
+      - run: uv run --frozen python -m build
+      - run: uv run --frozen twine check dist/*
+      - run: uv run --frozen python scripts/verify_install.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: llamaindex-distributions
+          path: packages/llamaindex/dist/
+          if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: pypi-llamaindex
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: llamaindex-distributions
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@106e0b0b7c337fa67ed433972f777c6357f78598 # v1.13.0

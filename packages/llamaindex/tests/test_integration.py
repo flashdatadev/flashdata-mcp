@@ -1,0 +1,340 @@
+import asyncio
+import json
+import threading
+from pathlib import Path
+
+import httpx
+import pytest
+from llama_index.core.readers.base import BaseReader
+from llama_index.core.schema import Document
+from llama_index.core.tools import FunctionTool, ToolOutput
+
+from llama_index.tools.flashdata import (
+    FlashDataError,
+    FlashDataReader,
+    FlashDataTools,
+    _client,
+    to_documents,
+)
+from llama_index.tools.flashdata._catalog import CONTRACTS
+from llama_index.tools.flashdata._client import AUTH_URL, JOBS_URL, Client
+from llama_index.tools.flashdata._execution import Execution
+
+ROOT = Path(__file__).resolve().parents[1]
+CAPABILITIES = json.loads((ROOT / "capabilities.json").read_text())
+FIXTURES = json.loads((ROOT / "tests/response-fixtures.json").read_text())
+READABLE = [c for c in CAPABILITIES if c["source"] != "youtube_download"]
+VIDEO = "jNQXAC9IVRw"
+STORAGE = {
+    "storage_type": "s3",
+    "storage_url": "test-bucket",
+    "access_key": "abc",
+    "secret_key": "secret",
+}
+
+
+@pytest.fixture
+def network(monkeypatch):
+    requests = []
+
+    def install(handler):
+        def transport(request):
+            requests.append(request)
+            return handler(request)
+
+        monkeypatch.setattr(
+            Execution,
+            "_client",
+            lambda self: Client("test-key", transport=httpx.MockTransport(transport)),
+        )
+        return requests
+
+    return install
+
+
+@pytest.mark.parametrize("capability", READABLE, ids=lambda c: c["source"])
+def test_native_tools_validate_payload_and_preserve_raw_response(network, capability):
+    source = capability["source"]
+    expected = FIXTURES[source]
+    calls = network(lambda request: httpx.Response(200, json=expected))
+    tool = FlashDataTools([source]).to_tool_list()[0]
+    assert isinstance(tool, FunctionTool)
+    output = tool.call(**capability["sample"])
+    assert isinstance(output, ToolOutput)
+    assert output.raw_output == expected
+    assert output.tool_name == "flashdata_" + source
+    assert len(calls) == 1
+    payload = json.loads(calls[0].content)
+    assert payload["source"] == source
+    assert calls[0].headers["X-API-Key"] == "test-key"
+    assert all(
+        k not in tool.metadata.get_parameters_dict()["properties"]
+        for k in ("api_key", "storage", "allow_download", "source")
+    )
+    assert len(tool.metadata.description) < 1024
+
+
+@pytest.mark.parametrize("capability", READABLE, ids=lambda c: c["source"])
+def test_native_reader_with_response_shape(network, capability):
+    source = capability["source"]
+    calls = network(lambda request: httpx.Response(200, json=FIXTURES[source]))
+    reader = FlashDataReader(source)
+    assert isinstance(reader, BaseReader)
+    docs = reader.load_data(**capability["sample"])
+    assert docs and all(isinstance(doc, Document) for doc in docs)
+    assert all(doc.metadata["source"] == source for doc in docs)
+    assert len(calls) == 1
+
+
+def test_async_native_tool_and_reader_run_off_event_loop(network):
+    main_thread = threading.get_ident()
+    request_threads = []
+
+    def handler(request):
+        request_threads.append(threading.get_ident())
+        return httpx.Response(200, json=FIXTURES["google_search"])
+
+    network(handler)
+
+    async def run():
+        output = await FlashDataTools(["google_search"]).to_tool_list()[0].acall(query="research")
+        docs = await FlashDataReader("google_search").aload_data(query="research")
+        assert output.raw_output == FIXTURES["google_search"]
+        assert docs[0].metadata["url"]
+
+    asyncio.run(run())
+    assert len(request_threads) == 2
+    assert all(t != main_thread for t in request_threads)
+
+
+def test_google_omissions_and_explicit_values(network):
+    calls = network(lambda request: httpx.Response(200, json={"results": []}))
+    tool = FlashDataTools(["google_search"]).to_tool_list()[0]
+    tool.call(query="research")
+    tool.call(query="research", autocorrect=False, num=1)
+    assert json.loads(calls[0].content)["params"] == {}
+    assert json.loads(calls[1].content)["params"] == {"num": 1, "autocorrect": False}
+
+
+@pytest.mark.parametrize("source,auto", [("youtube_transcript", True), ("youtube_captions", False)])
+def test_caption_default_and_document_citation(network, source, auto):
+    calls = network(lambda request: httpx.Response(200, json=FIXTURES[source]))
+    docs = FlashDataReader(source).load_data(video_id=f"https://youtu.be/{VIDEO}")
+    payload = json.loads(calls[0].content)
+    assert payload["video_id"] == VIDEO
+    assert payload["params"] == {"auto": auto, "language": "en"}
+    segment = FIXTURES[source]["results"][0]["segments"][0]
+    assert docs[0].text == segment["text"]
+    assert docs[0].metadata["start"] == segment["start"]
+    assert docs[0].metadata["end"] == segment["end"]
+    assert docs[0].metadata["languageCode"] == "en"
+    assert docs[0].metadata["isAutoGenerated"] is auto
+    assert docs[0].metadata["url"].startswith("https://www.youtube.com/watch?v=")
+
+
+def test_conversion_uses_existing_response_and_never_fabricates_links():
+    captions = to_documents("youtube_transcript", {"results": [{"fullText": "text"}]})
+    assert captions[0].text == "text"
+    assert "start" not in captions[0].metadata
+    assert "url" not in captions[0].metadata
+    places = to_documents("google_places", {"results": [{"places": [{"title": "Cafe"}]}]})
+    assert "url" not in places[0].metadata
+    assert json.loads(places[0].text) == {"title": "Cafe"}
+    assert to_documents("google_search", {"results": [{"organic": []}]}) == []
+
+
+def test_search_documents_preserve_result_fields_and_image_urls():
+    docs = to_documents("google_search", FIXTURES["google_search"])
+    record = FIXTURES["google_search"]["results"][0]["organic"][0]
+    assert json.loads(docs[0].text) == record
+    assert docs[0].metadata["url"] == record["link"]
+    images = to_documents("google_images", FIXTURES["google_images"])
+    assert images[0].metadata["image_url"].startswith("https://")
+    assert "url" not in images[0].metadata  # No fabricated page citation.
+
+
+@pytest.mark.parametrize(
+    "source,inputs",
+    [
+        ("google_search", {"query": "", "num": 1}),
+        ("google_search", {"query": "x", "num": "10"}),
+        ("google_search", {"query": "x", "api_key": "secret"}),
+        ("youtube_search", {"query": "x", "max_results": 21}),
+        ("youtube_search_extended", {"query": "x", "max_results": 701}),
+        ("youtube_metadata", {"video_id": "https://evil.example/watch?v=" + VIDEO}),
+        ("youtube_channel", {"handle": "@test", "video_limit": 101}),
+        ("youtube_suggestions", {"query": "x", "region": "USA"}),
+    ],
+)
+def test_invalid_inputs_never_submit(network, source, inputs):
+    calls = network(lambda request: pytest.fail("Invalid inputs reached HTTP"))
+    with pytest.raises(FlashDataError, match="Invalid source inputs"):
+        FlashDataTools([source]).to_tool_list()[0].call(**inputs)
+    assert calls == []
+
+
+def test_extended_search_has_own_source_and_limit(network):
+    calls = network(lambda request: httpx.Response(200, json={"results": []}))
+    FlashDataTools(["youtube_search_extended"]).to_tool_list()[0].call(query="x", max_results=700)
+    assert json.loads(calls[0].content) == {
+        "source": "youtube_search_extended",
+        "query": "x",
+        "params": {"max_results": 700},
+    }
+
+
+@pytest.mark.parametrize("status", [401, 402, 403, 429, 500, 302])
+def test_errors_are_safe_and_single_attempt(network, status):
+    calls = network(lambda request: httpx.Response(status, text="secret-key-in-provider-body"))
+    with pytest.raises(FlashDataError) as error:
+        FlashDataReader("google_search").load_data(query="x")
+    assert "secret-key-in-provider-body" not in str(error.value)
+    assert len(calls) == 1
+
+
+def test_timeout_has_unknown_outcome_without_retry(network):
+    def handler(request):
+        raise httpx.ReadTimeout("do-not-leak-secret", request=request)
+
+    calls = network(handler)
+    with pytest.raises(FlashDataError, match="already have been accepted") as error:
+        FlashDataReader("google_search").load_data(query="x")
+    assert "do-not-leak" not in str(error.value)
+    assert len(calls) == 1
+
+
+def test_oversized_response_does_not_retry(network, monkeypatch):
+    monkeypatch.setattr(_client, "MAX_RESPONSE_BYTES", 10)
+    calls = network(lambda request: httpx.Response(200, content=b"x" * 11))
+    with pytest.raises(FlashDataError, match="exceeds"):
+        FlashDataReader("google_search").load_data(query="x")
+    assert len(calls) == 1
+
+
+def test_download_requires_application_permission(network):
+    calls = network(lambda request: pytest.fail("Unauthorized submission"))
+    submit, _, _ = FlashDataTools(["youtube_download"]).to_tool_list()
+    with pytest.raises(FlashDataError, match="allow_download=True"):
+        submit.call(video_id=VIDEO)
+    assert calls == []
+
+
+def test_download_single_submit_and_receipt_redaction(network):
+    calls = network(
+        lambda request: httpx.Response(
+            200,
+            json={
+                "id": "job_test",
+                "source": "youtube_download",
+                "status": "pending",
+                "params": {"storage": STORAGE},
+            },
+        )
+    )
+    submit, _, _ = FlashDataTools(
+        ["youtube_download"], allow_download=True, storage=json.dumps(STORAGE)
+    ).to_tool_list()
+    receipt = submit.call(video_id=VIDEO, download_type="audio", output_format="m4a").raw_output
+    assert receipt == {"id": "job_test", "source": "youtube_download", "status": "pending"}
+    assert len(calls) == 1
+    assert json.loads(calls[0].content)["params"]["storage"] == STORAGE
+    assert "secret" not in str(receipt)
+
+
+@pytest.mark.parametrize(
+    "endpoint",
+    [
+        "http://store.example",
+        "https://user:secret@store.example",
+        "https://store.example/?secret=x",
+        "https://store.example/#x",
+        "https://store.example:99999",
+    ],
+)
+def test_download_rejects_invalid_storage_endpoint(network, endpoint):
+    calls = network(lambda request: pytest.fail("Invalid destination"))
+    storage = {**STORAGE, "storage_type": "s3_compatible", "endpoint_url": endpoint}
+    submit = FlashDataTools(
+        ["youtube_download"], allow_download=True, storage=json.dumps(storage)
+    ).to_tool_list()[0]
+    with pytest.raises(FlashDataError, match="Storage endpoint"):
+        submit.call(video_id=VIDEO)
+    assert calls == []
+
+
+def job_response(*, status="completed", source="youtube_download", job_id="job_test"):
+    return {
+        "job": {"id": job_id, "source": source, "status": status, "params": {"storage": STORAGE}}
+    }
+
+
+def test_pending_download_only_reads_existing_job(network):
+    calls = network(lambda request: httpx.Response(200, json=job_response(status="processing")))
+    result = FlashDataTools(["youtube_download"]).to_tool_list()[2]
+    assert result.call(job_id="job_test").raw_output == {
+        "job": {"id": "job_test", "source": "youtube_download", "status": "processing"}
+    }
+    assert len(calls) == 1 and calls[0].method == "GET"
+
+
+@pytest.mark.parametrize(
+    "job", [job_response(source="google_search"), job_response(job_id="job_other")]
+)
+def test_download_reads_reject_wrong_identity(network, job):
+    calls = network(lambda request: httpx.Response(200, json=job))
+    with pytest.raises(FlashDataError):
+        FlashDataTools(["youtube_download"]).to_tool_list()[2].call(job_id="job_test")
+    assert len(calls) == 1
+
+
+@pytest.mark.parametrize(
+    "target,ok",
+    [
+        ("https://results.example/job.json?signature=test", True),
+        ("https://foreign.example/job.json", False),
+        ("http://results.example/job.json", False),
+        ("https://user:pass@results.example/job.json", False),
+        ("https://results.example/job.json#secret", False),
+        ("https://results.example:444/job.json", False),
+    ],
+)
+def test_result_url_boundary_and_credentials(network, target, ok):
+    def handler(request):
+        url = str(request.url)
+        if url == JOBS_URL + "/job_test":
+            return httpx.Response(200, json=job_response())
+        if url == AUTH_URL:
+            return httpx.Response(200, json={"result_origin": "https://results.example"})
+        if url == JOBS_URL + "/job_test/results":
+            return httpx.Response(302, headers={"location": target})
+        assert ok
+        assert "X-API-Key" not in request.headers
+        return httpx.Response(200, json={"files": [{"key": "audio.m4a"}]})
+
+    calls = network(handler)
+    result = FlashDataTools(["youtube_download"]).to_tool_list()[2]
+    if ok:
+        assert result.call(job_id="job_test").raw_output["output"]["files"]
+        assert len(calls) == 4
+    else:
+        with pytest.raises(FlashDataError, match="trusted"):
+            result.call(job_id="job_test")
+        assert len(calls) == 3
+    assert all(r.method == "GET" for r in calls)
+
+
+def test_missing_credentials_and_repr_do_not_expose_secrets(monkeypatch):
+    monkeypatch.delenv("FLASHDATA_API_KEY", raising=False)
+    with pytest.raises(FlashDataError, match="FLASHDATA_API_KEY"):
+        FlashDataReader("google_search").load_data(query="x")
+    execution = Execution(api_key="very-private", storage="storage-private")
+    assert "very-private" not in repr(execution.__dict__)
+    assert "storage-private" not in repr(execution.__dict__)
+
+
+def test_download_is_not_a_document_reader():
+    with pytest.raises(ValueError, match="job tools"):
+        FlashDataReader("youtube_download")
+    with pytest.raises(ValueError, match="not Documents"):
+        to_documents("youtube_download", {"results": []})
+    assert len(FlashDataTools(list(CONTRACTS)).to_tool_list()) == 17

@@ -1,0 +1,26 @@
+{
+  "base_commit": "3e22639dd247412380ae5e097d5261202a63df1e",
+  "note": "Reuse Haystack contract. Only HTTP user-agent/docstring and removal of unused legacy Google defaults differ.",
+  "files": {
+    "_client.py": {
+      "source": "packages/haystack/src/flashdata_haystack/_client.py",
+      "source_sha256": "d5abddeb4ecd0944da6226085821fafacd71349d16eea65d5ddb47bb469088e3",
+      "sha256": "54e4fb65e8319e65016f3c7d2e3aa4e1f137fdad0c76bdda6e0e700010157ef1"
+    },
+    "_inputs.py": {
+      "source": "packages/haystack/src/flashdata_haystack/_inputs.py",
+      "source_sha256": "b55ea6429ffdaa765adfedb8d985dd2771847d987d97e967bc532b74710518d6",
+      "sha256": "df9057e47cdb9a017326cd379053a386aa4bbb8862d6a723be91322444451ff1"
+    },
+    "_storage.py": {
+      "source": "packages/haystack/src/flashdata_haystack/_storage.py",
+      "source_sha256": "88e24e19c3844ca3c4e07645e11b011b70e244e106d4416e7b12b5bff2c29724",
+      "sha256": "88e24e19c3844ca3c4e07645e11b011b70e244e106d4416e7b12b5bff2c29724"
+    },
+    "storage.schema.json": {
+      "source": "packages/haystack/src/flashdata_haystack/storage.schema.json",
+      "source_sha256": "a690171fc7d129ec18aa2239effafaadf78b490e292aa2196de581d63cdb88f6",
+      "sha256": "a690171fc7d129ec18aa2239effafaadf78b490e292aa2196de581d63cdb88f6"
+    }
+  }
+}
