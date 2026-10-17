@@ -6,7 +6,10 @@ Installation is free; FlashData API requests use paid Credits.
 
 ## Availability
 
-Version 0.1.0 is prepared locally. These distributions have not been published to PyPI yet.
+Version 0.1.0 is available as checked wheel/sdist assets in the
+[GitHub release](https://github.com/rocosen/flashdata-mcp/releases/tag/python-cli-v0.1.0).
+These distributions have not been published to PyPI yet. Homebrew users can follow
+the [independent formula guides](../../homebrew/README.md).
 The existing `langchain-flashdata` package is a separate integration and is unchanged.
 
 | Source | Distribution and command |

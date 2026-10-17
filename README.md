@@ -22,6 +22,10 @@ This directory is a complete, standalone project. Use its contents as the root o
 Python users can build the [15 independent Python / uvx CLIs](packages/python-cli/README.md).
 Their PyPI publication is still pending; the source includes local wheel installation instructions.
 
+Homebrew users can install [15 independent task formulae](homebrew/README.md) from
+this repository as a third-party tap. Each formula builds the corresponding Python CLI
+from a checked GitHub release, with its own command and complete runtime dependencies.
+
 For one capability, choose one of the [15 task packages](https://github.com/rocosen/flashdata-mcp/blob/main/npm/README.md). Each has one executable, one data source and its own examples, input schema and documentation. It runs as a JSON CLI or as a stdio MCP server using the `mcp` subcommand. For example:
 
 ```sh
