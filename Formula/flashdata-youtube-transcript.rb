@@ -97,6 +97,12 @@ class FlashdataYoutubeTranscript < Formula
   end
 
   def install
+    # Older Rust/LLVM can misalign Mach-O string tables when stripping symbols.
+    # See https://github.com/rust-lang/rust/issues/157750.
+    if OS.mac?
+      ENV["CARGO_PROFILE_RELEASE_STRIP"] = "none"
+      ENV["CARGO_PROFILE_RELEASE_BUILD_OVERRIDE_STRIP"] = "none"
+    end
     virtualenv_install_with_resources(using: "python@3.14")
   end
 
