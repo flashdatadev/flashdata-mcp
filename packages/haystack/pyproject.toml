@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flashdata-haystack"
+version = "0.1.0"
+description = "Google and YouTube data components for Haystack pipelines and agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "FlashData"}]
+dependencies = ["haystack-ai>=3.4,<4", "httpx>=0.28.1,<1", "pydantic>=2.7.4,<3", "jsonschema>=4.23,<5"]
+keywords = ["haystack", "google-search", "youtube-transcript", "agent", "flashdata"]
+
+[project.urls]
+Homepage = "https://flashdata.dev"
+Documentation = "https://github.com/rocosen/flashdata-mcp/tree/main/packages/haystack"
+Source = "https://github.com/rocosen/flashdata-mcp"
+Issues = "https://github.com/rocosen/flashdata-mcp/issues"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-socket>=0.7,<1", "build>=1.2,<2", "twine>=6,<8", "ruff>=0.14,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flashdata_haystack"]
+
+[tool.pytest.ini_options]
+addopts = "--disable-socket"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.format]
+exclude = ["src/flashdata_haystack/_client.py", "src/flashdata_haystack/_inputs.py", "src/flashdata_haystack/_storage.py"]

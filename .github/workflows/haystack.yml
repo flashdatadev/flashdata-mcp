@@ -1,0 +1,33 @@
+name: Haystack integration
+on:
+  push:
+    paths: ['packages/haystack/**', '.github/workflows/haystack.yml']
+  pull_request:
+    paths: ['packages/haystack/**', '.github/workflows/haystack.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        python: ['3.11', '3.14']
+    env:
+      HAYSTACK_TELEMETRY_ENABLED: 'false'
+      HAYSTACK_AUTO_TRACE_ENABLED: 'false'
+    defaults:
+      run:
+        working-directory: packages/haystack
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync --frozen
+      - run: uv run --frozen ruff check .
+      - run: uv run --frozen ruff format --check .
+      - run: uv run --frozen pytest -q
+      - run: uv run --frozen python -m build
+      - run: uv run --frozen twine check dist/*
+      - run: uv run --frozen python scripts/verify_install.py

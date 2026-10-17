@@ -1,0 +1,154 @@
+[
+  {
+    "source": "google_search",
+    "slug": "google-search-flashdata",
+    "components": [
+      "FlashDataGoogleSearch"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "google_news",
+    "slug": "google-news-flashdata",
+    "components": [
+      "FlashDataGoogleNews"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "google_images",
+    "slug": "google-images-flashdata",
+    "components": [
+      "FlashDataGoogleImages"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "google_shopping",
+    "slug": "google-shopping-flashdata",
+    "components": [
+      "FlashDataGoogleShopping"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "google_videos",
+    "slug": "google-videos-flashdata",
+    "components": [
+      "FlashDataGoogleVideos"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "google_places",
+    "slug": "google-places-flashdata",
+    "components": [
+      "FlashDataGooglePlaces"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_search",
+    "slug": "youtube-search-flashdata",
+    "components": [
+      "FlashDataYouTubeSearch"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_search_extended",
+    "slug": "youtube-search-extended-flashdata",
+    "components": [
+      "FlashDataYouTubeSearchExtended"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_metadata",
+    "slug": "youtube-metadata-flashdata",
+    "components": [
+      "FlashDataYouTubeMetadata"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_transcript",
+    "slug": "youtube-transcript-flashdata",
+    "components": [
+      "FlashDataYouTubeTranscript"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_captions",
+    "slug": "youtube-captions-flashdata",
+    "components": [
+      "FlashDataYouTubeCaptions"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_trainability",
+    "slug": "youtube-trainability-flashdata",
+    "components": [
+      "FlashDataYouTubeTrainability"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_channel",
+    "slug": "youtube-channel-flashdata",
+    "components": [
+      "FlashDataYouTubeChannel"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_suggestions",
+    "slug": "youtube-suggestions-flashdata",
+    "components": [
+      "FlashDataYouTubeSuggestions"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  },
+  {
+    "source": "youtube_download",
+    "slug": "youtube-download-flashdata",
+    "components": [
+      "FlashDataYouTubeDownloadSubmit",
+      "FlashDataYouTubeDownloadStatus",
+      "FlashDataYouTubeDownloadResult"
+    ],
+    "platform_id": null,
+    "live_url": null,
+    "status": "prepared_not_submitted"
+  }
+]
