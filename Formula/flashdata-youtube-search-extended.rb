@@ -1,7 +1,7 @@
 class FlashdataYoutubeSearchExtended < Formula
   include Language::Python::Virtualenv
 
-  desc "Request larger YouTube video search result sets"
+  desc "Run YouTube extended search for larger video result sets"
   homepage "https://flashdata.dev/docs/sources/youtube_search_extended"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_youtube_search_extended-0.1.0.tar.gz"
   sha256 "3339b3f8ad3f0c31338e8924afea019895c3a5f1e5017c43cec1cd07286c29a4"

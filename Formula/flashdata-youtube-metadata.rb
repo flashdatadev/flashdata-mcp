@@ -1,7 +1,7 @@
 class FlashdataYoutubeMetadata < Formula
   include Language::Python::Virtualenv
 
-  desc "Inspect YouTube video metadata and available chapters"
+  desc "Read YouTube metadata, chapters and video statistics"
   homepage "https://flashdata.dev/docs/sources/youtube_metadata"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_youtube_metadata-0.1.0.tar.gz"
   sha256 "3a394ff05422f3165a5272f59b0d5f8691df61a9390bff18323055c9b4a05174"
