@@ -1,0 +1,61 @@
+{
+  "name": "@flashdata-dev/ai-sdk",
+  "version": "0.1.0",
+  "description": "Google search and YouTube data tools for AI SDK agents, with asynchronous media delivery to customer storage.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "examples"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/ai-sdk"
+  },
+  "homepage": "https://github.com/rocosen/flashdata-mcp/tree/main/packages/ai-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ai-sdk",
+    "agent",
+    "google-search",
+    "youtube",
+    "transcript",
+    "flashdata"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.examples.json --noEmit",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "ai": "^7.0.143",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@types/json-schema": "^7.0.15",
+    "@types/node": "^24.19.2",
+    "ai": "7.0.143",
+    "typescript": "6.0.3",
+    "zod": "4.1.8"
+  }
+}
