@@ -1,0 +1,29 @@
+name: Python task CLIs
+on:
+  push:
+    paths: ['packages/python-cli/**', '.github/workflows/python-cli*.yml']
+  pull_request:
+    paths: ['packages/python-cli/**', '.github/workflows/python-cli*.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        python: ['3.10', '3.14']
+    defaults:
+      run:
+        working-directory: packages/python-cli
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync --frozen
+      - run: uv run --frozen pytest
+      - run: uv run --frozen ruff check src scripts tests
+      - run: uv run --frozen ruff format --check src scripts tests
+      - run: uv run --frozen python scripts/build.py
+      - run: uv run --frozen python scripts/verify_install.py

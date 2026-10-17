@@ -1,0 +1,137 @@
+[
+  {
+    "source": "google_search",
+    "project": "flashdata-google-search",
+    "command": "flashdata-google-search",
+    "module": "flashdata_google_search_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "google_news",
+    "project": "flashdata-google-news",
+    "command": "flashdata-google-news",
+    "module": "flashdata_google_news_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "google_images",
+    "project": "flashdata-google-images",
+    "command": "flashdata-google-images",
+    "module": "flashdata_google_images_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "google_shopping",
+    "project": "flashdata-google-shopping",
+    "command": "flashdata-google-shopping",
+    "module": "flashdata_google_shopping_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "google_videos",
+    "project": "flashdata-google-videos",
+    "command": "flashdata-google-videos",
+    "module": "flashdata_google_videos_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "google_places",
+    "project": "flashdata-google-places",
+    "command": "flashdata-google-places",
+    "module": "flashdata_google_places_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_search",
+    "project": "flashdata-youtube-search",
+    "command": "flashdata-youtube-search",
+    "module": "flashdata_youtube_search_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_search_extended",
+    "project": "flashdata-youtube-search-extended",
+    "command": "flashdata-youtube-search-extended",
+    "module": "flashdata_youtube_search_extended_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_metadata",
+    "project": "flashdata-youtube-metadata",
+    "command": "flashdata-youtube-metadata",
+    "module": "flashdata_youtube_metadata_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_transcript",
+    "project": "flashdata-youtube-transcript",
+    "command": "flashdata-youtube-transcript",
+    "module": "flashdata_youtube_transcript_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_captions",
+    "project": "flashdata-youtube-captions",
+    "command": "flashdata-youtube-captions",
+    "module": "flashdata_youtube_captions_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_trainability",
+    "project": "flashdata-youtube-trainability",
+    "command": "flashdata-youtube-trainability",
+    "module": "flashdata_youtube_trainability_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_channel",
+    "project": "flashdata-youtube-channel",
+    "command": "flashdata-youtube-channel",
+    "module": "flashdata_youtube_channel_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_suggestions",
+    "project": "flashdata-youtube-suggestions",
+    "command": "flashdata-youtube-suggestions",
+    "module": "flashdata_youtube_suggestions_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  },
+  {
+    "source": "youtube_download",
+    "project": "flashdata-youtube-cloud-storage",
+    "command": "flashdata-youtube-cloud-storage",
+    "module": "flashdata_youtube_cloud_storage_cli",
+    "version": "0.1.0",
+    "pypi_url": null,
+    "published": false
+  }
+]
