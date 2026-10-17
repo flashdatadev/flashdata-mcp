@@ -93,7 +93,16 @@ published assets in place. Each formula pins its own sdist and all recursive run
 resources. Homebrew's normal PEP 517 build isolation may fetch build backends;
 this is not an offline build and does not invoke `uvx` at runtime.
 
-Use `brew style`, `brew audit --strict`, and each installed formula's `brew test`.
+Run checks with explicit formula IDs, for example:
+
+```sh
+brew style --formula rocosen/flashdata-mcp/flashdata-google-search
+brew audit --strict rocosen/flashdata-mcp/flashdata-google-search
+brew test rocosen/flashdata-mcp/flashdata-google-search
+```
+
+Apply these checks to all 15 formulae. Do not pass the repository root as a style
+target: the shared repository also contains non-Homebrew projects.
 Tests remove FlashData credentials and exercise local version/schema/input validation.
 A successful installation is distinct from real API execution or directory acceptance.
 

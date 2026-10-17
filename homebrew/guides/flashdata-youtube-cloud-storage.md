@@ -46,7 +46,7 @@ and 1 means request or output failure. For downloads, exit 0 can describe an unf
 
 Use `--video-id` for the primary input. Additional options use
 `--options-json` as a JSON object, with strict field/type/range validation. Source is fixed by
-this package. Google count and locale options remain omitted unless supplied.
+this package.
 
 | Option | Meaning |
 | --- | --- |
@@ -99,8 +99,7 @@ are excluded from CLI output.
 ## Fees and failure handling
 
 This MIT-licensed CLI is free to install. FlashData API requests consume paid Credits;
-[current pricing](https://flashdata.dev/pricing) applies. Extended YouTube Search has a separate
-rate. Media delivery is billed by delivered volume, and your cloud-storage costs are separate.
+[current pricing](https://flashdata.dev/pricing) applies. Media delivery is billed by delivered volume; cloud-storage costs are separate.
 There is no automatic pagination, retry, polling, scheduled execution or model call.
 
 Each HTTP request has a 120-second network timeout (15-second connect timeout) and a 20-MiB response

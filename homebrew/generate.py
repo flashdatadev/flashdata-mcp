@@ -192,6 +192,28 @@ This is a FlashData-maintained tap, separate from Homebrew's official core direc
             + guide[end:]
         )
         guide = guide.replace(f"uvx {name}@{version}", name)
+        if not source.startswith("google_"):
+            guide = guide.replace(
+                " Google count and locale options remain omitted unless supplied.", ""
+            )
+        rates = ""
+        if source == "youtube_search_extended":
+            rates = " Extended YouTube Search has a separate higher rate than standard search."
+        elif source == "youtube_download":
+            rates = " Media delivery is billed by delivered volume; cloud-storage costs are separate."
+        guide = guide.replace(
+            " Extended YouTube Search has a separate\n"
+            "rate. Media delivery is billed by delivered volume, and your cloud-storage costs are separate.",
+            rates,
+        )
+        if source != "youtube_download":
+            guide = guide.replace(
+                " For downloads, exit 0 can describe an unfinished job.", ""
+            ).replace(
+                " A completed\ndownload-result read may fetch a signed JSON object from the result origin returned by\n"
+                "FlashData; the API Key is never sent to that object URL.",
+                "",
+            )
         guide = re.sub(
             r"For repeated use, install `uv tool install .*?virtual environment\.\n",
             "",

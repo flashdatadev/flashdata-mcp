@@ -39,14 +39,14 @@ flashdata-youtube-suggestions --query 'vector database' --options-json '{"langua
 `--output` creates a new file with owner-only permissions where supported and refuses existing
 files before making a paid request. Without it, the full JSON response goes to stdout. Errors
 go to stderr. Exit 0 means the response was exported, 2 means local input/configuration failure,
-and 1 means request or output failure. For downloads, exit 0 can describe an unfinished job.
+and 1 means request or output failure.
 
 
 ## Inputs and output
 
 Use `--query` for the primary input. Additional options use
 `--options-json` as a JSON object, with strict field/type/range validation. Source is fixed by
-this package. Google count and locale options remain omitted unless supplied.
+this package.
 
 | Option | Meaning |
 | --- | --- |
@@ -64,8 +64,7 @@ documented [here](https://flashdata.dev/docs/sources/youtube_suggestions).
 ## Fees and failure handling
 
 This MIT-licensed CLI is free to install. FlashData API requests consume paid Credits;
-[current pricing](https://flashdata.dev/pricing) applies. Extended YouTube Search has a separate
-rate. Media delivery is billed by delivered volume, and your cloud-storage costs are separate.
+[current pricing](https://flashdata.dev/pricing) applies.
 There is no automatic pagination, retry, polling, scheduled execution or model call.
 
 Each HTTP request has a 120-second network timeout (15-second connect timeout) and a 20-MiB response
@@ -74,9 +73,7 @@ the [FlashData console](https://flashdata.dev) before resubmitting. HTTP 401 mea
 402 means insufficient Credits; 429 means rate/quota limit. A partial output file is retained
 on failure. Do not retry a paid query just because output handling failed.
 
-Input values and your API Key are sent to FlashData to perform the request. A completed
-download-result read may fetch a signed JSON object from the result origin returned by
-FlashData; the API Key is never sent to that object URL. Only process data appropriate for
+Input values and your API Key are sent to FlashData to perform the request. Only process data appropriate for
 your output destination. [Privacy policy](https://flashdata.dev/legal/privacy).
 
 Update the tap with `brew update`, then `brew upgrade rocosen/flashdata-mcp/flashdata-youtube-suggestions` when a new
