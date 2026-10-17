@@ -26,9 +26,9 @@ For manual stdio setup, unpack the bundle into a permanent directory and configu
 
 Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed for the bundle. Keep the key in protected client settings, never in chat or committed configuration. These are the same reviewed 0.1.1 runtime artifacts distributed on Smithery; the release tag identifies their build, not an extra account requirement for direct local use. The full [runtime limits](../README.md#local-task-servers) apply.
 
-A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"request_count":1}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
+A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"source":"youtube_download"}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
 
-Call `get_pricing` with `{"source":"youtube_download","request_count":1}` before running the data request. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Download pricing is per delivered byte volume, not per request.
+The pricing response gives the current per-TB byte-volume rate, not a per-request quote; `request_count` does not apply to downloads. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Download pricing is per delivered byte volume, not per request.
 
 ## Tool request
 

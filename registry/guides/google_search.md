@@ -1,8 +1,14 @@
-# Export Google Search SERP rankings with source URLs using FlashData MCP
+# Google Search for AI Agent Research — FlashData
 
-Developers building search-result datasets can retain rank, title, URL and snippet for later comparison.
+Give an AI research assistant Google web-search evidence for a topic such as battery recycling. The MCP returns ranked titles, URLs and snippets; your agent turns those records into a source shortlist, notes what still needs checking, and cites the original links.
 
 [Google Search inputs, outputs and account setup](https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide) · [Create an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing)
+
+## Example agent task
+
+> Find sources for a briefing on battery recycling. Quote one Google Search request first; after I approve the cost, return a source shortlist with titles, URLs, snippets and open questions. Keep search snippets separate from claims verified by reading the original pages.
+
+The agent chooses relevant sources and writes the brief. FlashData supplies search data; reading full pages, verifying claims and generating the answer are separate steps.
 
 ## Connect and check cost
 
@@ -56,7 +62,7 @@ The hosted helper sends one tool call and prints its structured response. It doe
 
 ## Use the result
 
-Read results[0].organic; retain position, title, link and snippet together with created_at. Save separate snapshots before comparing rankings.
+Read `results[0].organic` and keep `title`, `link`, `snippet` and `position` together with the query, region, language and `created_at`. Give the agent these records as external evidence. It can select promising sources, attach each URL to its notes and list unanswered questions. Read the original pages with an appropriate browsing tool before treating snippets as verified facts; this server does not fetch page full text.
 
 Representative fixture showing selected response fields, **not a live query or a guaranteed result**:
 
