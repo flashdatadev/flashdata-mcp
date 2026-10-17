@@ -1,7 +1,7 @@
 class FlashdataYoutubeSearch < Formula
   include Language::Python::Virtualenv
 
-  desc "Find YouTube videos by keyword and filters"
+  desc "Run YouTube search with keyword and video filters"
   homepage "https://flashdata.dev/docs/sources/youtube_search"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_youtube_search-0.1.0.tar.gz"
   sha256 "f95753e0b037691e14dcf818afa3eed45ece03f33214d90aa8b52a4e3d310ee2"

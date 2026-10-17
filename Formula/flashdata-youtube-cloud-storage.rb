@@ -1,7 +1,7 @@
 class FlashdataYoutubeCloudStorage < Formula
   include Language::Python::Virtualenv
 
-  desc "Deliver YouTube video or audio to customer cloud storage"
+  desc "Submit YouTube download jobs to customer cloud storage"
   homepage "https://flashdata.dev/docs/sources/youtube_download"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_youtube_cloud_storage-0.1.0.tar.gz"
   sha256 "7ae56c4db3179e2c901c3f5671532ac32b56f8ffea9816f9e7cd137201658e02"

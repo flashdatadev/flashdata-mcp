@@ -1,7 +1,7 @@
 class FlashdataYoutubeCaptions < Formula
   include Language::Python::Virtualenv
 
-  desc "Retrieve existing YouTube uploader captions"
+  desc "Retrieve YouTube captions uploaded by the video owner"
   homepage "https://flashdata.dev/docs/sources/youtube_captions"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_youtube_captions-0.1.0.tar.gz"
   sha256 "ed411b069e7f80da05a1e8ed107f1283ba784cb445d3ecb192bc12c35e49f0ea"

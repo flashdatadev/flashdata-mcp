@@ -1,7 +1,7 @@
 class FlashdataYoutubeChannel < Formula
   include Language::Python::Virtualenv
 
-  desc "Export YouTube channel details and recent video snapshots"
+  desc "Read YouTube channel data and recent video snapshots"
   homepage "https://flashdata.dev/docs/sources/youtube_channel"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_youtube_channel-0.1.0.tar.gz"
   sha256 "f256e03653a011a551e7ece19903228f24d900ca9d4d2a3b748edaad5c052f0d"

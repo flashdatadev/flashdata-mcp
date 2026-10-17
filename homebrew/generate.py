@@ -14,21 +14,21 @@ CLI = ROOT / "packages/python-cli"
 TAP = "rocosen/flashdata-mcp"
 REPOSITORY = "https://github.com/rocosen/flashdata-mcp"
 DESCRIPTIONS = {
-    "google_search": "Export Google web search results as JSON",
+    "google_search": "Export Google Search web results as JSON",
     "google_news": "Export Google News search results as JSON",
-    "google_images": "Find Google image results with source URLs and dimensions",
+    "google_images": "Export Google Images search results with source URLs and dimensions",
     "google_shopping": "Export Google Shopping merchant offers as JSON",
-    "google_videos": "Find video references across websites with Google search",
+    "google_videos": "Export Google video search results across websites as JSON",
     "google_places": "Export Google Places local business search results",
-    "youtube_search": "Find YouTube videos by keyword and filters",
-    "youtube_search_extended": "Request larger YouTube video search result sets",
-    "youtube_metadata": "Inspect YouTube video metadata and available chapters",
+    "youtube_search": "Run YouTube search with keyword and video filters",
+    "youtube_search_extended": "Run YouTube extended search for larger video result sets",
+    "youtube_metadata": "Read YouTube metadata, chapters and video statistics",
     "youtube_transcript": "Export existing YouTube transcripts with timestamps",
-    "youtube_captions": "Retrieve existing YouTube uploader captions",
+    "youtube_captions": "Retrieve YouTube captions uploaded by the video owner",
     "youtube_trainability": "Inspect YouTube Creative Commons license labels",
-    "youtube_channel": "Export YouTube channel details and recent video snapshots",
+    "youtube_channel": "Read YouTube channel data and recent video snapshots",
     "youtube_suggestions": "Retrieve YouTube autocomplete suggestions",
-    "youtube_download": "Deliver YouTube video or audio to customer cloud storage",
+    "youtube_download": "Submit YouTube download jobs to customer cloud storage",
 }
 
 

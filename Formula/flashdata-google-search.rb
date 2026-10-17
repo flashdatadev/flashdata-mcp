@@ -1,7 +1,7 @@
 class FlashdataGoogleSearch < Formula
   include Language::Python::Virtualenv
 
-  desc "Export Google web search results as JSON"
+  desc "Export Google Search web results as JSON"
   homepage "https://flashdata.dev/docs/sources/google_search"
   url "https://github.com/rocosen/flashdata-mcp/releases/download/python-cli-v0.1.0/flashdata_google_search-0.1.0.tar.gz"
   sha256 "5a42a6c016f07acd1e0101e4aef014b71e49095e4ceb18cf3733e0005d6f3ca1"
