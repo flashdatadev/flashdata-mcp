@@ -4,18 +4,18 @@ After selecting media you are entitled to process, submit a single delivery to y
 
 ## Setup and run
 
-Install the package from the [public source instructions](../README.md). PyPI publication is pending. Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.1.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
-[Runnable example](../examples/youtube_download.py): `python examples/youtube_download.py` (supply the explicit flags below).
+Save the [runnable example](../examples/youtube_download.py) as `youtube_download.py`, then run `python youtube_download.py` (supply the explicit flags below).
 
 The script requires an explicit --submit for a paid write. Use --job-id for later reads; do not rerun --submit to poll. Destination credentials stay in application configuration and are excluded from model arguments. See the README for provider fields and the result lifecycle.
 
 ```sh
 # First configure FLASHDATA_API_KEY and FLASHDATA_DOWNLOAD_STORAGE securely.
-python examples/youtube_download.py --submit --video-id jNQXAC9IVRw
+python youtube_download.py --submit --video-id jNQXAC9IVRw
 # Save the returned job ID. Later reads never submit again:
-python examples/youtube_download.py --job-id job_YOUR_RECEIPT
-python examples/youtube_download.py --job-id job_YOUR_RECEIPT --result
+python youtube_download.py --job-id job_YOUR_RECEIPT
+python youtube_download.py --job-id job_YOUR_RECEIPT --result
 ```
 
 ## Input and output
