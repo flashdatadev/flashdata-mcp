@@ -23,7 +23,13 @@ Build output is `dist/<piece-name>/src/index.js`. Packages are self-contained Co
 
 ## Install a Piece
 
-Your platform administrator needs custom Piece installation access. Current official documentation places it at **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**; older documentation uses **Settings → My Pieces**. Plan and administrator requirements vary. Upload the corresponding `.tgz`. After npm publication, the package-name installation route can use the exact package/version instead. Requires Activepieces 0.82.0+ and a Node.js 22.18+ worker.
+Your platform administrator needs custom Piece installation access. Requires Activepieces 0.82.0+ and a Node.js 22.18+ worker; plan and administrator requirements vary. Download the chosen versioned package from npm, for example:
+
+```sh
+npm pack '@flashdata-dev/piece-google-search@0.1.0' --ignore-scripts
+```
+
+Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use the corresponding name below and version `0.1.0`. Older platform versions may label the page **Settings → My Pieces**. Downloading or installing a package does not execute a FlashData data action.
 
 | Capability | Independent package | Setup and example |
 | --- | --- | --- |

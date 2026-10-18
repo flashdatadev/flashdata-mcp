@@ -6,7 +6,13 @@ Expand a topic prefix with YouTube search suggestions for content planning. Defa
 
 This is an independently packaged community Piece, not a confirmed official catalogue listing. It requires Activepieces 0.82.0+ and a Node.js 22.18+ worker. Your platform administrator must have custom Piece installation enabled; plan requirements vary.
 
-Build the packages as described in the [workspace guide](https://github.com/rocosen/flashdata-mcp/tree/main/packages/activepieces), then install this Piece's `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. After an npm release exists, the package-name route uses `@flashdata-dev/piece-youtube-autocomplete` at version `0.1.0`. Do not assume an npm release exists from this README. Older platform versions may label the page **Settings → My Pieces**.
+Download the versioned [npm package](https://www.npmjs.com/package/@flashdata-dev/piece-youtube-autocomplete) without running a data action:
+
+```sh
+npm pack '@flashdata-dev/piece-youtube-autocomplete@0.1.0' --ignore-scripts
+```
+
+Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-autocomplete` and version `0.1.0`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/rocosen/flashdata-mcp/tree/main/packages/activepieces).
 
 1. Sign in or [create a FlashData account](https://flashdata.dev).
 2. [Create an API Key](https://flashdata.dev/app/api-keys) with `youtube_suggestions` permission. The secret is shown once; save it in an Activepieces connection.
@@ -16,7 +22,7 @@ Connection validation calls `GET https://api.flashdata.dev/v2/api-access` and ch
 
 ## Example task
 
-Use a manual trigger while configuring this step. Enter these action fields; they are illustrative request inputs, not a claim that the sample video has a matching track or that a paid run has been performed.
+Start with a manual trigger and enter these example action inputs. Check the source-specific limits below before running the step.
 
 ```json
 {
