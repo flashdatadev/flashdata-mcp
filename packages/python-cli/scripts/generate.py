@@ -220,8 +220,7 @@ packages = ["{module}"]
                 "command": name,
                 "module": module,
                 "version": "0.1.0",
-                "pypi_url": None,
-                "published": False,
+                "pypi_url": f"https://pypi.org/project/{name}/",
             }
         )
     (ROOT / "packages.json").write_text(json.dumps(manifest, indent=2) + "\n")

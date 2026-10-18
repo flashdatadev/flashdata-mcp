@@ -8,27 +8,28 @@ Installation is free; FlashData API requests use paid Credits.
 
 Version 0.1.0 is available as checked wheel/sdist assets in the
 [GitHub release](https://github.com/rocosen/flashdata-mcp/releases/tag/python-cli-v0.1.0).
-These distributions have not been published to PyPI yet. Homebrew users can follow
+All fifteen distributions are published on PyPI as version 0.1.0. Each project below
+has its own command, source-specific README and package page. Homebrew users can follow
 the [independent formula guides](../../homebrew/README.md).
 The existing `langchain-flashdata` package is a separate integration and is unchanged.
 
 | Source | Distribution and command |
 | --- | --- |
-| `google_search` | `flashdata-google-search` |
-| `google_news` | `flashdata-google-news` |
-| `google_images` | `flashdata-google-images` |
-| `google_shopping` | `flashdata-google-shopping` |
-| `google_videos` | `flashdata-google-videos` |
-| `google_places` | `flashdata-google-places` |
-| `youtube_search` | `flashdata-youtube-search` |
-| `youtube_search_extended` | `flashdata-youtube-search-extended` |
-| `youtube_metadata` | `flashdata-youtube-metadata` |
-| `youtube_transcript` | `flashdata-youtube-transcript` |
-| `youtube_captions` | `flashdata-youtube-captions` |
-| `youtube_trainability` | `flashdata-youtube-trainability` |
-| `youtube_channel` | `flashdata-youtube-channel` |
-| `youtube_suggestions` | `flashdata-youtube-suggestions` |
-| `youtube_download` | `flashdata-youtube-cloud-storage` |
+| `google_search` | [flashdata-google-search](https://pypi.org/project/flashdata-google-search/) |
+| `google_news` | [flashdata-google-news](https://pypi.org/project/flashdata-google-news/) |
+| `google_images` | [flashdata-google-images](https://pypi.org/project/flashdata-google-images/) |
+| `google_shopping` | [flashdata-google-shopping](https://pypi.org/project/flashdata-google-shopping/) |
+| `google_videos` | [flashdata-google-videos](https://pypi.org/project/flashdata-google-videos/) |
+| `google_places` | [flashdata-google-places](https://pypi.org/project/flashdata-google-places/) |
+| `youtube_search` | [flashdata-youtube-search](https://pypi.org/project/flashdata-youtube-search/) |
+| `youtube_search_extended` | [flashdata-youtube-search-extended](https://pypi.org/project/flashdata-youtube-search-extended/) |
+| `youtube_metadata` | [flashdata-youtube-metadata](https://pypi.org/project/flashdata-youtube-metadata/) |
+| `youtube_transcript` | [flashdata-youtube-transcript](https://pypi.org/project/flashdata-youtube-transcript/) |
+| `youtube_captions` | [flashdata-youtube-captions](https://pypi.org/project/flashdata-youtube-captions/) |
+| `youtube_trainability` | [flashdata-youtube-trainability](https://pypi.org/project/flashdata-youtube-trainability/) |
+| `youtube_channel` | [flashdata-youtube-channel](https://pypi.org/project/flashdata-youtube-channel/) |
+| `youtube_suggestions` | [flashdata-youtube-suggestions](https://pypi.org/project/flashdata-youtube-suggestions/) |
+| `youtube_download` | [flashdata-youtube-cloud-storage](https://pypi.org/project/flashdata-youtube-cloud-storage/) |
 
 ## Build and verify
 
@@ -60,7 +61,7 @@ For a local build, use the wheel path explicitly:
 uvx --from ./dist/flashdata_google_search-0.1.0-py3-none-any.whl flashdata-google-search --schema
 ```
 
-After PyPI publication the equivalent is `uvx flashdata-google-search@0.1.0 --schema`.
+The PyPI equivalent is `uvx flashdata-google-search@0.1.0 --schema`.
 For a paid query, set `FLASHDATA_API_KEY` through your shell or secret manager, then use
 `--query 'your research topic' --options-json '{"num":5}' --output result.json`.
 The output path must be new. Full JSON is written to stdout if the path is omitted.
@@ -73,8 +74,8 @@ are never accepted as command arguments. Download receipts omit credentials from
 
 ## PyPI publication
 
-Publication is manual and separate from CI. Configure one pending Trusted Publisher for each
-of the fifteen project names above, only after owner approval:
+Publication is manual and separate from CI. All fifteen projects above have an active
+Trusted Publisher, approved by the owner and verified by their 0.1.0 releases:
 
 | Field | Value |
 | --- | --- |
@@ -83,15 +84,18 @@ of the fifteen project names above, only after owner approval:
 | Workflow | `python-cli-publish.yml` |
 | Environment | `pypi-python-cli` |
 
-A pending publisher does not reserve a PyPI project name. Successful first publication creates
-the project and turns the pending publisher into a normal publisher. No account-wide token is
-required. The publish job receives OIDC permission; build and PR jobs have read-only permissions.
+Reuse these existing project publishers for subsequent versions; do not recreate pending
+publishers or upload an existing version again. The GitHub environment accepts only the
+`main` branch. No account-wide token is required. Only the publish job receives OIDC
+permission; build and PR jobs have read-only permissions. `packages.json` is an inventory
+of project names and URLs, not a live registry status check.
 
-Use the existing `python-cli-v0.1.0` tag on the reviewed source commit, then manually dispatch
-**Publish Python task CLIs** from `main` with `release_tag=python-cli-v0.1.0`.
+For a new release, create a matching `python-cli-vVERSION` tag on the reviewed source
+commit, then manually dispatch **Publish Python task CLIs** from `main` with that
+`release_tag`. The existing `python-cli-v0.1.0` release is already published.
 The workflow checks out that tag and verifies its version and commit before building;
 publishing infrastructure can be repaired without moving the source tag or changing the packages.
-Select one exact project for the first publication;
+Select one exact project to validate each new release;
 read back its PyPI files, hashes, provenance, description and clean uvx installation before
 publishing the remaining projects. Tags and package versions must match. There is no automatic
 publish on push, PR or tag creation, and no skip-existing behavior that could hide a collision.
