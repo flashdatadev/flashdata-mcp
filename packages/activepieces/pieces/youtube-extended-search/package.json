@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-youtube-extended-search",
+  "version": "0.1.0",
+  "description": "Collect a larger YouTube candidate set for downstream research filtering. Request 1–700 results, with a separate rate from standard search; actual count varies.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/youtube-extended-search"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "youtube-extended-search",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

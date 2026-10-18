@@ -1,0 +1,29 @@
+name: Activepieces integrations
+on:
+  push:
+    paths: ['packages/activepieces/**', 'src/catalog/sourceCatalog.js', 'src/download/youtubeDownloadOptions.js', 'src/youtube/youtubeSearchOptions.js', '.github/workflows/activepieces.yml']
+  pull_request:
+    paths: ['packages/activepieces/**', 'src/catalog/sourceCatalog.js', 'src/download/youtubeDownloadOptions.js', 'src/youtube/youtubeSearchOptions.js', '.github/workflows/activepieces.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        node: ['22.18', '24']
+    defaults:
+      run:
+        working-directory: packages/activepieces
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: packages/activepieces/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test
+      - run: node scripts/verify-install.mjs

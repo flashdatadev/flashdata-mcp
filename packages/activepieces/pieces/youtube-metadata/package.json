@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-youtube-metadata",
+  "version": "0.1.0",
+  "description": "Enrich a known video ID with metadata and available chapters or format information before choosing research sources. Does not download media.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/youtube-metadata"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_metadata",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "youtube-metadata",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

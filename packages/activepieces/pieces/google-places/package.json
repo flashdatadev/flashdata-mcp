@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-google-places",
+  "version": "0.1.0",
+  "description": "Build a local-business shortlist from a category and location, with available addresses, ratings and contact details. Some fields may be absent.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/google-places"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/google_places",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "google-places",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

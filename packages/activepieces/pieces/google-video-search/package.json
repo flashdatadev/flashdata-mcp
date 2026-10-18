@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-google-video-search",
+  "version": "0.1.0",
+  "description": "Find videos across websites for a research shortlist, with links and available duration and publisher fields. Does not download video files.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/google-video-search"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/google_videos",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "google-video-search",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

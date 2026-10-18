@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-youtube-channel",
+  "version": "0.1.0",
+  "description": "Snapshot a channel profile and recent videos for monitoring. Request 1–100 recent videos (default 20); statistics and videos may be unavailable.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/youtube-channel"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_channel",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "youtube-channel",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

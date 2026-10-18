@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-google-search",
+  "version": "0.1.0",
+  "description": "Collect web evidence for an AI agent with Google result titles, snippets and source URLs. Snippets are not full page content.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/google-search"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/google_search",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "google-search",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

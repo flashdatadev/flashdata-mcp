@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-youtube-autocomplete",
+  "version": "0.1.0",
+  "description": "Expand a topic prefix with YouTube search suggestions for content planning. Defaults to language en and region US; suggestions are not search-volume measurements.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/youtube-autocomplete"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "youtube-autocomplete",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

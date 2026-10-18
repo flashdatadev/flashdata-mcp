@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-youtube-search",
+  "version": "0.1.0",
+  "description": "Discover a small set of YouTube videos for a research workflow. Request 1–20 results; actual count can be lower.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/youtube-search"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_search",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "youtube-search",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-youtube-license-metadata",
+  "version": "0.1.0",
+  "description": "Record a video's Creative Commons license label for a separate rights review. This does not grant training rights or retrieve creator third-party training settings.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/youtube-license-metadata"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/youtube_trainability",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "youtube-license-metadata",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

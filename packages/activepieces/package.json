@@ -1,0 +1,21 @@
+{
+  "name": "flashdata-activepieces-build",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.18.0" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@activepieces/pieces-framework": "0.32.0",
+    "ajv": "8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3"
+  }
+}

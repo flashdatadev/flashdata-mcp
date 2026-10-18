@@ -1,0 +1,36 @@
+{
+  "name": "@flashdata-dev/piece-google-shopping",
+  "version": "0.1.0",
+  "description": "Collect product listings for a buying comparison, with available merchant and price fields. Search snapshots do not guarantee stock or checkout prices.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "directory": "packages/activepieces/pieces/google-shopping"
+  },
+  "homepage": "https://flashdata.dev/docs/sources/google_shopping",
+  "bugs": {
+    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+  },
+  "keywords": [
+    "activepieces",
+    "piece",
+    "google-shopping",
+    "flashdata"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}
