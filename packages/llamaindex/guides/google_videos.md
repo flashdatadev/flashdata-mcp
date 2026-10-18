@@ -4,9 +4,9 @@ Build a learning-resource shortlist for an agent by searching video results acro
 
 ## Setup and run
 
-Install the package from the [public source instructions](../README.md). PyPI publication is pending. Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.1.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
-[Runnable example](../examples/google_videos.py): `python examples/google_videos.py`.
+Save the [runnable example](../examples/google_videos.py) as `google_videos.py`, then run `python google_videos.py`.
 
 The example makes one paid request, retains the complete raw response, and converts it locally without a second request. The reader alternative below makes its own single request; choose one approach.
 

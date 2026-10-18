@@ -4,9 +4,9 @@ Choose an existing uploader-authored caption track for a language-specific knowl
 
 ## Setup and run
 
-Install the package from the [public source instructions](../README.md). PyPI publication is pending. Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.1.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
-[Runnable example](../examples/youtube_captions.py): `python examples/youtube_captions.py`.
+Save the [runnable example](../examples/youtube_captions.py) as `youtube_captions.py`, then run `python youtube_captions.py`.
 
 The example makes one paid request, retains the complete raw response, and converts it locally without a second request. The reader alternative below makes its own single request; choose one approach.
 

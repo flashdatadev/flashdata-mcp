@@ -4,9 +4,9 @@ When a standard search ceiling is insufficient, collect a larger candidate list 
 
 ## Setup and run
 
-Install the package from the [public source instructions](../README.md). PyPI publication is pending. Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.1.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
-[Runnable example](../examples/youtube_search_extended.py): `python examples/youtube_search_extended.py`.
+Save the [runnable example](../examples/youtube_search_extended.py) as `youtube_search_extended.py`, then run `python youtube_search_extended.py`.
 
 The example makes one paid request, retains the complete raw response, and converts it locally without a second request. The reader alternative below makes its own single request; choose one approach.
 

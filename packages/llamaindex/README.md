@@ -7,15 +7,14 @@ sources when building your application. The package supplies 17 native
 Media delivery uses job tools, not a text reader.
 
 This is an independently maintained integration. It is not an official
-LlamaIndex endorsement or a claim of 15 LlamaHub listings. PyPI publication is
-pending; install the public repository package:
+LlamaIndex endorsement or a claim of 15 LlamaHub listings. Install the
+versioned package from PyPI:
 
 ```sh
-python -m pip install 'llama-index-tools-flashdata @ git+https://github.com/rocosen/flashdata-mcp.git@main#subdirectory=packages/llamaindex'
+python -m pip install 'llama-index-tools-flashdata==0.1.0'
 ```
 
-Requires Python 3.11+ and `llama-index-core` 0.14.25–0.14.x. Pin a reviewed Git
-commit instead of `main` for reproducible applications. Get an API key from the
+Requires Python 3.11+ and `llama-index-core` 0.14.25–0.14.x. Get an API key from the
 [FlashData console](https://flashdata.dev/console) and provide it through your
 application's secret manager as `FLASHDATA_API_KEY`.
 
@@ -77,21 +76,21 @@ See the task guides below for inputs, outputs, a runnable example and limitation
 
 | Task | Source | Guide |
 | --- | --- | --- |
-| Collect web evidence for a research agent | `google_search` | [Google Search](guides/google_search.md) |
-| Build a news evidence feed for an agent | `google_news` | [Google News](guides/google_news.md) |
-| Prepare an image reference shortlist | `google_images` | [Google Images](guides/google_images.md) |
-| Ground a product comparison with search snapshots | `google_shopping` | [Google Shopping](guides/google_shopping.md) |
-| Find video references across websites | `google_videos` | [Google Videos](guides/google_videos.md) |
-| Collect local options for a planning assistant | `google_places` | [Google Places](guides/google_places.md) |
-| Discover videos before building a caption collection | `youtube_search` | [YouTube Search](guides/youtube_search.md) |
-| Create a larger video research candidate set | `youtube_search_extended` | [YouTube Extended Search](guides/youtube_search_extended.md) |
-| Inspect chapters before choosing retrieval material | `youtube_metadata` | [YouTube Metadata](guides/youtube_metadata.md) |
-| Load timestamped automatic captions for RAG | `youtube_transcript` | [YouTube Transcript](guides/youtube_transcript.md) |
-| Build a collection from uploader captions | `youtube_captions` | [YouTube Captions](guides/youtube_captions.md) |
-| Record license-label metadata during dataset review | `youtube_trainability` | [YouTube License Metadata](guides/youtube_trainability.md) |
-| Snapshot a channel for research triage | `youtube_channel` | [YouTube Channel](guides/youtube_channel.md) |
-| Explore query phrasing before a video search | `youtube_suggestions` | [YouTube Autocomplete](guides/youtube_suggestions.md) |
-| Deliver approved media for a downstream workflow | `youtube_download` | [YouTube Download to Cloud Storage](guides/youtube_download.md) |
+| Collect web evidence for a research agent | `google_search` | [Google Search](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/google_search.md) |
+| Build a news evidence feed for an agent | `google_news` | [Google News](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/google_news.md) |
+| Prepare an image reference shortlist | `google_images` | [Google Images](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/google_images.md) |
+| Ground a product comparison with search snapshots | `google_shopping` | [Google Shopping](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/google_shopping.md) |
+| Find video references across websites | `google_videos` | [Google Videos](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/google_videos.md) |
+| Collect local options for a planning assistant | `google_places` | [Google Places](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/google_places.md) |
+| Discover videos before building a caption collection | `youtube_search` | [YouTube Search](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_search.md) |
+| Create a larger video research candidate set | `youtube_search_extended` | [YouTube Extended Search](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_search_extended.md) |
+| Inspect chapters before choosing retrieval material | `youtube_metadata` | [YouTube Metadata](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_metadata.md) |
+| Load timestamped automatic captions for RAG | `youtube_transcript` | [YouTube Transcript](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_transcript.md) |
+| Build a collection from uploader captions | `youtube_captions` | [YouTube Captions](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_captions.md) |
+| Record license-label metadata during dataset review | `youtube_trainability` | [YouTube License Metadata](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_trainability.md) |
+| Snapshot a channel for research triage | `youtube_channel` | [YouTube Channel](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_channel.md) |
+| Explore query phrasing before a video search | `youtube_suggestions` | [YouTube Autocomplete](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_suggestions.md) |
+| Deliver approved media for a downstream workflow | `youtube_download` | [YouTube Download to Cloud Storage](https://github.com/rocosen/flashdata-mcp/blob/llamaindex-v0.1.0/packages/llamaindex/guides/youtube_download.md) |
 
 ## Media delivery lifecycle
 
