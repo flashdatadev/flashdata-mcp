@@ -2,8 +2,13 @@ name: Publish Python task CLIs
 on:
   workflow_dispatch:
     inputs:
+      release_tag:
+        description: 'Existing python-cli-vVERSION source tag to build. Run this workflow from main.'
+        type: string
+        required: true
+        default: python-cli-v0.1.0
       project:
-        description: 'Choose a project, or all 15. Run only on a python-cli-vVERSION tag.'
+        description: 'Choose a project, or all 15.'
         type: choice
         required: true
         options:
@@ -30,7 +35,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: github.repository == 'rocosen/flashdata-mcp' && github.ref_type == 'tag' && startsWith(github.ref_name, 'python-cli-v')
+    if: github.repository == 'rocosen/flashdata-mcp' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
@@ -38,22 +43,28 @@ jobs:
         working-directory: packages/python-cli
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ inputs.release_tag }}
       - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
         with:
           python-version: '3.12'
       - run: uv sync --frozen
       - name: Verify release tag and selected project
         env:
-          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
           PUBLISH_PROJECT: ${{ inputs.project }}
         run: |
           uv run --frozen python - <<'PY'
-          import json, os
+          import json, os, subprocess
           from pathlib import Path
           packages = json.loads(Path('packages.json').read_text())
           assert len(packages) == 15
           assert all(os.environ['RELEASE_TAG'] == 'python-cli-v' + p['version'] for p in packages)
           assert os.environ['PUBLISH_PROJECT'] in ['all', *(p['project'] for p in packages)]
+          tag_commit = subprocess.check_output(
+              ['git', 'rev-parse', '--verify', 'refs/tags/' + os.environ['RELEASE_TAG'] + '^{commit}'], text=True
+          ).strip()
+          assert tag_commit == subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
           PY
       - run: uv run --frozen pytest
       - run: uv run --frozen ruff check src scripts tests
@@ -93,4 +104,4 @@ jobs:
         with:
           name: python-cli-distributions
           path: dist/
-      - uses: pypa/gh-action-pypi-publish@106e0b0b7c337fa67ed433972f777c6357f78598 # v1.13.0
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2

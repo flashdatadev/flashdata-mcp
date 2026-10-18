@@ -87,8 +87,11 @@ A pending publisher does not reserve a PyPI project name. Successful first publi
 the project and turns the pending publisher into a normal publisher. No account-wide token is
 required. The publish job receives OIDC permission; build and PR jobs have read-only permissions.
 
-Create a `python-cli-v0.1.0` tag on the reviewed source commit, then manually dispatch
-**Publish Python task CLIs** on that tag. Select one exact project for the first publication;
+Use the existing `python-cli-v0.1.0` tag on the reviewed source commit, then manually dispatch
+**Publish Python task CLIs** from `main` with `release_tag=python-cli-v0.1.0`.
+The workflow checks out that tag and verifies its version and commit before building;
+publishing infrastructure can be repaired without moving the source tag or changing the packages.
+Select one exact project for the first publication;
 read back its PyPI files, hashes, provenance, description and clean uvx installation before
 publishing the remaining projects. Tags and package versions must match. There is no automatic
 publish on push, PR or tag creation, and no skip-existing behavior that could hide a collision.
