@@ -1,14 +1,14 @@
 ---
 name: google-shopping
-description: "检索 Google Shopping 商品、商家、价格标签与链接；用于指定市场的报价快照比较。不保证库存、运费或最终成交价。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "使用谷歌购物搜索（Google Shopping）查找商品、商家、价格标签与链接；用于指定市场的商品比价和报价快照比较。不保证库存、运费或最终成交价。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 license: MIT
 metadata:
   author: FlashData
 ---
 
-# FlashData Google 购物比价
+# FlashData 谷歌购物搜索（Google Shopping）
 
-检索 Google Shopping 商品、商家、价格标签与链接；用于指定市场的报价快照比较。不保证库存、运费或最终成交价。 需配置FlashData API Key，数据调用消耗付费Credits。
+使用谷歌购物搜索（Google Shopping）查找商品、商家、价格标签与链接；用于指定市场的商品比价和报价快照比较。不保证库存、运费或最终成交价。需配置 FlashData API Key，数据调用消耗付费 Credits。
 
 [功能文档与官网](https://flashdata.dev/docs/sources/google_shopping?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
 

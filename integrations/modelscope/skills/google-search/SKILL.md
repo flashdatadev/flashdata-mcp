@@ -1,14 +1,14 @@
 ---
 name: google-search
-description: "检索 Google 网页结果，获取标题、链接、摘要和排名；用于海外资料研究、指定站点检索和文档发现。搜索摘要不等于网页全文。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "使用谷歌搜索（Google Search）检索网页结果，获取标题、链接、摘要和排名；用于海外资料研究、指定站点检索和文档发现。搜索摘要不等于网页全文。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 license: MIT
 metadata:
   author: FlashData
 ---
 
-# FlashData Google 搜索
+# FlashData 谷歌搜索（Google Search）
 
-检索 Google 网页结果，获取标题、链接、摘要和排名；用于海外资料研究、指定站点检索和文档发现。搜索摘要不等于网页全文。 需配置FlashData API Key，数据调用消耗付费Credits。
+使用谷歌搜索（Google Search）检索网页结果，获取标题、链接、摘要和排名；用于海外资料研究、指定站点检索和文档发现。搜索摘要不等于网页全文。需配置 FlashData API Key，数据调用消耗付费 Credits。
 
 [功能文档与官网](https://flashdata.dev/docs/sources/google_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
 
