@@ -1,14 +1,14 @@
 ---
 name: google-video-search
-description: "检索 Google Videos 收录的跨网站视频结果，返回标题、网页链接、来源及可用时长；用于教程与演示资料发现。不下载视频。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "使用谷歌视频搜索（Google Videos）检索跨网站视频结果，返回标题、网页链接、来源及可用时长；用于视频教程与演示资料发现。不下载视频。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 license: MIT
 metadata:
   author: FlashData
 ---
 
-# FlashData Google 跨站视频搜索
+# FlashData 谷歌视频搜索（Google Video Search）
 
-检索 Google Videos 收录的跨网站视频结果，返回标题、网页链接、来源及可用时长；用于教程与演示资料发现。不下载视频。 需配置FlashData API Key，数据调用消耗付费Credits。
+使用谷歌视频搜索（Google Videos）检索跨网站视频结果，返回标题、网页链接、来源及可用时长；用于视频教程与演示资料发现。不下载视频。需配置 FlashData API Key，数据调用消耗付费 Credits。
 
 [功能文档与官网](https://flashdata.dev/docs/sources/google_videos?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
 

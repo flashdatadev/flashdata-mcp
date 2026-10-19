@@ -1,14 +1,14 @@
 ---
 name: google-image-search
-description: "检索 Google Images 图片链接、来源页及可用尺寸；用于视觉参考和图片资料整理。返回元数据，不下载图片或授予图片使用权。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "使用谷歌图片搜索（Google Images）查找图片链接、来源页及可用尺寸；用于视觉参考和图片资料整理。返回元数据，不下载图片或授予图片使用权。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 license: MIT
 metadata:
   author: FlashData
 ---
 
-# FlashData Google 图片搜索
+# FlashData 谷歌图片搜索（Google Images）
 
-检索 Google Images 图片链接、来源页及可用尺寸；用于视觉参考和图片资料整理。返回元数据，不下载图片或授予图片使用权。 需配置FlashData API Key，数据调用消耗付费Credits。
+使用谷歌图片搜索（Google Images）查找图片链接、来源页及可用尺寸；用于视觉参考和图片资料整理。返回元数据，不下载图片或授予图片使用权。需配置 FlashData API Key，数据调用消耗付费 Credits。
 
 [功能文档与官网](https://flashdata.dev/docs/sources/google_images?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
 

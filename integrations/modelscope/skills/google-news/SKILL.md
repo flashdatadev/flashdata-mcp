@@ -1,14 +1,14 @@
 ---
 name: google-news
-description: "检索 Google News 新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "使用谷歌新闻搜索（Google News）检索新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 license: MIT
 metadata:
   author: FlashData
 ---
 
-# FlashData Google 新闻
+# FlashData 谷歌新闻搜索（Google News）
 
-检索 Google News 新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。 需配置FlashData API Key，数据调用消耗付费Credits。
+使用谷歌新闻搜索（Google News）检索新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。需配置 FlashData API Key，数据调用消耗付费 Credits。
 
 [功能文档与官网](https://flashdata.dev/docs/sources/google_news?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
 
