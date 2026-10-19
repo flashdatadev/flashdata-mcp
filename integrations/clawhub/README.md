@@ -2,7 +2,9 @@
 
 **Published on 2026-10-16.** All 15 independent skills are available as version `1.0.0` under [rocosen on ClawHub](https://clawhub.ai/rocosen). The publisher approved MIT-0 for these bundles and authorized the local ClawHub CLI. Each listing passed its security scan; anonymous browser checks confirmed all 15 pages, their version, documentation links and registration entry points. Public availability does not establish search discovery or customer conversion.
 
-Each skill has one data source, a concrete agent task, pinned npm CLI, input/output examples, protected API-key requirements, source-specific docs and cost/limit disclosures. The skill instructions are prepared for ClawHub’s mandatory MIT-0 license; this does not relicense the FlashData CLI or make the paid FlashData API free.
+Each skill has one data source, a concrete agent task, Python MCP examples, input/output examples, protected API-key requirements, source-specific docs and cost/limit disclosures. The skill instructions are prepared for ClawHub’s mandatory MIT-0 license; this does not relicense the FlashData CLI or make the paid FlashData API free.
+
+The current source prepares version `1.0.1` with Python examples. The publication history below is for `1.0.0`; source preparation is separate from platform release and readback.
 
 ## Preview the skills
 
@@ -38,16 +40,16 @@ The generator adapts the maintained `skills/*/SKILL.md` content, task catalog, p
 Use the official ClawHub CLI to preview a release without uploading:
 
 ```sh
-npx --yes clawhub@0.23.3 skill publish integrations/clawhub/skills/google-search-flashdata --owner rocosen --slug google-search-flashdata --name 'Google Search — FlashData' --version 1.0.0 --categories research,integrations --topics google-search,web-research,serp --dry-run --json
+npx --yes clawhub@0.23.3 skill publish integrations/clawhub/skills/google-search-flashdata --owner rocosen --slug google-search-flashdata --name 'Google Search — FlashData' --version 1.0.1 --categories research,integrations --topics google-search,web-research,serp --dry-run --json
 ```
 
 Use each entry’s own categories, topics, slug and name from `catalog.json`. The CLI dry run checks local files and version resolution; server-side metadata policy and security scans run only after submission. Do not treat dry-run success as approval or public availability.
 
 ## After publication
 
-Install the individual skill in your OpenClaw workspace using the owner-qualified reference printed on its ClawHub page. Each `SKILL.md` includes the corresponding command. Configure Node/npm and `FLASHDATA_API_KEY` inside the agent’s actual execution environment. Download additionally requires `FLASHDATA_STORAGE_FILE`; its contents are sent to FlashData to upload to your chosen storage.
+Install the individual skill in your OpenClaw workspace using the owner-qualified reference printed on its ClawHub page. Each `SKILL.md` includes the corresponding command. Configure Python 3.10+, the pinned Python dependencies and `FLASHDATA_API_KEY` inside the agent’s actual execution environment. Download additionally requires `FLASHDATA_STORAGE_FILE`; its contents are sent to FlashData to upload to your chosen storage.
 
-The local CLI returns JSON. The agent may format that data as cited answers, tables or subtitle files according to the user’s request. API calls spend FlashData Credits; model-provider costs are separate. No model runs, paid FlashData requests or real storage writes were performed as part of preparing these bundles.
+The Python examples return structured MCP data as JSON. The agent may format that data as cited answers, tables or subtitle files according to the user’s request. API calls spend FlashData Credits; model-provider costs are separate. No model runs, paid FlashData requests or real storage writes were performed as part of preparing these bundles.
 
 ## Validation recorded on 2026-10-16
 

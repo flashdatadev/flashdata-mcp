@@ -12,8 +12,7 @@ for skill in catalog['skills']:
     original = (ROOT / skill['source_directory'] / 'SKILL.md').read_text()
     _, frontmatter, body = original.split('---', 2)
     frontmatter = re.sub(r'^description: .*$', 'description: ' + json.dumps(skill['description'], ensure_ascii=False), frontmatter, flags=re.M)
-    body = body.replace('utm_source=skills-sh', 'utm_source=modelscope').replace(
-        'npx --yes --package=@flashdata-dev/mcp@0.1.0 flashdata', skill['command'])
+    body = body.replace('utm_source=skills-sh', 'utm_source=modelscope')
     intro = f"""# {skill['display_name']}
 
 {skill['description']}
@@ -22,21 +21,17 @@ for skill in catalog['skills']:
 
 ## 在支持 Skills 的 Agent 中使用
 
-从魔搭下载此 Skill，保留文件夹结构，放入所用 Agent 支持的 Skills 目录，再按客户端文档启用。此 Skill 使用终端命令；运行环境需要 Node.js 22.18+、npm 和联网能力，并通过该环境的密钥配置提供 `FLASHDATA_API_KEY`。沙箱需要在沙箱内配置这些依赖，不能假设宿主机配置自动可用。
+从魔搭下载此 Skill，保留文件夹结构，放入所用 Agent 支持的 Skills 目录，再按客户端文档启用。此 Skill 使用 Python 调用托管的 FlashData MCP；运行环境需要 Python 3.10+、下方列出的 Python 依赖和联网能力，并通过该环境的密钥配置提供 `FLASHDATA_API_KEY`。沙箱需要在沙箱内配置这些依赖，不能假设宿主机配置自动可用。
 
 示例任务：
 
 > {skill['example']}
 
-安装 Skill 和 CLI 免费；下面的数据查询消耗 FlashData Credits，客户端/模型和适用的存储费用另计。读取 Skill 不代表授权执行付费示例；根据用户任务和已授权预算选择参数。API Key 不应写进 Skill、公开表单或对话。
+安装 Skill 和 Python 依赖免费；下面的数据查询消耗 FlashData Credits，客户端/模型和适用的存储费用另计。读取 Skill 不代表授权执行付费示例；根据用户任务和已授权预算选择参数。API Key 不应写进 Skill、公开表单或对话。
 
-先检查本地CLI能否启动（不提交数据请求）：
+先创建或启用 Python 虚拟环境，按下方快速开始安装依赖；将 Python 代码保存为 `example.py`，在同一环境运行 `python3 example.py`。请求只发送至 `https://data.flashdata.dev/mcp`，无需在本地运行 Node.js 客户端。
 
-```sh
-{skill['command']} --help
-```
-
-已配置密钥后，可使用 `{skill['command']} call get_pricing` 免费读取当前价格；价格检查不等于实际数据查询成功。普通同步查询直接处理返回的 `result`，不要求存在job ID。需要异步时显式传入 `mode: "async"`，保存提交返回的 `id`（CLI为 `result.id`），用 `get_job` 的 `job_id` 读取同一任务，完成后从 `output`（CLI为 `result.output`）取结果。下载始终使用异步模式。不要在超时后自动重复提交收费请求。
+要免费读取当前价格，让已连接的 MCP 客户端调用 `get_pricing`，参数为 `{{"source":"{skill['source']}"}}`。这是单独的读取操作，不执行付费示例、不需要存储凭据，价格响应也没有 job ID。价格检查不等于实际数据查询成功。Python 示例直接输出 MCP 结构化数据；普通同步查询处理 `results`，不要求存在 job ID。异步请求显式使用 `mode: "async"`，保存返回的 `id`，再通过 `get_job` 的 `job_id` 读取同一任务，完成后处理 `output`。下载始终使用异步模式。不要在超时后自动重复提交收费请求。
 
 """
     if skill['source'] == 'youtube_download':

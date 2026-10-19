@@ -1,0 +1,23 @@
+name: Python channel examples
+on:
+  push:
+    paths: ['skills/**', 'integrations/clawhub/**', 'integrations/modelscope/**', 'registry/examples/**', 'test/test_python_channel_examples.py', '.github/workflows/python-examples.yml']
+  pull_request:
+    paths: ['skills/**', 'integrations/clawhub/**', 'integrations/modelscope/**', 'registry/examples/**', 'test/test_python_channel_examples.py', '.github/workflows/python-examples.yml']
+permissions:
+  contents: read
+jobs:
+  examples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python: ['3.10', '3.14']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv venv
+      - run: uv pip install -r registry/examples/requirements.txt pytest==8.4.2
+      - run: uv run --no-project python -m pytest -q test/test_python_channel_examples.py

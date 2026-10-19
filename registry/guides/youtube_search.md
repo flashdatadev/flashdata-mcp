@@ -44,10 +44,10 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
 }
 ```
 
-For the optional **combined hosted service** (a separate connection), clone this repository, run `npm ci`, provide `FLASHDATA_API_KEY`, and run from the repository root:
+For the optional **combined hosted service** (a separate connection), clone this repository, use Python 3.10+, install `python3 -m pip install -r registry/examples/requirements.txt`, provide `FLASHDATA_API_KEY`, and run from the repository root:
 
 ```sh
-node registry/examples/call-tool.mjs registry/examples/youtube_search.json
+python3 registry/examples/call_tool.py registry/examples/youtube_search.json
 ```
 
 The hosted helper sends one tool call and prints its structured response. It does not automatically retry paid submissions or poll jobs. [Request file](../examples/youtube_search.json).

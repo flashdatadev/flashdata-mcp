@@ -107,12 +107,13 @@ Credits; media downloads are billed by uploaded bytes. See
 
 ## Run a hosted MCP example
 
-Clone this repository, use Node.js 22.18 or later, and run `npm ci`. Supply
+Clone this repository, use Python 3.10 or later, and install
+`python3 -m pip install -r registry/examples/requirements.txt`. Supply
 `FLASHDATA_API_KEY` through your environment or secret manager, then verify
 the connection with a free pricing read:
 
 ```sh
-node registry/examples/call-tool.mjs registry/examples/get_pricing.json
+python3 registry/examples/call_tool.py registry/examples/get_pricing.json
 ```
 
 Each guide provides a JSON request and a command using the same helper.
