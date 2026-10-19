@@ -37,18 +37,41 @@ Use `--input -` to read JSON from stdin. For a local project installation, run `
 
 ## Compare video sources across websites
 
-The CLI returns `{"ok":true,"tool":"...","result":...}`. Check `ok` and the API/job status before consuming data. Save this as `process-result.cjs` and run `node process-result.cjs`:
+The CLI returns `{"ok":true,"tool":"...","result":...}`. Check `ok` and the API/job status before consuming data. Use Python **3.10 or newer**; only the standard library is needed. Save this as `process-result.py` beside `result.json` and run `python3 process-result.py` (Windows: `py -3 process-result.py`). The script reads the saved CLI response; it makes no API call. Missing optional fields in JSON summaries are represented as `null`:
 
-```js
-const response = JSON.parse(require('node:fs').readFileSync('result.json', 'utf8'));
-if (!response.ok) throw new Error('The request failed; inspect the response before retrying.');
-const sites = {};
-for (const video of response.result.results[0].videos ?? []) {
-  if (!video.link) continue;
-  const host = new URL(video.link).hostname;
-  (sites[host] ??= []).push({ title: video.title, url: video.link, duration: video.duration });
-}
-console.log(JSON.stringify(sites, null, 2));
+```python
+import json
+from pathlib import Path
+
+response = json.loads(Path("result.json").read_text(encoding="utf-8"))
+if not response.get("ok"):
+    raise SystemExit("The request failed; inspect the response before retrying.")
+result = response["result"]
+if "job" in result:
+    status = result["job"]["status"]
+    if status != "completed":
+        raise SystemExit(f"Job status: {status}. Inspect this job; do not resubmit.")
+    result = result["output"]
+if result.get("status") not in (None, "done"):
+    raise SystemExit("No completed data yet. Read the existing job before processing.")
+if not result.get("results"):
+    raise SystemExit("No result record was returned.")
+data = result["results"][0]
+
+from urllib.parse import urlsplit
+
+sites = {}
+for video in data.get("videos") or []:
+    link = video.get("link")
+    if not link:
+        continue
+    host = urlsplit(link).hostname
+    if not host:
+        continue
+    sites.setdefault(host, []).append({
+        "title": video.get("title"), "url": link, "duration": video.get("duration"),
+    })
+print(json.dumps(sites, ensure_ascii=False, indent=2))
 ```
 
 Selected fields from a **representative fixture**, not a live response or a guarantee that every field/result will be present. This is the content inside the CLI's `result` property:

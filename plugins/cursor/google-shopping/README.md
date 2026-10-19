@@ -74,15 +74,36 @@ Use `--input -` to read JSON from stdin. For a local project installation, run `
 
 ## Record a merchant offer snapshot
 
-The CLI returns `{"ok":true,"tool":"...","result":...}`. Check `ok` and the API/job status before consuming data. Save this as `process-result.cjs` and run `node process-result.cjs`:
+The CLI returns `{"ok":true,"tool":"...","result":...}`. Check `ok` and the API/job status before consuming data. Use Python **3.10 or newer**; only the standard library is needed. Save this as `process-result.py` beside `result.json` and run `python3 process-result.py` (Windows: `py -3 process-result.py`). The script reads the saved CLI response; it makes no API call. Missing optional fields in JSON summaries are represented as `null`:
 
-```js
-const response = JSON.parse(require('node:fs').readFileSync('result.json', 'utf8'));
-if (!response.ok) throw new Error('The request failed; inspect the response before retrying.');
-const offers = response.result.results[0].shopping ?? [];
-console.log(JSON.stringify(offers.map(x => ({
-  id: x.productId ?? x.link, title: x.title, merchant: x.source, priceLabel: x.price, url: x.link
-})), null, 2));
+```python
+import json
+from pathlib import Path
+
+response = json.loads(Path("result.json").read_text(encoding="utf-8"))
+if not response.get("ok"):
+    raise SystemExit("The request failed; inspect the response before retrying.")
+result = response["result"]
+if "job" in result:
+    status = result["job"]["status"]
+    if status != "completed":
+        raise SystemExit(f"Job status: {status}. Inspect this job; do not resubmit.")
+    result = result["output"]
+if result.get("status") not in (None, "done"):
+    raise SystemExit("No completed data yet. Read the existing job before processing.")
+if not result.get("results"):
+    raise SystemExit("No result record was returned.")
+data = result["results"][0]
+
+offers = []
+for product in data.get("shopping") or []:
+    product_id = product.get("productId")
+    offers.append({
+        "id": product.get("link") if product_id is None else product_id,
+        "title": product.get("title"), "merchant": product.get("source"),
+        "priceLabel": product.get("price"), "url": product.get("link"),
+    })
+print(json.dumps(offers, ensure_ascii=False, indent=2))
 ```
 
 Selected fields from a **representative fixture**, not a live response or a guarantee that every field/result will be present. This is the content inside the CLI's `result` property:
