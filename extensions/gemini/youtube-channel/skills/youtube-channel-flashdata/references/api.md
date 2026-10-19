@@ -13,9 +13,9 @@ Start from a channel handle and record its profile identifier with a bounded set
 Set `FLASHDATA_API_KEY` in your shell environment or secret manager. Keep the real value out of chat, committed files and command arguments. These first checks do not submit a data query:
 
 ```sh
-npx --yes @flashdata-dev/youtube-channel@0.1.0 --help
-npx --yes @flashdata-dev/youtube-channel@0.1.0 tools
-npx --yes @flashdata-dev/youtube-channel@0.1.0 call get_pricing
+npx --yes @flashdata-dev/youtube-channel@0.1.1 --help
+npx --yes @flashdata-dev/youtube-channel@0.1.1 tools
+npx --yes @flashdata-dev/youtube-channel@0.1.1 call get_pricing
 ```
 
 Save the following as `query.json`. It uses flat tool arguments; no REST `params` wrapper is needed.
@@ -30,10 +30,10 @@ Save the following as `query.json`. It uses flat tool arguments; no REST `params
 This command performs **one paid data request** and writes its response to a file:
 
 ```sh
-npx --yes @flashdata-dev/youtube-channel@0.1.0 call youtube_channel --input query.json > result.json
+npx --yes @flashdata-dev/youtube-channel@0.1.1 call youtube_channel --input query.json > result.json
 ```
 
-Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/youtube-channel@0.1.0` and use `npx flashdata-youtube-channel` with the same arguments.
+Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/youtube-channel@0.1.1` and use `npx flashdata-youtube-channel` with the same arguments.
 
 ## Save a channel’s recent upload inventory
 
@@ -118,7 +118,7 @@ For a longer-running query, set `mode` to `"async"`. Save the returned `result.i
 ```
 
 ```sh
-npx --yes @flashdata-dev/youtube-channel@0.1.0 call get_job --input job.json > result.json
+npx --yes @flashdata-dev/youtube-channel@0.1.1 call get_job --input job.json > result.json
 ```
 
 `pending` or `processing` means wait and read the same job later; `completed` provides the original JSON under `result.output`. The package never polls or retries paid submissions automatically. A timeout or lost response may still represent charged work: check Jobs before another submission. Each submitted query is charged at this source’s current rate; the number of returned records is not the request count.
@@ -136,7 +136,7 @@ This same package starts a persistent stdio server with the `mcp` subcommand:
       "command": "npx",
       "args": [
         "--yes",
-        "@flashdata-dev/youtube-channel@0.1.0",
+        "@flashdata-dev/youtube-channel@0.1.1",
         "mcp"
       ],
       "env": {

@@ -14,7 +14,7 @@ This plugin's public Marketplace listing is not yet confirmed. Once published, i
 
 For local evaluation now, copy this entire plugin directory into `~/.cursor/plugins/local/google-images-flashdata/` as real files, then run **Developer: Reload Window** and check **Customize**. Do not use a symlink outside that directory. Configure the key through the plugin settings, then reload the entire Cursor window again so the server receives the saved value. Reloading only the MCP server may retain the previous configuration. Never put the key in Agent chat or commit it to a file. Organization policy can restrict local plugins.
 
-The plugin starts `npx --yes @flashdata-dev/google-images@0.1.0 mcp`. Node.js **22.18 or newer** and npm must be available to Cursor. First launch downloads the pinned package from npm.
+The plugin starts `npx --yes @flashdata-dev/google-images@0.1.1 mcp`. Node.js **22.18 or newer** and npm must be available to Cursor. First launch downloads the pinned package from npm.
 
 ## Use in Cursor
 
@@ -46,9 +46,9 @@ MCP success data is in `structuredContent`; the terminal examples below wrap it 
 Set `FLASHDATA_API_KEY` in your shell environment or secret manager. Keep the real value out of chat, committed files and command arguments. These first checks do not submit a data query:
 
 ```sh
-npx --yes @flashdata-dev/google-images@0.1.0 --help
-npx --yes @flashdata-dev/google-images@0.1.0 tools
-npx --yes @flashdata-dev/google-images@0.1.0 call get_pricing
+npx --yes @flashdata-dev/google-images@0.1.1 --help
+npx --yes @flashdata-dev/google-images@0.1.1 tools
+npx --yes @flashdata-dev/google-images@0.1.1 call get_pricing
 ```
 
 Save the following as `query.json`. It uses flat tool arguments; no REST `params` wrapper is needed.
@@ -63,10 +63,10 @@ Save the following as `query.json`. It uses flat tool arguments; no REST `params
 This command performs **one paid data request** and writes its response to a file:
 
 ```sh
-npx --yes @flashdata-dev/google-images@0.1.0 call google_images --input query.json > result.json
+npx --yes @flashdata-dev/google-images@0.1.1 call google_images --input query.json > result.json
 ```
 
-Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-images@0.1.0` and use `npx flashdata-google-images` with the same arguments.
+Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-images@0.1.1` and use `npx flashdata-google-images` with the same arguments.
 
 ## Build an image reference inventory
 
@@ -159,7 +159,7 @@ For a longer-running query, set `mode` to `"async"`. Save the returned `result.i
 ```
 
 ```sh
-npx --yes @flashdata-dev/google-images@0.1.0 call get_job --input job.json > result.json
+npx --yes @flashdata-dev/google-images@0.1.1 call get_job --input job.json > result.json
 ```
 
 `pending` or `processing` means wait and read the same job later; `completed` provides the original JSON under `result.output`. The package never polls or retries paid submissions automatically. A timeout or lost response may still represent charged work: check Jobs before another submission. Each requested search page is a separate paid query; result count is not request count.
@@ -177,7 +177,7 @@ This same package starts a persistent stdio server with the `mcp` subcommand:
       "command": "npx",
       "args": [
         "--yes",
-        "@flashdata-dev/google-images@0.1.0",
+        "@flashdata-dev/google-images@0.1.1",
         "mcp"
       ],
       "env": {

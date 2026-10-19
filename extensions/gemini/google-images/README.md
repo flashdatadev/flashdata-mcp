@@ -18,7 +18,7 @@ gemini extensions install https://github.com/rocosen/google-images-gemini
 
 Review the extension and enter your own FlashData API key at the sensitive setting prompt. To change it later, run `gemini extensions config google-images-flashdata`. Restart Gemini CLI after configuration. Run `gemini extensions list`, `gemini skills list --all` and `gemini mcp list` to inspect installation, Skill availability and connection.
 
-Node.js **22.18 or newer**, npm and Git must be available. The extension starts `npx --yes @flashdata-dev/google-images@0.1.0 mcp`; first launch downloads the pinned package. Local evaluation also supports `gemini extensions install /absolute/path/to/this-extension`. Model access and fees are separate; this does not claim Antigravity CLI compatibility.
+Node.js **22.18 or newer**, npm and Git must be available. The extension starts `npx --yes @flashdata-dev/google-images@0.1.1 mcp`; first launch downloads the pinned package. Local evaluation also supports `gemini extensions install /absolute/path/to/this-extension`. Model access and fees are separate; this does not claim Antigravity CLI compatibility.
 
 ## Use in Gemini CLI
 
@@ -50,9 +50,9 @@ MCP success data is in `structuredContent`; the terminal examples below wrap it 
 Set `FLASHDATA_API_KEY` in your shell environment or secret manager. Keep the real value out of chat, committed files and command arguments. These first checks do not submit a data query:
 
 ```sh
-npx --yes @flashdata-dev/google-images@0.1.0 --help
-npx --yes @flashdata-dev/google-images@0.1.0 tools
-npx --yes @flashdata-dev/google-images@0.1.0 call get_pricing
+npx --yes @flashdata-dev/google-images@0.1.1 --help
+npx --yes @flashdata-dev/google-images@0.1.1 tools
+npx --yes @flashdata-dev/google-images@0.1.1 call get_pricing
 ```
 
 Save the following as `query.json`. It uses flat tool arguments; no REST `params` wrapper is needed.
@@ -67,10 +67,10 @@ Save the following as `query.json`. It uses flat tool arguments; no REST `params
 This command performs **one paid data request** and writes its response to a file:
 
 ```sh
-npx --yes @flashdata-dev/google-images@0.1.0 call google_images --input query.json > result.json
+npx --yes @flashdata-dev/google-images@0.1.1 call google_images --input query.json > result.json
 ```
 
-Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-images@0.1.0` and use `npx flashdata-google-images` with the same arguments.
+Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-images@0.1.1` and use `npx flashdata-google-images` with the same arguments.
 
 ## Build an image reference inventory
 
@@ -163,7 +163,7 @@ For a longer-running query, set `mode` to `"async"`. Save the returned `result.i
 ```
 
 ```sh
-npx --yes @flashdata-dev/google-images@0.1.0 call get_job --input job.json > result.json
+npx --yes @flashdata-dev/google-images@0.1.1 call get_job --input job.json > result.json
 ```
 
 `pending` or `processing` means wait and read the same job later; `completed` provides the original JSON under `result.output`. The package never polls or retries paid submissions automatically. A timeout or lost response may still represent charged work: check Jobs before another submission. Each requested search page is a separate paid query; result count is not request count.
@@ -181,7 +181,7 @@ This same package starts a persistent stdio server with the `mcp` subcommand:
       "command": "npx",
       "args": [
         "--yes",
-        "@flashdata-dev/google-images@0.1.0",
+        "@flashdata-dev/google-images@0.1.1",
         "mcp"
       ],
       "env": {

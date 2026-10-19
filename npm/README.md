@@ -27,9 +27,9 @@ Requires Node.js 22.18 or newer and your own FlashData API key with the selected
 Set `FLASHDATA_API_KEY` using your environment or secret manager. Choose a package from the table, then start with its help and free discovery:
 
 ```sh
-npx --yes @flashdata-dev/google-news@0.1.0 --help
-npx --yes @flashdata-dev/google-news@0.1.0 tools
-npx --yes @flashdata-dev/google-news@0.1.0 call get_pricing
+npx --yes @flashdata-dev/google-news@0.1.1 --help
+npx --yes @flashdata-dev/google-news@0.1.1 tools
+npx --yes @flashdata-dev/google-news@0.1.1 call get_pricing
 ```
 
 Each guide contains a task-specific query, output example, result-processing script, complete parameter table and its FlashData documentation link. Input comes from `--input <file>` or `--input -`; no credentials belong in command arguments. For MCP, use the same package with the single argument `mcp`.

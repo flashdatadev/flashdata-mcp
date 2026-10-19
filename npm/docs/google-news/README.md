@@ -13,9 +13,9 @@ Collect coverage of a company or topic, group stories by publisher, and keep the
 Set `FLASHDATA_API_KEY` in your shell environment or secret manager. Keep the real value out of chat, committed files and command arguments. These first checks do not submit a data query:
 
 ```sh
-npx --yes @flashdata-dev/google-news@0.1.0 --help
-npx --yes @flashdata-dev/google-news@0.1.0 tools
-npx --yes @flashdata-dev/google-news@0.1.0 call get_pricing
+npx --yes @flashdata-dev/google-news@0.1.1 --help
+npx --yes @flashdata-dev/google-news@0.1.1 tools
+npx --yes @flashdata-dev/google-news@0.1.1 call get_pricing
 ```
 
 Save the following as `query.json`. It uses flat tool arguments; no REST `params` wrapper is needed.
@@ -32,10 +32,10 @@ Save the following as `query.json`. It uses flat tool arguments; no REST `params
 This command performs **one paid data request** and writes its response to a file:
 
 ```sh
-npx --yes @flashdata-dev/google-news@0.1.0 call google_news --input query.json > result.json
+npx --yes @flashdata-dev/google-news@0.1.1 call google_news --input query.json > result.json
 ```
 
-Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-news@0.1.0` and use `npx flashdata-google-news` with the same arguments.
+Use `--input -` to read JSON from stdin. For a local project installation, run `npm install @flashdata-dev/google-news@0.1.1` and use `npx flashdata-google-news` with the same arguments.
 
 ## Create a publisher-linked news brief
 
@@ -125,7 +125,7 @@ For a longer-running query, set `mode` to `"async"`. Save the returned `result.i
 ```
 
 ```sh
-npx --yes @flashdata-dev/google-news@0.1.0 call get_job --input job.json > result.json
+npx --yes @flashdata-dev/google-news@0.1.1 call get_job --input job.json > result.json
 ```
 
 `pending` or `processing` means wait and read the same job later; `completed` provides the original JSON under `result.output`. The package never polls or retries paid submissions automatically. A timeout or lost response may still represent charged work: check Jobs before another submission. Each requested search page is a separate paid query; result count is not request count.
@@ -143,7 +143,7 @@ This same package starts a persistent stdio server with the `mcp` subcommand:
       "command": "npx",
       "args": [
         "--yes",
-        "@flashdata-dev/google-news@0.1.0",
+        "@flashdata-dev/google-news@0.1.1",
         "mcp"
       ],
       "env": {

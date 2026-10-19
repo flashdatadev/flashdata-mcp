@@ -7,7 +7,7 @@
       "command": "npx",
       "args": [
         "--yes",
-        "@flashdata-dev/youtube-transcript@0.1.0",
+        "@flashdata-dev/youtube-transcript@0.1.1",
         "mcp"
       ],
       "env": {
