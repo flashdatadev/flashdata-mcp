@@ -40,7 +40,7 @@
       "source": "google_images",
       "slug": "google-image-search",
       "display_name": "FlashData 谷歌图片搜索（Google Images）",
-      "description": "使用谷歌图片搜索（Google Images）查找图片链接、来源页及可用尺寸；用于视觉参考和图片资料整理。返回元数据，不下载图片或授予图片使用权。需配置 FlashData API Key，数据调用消耗付费 Credits。",
+      "description": "使用谷歌图片搜索（Google Images）检索图片链接、来源页及可用尺寸；用于视觉参考和图片资料整理。返回元数据，不下载图片或授予图片使用权。需配置 FlashData API Key，数据调用消耗付费 Credits。",
       "example": "查找热泵工作原理图，整理图片链接、来源页和可用尺寸。",
       "category": "开发工具",
       "license": "MIT",
