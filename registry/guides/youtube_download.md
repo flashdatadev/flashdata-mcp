@@ -57,7 +57,7 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
 }
 ```
 
-Copy the request outside the repository, replace the video and storage placeholders with your authorized destination, and restrict the file permissions. The optional combined hosted helper (`node registry/examples/call-tool.mjs /absolute/path/to/private-request.json`) accepts that private file; do not commit or paste storage credentials into chat.
+Copy the request outside the repository, replace the video and storage placeholders with your authorized destination, and restrict the file permissions. Use Python 3.10+ and first install `python3 -m pip install -r registry/examples/requirements.txt`. The optional combined hosted helper (`python3 registry/examples/call_tool.py /absolute/path/to/private-request.json`) accepts that private file; do not commit or paste storage credentials into chat.
 
 The hosted helper sends one tool call and prints its structured response. It does not automatically retry paid submissions or poll jobs. [Request file](../examples/youtube_download.json).
 
