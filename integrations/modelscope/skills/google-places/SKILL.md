@@ -1,6 +1,6 @@
 ---
 name: google-places
-description: "检索指定城市的地点和商家名称、地址及可用评分、评论数；用于本地商家研究。不保证完整商家数据库、联系方式或评论全文。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "按关键词和城市查询 Google Places 地点结果，返回名称、地址及可用评分，用于地点信息整理。返回字段可能不完整。需要 FlashData API Key，数据查询消耗付费 Credits。"
 license: MIT
 metadata:
   author: FlashData
@@ -8,7 +8,7 @@ metadata:
 
 # FlashData Google 地点与商家搜索
 
-检索指定城市的地点和商家名称、地址及可用评分、评论数；用于本地商家研究。不保证完整商家数据库、联系方式或评论全文。 需配置FlashData API Key，数据调用消耗付费Credits。
+按关键词和城市查询 Google Places 地点结果，返回名称、地址及可用评分，用于地点信息整理。返回字段可能不完整。需要 FlashData API Key，数据查询消耗付费 Credits。
 
 [功能文档与官网](https://flashdata.dev/docs/sources/google_places?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
 

@@ -91,7 +91,7 @@
       "source": "google_places",
       "slug": "google-places",
       "display_name": "FlashData Google 地点与商家搜索",
-      "description": "检索指定城市的地点和商家名称、地址及可用评分、评论数；用于本地商家研究。不保证完整商家数据库、联系方式或评论全文。 需配置FlashData API Key，数据调用消耗付费Credits。",
+      "description": "按关键词和城市查询 Google Places 地点结果，返回名称、地址及可用评分，用于地点信息整理。返回字段可能不完整。需要 FlashData API Key，数据查询消耗付费 Credits。",
       "example": "查找新加坡咖啡店，整理名称、地址、评分和评论数，缺失字段标为未知。",
       "category": "开发工具",
       "license": "MIT",
