@@ -1,0 +1,195 @@
+---
+name: youtube-download-flashdata
+slug: youtube-download-flashdata
+displayName: "YouTube 下载到云存储 - FlashData"
+version: 1.0.0
+summary: "将 YouTube 视频、音频或片段异步交付至用户自有云存储，提交后按job ID读取状态与交付清单；按实际交付量计费。需确认下载权限、存储目标和预算。 需配置FlashData API Key，数据调用消耗付费Credits。"
+description: "将 YouTube 视频、音频或片段异步交付至用户自有云存储，提交后按job ID读取状态与交付清单；按实际交付量计费。需确认下载权限、存储目标和预算。 需配置FlashData API Key，数据调用消耗付费Credits。"
+license: MIT
+metadata:
+  author: FlashData
+---
+
+# FlashData YouTube 下载到云存储
+
+将 YouTube 视频、音频或片段异步交付至用户自有云存储，提交后按job ID读取状态与交付清单；按实际交付量计费。需确认下载权限、存储目标和预算。 需配置FlashData API Key，数据调用消耗付费Credits。
+
+[功能文档与官网](https://flashdata.dev/docs/sources/youtube_download?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+
+## 在支持 Skills 的 Agent 中使用
+
+在 SkillHub 详情页使用安装入口，将此 Skill 安装到 WorkBuddy 等支持 Skills 的 Agent；也可下载 ZIP，保留文件夹结构，按客户端文档导入并启用。此 Skill 使用 Python 调用托管的 FlashData MCP；运行环境需要 Python 3.10+、下方列出的 Python 依赖和联网能力，并通过该环境的密钥配置提供 `FLASHDATA_API_KEY`。沙箱需要在沙箱内配置这些依赖，不能假设宿主机配置自动可用。
+
+示例任务：
+
+> 在确认下载权限、目标存储和预算后，将指定视频的前10秒交付到我的云存储；只提交一次，使用job ID跟踪结果。
+
+安装 Skill 和 Python 依赖免费；下面的数据查询消耗 FlashData Credits，客户端/模型和适用的存储费用另计。读取 Skill 不代表授权执行付费示例；根据用户任务和已授权预算选择参数。API Key 不应写进 Skill、公开表单或对话。
+
+先创建或启用 Python 虚拟环境，按下方快速开始安装依赖；将 Python 代码保存为 `example.py`，在同一环境运行 `python3 example.py`。请求只发送至 `https://data.flashdata.dev/mcp`，无需在本地运行 Node.js 客户端。
+
+要免费读取当前价格，让已连接的 MCP 客户端调用 `get_pricing`，参数为 `{"source":"youtube_download"}`。这是单独的读取操作，不执行付费示例、不需要存储凭据，价格响应也没有 job ID。价格检查不等于实际数据查询成功。Python 示例直接输出 MCP 结构化数据；普通同步查询处理 `results`，不要求存在 job ID。异步请求显式使用 `mode: "async"`，保存返回的 `id`，再通过 `get_job` 的 `job_id` 读取同一任务，完成后处理 `output`。下载始终使用异步模式。不要在超时后自动重复提交收费请求。
+
+下载还需要用户自有存储；在私密JSON文件中保存目标与凭据，并将 `FLASHDATA_STORAGE_FILE` 设置为文件路径，见[存储配置](references/storage.md)。上传所需的存储凭据会随请求发送至FlashData；只使用用户授权的目标和预算。
+
+## API 调用、参数与结果参考
+
+
+Send a YouTube video, audio track or selected clip directly to your own cloud storage. Choose the media type, format and quality, then use the returned job ID to retrieve the completed file location and size.
+
+[Documentation](https://flashdata.dev/docs/sources/youtube_download?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+
+## Example requests
+
+- “Save the first 30 seconds of this video to my S3 bucket.”
+- “Download this video’s audio as MP3 to my storage.”
+- “Deliver a 720p MP4 and its metadata to my media pipeline.”
+
+## Quick start with Python: a clip to your storage
+
+Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) supplied as `FLASHDATA_API_KEY` through your environment or secret manager. Install the Python dependencies in your virtual environment:
+
+```sh
+python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
+```
+
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+
+Set `FLASHDATA_STORAGE_FILE` to a private JSON file containing your destination configuration; [storage setup](references/storage.md) shows its fields. This example delivers the first 10 seconds as MP4. Replace the video and clip bounds for the user’s request. The file is read locally and its credentials are sent to FlashData for the upload, but are not printed.
+
+```python
+import asyncio
+import json
+import os
+from datetime import timedelta
+from pathlib import Path
+
+import httpx
+from mcp import ClientSession
+from mcp.client.streamable_http import streamable_http_client
+
+arguments = {
+    "video_id": "jNQXAC9IVRw",
+    "mode": "async",
+    "download_type": "audio_video",
+    "video_quality": "<=720",
+    "output_format": "mp4",
+    "start_at": "00:00:00",
+    "end_at": "00:00:10",
+    "storage": json.loads(Path(os.environ['FLASHDATA_STORAGE_FILE']).read_text(encoding='utf-8')),
+}
+
+
+async def main():
+    async with httpx.AsyncClient(
+        headers={"X-API-Key": os.environ["FLASHDATA_API_KEY"]},
+        timeout=120, follow_redirects=False, trust_env=False,
+    ) as http:
+        async with streamable_http_client(
+            "https://data.flashdata.dev/mcp", http_client=http,
+        ) as (read, write, _):
+            async with ClientSession(read, write) as session:
+                await session.initialize()
+                result = await session.call_tool(
+                    "youtube_download", arguments=arguments,
+                    read_timeout_seconds=timedelta(seconds=120),
+                )
+                if result.isError:
+                    raise RuntimeError("FlashData reported a tool error.")
+                data = result.structuredContent
+                if data is None:
+                    data = json.loads(next(item.text for item in result.content if item.type == "text"))
+                if not isinstance(data, dict) or not data.get("id"):
+                    raise RuntimeError("Missing job ID; check Jobs before resubmitting.")
+                data = {key: data[key] for key in ("id", "status", "source", "created_at") if key in data}
+                print(json.dumps(data, ensure_ascii=False, indent=2))
+
+
+try:
+    asyncio.run(main())
+except Exception:
+    raise SystemExit("Request failed. Check Jobs before retrying a paid submission; no automatic retry was made.") from None
+```
+
+With [FlashData MCP](https://flashdata.dev/mcp), call `youtube_download` using the same fields and a `storage` object from the user's protected configuration.
+
+## Choose the media
+
+| Parameter | Use |
+| --- | --- |
+| `video_id` | Required 11-character YouTube video ID. |
+| `download_type` | `audio_video` (default), `video` or `audio`. |
+| `video_quality` | `<=720` by default; also `best`, `worst`, or `<=`, `==`, `>=` with 144, 360, 480, 720, 1080, 1440, 2160 or 4320. |
+| `output_format` | Video: `mp4` (default), `webm`, `mkv`. Audio: `m4a` (default), `mp3`, `opus`. |
+| `start_at`, `end_at` | Clip times as `HH:MM:SS`; end must follow start. Omit for the full video. |
+| `storage` | Required destination configuration; see [storage setup](references/storage.md). |
+| `mode` | `async`; downloads return a job ID. |
+
+### Audio as MP3
+
+Use `download_type: "audio"`, `output_format: "mp3"` and optionally `audio_quality: "192"`. Audio quality accepts `best` (default), `320`, `256`, `192` or `128`. Omit `video_quality` and `fps` for audio-only requests.
+
+### Higher resolution or a metadata sidecar
+
+Set `video_quality: "<=1080"` for a maximum of 1080p. Add `upload_metadata: true` to upload a metadata JSON sidecar alongside the media. Availability depends on the video's formats.
+
+Advanced selection supports `fps` constraints such as `<=30`, `audio_language: "default"` or `"original"`, and `yt_dlp_format`. A custom `yt_dlp_format` overrides `video_quality`, `fps` and `audio_language`. Use `audio_quality` only with audio downloads and omit `audio_language` for video-only downloads.
+
+## Read the job and get the file
+
+The submission response contains `id`. Set `FLASHDATA_JOB_ID` to that returned ID. Save the following as `read_job.py` and run `python3 read_job.py` to read the existing job once:
+
+```python
+import asyncio
+import json
+import os
+from datetime import timedelta
+
+import httpx
+from mcp import ClientSession
+from mcp.client.streamable_http import streamable_http_client
+
+arguments = {
+    "job_id": os.environ['FLASHDATA_JOB_ID'],
+}
+
+
+async def main():
+    async with httpx.AsyncClient(
+        headers={"X-API-Key": os.environ["FLASHDATA_API_KEY"]},
+        timeout=120, follow_redirects=False, trust_env=False,
+    ) as http:
+        async with streamable_http_client(
+            "https://data.flashdata.dev/mcp", http_client=http,
+        ) as (read, write, _):
+            async with ClientSession(read, write) as session:
+                await session.initialize()
+                result = await session.call_tool(
+                    "get_job", arguments=arguments,
+                    read_timeout_seconds=timedelta(seconds=120),
+                )
+                if result.isError:
+                    raise RuntimeError("FlashData reported a tool error.")
+                data = result.structuredContent
+                if data is None:
+                    data = json.loads(next(item.text for item in result.content if item.type == "text"))
+                print(json.dumps(data, ensure_ascii=False, indent=2))
+
+
+try:
+    asyncio.run(main())
+except Exception:
+    raise SystemExit("Request failed. Check Jobs before retrying a paid submission; no automatic retry was made.") from None
+```
+
+While `job.status` is `pending` or `processing`, read the same job again as needed. When it is `completed`, inspect `output.results[0]` for `file_url`, `file_size`, `downloaded_bytes`, `md5` and `output_format`. A private storage URL requires access through your storage provider.
+
+Downloads reserve Credits before work and settle by actual uploaded bytes. `get_pricing` with `{"source":"youtube_download"}` returns the per-TB rate; it cannot give an exact file cost from duration alone. Job reads are free. Use this for media the user is authorized to download.
+
+## Connection and errors
+
+For hosted MCP, connect `https://data.flashdata.dev/mcp` using Streamable HTTP and an `X-API-Key` header in your client's protected settings. Keep keys out of chat and committed files.
+
+Storage credentials are transmitted to FlashData to perform the upload; MCP clients may retain tool arguments in their history. Use narrowly scoped credentials, and do not print credentials or signed access tokens in the returned file summary.
+
+If a submission times out, do not resubmit automatically; it may already have been charged. Use `get_job` if an ID was returned. Without an ID, report the outcome as unknown and check Jobs in the FlashData console; `get_job` cannot look up a job without its ID. A failed or pending job is not a completed upload. For a chunked MCP response, use `get_result` with the returned `result_id` and `next_offset` as `offset`, then join the text chunks before parsing. The Python example prints the MCP response; if it contains chunks, retrieve them using the same MCP connection before closing it.
