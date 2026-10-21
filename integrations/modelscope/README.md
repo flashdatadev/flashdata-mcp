@@ -4,6 +4,8 @@ These 15 skill folders adapt the existing task skills for ModelScope Skills Cent
 
 This directory is publishing source, not evidence that a ModelScope listing is public. ModelScope Skills Center and its MCP Plaza are separate publication surfaces.
 
+Public website links use `/zh` so visitors start in Chinese. The website remembers this language for authentication and console pages. Keep tracking parameters and API URLs unchanged, and sync the existing platform objects after a source update.
+
 Update the localized metadata in `catalog.json`, then run:
 
 ```sh

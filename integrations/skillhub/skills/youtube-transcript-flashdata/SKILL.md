@@ -2,7 +2,7 @@
 name: youtube-transcript-flashdata
 slug: youtube-transcript-flashdata
 displayName: "YouTube 字幕转录文本 - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "读取已有 YouTube 字幕及时间戳，默认选择自动字幕；用于带时间引用的摘要与资料检索。不执行语音识别，也不翻译缺失语言。 需配置FlashData API Key，数据调用消耗付费Credits。"
 description: "读取已有 YouTube 字幕及时间戳，默认选择自动字幕；用于带时间引用的摘要与资料检索。不执行语音识别，也不翻译缺失语言。 需配置FlashData API Key，数据调用消耗付费Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 读取已有 YouTube 字幕及时间戳，默认选择自动字幕；用于带时间引用的摘要与资料检索。不执行语音识别，也不翻译缺失语言。 需配置FlashData API Key，数据调用消耗付费Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/youtube_transcript?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Retrieve a YouTube transcript with full text and timestamped segments. Summarize a talk, find a passage, quote a video with a time link, or save its available subtitles for later analysis.
 
-[Documentation](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/youtube_transcript?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio

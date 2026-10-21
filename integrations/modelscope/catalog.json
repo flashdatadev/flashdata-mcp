@@ -12,7 +12,7 @@
       "license": "MIT",
       "source_directory": "skills/google-search",
       "directory": "integrations/modelscope/skills/google-search",
-      "homepage": "https://flashdata.dev/docs/sources/google_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/google_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -29,7 +29,7 @@
       "license": "MIT",
       "source_directory": "skills/google-news",
       "directory": "integrations/modelscope/skills/google-news",
-      "homepage": "https://flashdata.dev/docs/sources/google_news?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/google_news?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -46,7 +46,7 @@
       "license": "MIT",
       "source_directory": "skills/google-image-search",
       "directory": "integrations/modelscope/skills/google-image-search",
-      "homepage": "https://flashdata.dev/docs/sources/google_images?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/google_images?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -63,7 +63,7 @@
       "license": "MIT",
       "source_directory": "skills/google-shopping",
       "directory": "integrations/modelscope/skills/google-shopping",
-      "homepage": "https://flashdata.dev/docs/sources/google_shopping?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/google_shopping?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -80,7 +80,7 @@
       "license": "MIT",
       "source_directory": "skills/google-video-search",
       "directory": "integrations/modelscope/skills/google-video-search",
-      "homepage": "https://flashdata.dev/docs/sources/google_videos?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/google_videos?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -97,7 +97,7 @@
       "license": "MIT",
       "source_directory": "skills/google-places",
       "directory": "integrations/modelscope/skills/google-places",
-      "homepage": "https://flashdata.dev/docs/sources/google_places?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/google_places?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -114,7 +114,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-search",
       "directory": "integrations/modelscope/skills/youtube-search",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -131,7 +131,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-extended-search",
       "directory": "integrations/modelscope/skills/youtube-extended-search",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_search_extended?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -148,7 +148,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-metadata",
       "directory": "integrations/modelscope/skills/youtube-metadata",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_metadata?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_metadata?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -165,7 +165,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-transcript",
       "directory": "integrations/modelscope/skills/youtube-transcript",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_transcript?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_transcript?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -182,7 +182,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-captions",
       "directory": "integrations/modelscope/skills/youtube-captions",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_captions?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_captions?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -199,7 +199,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-license-check",
       "directory": "integrations/modelscope/skills/youtube-license-check",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_trainability?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -216,7 +216,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-channel",
       "directory": "integrations/modelscope/skills/youtube-channel",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_channel?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_channel?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -233,7 +233,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-autocomplete",
       "directory": "integrations/modelscope/skills/youtube-autocomplete",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_suggestions?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",
@@ -250,7 +250,7 @@
       "license": "MIT",
       "source_directory": "skills/youtube-download",
       "directory": "integrations/modelscope/skills/youtube-download",
-      "homepage": "https://flashdata.dev/docs/sources/youtube_download?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task",
+      "homepage": "https://flashdata.dev/zh/docs/sources/youtube_download?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task",
       "runtime": "Python >=3.10",
       "python_dependencies": [
         "mcp==1.30.0",

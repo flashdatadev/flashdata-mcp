@@ -2,7 +2,7 @@
 name: youtube-channel-flashdata
 slug: youtube-channel-flashdata
 displayName: "YouTube 频道资料 - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "按频道handle读取资料与近期视频，最多请求100条近期视频；用于频道研究及有日期的视频清单。不代表完整频道归档。 需配置FlashData API Key，数据调用消耗付费Credits。"
 description: "按频道handle读取资料与近期视频，最多请求100条近期视频；用于频道研究及有日期的视频清单。不代表完整频道归档。 需配置FlashData API Key，数据调用消耗付费Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 按频道handle读取资料与近期视频，最多请求100条近期视频；用于频道研究及有日期的视频清单。不代表完整频道归档。 需配置FlashData API Key，数据调用消耗付费Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/youtube_channel?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/youtube_channel?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Get a YouTube channel’s profile and recent videos from its @handle. Return the channel name, description, available subscriber count and video list, including titles, IDs, durations and available view counts.
 
-[Documentation](https://flashdata.dev/docs/sources/youtube_channel?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/youtube_channel?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio

@@ -2,7 +2,7 @@
 name: google-search-flashdata
 slug: google-search-flashdata
 displayName: "谷歌搜索 Google Search - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "使用谷歌搜索（Google Search）检索网页，获取标题、链接、摘要和排名；适用于海外资料研究、网站定向搜索、PDF报告与官方文档查找。需要用户自己的 FlashData API Key；数据查询消耗付费 Credits，搜索摘要不等于网页全文。"
 description: "使用谷歌搜索（Google Search）检索网页，获取标题、链接、摘要和排名；适用于海外资料研究、网站定向搜索、PDF报告与官方文档查找。需要用户自己的 FlashData API Key；数据查询消耗付费 Credits，搜索摘要不等于网页全文。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 使用谷歌搜索（Google Search）检索网页，获取标题、链接、摘要和排名；适用于海外资料研究、网站定向搜索、PDF报告与官方文档查找。需要用户自己的 FlashData API Key；数据查询消耗付费 Credits，搜索摘要不等于网页全文。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/google_search?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/google_search?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Search Google from your agent or terminal and get titles, URLs, snippets and result positions as JSON. Search a specific website, find documents, choose a country and language, or fetch another results page with the same tool.
 
-[Documentation](https://flashdata.dev/docs/sources/google_search?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/google_search?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio
