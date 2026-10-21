@@ -2,7 +2,7 @@
 name: youtube-download-flashdata
 slug: youtube-download-flashdata
 displayName: "YouTube 下载到云存储 - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "将 YouTube 视频、音频或片段异步交付至用户自有云存储，提交后按job ID读取状态与交付清单；按实际交付量计费。需确认下载权限、存储目标和预算。 需配置FlashData API Key，数据调用消耗付费Credits。"
 description: "将 YouTube 视频、音频或片段异步交付至用户自有云存储，提交后按job ID读取状态与交付清单；按实际交付量计费。需确认下载权限、存储目标和预算。 需配置FlashData API Key，数据调用消耗付费Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 将 YouTube 视频、音频或片段异步交付至用户自有云存储，提交后按job ID读取状态与交付清单；按实际交付量计费。需确认下载权限、存储目标和预算。 需配置FlashData API Key，数据调用消耗付费Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/youtube_download?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/youtube_download?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -37,7 +37,7 @@ metadata:
 
 Send a YouTube video, audio track or selected clip directly to your own cloud storage. Choose the media type, format and quality, then use the returned job ID to retrieve the completed file location and size.
 
-[Documentation](https://flashdata.dev/docs/sources/youtube_download?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/youtube_download?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -53,7 +53,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 Set `FLASHDATA_STORAGE_FILE` to a private JSON file containing your destination configuration; [storage setup](references/storage.md) shows its fields. This example delivers the first 10 seconds as MP4. Replace the video and clip bounds for the user’s request. The file is read locally and its credentials are sent to FlashData for the upload, but are not printed.
 
@@ -111,7 +111,7 @@ except Exception:
     raise SystemExit("Request failed. Check Jobs before retrying a paid submission; no automatic retry was made.") from None
 ```
 
-With [FlashData MCP](https://flashdata.dev/mcp), call `youtube_download` using the same fields and a `storage` object from the user's protected configuration.
+With [FlashData MCP](https://flashdata.dev/zh/mcp), call `youtube_download` using the same fields and a `storage` object from the user's protected configuration.
 
 ## Choose the media
 

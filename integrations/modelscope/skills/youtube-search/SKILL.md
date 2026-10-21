@@ -10,7 +10,7 @@ metadata:
 
 按关键词和日期、时长等条件搜索 YouTube，返回视频ID、频道与可用统计；标准搜索最多请求20条，实际可能更少。 需配置FlashData API Key，数据调用消耗付费Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/youtube_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/youtube_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -31,7 +31,7 @@ metadata:
 
 Find YouTube videos by keyword and narrow the results by upload date, duration, subtitles or other filters. Get video IDs, titles, channels and available view counts as JSON for research, recommendations or an application.
 
-[Documentation](https://flashdata.dev/docs/sources/youtube_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/youtube_search?utm_source=modelscope&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -47,7 +47,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio

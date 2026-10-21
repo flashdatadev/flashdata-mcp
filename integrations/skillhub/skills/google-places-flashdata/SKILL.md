@@ -2,7 +2,7 @@
 name: google-places-flashdata
 slug: google-places-flashdata
 displayName: "谷歌地点搜索 Google Places - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "使用谷歌地点搜索（Google Places），按关键词和城市查询地点结果，返回名称、地址及可用评分，用于地点与商家信息整理。返回字段可能不完整。需要 FlashData API Key，数据查询消耗付费 Credits。"
 description: "使用谷歌地点搜索（Google Places），按关键词和城市查询地点结果，返回名称、地址及可用评分，用于地点与商家信息整理。返回字段可能不完整。需要 FlashData API Key，数据查询消耗付费 Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 使用谷歌地点搜索（Google Places），按关键词和城市查询地点结果，返回名称、地址及可用评分，用于地点与商家信息整理。返回字段可能不完整。需要 FlashData API Key，数据查询消耗付费 Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/google_places?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/google_places?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Find local businesses by category and location. Get business names, addresses and available ratings or review counts for a local search, comparison table or business list.
 
-[Documentation](https://flashdata.dev/docs/sources/google_places?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/google_places?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio

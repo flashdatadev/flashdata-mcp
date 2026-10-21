@@ -2,7 +2,7 @@
 name: google-news-flashdata
 slug: google-news-flashdata
 displayName: "谷歌新闻搜索 Google News - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "使用谷歌新闻搜索（Google News）检索新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 description: "使用谷歌新闻搜索（Google News）检索新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。需配置 FlashData API Key，数据调用消耗付费 Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 使用谷歌新闻搜索（Google News）检索新闻标题、发布者、日期标签和来源链接；用于行业新闻研究与有出处的简报。不提供文章全文。需配置 FlashData API Key，数据调用消耗付费 Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/google_news?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/google_news?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Find news coverage of a topic, company or event and get headlines, publisher names, links and publication labels as JSON. Use the results for a quick briefing, a source list or a news digest.
 
-[Documentation](https://flashdata.dev/docs/sources/google_news?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/google_news?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio

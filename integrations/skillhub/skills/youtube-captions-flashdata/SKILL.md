@@ -2,7 +2,7 @@
 name: youtube-captions-flashdata
 slug: youtube-captions-flashdata
 displayName: "YouTube 上传者字幕 - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "读取指定语言的 YouTube 上传者字幕，默认选择人工字幕；可在本地将时间段转换为SRT或WebVTT。不生成字幕、不自动回退或翻译。 需配置FlashData API Key，数据调用消耗付费Credits。"
 description: "读取指定语言的 YouTube 上传者字幕，默认选择人工字幕；可在本地将时间段转换为SRT或WebVTT。不生成字幕、不自动回退或翻译。 需配置FlashData API Key，数据调用消耗付费Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 读取指定语言的 YouTube 上传者字幕，默认选择人工字幕；可在本地将时间段转换为SRT或WebVTT。不生成字幕、不自动回退或翻译。 需配置FlashData API Key，数据调用消耗付费Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/youtube_captions?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/youtube_captions?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Get an existing YouTube caption track in the language you choose, with text and start/end times. This tool selects uploader-provided captions by default and can supply the segments for a text, SRT or WebVTT export.
 
-[Documentation](https://flashdata.dev/docs/sources/youtube_captions?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/youtube_captions?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio

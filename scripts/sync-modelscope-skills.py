@@ -13,11 +13,13 @@ for skill in catalog['skills']:
     _, frontmatter, body = original.split('---', 2)
     frontmatter = re.sub(r'^description: .*$', 'description: ' + json.dumps(skill['description'], ensure_ascii=False), frontmatter, flags=re.M)
     body = body.replace('utm_source=skills-sh', 'utm_source=modelscope')
+    for path in ('docs', 'pricing', 'mcp'):
+        body = body.replace(f'https://flashdata.dev/{path}', f'https://flashdata.dev/zh/{path}')
     intro = f"""# {skill['display_name']}
 
 {skill['description']}
 
-[功能文档与官网]({skill['homepage']}) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网]({skill['homepage']}) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 

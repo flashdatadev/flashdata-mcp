@@ -2,7 +2,7 @@
 name: youtube-license-check-flashdata
 slug: youtube-license-check-flashdata
 displayName: "YouTube 许可标签检查 - FlashData"
-version: 1.0.0
+version: 1.0.1
 summary: "检查 YouTube 视频元数据中的 Creative Commons 标签；用于记录许可分类。该结果不代表训练、下载或再发布授权。 需配置FlashData API Key，数据调用消耗付费Credits。"
 description: "检查 YouTube 视频元数据中的 Creative Commons 标签；用于记录许可分类。该结果不代表训练、下载或再发布授权。 需配置FlashData API Key，数据调用消耗付费Credits。"
 license: MIT
@@ -14,7 +14,7 @@ metadata:
 
 检查 YouTube 视频元数据中的 Creative Commons 标签；用于记录许可分类。该结果不代表训练、下载或再发布授权。 需配置FlashData API Key，数据调用消耗付费Credits。
 
-[功能文档与官网](https://flashdata.dev/docs/sources/youtube_trainability?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/pricing)
+[功能文档与官网](https://flashdata.dev/zh/docs/sources/youtube_trainability?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task) · [获取 API Key](https://flashdata.dev/app/api-keys) · [当前价格](https://flashdata.dev/zh/pricing)
 
 ## 在支持 Skills 的 Agent 中使用
 
@@ -35,7 +35,7 @@ metadata:
 
 Check whether a YouTube video is classified as carrying a Creative Commons license. Get a small JSON result that you can attach to a video record or use as one input to a rights review.
 
-[Documentation](https://flashdata.dev/docs/sources/youtube_trainability?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task) · [Get an API key](https://flashdata.dev/app/api-keys)
+[Documentation](https://flashdata.dev/zh/docs/sources/youtube_trainability?utm_source=skillhub&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task) · [Get an API key](https://flashdata.dev/app/api-keys)
 
 ## Example requests
 
@@ -51,7 +51,7 @@ Use Python 3.10+ and a [FlashData API key](https://flashdata.dev/app/api-keys) s
 python3 -m pip install 'mcp==1.30.0' 'httpx==0.28.1'
 ```
 
-Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
+Save the following code as `example.py` and run `python3 example.py`. It connects to hosted [FlashData MCP](https://flashdata.dev/zh/mcp) and sends one request. Data calls use paid [FlashData Credits](https://flashdata.dev/zh/pricing); installing the dependencies is free. Run only within the user's authorized task and budget.
 
 ```python
 import asyncio
