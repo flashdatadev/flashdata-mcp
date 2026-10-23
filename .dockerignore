@@ -1,0 +1,12 @@
+**
+!Dockerfile
+!.dockerignore
+!package.json
+!package-lock.json
+!LICENSE
+!SECURITY.md
+!THIRD_PARTY_NOTICES.md
+!src/
+!src/**
+!docker/
+!docker/task-server.cjs
