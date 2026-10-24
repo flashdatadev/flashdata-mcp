@@ -17,7 +17,7 @@ FlashData also has OAuth endpoints, but a client requires a registered client ID
 ## Local stdio alternative
 
 The source repository includes a local MCP implementation:
-<https://github.com/rocosen/flashdata-mcp#run-locally>.
+<https://github.com/flashdatadev/flashdata-mcp#run-locally>.
 
 It requires Node.js 22.18 or newer. After the user authorizes installation, follow that repository's current setup instructions: install its dependencies with `npm ci`, configure `FLASHDATA_API_KEY` in the client's protected environment, and run `node` with the absolute path to `bin/flashdata-mcp.js`.
 

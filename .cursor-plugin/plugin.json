@@ -8,7 +8,7 @@
     "email": "support@flashdata.dev"
   },
   "homepage": "https://flashdata.dev/mcp",
-  "repository": "https://github.com/rocosen/flashdata-mcp",
+  "repository": "https://github.com/flashdatadev/flashdata-mcp",
   "license": "MIT",
   "keywords": ["flashdata", "research", "search", "youtube", "transcripts", "mcp"],
   "logo": "assets/logo.svg",

@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '..');
 const packed = JSON.parse(runNpm(['pack', '--dry-run', '--json', '--ignore-scripts'], {
   cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
 }))[0];
-const required = ['package.json', 'LICENSE', 'README.md', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md', 'bin/flashdata-mcp.js', 'bin/flashdata.js', 'src/index.js'];
+const required = ['package.json', 'LICENSE', 'README.md', 'README.zh-CN.md', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md', 'bin/flashdata-mcp.js', 'bin/flashdata.js', 'src/index.js'];
 const files = packed.files.map(file => file.path);
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 for (const target of [manifest.main, ...Object.values(manifest.bin), ...Object.values(manifest.exports)]) {
