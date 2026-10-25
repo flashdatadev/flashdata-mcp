@@ -257,25 +257,24 @@ You can also install the reviewed artifact with `npm install /absolute/path/flas
 
 ## Agent CLI
 
-The commands below pin the currently published **0.2.0** package (JSON MCP text).
-For the **0.3.0** Markdown behavior described above, run this source checkout or
-install its reviewed `flashdata-dev-mcp-0.3.0.tgz` artifact until 0.3.0 is published.
+Version **0.3.0** defaults to Markdown in MCP clients. The single-call CLI keeps
+its JSON default; pass `response_format` to choose Markdown or plain text.
 
 The package also provides `flashdata`, a single-call JSON CLI. It shares the MCP schemas, source permissions and API clients. Run `node bin/flashdata.js` in a source checkout, or install the npm package:
 
 ```sh
-npm install --global @flashdata-dev/mcp@0.2.0
+npm install --global @flashdata-dev/mcp@0.3.0
 flashdata --help
 ```
 
 Without a global installation, select the executable explicitly:
 
 ```sh
-npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata tools
-npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata call get_pricing
+npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata tools
+npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata call get_pricing
 ```
 
-For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.2.0", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
+For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.3.0", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
 
 Set `FLASHDATA_API_KEY` through your environment or secret manager. Do not put real keys in shell history or command arguments. Start with free discovery and pricing:
 

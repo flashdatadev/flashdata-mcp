@@ -41,7 +41,8 @@ Record the source commit, exact artifact fingerprints, public package IDs/URLs, 
 
 Only mark an individual package public after the registry, public package page and installation work. Keep incomplete search or referral acceptance open. Future automation can use a package-specific npm Trusted Publisher; another package’s publisher configuration does not authorize these packages.
 
-For 0.3.0, after successful registry verification, update the root README install
-pins from 0.2.0 to 0.3.0 and remove the source-only release note. Task package
-versions and hosted MCP rollout remain independent. Do not repoint pinned client
-integrations until the corresponding public task version has been verified.
+Before packing a release, update its README install commands to the candidate
+version so the published package includes matching instructions. Mark the release
+published only after registry verification. Task package versions and hosted MCP
+rollout remain independent. Do not repoint pinned client integrations until the
+corresponding public task version has been verified.
