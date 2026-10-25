@@ -5,7 +5,8 @@
     "query": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 2000
+      "maxLength": 2000,
+      "description": "Search text to send to this data source."
     },
     "gl": {
       "type": "string",
@@ -24,7 +25,8 @@
     "location": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 200
+      "maxLength": 200,
+      "description": "Location used to localize Google search results."
     },
     "num": {
       "type": "integer",
@@ -41,10 +43,12 @@
     "tbs": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 200
+      "maxLength": 200,
+      "description": "Google search filter expression, such as a time-range filter."
     },
     "autocorrect": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether Google may automatically correct the search query."
     },
     "mode": {
       "type": "string",
@@ -52,7 +56,8 @@
         "realtime",
         "async"
       ],
-      "default": "realtime"
+      "default": "realtime",
+      "description": "realtime waits for data; async returns a job ID to poll with get_job. Does not change query billing."
     }
   },
   "required": [

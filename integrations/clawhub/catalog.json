@@ -5,7 +5,7 @@
       "source": "google_search",
       "slug": "google-search-flashdata",
       "displayName": "Google Search — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/google-search-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -28,7 +28,7 @@
       "source": "google_news",
       "slug": "google-news-flashdata",
       "displayName": "Google News — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/google-news-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -51,7 +51,7 @@
       "source": "google_images",
       "slug": "google-image-search-flashdata",
       "displayName": "Google Images — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/google-image-search-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -74,7 +74,7 @@
       "source": "google_shopping",
       "slug": "google-shopping-flashdata",
       "displayName": "Google Shopping — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/google-shopping-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -97,7 +97,7 @@
       "source": "google_videos",
       "slug": "google-video-search-flashdata",
       "displayName": "Google Video Search — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/google-video-search-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -120,7 +120,7 @@
       "source": "google_places",
       "slug": "google-places-flashdata",
       "displayName": "Google Places — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/google-places-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -143,7 +143,7 @@
       "source": "youtube_search",
       "slug": "youtube-search-flashdata",
       "displayName": "YouTube Search — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-search-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -166,7 +166,7 @@
       "source": "youtube_search_extended",
       "slug": "youtube-extended-search-flashdata",
       "displayName": "YouTube Extended Search — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-extended-search-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -189,7 +189,7 @@
       "source": "youtube_metadata",
       "slug": "youtube-metadata-flashdata",
       "displayName": "YouTube Metadata — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-metadata-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -212,7 +212,7 @@
       "source": "youtube_transcript",
       "slug": "youtube-transcript-flashdata",
       "displayName": "YouTube Transcript — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-transcript-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -235,7 +235,7 @@
       "source": "youtube_captions",
       "slug": "youtube-captions-flashdata",
       "displayName": "YouTube Captions — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-captions-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -258,7 +258,7 @@
       "source": "youtube_trainability",
       "slug": "youtube-license-check-flashdata",
       "displayName": "YouTube Creative Commons License Metadata — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-license-check-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -281,7 +281,7 @@
       "source": "youtube_channel",
       "slug": "youtube-channel-flashdata",
       "displayName": "YouTube Channel Data — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-channel-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -304,7 +304,7 @@
       "source": "youtube_suggestions",
       "slug": "youtube-autocomplete-flashdata",
       "displayName": "YouTube Autocomplete — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-autocomplete-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [
@@ -327,7 +327,7 @@
       "source": "youtube_download",
       "slug": "youtube-download-flashdata",
       "displayName": "YouTube Download to Cloud Storage — FlashData",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "directory": "integrations/clawhub/skills/youtube-download-flashdata",
       "runtime": "Python >=3.10",
       "pythonDependencies": [

@@ -14,7 +14,8 @@ Optional: FLASHDATA_DATA_API_URL, FLASHDATA_MANAGEMENT_API_URL,
 FLASHDATA_REQUEST_TIMEOUT_MS. Use --help on flashdata-mcp for stdio MCP.
 
 tools and call write one JSON object to stdout: { ok, result }.
-Call results also include tool. Local failures use { ok: false, error }.
+Call results also include tool. JSON is the default; response_format=markdown or text
+returns a document string in result, within the same JSON wrapper. Local failures use { ok: false, error }.
 Exit 0 means success; exit 1 means a tool/API error; exit 2 means invalid local input.
 Async submissions return a job id; call get_job to read status and results.
 Pending jobs are successful reads, not completed work. Large results are returned whole.
@@ -64,7 +65,8 @@ async function main({ name, version, taskSource }, args) {
   const tools = createLocalTools(config, { taskSource });
   if (listing) return process.stdout.write(`${JSON.stringify({ ok: true, result: await tools.list() })}\n`);
   const result = await tools.call({ name: args[1], arguments: input });
-  process.stdout.write(`${JSON.stringify({ ok: !result.isError, tool: args[1], result: result.structuredContent })}\n`);
+  process.stdout.write(`${JSON.stringify({ ok: !result.isError, tool: args[1], result: !result.isError && input.response_format && input.response_format !== 'json'
+    ? result.content.map(item => item.text || '').join('') : result.structuredContent })}\n`);
   if (result.isError) process.exitCode = 1;
 }
 

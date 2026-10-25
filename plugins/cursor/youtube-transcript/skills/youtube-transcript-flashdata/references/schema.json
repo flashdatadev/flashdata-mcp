@@ -6,14 +6,16 @@
       "type": "string",
       "minLength": 11,
       "maxLength": 11,
-      "pattern": "^[A-Za-z0-9_-]{11}$"
+      "pattern": "^[A-Za-z0-9_-]{11}$",
+      "description": "The 11-character YouTube video ID, not the full video URL."
     },
     "language": {
       "type": "string",
       "minLength": 1,
       "maxLength": 35,
       "pattern": "^[A-Za-z0-9-]+$",
-      "default": "en"
+      "default": "en",
+      "description": "Requested language code. Captions must exist in this language."
     },
     "auto": {
       "type": "boolean",
@@ -26,7 +28,8 @@
         "realtime",
         "async"
       ],
-      "default": "realtime"
+      "default": "realtime",
+      "description": "realtime waits for data; async returns a job ID to poll with get_job. Does not change query billing."
     }
   },
   "required": [

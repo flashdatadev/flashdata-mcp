@@ -31,8 +31,8 @@ npx --yes @flashdata-dev/google-news@0.1.0 --help
 For the combined package, explicitly choose one of its two bins:
 
 ```sh
-npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata --version
-npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata-mcp --version
+npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata --version
+npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata-mcp --version
 ```
 
 With a protected test key, run task `tools` and `call get_pricing`. These reads are free. Never embed the key in a command argument, tarball, log or release note. Tests of paid operations need an explicit budget; a timed-out query must not be automatically retried. Download tests must not write to real storage without authorization.
@@ -40,3 +40,8 @@ With a protected test key, run task `tools` and `call get_pricing`. These reads 
 Record the source commit, exact artifact fingerprints, public package IDs/URLs, installed version checks and free-read evidence. Read all 15 public npm pages and their README/homepage links. Test at least the primary and alias query for each task under recorded, comparable conditions. npm website search, npm CLI/registry search and external search are different surfaces; local tool discovery proves no public ranking. Publication, README synchronization, search discovery, website referral and actual conversion are separate milestones.
 
 Only mark an individual package public after the registry, public package page and installation work. Keep incomplete search or referral acceptance open. Future automation can use a package-specific npm Trusted Publisher; another package’s publisher configuration does not authorize these packages.
+
+For 0.3.0, after successful registry verification, update the root README install
+pins from 0.2.0 to 0.3.0 and remove the source-only release note. Task package
+versions and hosted MCP rollout remain independent. Do not repoint pinned client
+integrations until the corresponding public task version has been verified.

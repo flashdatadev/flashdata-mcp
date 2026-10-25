@@ -13,7 +13,7 @@ function listTaskTools(source, scopes = [source]) {
       if (tool.name === 'get_pricing') return { ...tool,
         description: `Read current pricing for ${source} only. Omitted source defaults to ${source}. Free; does not submit a query. ${source === 'youtube_download' ? 'Downloads are priced by delivered bytes; request_count does not estimate download cost.' : 'request_count estimates the cost of that many queries, not that many returned records.'}`,
         inputSchema: { ...tool.inputSchema, properties: { ...tool.inputSchema.properties,
-          source: { type: 'string', enum: [source], default: source },
+          source: { ...tool.inputSchema.properties.source, enum: [source], default: source },
         } },
       };
       if (tool.name === 'get_job') return { ...tool,

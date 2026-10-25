@@ -5,7 +5,7 @@ import asyncio
 import json
 import os
 import sys
-from datetime import timedelta
+from mcp_response import call_complete
 from pathlib import Path
 
 import httpx
@@ -23,15 +23,7 @@ async def call_tool(request, api_key, *, transport=None):
         async with streamable_http_client(ENDPOINT, http_client=http) as (read, write, _):
             async with ClientSession(read, write) as session:
                 await session.initialize()
-                result = await session.call_tool(
-                    request["name"], arguments=request["arguments"],
-                    read_timeout_seconds=timedelta(seconds=120),
-                )
-                if result.isError:
-                    raise RuntimeError("MCP tool reported an error.")
-                if result.structuredContent is not None:
-                    return result.structuredContent
-                return json.loads(next(item.text for item in result.content if item.type == "text"))
+                return await call_complete(session, request["name"], request["arguments"])
 
 
 def main():

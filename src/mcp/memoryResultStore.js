@@ -11,13 +11,14 @@ function createMemoryResultStore({ clock = Date.now } = {}) {
     }
   }
   return {
-    async save(identity, body, scopes) {
-      const json = JSON.stringify(body);
+    async save(identity, body, scopes, { encoding = 'json', text = JSON.stringify(body) } = {}) {
+      if (!['json', 'markdown', 'text'].includes(encoding) || typeof text !== 'string') throw new TypeError('Invalid presentation');
+      const json = text;
       if (Buffer.byteLength(json) > MAX_RESPONSE_BYTES) throw new Error('Result too large');
       prune();
       while (records.size >= MAX_RESULTS) records.delete(records.keys().next().value);
       const now = clock();
-      const record = { id: `result_${now}_${randomUUID()}`, json, scopes: [...scopes],
+      const record = { id: `result_${now}_${randomUUID()}`, json, encoding, scopes: [...scopes],
         accountId: identity.accountId, apiKeyId: identity.apiKeyId,
         expiresAt: now + RESULT_TTL_SECONDS * 1000 };
       records.set(record.id, record);

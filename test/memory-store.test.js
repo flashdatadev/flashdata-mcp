@@ -3,6 +3,20 @@ const assert = require('node:assert/strict');
 const { createMemoryResultStore } = require('../src/mcp/memoryResultStore');
 const { RESULT_TTL_SECONDS } = require('../src/mcp/resultChunks');
 
+test('chunks never split a Unicode surrogate pair, even at the default boundary', async () => {
+  const store = createMemoryResultStore();
+  const identity = { accountId: 'a', apiKeyId: 'k', scopes: [] };
+  const text = 'x'.repeat(15999) + '😀end';
+  const first = await store.save(identity, {}, [], { encoding: 'markdown', text });
+  assert.equal(first.next_offset, 15999);
+  assert.equal(first.chunk, 'x'.repeat(15999));
+  const last = await store.read(identity, first.result_id, first.next_offset);
+  assert.equal(last.chunk, '😀end');
+  assert.equal(last.next_offset, null);
+  assert.equal(await store.read(identity, first.result_id, 16000), null);
+  assert.equal(await store.read(identity, first.result_id, 15999, 1), null);
+});
+
 test('Unicode chunks reassemble JSON without rerunning a query; invalid offsets are rejected', async () => {
   const store = createMemoryResultStore();
   const identity = { accountId: 'a', apiKeyId: 'k', scopes: ['youtube_transcript'] };

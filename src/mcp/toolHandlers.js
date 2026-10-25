@@ -2,9 +2,12 @@ const { randomUUID } = require('node:crypto');
 const { listTools, queryPayload, validateTool } = require('./toolCatalog');
 const { CHUNK_CHARACTERS, ACCOUNT_READ_TOOLS } = require('./resultChunks');
 const { assertTaskSource, listTaskTools } = require('./taskTools');
+const { present } = require('./presentation');
 
-function toolResult(body, isError = false) {
-  return { content: [{ type: 'text', text: JSON.stringify(body) }], structuredContent: body, isError };
+function toolResult(body, isError = false, format = 'json') {
+  const text = body.result_id && typeof body.chunk === 'string' && body.encoding !== 'json'
+    ? body.chunk : present(body, format);
+  return { content: [{ type: 'text', text }], structuredContent: body, isError };
 }
 
 function createToolHandlers({ identity: fixedIdentity, getIdentity = async () => fixedIdentity, secret,
@@ -14,7 +17,11 @@ function createToolHandlers({ identity: fixedIdentity, getIdentity = async () =>
   async function list() {
     const scopes = (await getIdentity()).scopes;
     const tools = taskSource ? listTaskTools(taskSource, scopes) : listTools(scopes);
-    return { tools: chunkResults ? tools : tools.filter(tool => tool.name !== 'get_result') };
+    return { tools: chunkResults ? tools : tools.filter(tool => tool.name !== 'get_result').map(tool => ({
+      ...tool, inputSchema: { ...tool.inputSchema, properties: { ...tool.inputSchema.properties,
+        response_format: { ...tool.inputSchema.properties.response_format, default: 'json' },
+      } },
+    })) };
   }
   async function call({ name, arguments: args = {} }) {
     if (!chunkResults && name === 'get_result') {
@@ -28,6 +35,9 @@ function createToolHandlers({ identity: fixedIdentity, getIdentity = async () =>
     const requestId = fixedRequestId || `req_${randomUUID()}`;
     const invalid = validateTool(name, args);
     if (invalid) return toolResult(invalid, true);
+    const { response_format: selectedFormat, ...apiArgs } = args;
+    let format = selectedFormat || (chunkResults ? 'markdown' : 'json');
+    args = apiArgs;
     if (taskSource && name === 'get_pricing' && args.source === undefined) args = { ...args, source: taskSource };
     const scopes = name === 'submit_batch' ? [...new Set(args.queries.map((item) => item.source))]
       : ['get_pricing', 'get_usage'].includes(name) ? (args.source ? [args.source] : [])
@@ -59,14 +69,16 @@ function createToolHandlers({ identity: fixedIdentity, getIdentity = async () =>
       response = await dataApi.request({ ...request, secret, requestId });
     }
     const isError = response.status >= 300 || response.body.status === 'failed' || response.body.job?.status === 'failed';
+    if (isError) format = 'json';
     const body = { ...response.body, http_status: response.status, request_id: requestId };
-    if (!chunkResults || ACCOUNT_READ_TOOLS.includes(name) || name === 'get_usage') return toolResult(body, isError);
-    if (JSON.stringify(body).length <= CHUNK_CHARACTERS) return toolResult(body, isError);
+    if (!chunkResults || ACCOUNT_READ_TOOLS.includes(name) || name === 'get_usage') return toolResult(body, isError, format);
+    const text = present(body, format);
+    if (Math.max(text.length, JSON.stringify(body).length) <= CHUNK_CHARACTERS) return toolResult(body, isError, format);
     try {
       const resultScopes = name === 'get_job' && response.body.job?.source ? [response.body.job.source] : scopes;
-      const chunk = await resultStore.save(identity, body, resultScopes);
+      const chunk = await resultStore.save(identity, body, resultScopes, { encoding: format, text });
       return toolResult({ ...chunk, http_status: response.status, request_id: requestId, usage: body.usage,
-        message: 'Large response. Use get_result with result_id and next_offset to read the remaining JSON. Do not repeat the paid query.' }, isError);
+        message: 'Large response. Use get_result with result_id and next_offset until next_offset is null. Join chunks in order; parse only encoding=json. Do not repeat the paid query.' }, isError);
     } catch {
       return toolResult({ code: 'result_delivery_failed', http_status: response.status, request_id: requestId,
         job_id: body.id || body.job?.id, usage: body.usage || (body.job ? { credits: body.job.credits } : undefined),

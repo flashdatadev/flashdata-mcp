@@ -5,21 +5,24 @@
     "query": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 2000
+      "maxLength": 2000,
+      "description": "Search text to send to this data source."
     },
     "language": {
       "type": "string",
       "minLength": 1,
       "maxLength": 35,
       "pattern": "^[A-Za-z0-9-]+$",
-      "default": "en"
+      "default": "en",
+      "description": "Language code for YouTube autocomplete suggestions."
     },
     "region": {
       "type": "string",
       "minLength": 2,
       "maxLength": 2,
       "default": "US",
-      "pattern": "^[A-Za-z]{2}$"
+      "pattern": "^[A-Za-z]{2}$",
+      "description": "Two-letter region code for YouTube suggestions."
     },
     "mode": {
       "type": "string",
@@ -27,7 +30,8 @@
         "realtime",
         "async"
       ],
-      "default": "realtime"
+      "default": "realtime",
+      "description": "realtime waits for data; async returns a job ID to poll with get_job. Does not change query billing."
     }
   },
   "required": [

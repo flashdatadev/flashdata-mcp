@@ -38,6 +38,13 @@ Task CLIs expose their data source, `get_pricing` and `get_job`. MCP adds `get_r
 
 The existing [`@flashdata-dev/mcp`](https://www.npmjs.com/package/@flashdata-dev/mcp) remains the combined CLI/MCP package for multi-capability workflows. The two package types have independent versions. npm and npx use these same packages; npx is an execution path, not another public directory.
 
+## Source release changes
+
+Task builds from this checkout target 0.2.0 and default MCP text to Markdown, with
+`response_format` options for text and JSON. The published 0.1.1 packages pinned
+above retain their existing JSON behavior. Client integration pins change only
+after a new public task release has been verified. CLI defaults stay JSON.
+
 ## Build and verify
 
 ```sh

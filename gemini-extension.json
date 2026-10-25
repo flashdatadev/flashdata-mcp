@@ -1,6 +1,6 @@
 {
   "name": "flashdata",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Source-backed web and YouTube research with FlashData MCP, transcript timestamps, and reusable research skills. API queries consume FlashData Credits.",
   "mcpServers": {
     "flashdata": {

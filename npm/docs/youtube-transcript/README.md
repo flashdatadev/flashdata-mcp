@@ -146,8 +146,17 @@ This same package starts a persistent stdio server with the `mcp` subcommand:
 
 Use `npx.cmd` on Windows if your client requires it. Enter your own key through protected client settings. The four tools are `youtube_transcript`, `get_pricing`, `get_job` and `get_result`; the source is fixed, and job reads reject jobs belonging to other sources. API key permissions are rechecked on each operation.
 
-MCP responses longer than 16,000 UTF-16 code units use `result_id`, `chunk` and `next_offset`. Read the remaining chunks with `get_result` in the same running server, concatenate them in order, then parse JSON. The process retains at most four results for ten minutes. The one-shot CLI has no `get_result` command because it returns the whole response.
+MCP responses longer than 16,000 UTF-16 code units use `result_id`, `chunk` and `next_offset`. Read the remaining chunks with `get_result` in the same running server, concatenate them in order, and parse only `encoding: "json"`. Other encodings are Markdown or plain-text documents. The process retains at most four results for ten minutes. The one-shot CLI has no `get_result` command because it returns the whole response.
 
 Optional environment settings are `FLASHDATA_REQUEST_TIMEOUT_MS` (1000–120000, default 65000), `FLASHDATA_DATA_API_URL` and `FLASHDATA_MANAGEMENT_API_URL`. Custom URLs must be trusted HTTPS origins; loopback HTTP is accepted for local tests. The package does not load `.env` files automatically.
 
 Support: [support@flashdata.dev](mailto:support@flashdata.dev) · [Source and issue tracker](https://github.com/rocosen/flashdata-mcp) · [FlashData terms](https://flashdata.dev/legal/terms) · [Privacy](https://flashdata.dev/legal/privacy). This is an independent FlashData integration, not an official Google or YouTube package.
+
+## MCP presentation
+
+Task MCP 0.2.0 source builds default to Markdown text while retaining original
+fields in `structuredContent`. Use `response_format: "text"` or `"json"` for another
+presentation; `get_result` inherits the original format. Earlier published
+versions return JSON and do not accept this argument: check the running tool
+schema before using it. CLI calls default to JSON; explicit text formats return
+a document string in the JSON `result` field. Formatting never repeats the query.

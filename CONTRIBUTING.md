@@ -14,3 +14,10 @@ Portable skills are maintained in https://github.com/flashdatadev/flashdata-skil
 When changing shared skill content, update the compatibility copies here and run
 `npm run sync:claude-plugin`. Follow RELEASING.md for package releases and
 PROVENANCE.md for repository and publisher identities.
+
+Run `python -m pip install -r registry/examples/requirements.txt pytest==8.4.2`
+and `python -m pytest -q test/test_python_channel_examples.py`. Regenerate channel
+skills with `node scripts/sync-clawhub-skills.js` and
+`python scripts/sync-modelscope-skills.py`; both accept `--check`. Preserve the
+complete `scripts/` directory in each distribution. Hosted and published task
+schemas must not advertise options unavailable in those releases.

@@ -96,7 +96,8 @@ test('stdio protocol uses REST, rechecks access, and preserves billing and resul
 
   const search = await call('google_search', { query: 'example', gl: 'us', num: 3 });
   assert.equal(search.isError, false);
-  assert.deepEqual(JSON.parse(search.content[0].text), search.structuredContent);
+  assert.match(search.content[0].text, /^# FlashData/);
+  assert.equal(search.structuredContent.results[0].title, 'Example');
   const submitted = requests.find(req => req.method === 'POST');
   assert.deepEqual(submitted.body, { source: 'google_search', query: 'example', params: { gl: 'us', num: 3 } });
   assert.equal(submitted.headers.authorization, undefined);
@@ -116,7 +117,7 @@ test('stdio protocol uses REST, rechecks access, and preserves billing and resul
   const unknown = await call('google_search', { query: 'lost-reply' });
   assert.equal(unknown.structuredContent.code, 'query_outcome_unknown');
   assert.equal(requests.filter(req => req.body?.query === 'lost-reply').length, 1);
-  const job = await call('get_job', { job_id: 'job_complete' });
+  const job = await call('get_job', { job_id: 'job_complete', response_format: 'json' });
   assert.equal(job.isError, false);
   let chunk = job.structuredContent;
   const resultId = chunk.result_id;

@@ -107,6 +107,13 @@ test('CLI discovers schemas, reads pricing, returns complete results and never r
   const search = await call('google_search', { query: 'example' });
   assert.deepEqual(search.result.results, [result]);
   assert.equal(search.result.result_id, undefined);
+  for (const format of ['markdown', 'text']) {
+    const rendered = await call('google_search', { query: `format-${format}`, response_format: format });
+    assert.equal(typeof rendered.result, 'string');
+    assert.match(rendered.result, format === 'markdown' ? /^# FlashData/ : /^Results:/);
+    assert.ok(rendered.result.includes('字幕😀'));
+    assert.deepEqual(requests.find(req => req.body?.query === `format-${format}`).body.params, {});
+  }
   assert.equal((await call('google_search', { query: 'example', mode: 'async' })).result.id, 'job_pending');
   assert.equal((await call('get_job', { job_id: 'job_pending' })).result.job.status, 'pending');
   assert.equal((await call('get_job', { job_id: 'job_failed' })).ok, false);

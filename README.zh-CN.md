@@ -56,11 +56,19 @@ npx --yes --package=@flashdata-dev/mcp@0.2.0 flashdata-mcp
 
 ```sh
 npx skills add flashdatadev/flashdata-skills --list
-npx skills add flashdatadev/flashdata-skills --skill flashdata
+npx skills add flashdatadev/flashdata-skills --skill flashdata-mcp
 npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtube-transcript
 ```
 
-官方 Skills 仓库包含 1 个通用研究技能和 15 个任务技能。当前仓库保留的技能副本用于兼容已有客户端插件。技能提供操作指导和参考资料，不包含账户凭证，也不安装 MCP 可执行文件。
+官方 Skills 仓库包含独立 CLI 技能 `flashdata`、MCP 研究技能 `flashdata-mcp` 和 15 个任务技能。本仓库只保留 MCP 相关技能。旧 MCP 研究技能用户应改用 `flashdata-mcp`；凭据和连接不变。当前仓库保留的技能副本用于兼容已有客户端插件。技能提供操作指导和参考资料，不包含账户凭证，也不安装 MCP 可执行文件。
+
+## 响应格式
+
+本地 MCP 0.3.0 默认返回 Markdown 文本，并在 `structuredContent` 中保留原始字段；大结果使用分块元数据。通过工具参数 `response_format: "text"` 或 `"json"` 可选择纯文本或 JSON，`get_result` 继承初次调用的格式。所有分块按顺序拼接后，仅在 `encoding: "json"` 时解析 JSON。错误仍返回结构化 JSON。格式转换不会重复查询或改变费用。
+
+该选项同样用于提交回执、任务及账户读取。它是 MCP 工具参数，不是 HTTP 请求头。REST、SDK 和原 npm CLI 默认仍为 JSON；npm CLI 显式选择文本时，将文档字符串放入 JSON 外层的 `result`。Python 示例供程序使用，支持时请求 JSON，并在关闭连接前读完所有分块。
+
+上面的 npm 命令目前固定到已发布的 0.2.0（MCP 文本为 JSON）；0.3.0 发布前请从当前源码运行以使用 Markdown 默认值。托管 MCP 和独立任务包单独发布，请以已连接工具的 schema 为准。
 
 ## 数据能力
 

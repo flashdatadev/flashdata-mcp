@@ -5,13 +5,15 @@
     "query": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 2000
+      "maxLength": 2000,
+      "description": "Search text to send to this data source."
     },
     "max_results": {
       "type": "integer",
       "minimum": 1,
       "maximum": 700,
-      "default": 20
+      "default": 20,
+      "description": "Maximum number of YouTube search results requested; the source-specific limit applies."
     },
     "filters": {
       "type": [
@@ -21,7 +23,8 @@
       "additionalProperties": false,
       "properties": {
         "360": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube 360-degree video filter."
         },
         "duration": {
           "type": "string",
@@ -31,7 +34,8 @@
             "<4",
             "4-20",
             ">20"
-          ]
+          ],
+          "description": "Filter by video length in minutes."
         },
         "sort_by": {
           "type": "string",
@@ -42,7 +46,8 @@
             "relevance",
             "view_count",
             "upload_date"
-          ]
+          ],
+          "description": "YouTube result ordering."
         },
         "type": {
           "type": "string",
@@ -53,7 +58,8 @@
             "channel",
             "playlist",
             "movie"
-          ]
+          ],
+          "description": "YouTube content type to include."
         },
         "upload_date": {
           "type": "string",
@@ -65,39 +71,51 @@
             "this_week",
             "this_month",
             "this_year"
-          ]
+          ],
+          "description": "Relative upload-time window."
         },
         "3d": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube 3D filter."
         },
         "4k": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube 4K filter."
         },
         "creative_commons": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the Creative Commons label filter; this does not grant usage rights."
         },
         "hd": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube HD filter."
         },
         "hdr": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube HDR filter."
         },
         "live": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube live filter."
         },
         "location": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube location-tagged content filter."
         },
         "purchased": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube purchased-content filter."
         },
         "subtitles": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube subtitles filter."
         },
         "vr180": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Apply the YouTube VR180 filter."
         }
-      }
+      },
+      "description": "YouTube search filters. Omit or use null for no filters."
     },
     "mode": {
       "type": "string",
@@ -105,7 +123,8 @@
         "realtime",
         "async"
       ],
-      "default": "realtime"
+      "default": "realtime",
+      "description": "realtime waits for data; async returns a job ID to poll with get_job. Does not change query billing."
     }
   },
   "required": [

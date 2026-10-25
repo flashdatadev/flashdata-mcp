@@ -6,15 +6,18 @@
       "type": "string",
       "minLength": 11,
       "maxLength": 11,
-      "pattern": "^[A-Za-z0-9_-]{11}$"
+      "pattern": "^[A-Za-z0-9_-]{11}$",
+      "description": "The 11-character YouTube video ID, not the full video URL."
     },
     "include_formats": {
       "type": "boolean",
-      "default": true
+      "default": true,
+      "description": "Include available media format metadata in the response; does not download media."
     },
     "include_chapters": {
       "type": "boolean",
-      "default": true
+      "default": true,
+      "description": "Include chapter metadata when available for the video."
     },
     "mode": {
       "type": "string",
@@ -22,7 +25,8 @@
         "realtime",
         "async"
       ],
-      "default": "realtime"
+      "default": "realtime",
+      "description": "realtime waits for data; async returns a job ID to poll with get_job. Does not change query billing."
     }
   },
   "required": [

@@ -13,7 +13,7 @@ claude plugin install flashdata@flashdata
 
 In an interactive Claude Code session, run `/plugin configure flashdata@flashdata` and enter your own [FlashData API key](https://flashdata.dev/app/api-keys). The plugin declares a required sensitive setting: Claude Code masks input and stores the value in its secure credential store. Do not paste your key into Agent chat or edit it into a committed file. To inspect whether configuration is set without printing the secret, run `claude plugin configure flashdata@flashdata` from your shell.
 
-Restart Claude Code after configuration. Use `/mcp` to inspect the connection, and invoke `/flashdata:flashdata` for the research Skill. If you already connected FlashData separately, keep one intended connection to avoid duplicate tools.
+Restart Claude Code after configuration. Use `/mcp` to inspect the connection, and invoke `/flashdata:flashdata-mcp` for the research Skill. If you already connected FlashData separately, keep one intended connection to avoid duplicate tools.
 
 ## Check the connection and cost
 

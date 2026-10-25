@@ -6,7 +6,8 @@
       "type": "string",
       "minLength": 11,
       "maxLength": 11,
-      "pattern": "^[A-Za-z0-9_-]{11}$"
+      "pattern": "^[A-Za-z0-9_-]{11}$",
+      "description": "The 11-character YouTube video ID, not the full video URL."
     },
     "download_type": {
       "type": "string",
@@ -17,7 +18,8 @@
         "audio_video",
         "video",
         "audio"
-      ]
+      ],
+      "description": "Download combined audio/video, video only, or audio only."
     },
     "video_quality": {
       "type": "string",
@@ -51,13 +53,15 @@
         "<=4320",
         "==4320",
         ">=4320"
-      ]
+      ],
+      "description": "Requested video height selection in pixels; availability depends on the video."
     },
     "fps": {
       "type": "string",
       "minLength": 1,
       "maxLength": 6,
-      "pattern": "^(?:>=|<=|==)(?:[1-9]\\d?|1\\d\\d|2[0-3]\\d|240)$"
+      "pattern": "^(?:>=|<=|==)(?:[1-9]\\d?|1\\d\\d|2[0-3]\\d|240)$",
+      "description": "Frame-rate selection, for example <=30 or ==60."
     },
     "audio_language": {
       "type": "string",
@@ -67,7 +71,8 @@
       "enum": [
         "default",
         "original"
-      ]
+      ],
+      "description": "Select the default audio track or the original-language track."
     },
     "audio_quality": {
       "type": "string",
@@ -80,16 +85,19 @@
         "256",
         "192",
         "128"
-      ]
+      ],
+      "description": "Best available audio or the requested audio bitrate in kbps."
     },
     "yt_dlp_format": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 1024
+      "maxLength": 1024,
+      "description": "Advanced yt-dlp format selector for the download."
     },
     "upload_metadata": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Also upload video metadata to the supplied customer storage."
     },
     "output_format": {
       "type": "string",
@@ -107,13 +115,15 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 8,
-      "pattern": "^\\d{1,2}:[0-5]\\d:[0-5]\\d$"
+      "pattern": "^\\d{1,2}:[0-5]\\d:[0-5]\\d$",
+      "description": "Start of the requested clip in HH:MM:SS."
     },
     "end_at": {
       "type": "string",
       "minLength": 1,
       "maxLength": 8,
-      "pattern": "^\\d{1,2}:[0-5]\\d:[0-5]\\d$"
+      "pattern": "^\\d{1,2}:[0-5]\\d:[0-5]\\d$",
+      "description": "End of the requested clip in HH:MM:SS; must be after start_at."
     },
     "storage": {
       "type": "object",
@@ -207,7 +217,8 @@
       "enum": [
         "async"
       ],
-      "default": "async"
+      "default": "async",
+      "description": "realtime waits for data; async returns a job ID to poll with get_job. Does not change query billing."
     }
   },
   "required": [

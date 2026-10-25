@@ -19,6 +19,8 @@ jobs:
       - run: npm run check:package
       - run: npm run check:claude-plugin
       - run: npm run check:task-integrations
+      - run: node scripts/sync-clawhub-skills.js --check
+      - run: python scripts/sync-modelscope-skills.py --check
       - run: npm run test:task-integrations
       - run: npm run test:install
       - run: npm run build:npm-tasks

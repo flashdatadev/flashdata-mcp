@@ -4,7 +4,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const target = path.join(root, 'plugins', 'claude');
 const check = process.argv.includes('--check');
-const shared = ['skills/flashdata', 'assets/logo.svg', 'LICENSE'];
+const shared = ['skills/flashdata-mcp', 'assets/logo.svg', 'LICENSE'];
 
 // The directory requires regular files contained in the plugin, not symlinks.
 function filesAt(base) {

@@ -112,7 +112,7 @@ test('all 15 fixed task servers enforce source boundaries over real stdio', asyn
       const lastPost = requests.filter(req => req.method === 'POST').at(-1);
       assert.equal(lastPost.body.source, task.source);
       if (task.source === 'youtube_download') assert.equal(lastPost.url, '/v1/queries');
-      const job = await call('get_job', { job_id: 'job_task' });
+      const job = await call('get_job', { job_id: 'job_task', response_format: 'json' });
       assert.equal(job.isError, false);
       let chunk = job.structuredContent;
       const resultId = chunk.result_id;

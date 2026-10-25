@@ -107,6 +107,10 @@ Credits; media downloads are billed by uploaded bytes. See
 
 ## Run a hosted MCP example
 
+Keep `call_tool.py` and `mcp_response.py` together. The helper requests JSON when
+the server supports it and reads all chunks in the same session before returning.
+It never repeats a paid submission; use an existing job ID after an unknown outcome.
+
 Clone this repository, use Python 3.10 or later, and install
 `python3 -m pip install -r registry/examples/requirements.txt`. Supply
 `FLASHDATA_API_KEY` through your environment or secret manager, then verify
@@ -118,8 +122,9 @@ python3 registry/examples/call_tool.py registry/examples/get_pricing.json
 
 Each guide provides a JSON request and a command using the same helper.
 Data requests are paid; pricing and account reads are free. The helper
-connects directly to the hosted endpoint and sends one tool call. It does
-not automatically retry submissions, poll jobs, or fetch additional chunks.
+connects directly to the hosted endpoint, submits the requested tool call once,
+and retrieves any remaining chunks before closing. It does not automatically
+retry submissions or poll pending jobs.
 Download examples contain placeholders: put real storage credentials in a
 protected file outside the repository, then pass that file path to the helper.
 
@@ -135,7 +140,9 @@ is in `output.results[0]`. Do not repeat the paid submission to check progress.
 For a large response, retain `result_id`, `chunk` and `next_offset`. Call
 `get_result` with `{"result_id":"RETURNED_RESULT_ID","offset":16000}`,
 replacing both values with the actual returned ID and next offset. Keep the
-same API Key, concatenate the chunks in order, and parse the completed JSON.
+same API Key and session, concatenate the chunks in order, and parse only
+`encoding: "json"`; Markdown and text encodings are complete documents. The
+Python helper does this automatically.
 The temporary cache lasts ten minutes and retains four large results. In a local
 task server this cache belongs to the running process and is cleared on restart;
 the hosted service keeps its own cache per key. Async JSON results have a separate

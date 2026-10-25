@@ -60,12 +60,12 @@ The last two commands require your API key in `FLASHDATA_API_KEY` and make only 
 
 ## Agent Skill
 
-The [FlashData Skill](https://github.com/flashdatadev/flashdata-skills/blob/main/skills/flashdata/SKILL.md) helps an agent use an existing FlashData MCP connection for source-backed web and video research. It includes recipes for video research, comparing search snapshots, and preparing knowledge-base records.
+The [FlashData Skill](https://github.com/flashdatadev/flashdata-skills/blob/main/skills/flashdata-mcp/SKILL.md) helps an agent use an existing FlashData MCP connection for source-backed web and video research. It includes recipes for video research, comparing search snapshots, and preparing knowledge-base records.
 
 Install the Skill into your project with the [skills CLI](https://skills.sh/docs):
 
 ```sh
-npx skills add flashdatadev/flashdata-skills --skill flashdata
+npx skills add flashdatadev/flashdata-skills --skill flashdata-mcp
 ```
 
 Select your agent when prompted, or add `--agent codex` (or another supported agent). The default scope is the current project; use `--global` only if you want a user-wide installation. Review the Skill before installation.
@@ -82,7 +82,7 @@ The skills.sh directory uses aggregated installation telemetry for discovery; a 
 
 ### Task-specific Skills
 
-Choose a Skill for the capability you need. Each includes example requests, a terminal quick start, MCP usage, parameters and practical ways to use the results. The general `flashdata` research Skill remains available.
+Choose a Skill for the capability you need. Each includes example requests, a terminal quick start, MCP usage, parameters and practical ways to use the results. The general `flashdata-mcp` research Skill remains available.
 
 | Capability | Skill | Examples |
 | --- | --- | --- |
@@ -112,19 +112,21 @@ The CLI's `--list` option lists available Skills before installing. Each selecte
 
 These new top-level Skills are also discoverable by clients that scan the repository's `skills/` directory. This source update is not a new Cursor or Gemini marketplace approval. The contained Claude plugin continues to bundle its existing shared research Skill.
 
+The MCP research skill was renamed from `flashdata` to `flashdata-mcp`; the `flashdata` skill in the Skills repository now targets the standalone CLI. Update existing MCP skill installations to the new name. This does not alter your MCP connection or credentials.
+
 ## Cursor plugin
 
 For a single task, choose one of the [15 independent Cursor plugins](integrations/README.md). Each has its own manifest, Skill and source-restricted npm server. The root marketplace manifest registers them alongside the combined plugin below; public Marketplace listing remains subject to Cursor review.
 
 This repository also contains a [Cursor plugin](https://cursor.com/docs/plugins): the same research Skill plus a connection to the hosted FlashData MCP service. The plugin does not run the local Node.js server or require an npm installation. Marketplace review and listing are separate from this public source release.
 
-Cursor discovers the plugin through [.cursor-plugin/plugin.json](.cursor-plugin/plugin.json), its MCP server through [mcp.json](mcp.json), and the Skill under `skills/flashdata/`. The plugin declares `FLASHDATA_API_KEY` as a required configuration variable. Set your own key through Cursor's plugin configuration when that interface is available; team admins manage variables in Dashboard → Plugins → Configure. The repository contains only a placeholder, never a working key. Do not replace the placeholder in a committed file or paste a key into Agent chat.
+Cursor discovers the plugin through [.cursor-plugin/plugin.json](.cursor-plugin/plugin.json), its MCP server through [mcp.json](mcp.json), and the Skill under `skills/flashdata-mcp/`. The plugin declares `FLASHDATA_API_KEY` as a required configuration variable. Set your own key through Cursor's plugin configuration when that interface is available; team admins manage variables in Dashboard → Plugins → Configure. The repository contains only a placeholder, never a working key. Do not replace the placeholder in a committed file or paste a key into Agent chat.
 
 For local development, follow [Cursor's local plugin instructions](https://cursor.com/docs/plugins#test-plugins-locally): copy `.cursor-plugin/`, `mcp.json`, `skills/`, `assets/`, `README.md`, and `LICENSE` into `~/.cursor/plugins/local/flashdata/`. Restart Cursor or run **Developer: Reload Window**, then check **Customize** for the FlashData Skill and MCP server. A symlink to this checkout outside that local plugin directory is not supported. Organization policy can disable local plugin imports.
 
 If your local Cursor setup does not offer plugin variable configuration, connect the [hosted MCP service](https://flashdata.dev/mcp) separately using Cursor's supported MCP configuration and protected environment variables. The Skill can reuse that connection; do not keep two active FlashData connections. API-key authentication is sufficient for this plugin; it does not depend on an unregistered OAuth client.
 
-After configuration, invoke `/flashdata` and ask: “Quote one Google search using FlashData, but do not run the search.” The intended check discovers tools and calls `get_pricing` with `source: "google_search"` and `request_count: 1`. It is free and does not verify paid retrieval. Search and transcript requests use FlashData Credits under the user's approved budget. Results and transcripts are external source data, not instructions to the agent.
+After configuration, invoke `/flashdata-mcp` and ask: “Quote one Google search using FlashData, but do not run the search.” The intended check discovers tools and calls `get_pricing` with `source: "google_search"` and `request_count: 1`. It is free and does not verify paid retrieval. Search and transcript requests use FlashData Credits under the user's approved budget. Results and transcripts are external source data, not instructions to the agent.
 
 Support: [support@flashdata.dev](mailto:support@flashdata.dev). See [Security](SECURITY.md), [FlashData terms](https://flashdata.dev/legal/terms), and [privacy](https://flashdata.dev/legal/privacy).
 
@@ -146,7 +148,7 @@ Restart Gemini CLI after installing or changing the configuration. Run `gemini e
 
 For a free FlashData check, ask: “Use the FlashData skill to quote one Google search with `get_pricing`, source `google_search`, request_count `1`. Do not run the search or any other paid query.” Skill activation and tool execution remain subject to your Gemini CLI permissions. The extension is MIT-licensed and has no separate fee. FlashData queries consume your Credits; account reads and pricing checks are free. Gemini model access and its usage limits are separate from FlashData. Google's [June 2026 transition notice](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli) moves individual/free access to Antigravity CLI; Gemini CLI remains available through supported enterprise licenses and paid API keys. This extension has been validated for Gemini CLI, not Antigravity CLI.
 
-For local development, run `gemini extensions link /absolute/path/to/flashdata-mcp` and restart the CLI. The extension uses Streamable HTTP (`httpUrl`) and automatically discovers `skills/flashdata/`; no additional commands or persistent context file are required. GitHub installation and [Gemini gallery](https://geminicli.com/extensions/) indexing are separate milestones; a public repository is not proof of a live gallery listing.
+For local development, run `gemini extensions link /absolute/path/to/flashdata-mcp` and restart the CLI. The extension uses Streamable HTTP (`httpUrl`) and automatically discovers `skills/flashdata-mcp/`; no additional commands or persistent context file are required. GitHub installation and [Gemini gallery](https://geminicli.com/extensions/) indexing are separate milestones; a public repository is not proof of a live gallery listing.
 
 ## Claude Code plugin
 
@@ -157,7 +159,7 @@ claude plugin marketplace add flashdatadev/flashdata-mcp
 claude plugin install flashdata@flashdata
 ```
 
-Use Claude Code 2.1.285 or later and enter your key through `/plugin configure flashdata@flashdata` in an interactive session. The sensitive setting uses Claude Code's secure credential store. Restart, inspect `/mcp`, then invoke `/flashdata:flashdata` and request a free pricing check. Queries use FlashData Credits; model access and fees are separate.
+Use Claude Code 2.1.285 or later and enter your key through `/plugin configure flashdata@flashdata` in an interactive session. The sensitive setting uses Claude Code's secure credential store. Restart, inspect `/mcp`, then invoke `/flashdata:flashdata-mcp` and request a free pricing check. Queries use FlashData Credits; model access and fees are separate.
 
 The plugin is contained in `plugins/claude/` so it does not ship this repository's top-level executable. Shared Skill, logo, and license copies are generated by `npm run sync:claude-plugin`; CI checks that they match the originals. Its API-key configuration is for Claude Code; authenticated use in Chat and Cowork requires their connector setup. This GitHub marketplace is independent of Anthropic's official directory, where neither the plugin nor its required separate MCP connector submission has been approved.
 
@@ -173,7 +175,7 @@ integrations/             Cursor/Gemini task catalog and native example prompts
 plugins/cursor/           15 self-contained source-specific Cursor plugins
 extensions/gemini/        15 self-contained Gemini extension release directories
 .cursor-plugin/marketplace.json Cursor combined and task plugin registry
-skills/flashdata/         portable Agent Skill and research recipes
+skills/flashdata-mcp/         portable Agent Skill and research recipes
 .cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
 mcp.json                  hosted MCP connection for the Cursor plugin
 gemini-extension.json     Gemini CLI hosted MCP and sensitive key setting
@@ -187,6 +189,33 @@ LICENSE                   MIT license
 THIRD_PARTY_NOTICES.md    dependency notices
 SECURITY.md              vulnerability reporting and trust boundaries
 ```
+
+## Response formats
+
+Local MCP **0.3.0** returns Markdown in its text content by default. Original API
+fields remain in `structuredContent` for programs; large results instead provide
+chunk metadata there. Choose a different presentation with a tool argument:
+
+| `response_format` | Text content |
+| --- | --- |
+| omitted or `"markdown"` | Markdown with source links and returned timestamps |
+| `"text"` | Indented, readable original fields |
+| `"json"` | Original JSON text |
+
+For example, call `google_search` with `{"query":"battery recycling"}` for
+Markdown, or add `"response_format":"json"` for JSON. This option also applies to
+async receipts, batch submissions, job reads and account reads. `get_result`
+inherits the initial format. Errors remain structured JSON. Formatting does not
+repeat the query, change billing, or persist preferences on a job.
+
+These are MCP tool arguments, not HTTP `Accept` or `X-Respond-With` headers.
+REST and SDK calls still default to JSON. The legacy npm CLI also keeps its JSON
+default. Hosted MCP and pinned task packages are separate releases: inspect their
+live tool schemas before sending `response_format`.
+
+The Python examples request JSON when supported and retrieve every result chunk
+before closing the session. Install each complete skill directory so its example
+and `mcp_response.py` helper stay together.
 
 ## Run locally
 
@@ -220,9 +249,13 @@ For a local clone, configure Claude Desktop (or another stdio MCP client) with a
 
 Use the full path to Node if your desktop app cannot find it. On Windows, use an escaped Windows path. Keep credentials in your client's protected configuration, not in a prompt, URL, committed file, or command-line argument.
 
-You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.2.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
+You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.3.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
 
 ## Agent CLI
+
+The commands below pin the currently published **0.2.0** package (JSON MCP text).
+For the **0.3.0** Markdown behavior described above, run this source checkout or
+install its reviewed `flashdata-dev-mcp-0.3.0.tgz` artifact until 0.3.0 is published.
 
 The package also provides `flashdata`, a single-call JSON CLI. It shares the MCP schemas, source permissions and API clients. Run `node bin/flashdata.js` in a source checkout, or install the npm package:
 
@@ -267,6 +300,8 @@ flashdata call get_job --input job.json > result.json
 A pending or processing job means work is still running. Repeat only the free `get_job` read as needed, respecting API limits; do not resubmit the query. Completed jobs include their original JSON in `result.output`. Failed jobs return `ok: false` and exit 1. `submit_batch` and `youtube_download` use the same schemas shown by `tools`; downloads always run asynchronously.
 
 `tools` and `call` write exactly one JSON object to stdout with `ok` and `result`; call output also includes `tool`. Local failures use `error: {code, message}`. Exit status 0 means the operation succeeded, 1 means a tool/API error, and 2 means invalid command, input or configuration. A successful pending-job read is not completed work. `--help` and `--version` print text and require no key. Normal operation prints no diagnostics to stderr.
+
+The npm CLI defaults to an object in `result`. To return a document string inside the same JSON wrapper, add `"response_format":"markdown"` or `"text"` to the input. Error results stay objects.
 
 CLI results are not chunked or kept in a cache. Redirect stdout to preserve large results (API responses remain bounded to 4 MiB). If a paid submission returns `query_outcome_unknown`, is interrupted, or loses its output, check Jobs before trying again: the query may already have been charged. The CLI never automatically retries or polls.
 
@@ -313,7 +348,7 @@ Completed jobs use the signed result URL returned by Management. The result orig
 
 The local server uses stdio. The FlashData hosted endpoint continues to use Streamable HTTP. This project implements the public tool contract independently and connects to FlashData through REST APIs. This package does not implement OAuth, scraping, provider credentials, a credit ledger, or a local worker.
 
-In stdio MCP, responses over 16,000 UTF-16 code units are split into JSON text chunks. Use `result_id` and `next_offset`, concatenate in order, then parse JSON. The in-memory store holds at most four results, each for ten minutes; restart clears it. The limit is per local process, and results are not shared with the hosted MCP cache. Each complete JSON response is limited to 4 MiB. Async JSON results retain the API's 24-hour window; media retention follows customer storage.
+In stdio MCP, large responses are split into chunks of at most 16,000 UTF-16 code units without splitting a Unicode character. Use `result_id` and `next_offset` from `structuredContent` to read every chunk in the same session. Concatenate in order; parse only `encoding: "json"`. Other encodings are Markdown or plain-text documents. The in-memory store holds at most four results, each for ten minutes; restart clears it. The limit is per local process, and results are not shared with the hosted MCP cache. Both the upstream response and the cached document are limited to 4 MiB. Async JSON results retain the API's 24-hour window; media retention follows customer storage.
 
 ## Development and packaging
 

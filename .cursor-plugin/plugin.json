@@ -1,7 +1,7 @@
 {
   "name": "flashdata",
   "displayName": "FlashData",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Research the web and YouTube with FlashData MCP, source links, transcript timestamps, and reusable research skills.",
   "author": {
     "name": "FlashData",
@@ -10,7 +10,14 @@
   "homepage": "https://flashdata.dev/mcp",
   "repository": "https://github.com/flashdatadev/flashdata-mcp",
   "license": "MIT",
-  "keywords": ["flashdata", "research", "search", "youtube", "transcripts", "mcp"],
+  "keywords": [
+    "flashdata",
+    "research",
+    "search",
+    "youtube",
+    "transcripts",
+    "mcp"
+  ],
   "logo": "assets/logo.svg",
   "variables": {
     "type": "object",
@@ -22,6 +29,8 @@
         "minLength": 1
       }
     },
-    "required": ["FLASHDATA_API_KEY"]
+    "required": [
+      "FLASHDATA_API_KEY"
+    ]
   }
 }

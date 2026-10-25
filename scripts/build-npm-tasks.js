@@ -43,7 +43,8 @@ for (const task of catalog.tasks) {
   fs.writeFileSync(path.join(directory, 'bin/run.js'),
     `#!/usr/bin/env node\nrequire('../runtime/cli').runCli({ name: ${JSON.stringify(command)}, version: require('../package.json').version, taskSource: ${JSON.stringify(task.source)} });\n`, { mode: 0o755 });
   for (const file of ['LICENSE', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md']) fs.copyFileSync(path.join(root, file), path.join(directory, file));
-  fs.copyFileSync(path.join(root, 'npm/docs', task.slug, 'README.md'), path.join(directory, 'README.md'));
+  fs.writeFileSync(path.join(directory, 'README.md'), fs.readFileSync(path.join(root, 'npm/docs', task.slug, 'README.md'), 'utf8')
+    .replaceAll(`@${catalog.publishedVersion}`, `@${catalog.version}`));
   fs.mkdirSync(path.join(directory, 'examples'));
   fs.writeFileSync(path.join(directory, 'examples/query.json'), json(require(`../registry/examples/${task.source}.json`).arguments));
   fs.writeFileSync(path.join(directory, 'schema.json'), json(listTaskTools(task.source).find(tool => tool.name === task.source).inputSchema));
