@@ -52,5 +52,5 @@ for relative, content in files.items():
             raise SystemExit('Generated content differs: ' + relative)
     else:
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content, encoding='utf-8')
+        target.write_text(content, encoding='utf-8', newline='\n')
 print(f'{"Checked" if CHECK else "Generated"} {len(files)} files for {len(catalog["skills"])} ModelScope skills; no publication performed.')

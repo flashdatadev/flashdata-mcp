@@ -5,9 +5,14 @@ const { assertTaskSource, listTaskTools } = require('./taskTools');
 const { present } = require('./presentation');
 
 function toolResult(body, isError = false, format = 'json') {
-  const text = body.result_id && typeof body.chunk === 'string' && body.encoding !== 'json'
-    ? body.chunk : present(body, format);
-  return { content: [{ type: 'text', text }], structuredContent: body, isError };
+  if (body.result_id && typeof body.chunk === 'string' && body.encoding !== 'json') {
+    // Some hosts expose only content to the agent. Keep continuation metadata
+    // visible without escaping the readable document inside a JSON string.
+    const { chunk, ...metadata } = body;
+    return { content: [{ type: 'text', text: JSON.stringify(metadata) }, { type: 'text', text: chunk }],
+      structuredContent: body, isError };
+  }
+  return { content: [{ type: 'text', text: present(body, format) }], structuredContent: body, isError };
 }
 
 function createToolHandlers({ identity: fixedIdentity, getIdentity = async () => fixedIdentity, secret,

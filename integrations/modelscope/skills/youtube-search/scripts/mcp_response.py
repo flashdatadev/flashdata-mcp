@@ -11,7 +11,18 @@ def response_body(result):
         raise RuntimeError("MCP tool reported an error; no submission was retried.")
     if result.structuredContent is not None:
         return result.structuredContent
-    text = "".join(item.text for item in result.content if item.type == "text")
+    texts = [item.text for item in result.content if item.type == "text"]
+    # Formatted chunks keep metadata and readable content in separate text blocks
+    # so hosts that omit structuredContent can still read the whole document.
+    if len(texts) >= 2:
+        try:
+            metadata = json.loads(texts[0])
+        except ValueError:
+            metadata = None
+        if (isinstance(metadata, dict) and "result_id" in metadata and "next_offset" in metadata
+                and metadata.get("encoding") in ("markdown", "text") and "chunk" not in metadata):
+            return {**metadata, "chunk": "".join(texts[1:])}
+    text = "".join(texts)
     try:
         return json.loads(text)
     except ValueError:

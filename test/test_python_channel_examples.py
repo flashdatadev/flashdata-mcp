@@ -15,7 +15,7 @@ from mcp import ClientSession  # Import before the HTTP-client fixture replaces 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "registry/examples"))
-from mcp_response import read_complete, call_complete
+from mcp_response import read_complete, call_complete, response_body
 
 SPEC = importlib.util.spec_from_file_location("hosted_example", ROOT / "registry/examples/call_tool.py")
 HELPER = importlib.util.module_from_spec(SPEC)
@@ -243,3 +243,16 @@ def test_bundled_readers_are_identical():
     for pattern in ("skills/*/scripts/mcp_response.py", "integrations/*/skills/*/scripts/mcp_response.py"):
         for path in ROOT.glob(pattern):
             assert path.read_bytes() == expected, path
+
+
+@pytest.mark.parametrize("encoding", ["markdown", "text"])
+def test_formatted_continuation_without_structured_content(encoding):
+    document = "# Result\n\n字幕😀"
+    total = len(document.encode("utf-16-le")) // 2
+    metadata = {"result_id": "r", "encoding": encoding, "offset": 0,
+                "next_offset": None, "total_characters": total}
+    result = SimpleNamespace(isError=False, structuredContent=None, content=[
+        SimpleNamespace(type="text", text=json.dumps(metadata)),
+        SimpleNamespace(type="text", text=document)])
+    assert response_body(result) == {**metadata, "chunk": document}
+    assert asyncio.run(read_complete(None, result)) == {"content": document, "format": encoding}

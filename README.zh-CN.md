@@ -70,6 +70,8 @@ npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtu
 
 上面的 npm 命令目前固定到已发布的 0.2.0（MCP 文本为 JSON）；0.3.0 发布前请从当前源码运行以使用 Markdown 默认值。托管 MCP 和独立任务包单独发布，请以已连接工具的 schema 为准。
 
+对于只显示文本的客户端，格式化分块先提供简短 JSON 续读信息，再提供可读内容。使用 `result_id` 和 `next_offset` 读完后，完整文档仍是 Markdown 或纯文本。
+
 ## 数据能力
 
 - Google：搜索、新闻、图片、购物、视频搜索、地点。

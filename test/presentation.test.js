@@ -57,6 +57,11 @@ test('formatted chunks reconstruct the complete Unicode document with one paid c
     const { handlers, requests } = fixture(body);
     let result = await handlers.call({ name: 'youtube_transcript', arguments: { video_id: 'aircAruvnKk', response_format: format } });
     let chunk = result.structuredContent;
+    if (format !== 'json') {
+      assert.equal(JSON.parse(result.content[0].text).result_id, chunk.result_id);
+      assert.equal(JSON.parse(result.content[0].text).next_offset, chunk.next_offset);
+      assert.equal(result.content[1].text, chunk.chunk);
+    }
     let text = chunk.chunk;
     assert.equal(chunk.encoding, format);
     const id = chunk.result_id;
@@ -64,6 +69,10 @@ test('formatted chunks reconstruct the complete Unicode document with one paid c
       result = await handlers.call({ name: 'get_result', arguments: { result_id: id, offset: chunk.next_offset } });
       assert.equal(result.isError, false);
       chunk = result.structuredContent;
+      if (format !== 'json') {
+        assert.equal(JSON.parse(result.content[0].text).next_offset, chunk.next_offset);
+        assert.equal(result.content[1].text, chunk.chunk);
+      }
       assert.equal(chunk.encoding, format);
       text += chunk.chunk;
     }

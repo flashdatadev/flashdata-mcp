@@ -217,6 +217,10 @@ The Python examples request JSON when supported and retrieve every result chunk
 before closing the session. Install each complete skill directory so its example
 and `mcp_response.py` helper stay together.
 
+For clients that expose only text, formatted chunk responses include a compact
+JSON continuation block followed by the readable chunk. Use its `result_id` and
+`next_offset` to finish the result; the complete document is still Markdown or text.
+
 ## Run locally
 
 Requires Node.js 22.18 or newer and a FlashData API key from [your console](https://flashdata.dev/app/api-keys). The Management API must support `/v2/api-access` and its balance, pricing and limits routes. Deploy that server release before connecting this package to an older environment.
