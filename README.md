@@ -1,5 +1,7 @@
 # FlashData MCP
 
+Release artifacts for 0.3.0 are available from [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.3.0). npm availability is independent; check the registry before upgrading.
+
 [简体中文](README.zh-CN.md) · [FlashData](https://flashdata.dev) · [API documentation](https://flashdata.dev/docs) · [Pricing](https://flashdata.dev/pricing)
 
 Use Google Search, YouTube data, and downloads to your cloud storage from a terminal, Agent, or MCP client. This MIT-licensed package implements the tools and calls the FlashData REST APIs directly. It does not proxy a hosted MCP connection.

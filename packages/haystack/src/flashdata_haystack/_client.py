@@ -27,7 +27,7 @@ class Client:
         self.transport = transport
 
     def _request(self, method, url, payload=None, *, authenticated=True):
-        headers = {"Accept": "application/json", "User-Agent": "flashdata-haystack/0.1.0"}
+        headers = {"Accept": "application/json", "User-Agent": "flashdata-haystack/0.2.0"}
         if authenticated:
             headers.update({"X-API-Key": self.api_key, "X-Request-Id": str(uuid4())})
         try:

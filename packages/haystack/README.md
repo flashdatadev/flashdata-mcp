@@ -7,7 +7,7 @@ status and result components. It does not include a model, embeddings, or a vect
 Requires Python 3.11+ and Haystack 3.4. Install from the versioned source release:
 
 ```bash
-pip install "git+https://github.com/rocosen/flashdata-mcp.git@haystack-v0.1.0#subdirectory=packages/haystack"
+pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
 ```
 
 There is no published PyPI package yet. Installation is free under MIT; FlashData API calls use

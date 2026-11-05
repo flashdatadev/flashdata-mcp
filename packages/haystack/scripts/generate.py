@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CAPABILITIES = json.loads((ROOT.parent / "python-cli" / "capabilities.json").read_text())
-INSTALL = 'pip install "git+https://github.com/rocosen/flashdata-mcp.git@haystack-v0.1.0#subdirectory=packages/haystack"'
+INSTALL = 'pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"'
 
 SCENARIOS = {
     "google_search": (
@@ -224,7 +224,7 @@ class {name}(AuthenticatedComponent):
         '"""FlashData components for Haystack 3.4 pipelines and agents."""\n\n'
         "from ._client import FlashDataError\nfrom .tools import as_tool\nfrom .components import (\n"
         + "".join(f"    {name},\n" for name in names)
-        + ')\n\n__version__ = "0.1.0"\n\n__all__ = '
+        + ')\n\n__version__ = "0.2.0"\n\n__all__ = '
         + repr(["FlashDataError", "as_tool", *names])
         + "\n"
     )
@@ -306,8 +306,8 @@ authors:
   - name: FlashData
     socials:
       github: rocosen
-repo: https://github.com/rocosen/flashdata-mcp
-report_issue: https://github.com/rocosen/flashdata-mcp/issues
+repo: https://github.com/flashdatadev/flashdata-mcp
+report_issue: https://github.com/flashdatadev/flashdata-mcp/issues
 type: {"Data Ingestion" if is_download else "Search & Extraction"}
 version: Haystack 3.4
 toc: true
@@ -389,7 +389,7 @@ without embedding raw responses or credentials. Empty results remain empty.
 
 ## Source and license
 
-[Implementation and all component examples](https://github.com/rocosen/flashdata-mcp/tree/haystack-v0.1.0/packages/haystack)
+[Implementation and all component examples](https://github.com/flashdatadev/flashdata-mcp/tree/haystack-v0.2.0/packages/haystack)
 are maintained by FlashData under the MIT license. This is a community integration;
 publication in the Haystack directory is subject to its maintainers' review.
 '''

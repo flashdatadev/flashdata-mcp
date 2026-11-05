@@ -6,9 +6,9 @@ Installation is free; FlashData API requests use paid Credits.
 
 ## Availability
 
-Version 0.1.0 is available as checked wheel/sdist assets in the
-[GitHub release](https://github.com/rocosen/flashdata-mcp/releases/tag/python-cli-v0.1.0).
-All fifteen distributions are published on PyPI as version 0.1.0. Each project below
+Version 0.2.0 is available as checked wheel/sdist assets in the
+[GitHub release](https://github.com/flashdatadev/flashdata-mcp/releases/tag/python-cli-v0.2.0).
+All fifteen distributions are published on PyPI as version 0.2.0. Each project below
 has its own command, source-specific README and package page. Homebrew users can follow
 the [independent formula guides](../../homebrew/README.md).
 The existing `langchain-flashdata` package is a separate integration and is unchanged.
@@ -58,10 +58,10 @@ No production API, model, or storage write is needed for these checks.
 For a local build, use the wheel path explicitly:
 
 ```sh
-uvx --from ./dist/flashdata_google_search-0.1.0-py3-none-any.whl flashdata-google-search --schema
+uvx --from ./dist/flashdata_google_search-0.2.0-py3-none-any.whl flashdata-google-search --schema
 ```
 
-The PyPI equivalent is `uvx flashdata-google-search@0.1.0 --schema`.
+The PyPI equivalent is `uvx flashdata-google-search@0.2.0 --schema`.
 For a paid query, set `FLASHDATA_API_KEY` through your shell or secret manager, then use
 `--query 'your research topic' --options-json '{"num":5}' --output result.json`.
 The output path must be new. Full JSON is written to stdout if the path is omitted.
@@ -75,7 +75,7 @@ are never accepted as command arguments. Download receipts omit credentials from
 ## PyPI publication
 
 Publication is manual and separate from CI. All fifteen projects above have an active
-Trusted Publisher, approved by the owner and verified by their 0.1.0 releases:
+Trusted Publisher, approved by the owner and verified by their 0.2.0 releases:
 
 | Field | Value |
 | --- | --- |
@@ -92,7 +92,7 @@ of project names and URLs, not a live registry status check.
 
 For a new release, create a matching `python-cli-vVERSION` tag on the reviewed source
 commit, then manually dispatch **Publish Python task CLIs** from `main` with that
-`release_tag`. The existing `python-cli-v0.1.0` release is already published.
+`release_tag`. The existing `python-cli-v0.2.0` release is already published.
 The workflow checks out that tag and verifies its version and commit before building;
 publishing infrastructure can be repaired without moving the source tag or changing the packages.
 Select one exact project to validate each new release;

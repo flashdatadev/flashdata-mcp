@@ -54,12 +54,12 @@ def generate():
         sample = dict(capability["sample"])
         primary = next(k for k in ("query", "video_id", "handle") if k in sample)
         value = sample.pop(primary)
-        command = f"uvx {name}@0.1.0 --{primary.replace('_', '-')} {shlex.quote(value)}"
+        command = f"uvx {name}@0.2.0 --{primary.replace('_', '-')} {shlex.quote(value)}"
         if sample:
             command += " --options-json " + shlex.quote(json.dumps(sample))
         download = source == "youtube_download"
         if download:
-            command = f"uvx {name}@0.1.0 --operation result --job-id job_YOUR_SAVED_ID"
+            command = f"uvx {name}@0.2.0 --operation result --job-id job_YOUR_SAVED_ID"
         options = []
         for key, value in schema["properties"].items():
             if key == primary:
@@ -90,7 +90,7 @@ and never submit a paid query. A pending/running response does not mean delivery
 For a new delivery, supply your own authorized video and storage configuration:
 
 ```sh
-uvx {name}@0.1.0 --operation submit --allow-submit \\
+uvx {name}@0.2.0 --operation submit --allow-submit \\
   --video-id YOUR_VIDEO_ID \\
   --options-json '{{"download_type":"audio","output_format":"m4a"}}' \\
   --output delivery-receipt.json
@@ -138,8 +138,8 @@ files before making a paid request. Without it, the full JSON response goes to s
 go to stderr. Exit 0 means the response was exported, 2 means local input/configuration failure,
 and 1 means request or output failure. For downloads, exit 0 can describe an unfinished job.
 
-For repeated use, install `uv tool install {name}==0.1.0`; the command name is `{name}`.
-Alternatively use `python -m pip install {name}==0.1.0` in your virtual environment.
+For repeated use, install `uv tool install {name}==0.2.0`; the command name is `{name}`.
+Alternatively use `python -m pip install {name}==0.2.0` in your virtual environment.
 
 ## Inputs and output
 
@@ -149,7 +149,7 @@ this package. Google count and locale options remain omitted unless supplied.
 
 {option_table}
 
-Run `uvx {name}@0.1.0 --schema` to inspect all fields, nested filters, allowed values and
+Run `uvx {name}@0.2.0 --schema` to inspect all fields, nested filters, allowed values and
 defaults without a Key or an API call. `--help` and `--version` are also local-only.
 
 The JSON output preserves the API result envelope and optional fields: {capability["outputs"]}.
@@ -188,7 +188,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "{name}"
-version = "0.1.0"
+version = "0.2.0"
 description = {json.dumps(summary)}
 readme = "README.md"
 requires-python = ">=3.10"
@@ -207,7 +207,7 @@ Homepage = "https://flashdata.dev/docs/sources/{source}"
 Documentation = "https://flashdata.dev/docs/sources/{source}"
 Pricing = "https://flashdata.dev/pricing"
 Support = "https://flashdata.dev"
-Source = "https://github.com/rocosen/flashdata-mcp/tree/main/packages/python-cli"
+Source = "https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/python-cli"
 
 [tool.hatch.build.targets.wheel]
 packages = ["{module}"]
@@ -219,7 +219,7 @@ packages = ["{module}"]
                 "project": name,
                 "command": name,
                 "module": module,
-                "version": "0.1.0",
+                "version": "0.2.0",
                 "pypi_url": f"https://pypi.org/project/{name}/",
             }
         )

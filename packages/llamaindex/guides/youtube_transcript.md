@@ -4,7 +4,7 @@ Bring an existing automatic caption track into a retrieval collection. Each segm
 
 ## Setup and run
 
-Install with `python -m pip install 'llama-index-tools-flashdata==0.1.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
 Save the [runnable example](../examples/youtube_transcript.py) as `youtube_transcript.py`, then run `python youtube_transcript.py`.
 

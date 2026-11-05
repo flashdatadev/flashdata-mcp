@@ -3,8 +3,8 @@
   "changes": "User-Agent only",
   "files": {
     "_client.py": {
-      "source_sha256": "6e4229c2b15ea2455cfb3452520d499eff2bd839c32c0b2f3de3b08ee174acc4",
-      "packaged_sha256": "d5abddeb4ecd0944da6226085821fafacd71349d16eea65d5ddb47bb469088e3"
+      "source_sha256": "4cd92829e8763ee234aa52d708bb71bd579abd5a326706084f0996a05845cfca",
+      "packaged_sha256": "490f78ae5a078138b1a7f15b248599498ff45b24c6eb1a94e4037121faa1683c"
     },
     "_inputs.py": {
       "source_sha256": "b55abc8b57205ce44beaca3b02b39e528bf1a053b57cab326e1cca6b42cd2b48",

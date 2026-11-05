@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "llama-index-tools-flashdata"
-version = "0.1.0"
+version = "0.2.0"
 description = "Google and YouTube search tools and citation-aware readers for LlamaIndex"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -15,9 +15,9 @@ keywords = ["llamaindex", "google-search", "youtube-transcript", "agent", "rag"]
 
 [project.urls]
 Homepage = "https://flashdata.dev"
-Documentation = "https://github.com/rocosen/flashdata-mcp/tree/main/packages/llamaindex"
-Source = "https://github.com/rocosen/flashdata-mcp"
-Issues = "https://github.com/rocosen/flashdata-mcp/issues"
+Documentation = "https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/llamaindex"
+Source = "https://github.com/flashdatadev/flashdata-mcp"
+Issues = "https://github.com/flashdatadev/flashdata-mcp/issues"
 
 [dependency-groups]
 dev = ["pytest>=8,<10", "pytest-socket>=0.7,<1", "build>=1.2,<2", "twine>=6,<8", "ruff>=0.14,<1"]

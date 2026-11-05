@@ -6,8 +6,8 @@ authors:
   - name: FlashData
     socials:
       github: rocosen
-repo: https://github.com/rocosen/flashdata-mcp
-report_issue: https://github.com/rocosen/flashdata-mcp/issues
+repo: https://github.com/flashdatadev/flashdata-mcp
+report_issue: https://github.com/flashdatadev/flashdata-mcp/issues
 type: Search & Extraction
 version: Haystack 3.4
 toc: true
@@ -27,7 +27,7 @@ Requires Python 3.11+ and Haystack 3.4. The package is installed from a versione
 there is no published PyPI release at this stage.
 
 ```bash
-pip install "git+https://github.com/rocosen/flashdata-mcp.git@haystack-v0.1.0#subdirectory=packages/haystack"
+pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
 ```
 
 Set `FLASHDATA_API_KEY` through your environment or secret manager. Never place a real key in
@@ -111,7 +111,7 @@ without embedding raw responses or credentials. Empty results remain empty.
 
 ## Source and license
 
-[Implementation and all component examples](https://github.com/rocosen/flashdata-mcp/tree/haystack-v0.1.0/packages/haystack)
+[Implementation and all component examples](https://github.com/flashdatadev/flashdata-mcp/tree/haystack-v0.2.0/packages/haystack)
 are maintained by FlashData under the MIT license. This is a community integration;
 publication in the Haystack directory is subject to its maintainers' review.
 

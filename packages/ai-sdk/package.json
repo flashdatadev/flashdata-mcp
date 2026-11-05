@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/ai-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Google search and YouTube data tools for AI SDK agents, with asynchronous media delivery to customer storage.",
   "license": "MIT",
   "type": "module",
@@ -23,12 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "url": "git+https://github.com/flashdatadev/flashdata-mcp.git",
     "directory": "packages/ai-sdk"
   },
-  "homepage": "https://github.com/rocosen/flashdata-mcp/tree/main/packages/ai-sdk#readme",
+  "homepage": "https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/ai-sdk#readme",
   "bugs": {
-    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+    "url": "https://github.com/flashdatadev/flashdata-mcp/issues"
   },
   "publishConfig": {
     "access": "public"

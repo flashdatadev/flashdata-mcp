@@ -5,13 +5,17 @@ import os
 import subprocess
 import sys
 import tempfile
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    (wheel,) = (ROOT / "dist").glob("*.whl")
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
+    version = project["version"]
+    wheel = ROOT / "dist" / f"{project['name'].replace('-', '_')}-{version}-py3-none-any.whl"
+    assert wheel.is_file(), f"Build the current release first: {wheel}"
     with tempfile.TemporaryDirectory(prefix="flashdata-haystack-install-") as directory:
         env_path = Path(directory) / "venv"
         subprocess.run(["uv", "venv", "--python", sys.executable, str(env_path)], check=True)
@@ -21,6 +25,12 @@ def main():
 from pathlib import Path
 from haystack import Pipeline
 import flashdata_haystack as package
+from importlib.metadata import version
+from flashdata_haystack._inputs import YouTubeTranscriptInput, YouTubeCaptionsInput
+assert version("flashdata-haystack") == package.__version__ == sys.argv[2]
+for model in (YouTubeTranscriptInput, YouTubeCaptionsInput):
+    assert model(video_id="dQw4w9WgXcQ", language=["en", "es"]).language == ["en", "es"]
+    assert "language" not in model(video_id="dQw4w9WgXcQ").model_dump(exclude_none=True)
 entries = json.loads(Path(sys.argv[1]).read_text())
 total = 0
 for entry in entries:
@@ -34,7 +44,7 @@ for entry in entries:
 print(json.dumps({"capabilities": len(entries), "components": total, "version": package.__version__, "module": package.__file__}))
 """
         result = subprocess.run(
-            [str(python), "-c", script, str(ROOT / "entries.json")],
+            [str(python), "-c", script, str(ROOT / "entries.json"), version],
             cwd=directory,
             env={
                 **os.environ,

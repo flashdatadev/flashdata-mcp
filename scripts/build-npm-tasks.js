@@ -43,8 +43,17 @@ for (const task of catalog.tasks) {
   fs.writeFileSync(path.join(directory, 'bin/run.js'),
     `#!/usr/bin/env node\nrequire('../runtime/cli').runCli({ name: ${JSON.stringify(command)}, version: require('../package.json').version, taskSource: ${JSON.stringify(task.source)} });\n`, { mode: 0o755 });
   for (const file of ['LICENSE', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md']) fs.copyFileSync(path.join(root, file), path.join(directory, file));
-  fs.writeFileSync(path.join(directory, 'README.md'), fs.readFileSync(path.join(root, 'npm/docs', task.slug, 'README.md'), 'utf8')
-    .replaceAll(`@${catalog.publishedVersion}`, `@${catalog.version}`));
+  let readme = fs.readFileSync(path.join(root, 'npm/docs', task.slug, 'README.md'), 'utf8')
+    .replaceAll(`@${catalog.publishedVersion}`, `@${catalog.version}`)
+    .replaceAll('https://github.com/rocosen/flashdata-mcp', 'https://github.com/flashdatadev/flashdata-mcp')
+    .replace('Task MCP 0.2.0 source builds', 'Task MCP 0.2.0');
+  if (['youtube_transcript', 'youtube_captions'].includes(task.source)) {
+    readme = readme.replace(/^\| `language` \|.*$/m,
+      '| `language` | string or array | No | One exact code or 1–10 distinct codes. Omit to prefer en-orig, then en. |');
+    readme = readme.replace(/## Language lists[\s\S]*$/,
+      '## Language lists\n\nUse `language: ["en", "es"]` to request several tracks. Omit language to prefer `en-orig`, then `en`, returning one track. A string selects exactly that language and keeps the single-track response. Lists, including one-element lists, return `tracks` and per-language `errors` inside each result. Keep successful tracks and inspect errors; when all fail, tracks is empty. The selected caption source applies to every language.\n');
+  }
+  fs.writeFileSync(path.join(directory, 'README.md'), readme);
   fs.mkdirSync(path.join(directory, 'examples'));
   fs.writeFileSync(path.join(directory, 'examples/query.json'), json(require(`../registry/examples/${task.source}.json`).arguments));
   fs.writeFileSync(path.join(directory, 'schema.json'), json(listTaskTools(task.source).find(tool => tool.name === task.source).inputSchema));

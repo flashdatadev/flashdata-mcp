@@ -4,8 +4,8 @@
   "files": {
     "_client.py": {
       "source": "packages/haystack/src/flashdata_haystack/_client.py",
-      "source_sha256": "d5abddeb4ecd0944da6226085821fafacd71349d16eea65d5ddb47bb469088e3",
-      "sha256": "54e4fb65e8319e65016f3c7d2e3aa4e1f137fdad0c76bdda6e0e700010157ef1"
+      "source_sha256": "490f78ae5a078138b1a7f15b248599498ff45b24c6eb1a94e4037121faa1683c",
+      "sha256": "a821a8c83c2c3021ee60746764056c71680cf3972a32b8c41ae12154ae8f2883"
     },
     "_inputs.py": {
       "source": "packages/haystack/src/flashdata_haystack/_inputs.py",

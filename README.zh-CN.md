@@ -1,5 +1,7 @@
 # FlashData MCP
 
+0.3.0 发布文件可从 [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.3.0) 获取。npm 版本独立发布，升级前请检查仓库中的可用版本。
+
 [English](README.md) · [FlashData](https://flashdata.dev) · [API 文档](https://flashdata.dev/docs) · [价格](https://flashdata.dev/pricing)
 
 FlashData 官方 MCP 源码仓库，为 agent 和 MCP 客户端提供 Google 搜索、YouTube 数据及媒体交付能力。可以连接托管 MCP，也可以在本机运行本仓库的 stdio 服务；本地服务直接调用 FlashData REST API。

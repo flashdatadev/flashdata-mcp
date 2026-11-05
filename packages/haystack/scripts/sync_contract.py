@@ -13,7 +13,7 @@ def main():
     files = {}
     for name in ("_client.py", "_inputs.py", "_storage.py", "storage.schema.json"):
         raw = (SOURCE / name).read_bytes()
-        output = raw.replace(b"flashdata-cli/0.1.0", b"flashdata-haystack/0.1.0")
+        output = raw.replace(b"flashdata-cli/0.2.0", b"flashdata-haystack/0.2.0")
         (TARGET / name).write_bytes(output)
         files[name] = {
             "source_sha256": hashlib.sha256(raw).hexdigest(),
