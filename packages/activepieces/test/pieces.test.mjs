@@ -37,6 +37,21 @@ function run(source, propsValue, actionName = source) {
   return pieces[source].getAction(actionName).run({ auth: { secret_text: source === 'youtube_download' ? downloadAuth : key }, propsValue });
 }
 
+for (const source of ['youtube_transcript', 'youtube_captions']) {
+  test(`${source}: language lists, omission and partial results`, async t => {
+    const body = { source, status: 'done', results: [{ tracks: [{ languageCode: 'en', fullText: 'Example' }], errors: [{ languageCode: 'es', code: 'language_unavailable', message: 'Missing' }] }] };
+    const requests = transport(t, [json(body), json(body), json(body)]);
+    for (const language of [undefined, 'en,es', ['en', 'es']]) {
+      assert.deepEqual(await run(source, { video_id: 'aircAruvnKk', ...(language ? { language } : {}) }), body);
+    }
+    assert.equal(requests[0].body.params.language, undefined);
+    assert.deepEqual(requests[1].body.params.language, ['en', 'es']);
+    assert.deepEqual(requests[2].body.params.language, ['en', 'es']);
+    await assert.rejects(() => run(source, { video_id: 'aircAruvnKk', language: ['en', 'en'] }));
+    assert.equal(requests.length, 3);
+  });
+}
+
 for (const task of tasks) {
   test(`${task.source}: one separately loadable Piece, fixed source, safe connection check`, async t => {
     const piece = pieces[task.source];
@@ -116,7 +131,7 @@ test('transcript/captions defaults differ and explicit false is retained', async
   await run('youtube_transcript', { video_id: 'jNQXAC9IVRw' });
   await run('youtube_captions', { video_id: 'jNQXAC9IVRw' });
   await run('youtube_transcript', { video_id: 'jNQXAC9IVRw', auto: false });
-  assert.deepEqual(requests.map(req => req.body.params), [{ language: 'en', auto: true }, { language: 'en', auto: false }, { language: 'en', auto: false }]);
+  assert.deepEqual(requests.map(req => req.body.params), [{ auto: true }, { auto: false }, { auto: false }]);
 });
 test('metadata false and autocomplete defaults reach the API', async t => {
   const requests = transport(t, [json(envelope('youtube_metadata')), json(envelope('youtube_suggestions'))]);

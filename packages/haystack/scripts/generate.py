@@ -108,11 +108,19 @@ CONFIGS = {
     ),
     "youtube_transcript": (
         "YouTubeTranscriptInput",
-        [("video_id", "str", None), ("language", "str", '"en"'), ("auto", "bool", "True")],
+        [
+            ("video_id", "str", None),
+            ("language", "str | list[str] | None", "None"),
+            ("auto", "bool", "True"),
+        ],
     ),
     "youtube_captions": (
         "YouTubeCaptionsInput",
-        [("video_id", "str", None), ("language", "str", '"en"'), ("auto", "bool", "False")],
+        [
+            ("video_id", "str", None),
+            ("language", "str | list[str] | None", "None"),
+            ("auto", "bool", "False"),
+        ],
     ),
     "youtube_trainability": ("YouTubeTrainabilityInput", [("video_id", "str", None)]),
     "youtube_channel": (
@@ -385,6 +393,8 @@ without embedding raw responses or credentials. Empty results remain empty.
 are maintained by FlashData under the MIT license. This is a community integration;
 publication in the Haystack directory is subject to its maintainers' review.
 '''
+        if source in ("youtube_transcript", "youtube_captions"):
+            content += "\n## Subtitle languages\n\nOmit language to prefer en-orig, then en. A string selects that exact track. A list of 1–10 distinct codes returns tracks and per-language errors inside each result. Keep available tracks and inspect errors, including when none succeed.\n"
         (docs / f"{slug}.md").write_text(content)
         entries.append(
             {

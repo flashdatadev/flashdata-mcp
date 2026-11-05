@@ -1,5 +1,6 @@
 """Check the built wheel in a fresh environment, including the packaged schema."""
 
+import os
 import subprocess
 import sys
 import tempfile
@@ -9,7 +10,7 @@ wheel = next(Path("dist").glob("*.whl")).resolve()
 with tempfile.TemporaryDirectory(prefix="flashdata-llamaindex-install-") as directory:
     env = Path(directory) / "venv"
     subprocess.run(["uv", "venv", "--python", sys.executable, str(env)], check=True)
-    python = env / "bin/python"
+    python = env / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     subprocess.run(["uv", "pip", "install", "--python", str(python), str(wheel)], check=True)
     subprocess.run(
         [

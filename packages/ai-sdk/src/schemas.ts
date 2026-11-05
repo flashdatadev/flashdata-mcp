@@ -25,8 +25,9 @@ const filters = z.strictObject({
 export const youtubeSearchSchema = z.strictObject({ query, max_results: z.number().int().min(1).max(20).default(20), filters: filters.optional() });
 export const youtubeExtendedSearchSchema = z.strictObject({ query, max_results: z.number().int().min(1).max(700).default(20), filters: filters.optional() });
 export const youtubeMetadataSchema = z.strictObject({ video_id, include_formats: z.boolean().default(true), include_chapters: z.boolean().default(true) });
-export const youtubeTranscriptSchema = z.strictObject({ video_id, language: language.default('en'), auto: z.boolean().default(true).describe('Select automatic captions. No fallback, ASR, or translation.') });
-export const youtubeCaptionsSchema = z.strictObject({ video_id, language: language.default('en'), auto: z.boolean().default(false).describe('False selects uploader captions. No fallback, ASR, or translation.') });
+const subtitleLanguage = z.union([language, z.array(language).min(1).max(10).refine(value => new Set(value).size === value.length, 'Language codes must be distinct')]).optional().describe('One code or 1–10 distinct codes. Omit to prefer en-orig, then en. Lists return tracks and per-language errors.');
+export const youtubeTranscriptSchema = z.strictObject({ video_id, language: subtitleLanguage, auto: z.boolean().default(true).describe('Select automatic captions. No caption-source fallback, ASR, or translation.') });
+export const youtubeCaptionsSchema = z.strictObject({ video_id, language: subtitleLanguage, auto: z.boolean().default(false).describe('False selects uploader captions. No caption-source fallback, ASR, or translation.') });
 export const youtubeLicenseSchema = z.strictObject({ video_id });
 export const youtubeChannelSchema = z.strictObject({ handle: z.string().trim().min(1).max(100), video_limit: z.number().int().min(1).max(100).default(20) });
 export const youtubeSuggestionsSchema = z.strictObject({ query, language: language.default('en'), region: z.string().regex(/^[A-Za-z]{2}$/).default('US') });

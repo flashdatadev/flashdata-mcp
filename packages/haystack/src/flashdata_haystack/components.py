@@ -297,7 +297,9 @@ class FlashDataYouTubeTranscript(AuthenticatedComponent):
     source = "youtube_transcript"
 
     @component.output_types(result=dict, documents=list[Document])
-    def run(self, video_id: str, language: str = "en", auto: bool = True) -> dict[str, Any]:
+    def run(
+        self, video_id: str, language: str | list[str] | None = None, auto: bool = True
+    ) -> dict[str, Any]:
         return self._query(
             "youtube_transcript",
             YouTubeTranscriptInput,
@@ -313,7 +315,9 @@ class FlashDataYouTubeCaptions(AuthenticatedComponent):
     source = "youtube_captions"
 
     @component.output_types(result=dict, documents=list[Document])
-    def run(self, video_id: str, language: str = "en", auto: bool = False) -> dict[str, Any]:
+    def run(
+        self, video_id: str, language: str | list[str] | None = None, auto: bool = False
+    ) -> dict[str, Any]:
         return self._query(
             "youtube_captions",
             YouTubeCaptionsInput,

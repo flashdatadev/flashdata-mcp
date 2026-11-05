@@ -57,6 +57,17 @@ Download credentials live in a secret-text JSON connection, not ordinary action 
 
 Edit scenario wording in `tasks.json` and shared behavior in `src/`. Input schemas are generated from the repository's `src/catalog/sourceCatalog.js`; download validation reuses `src/download/youtubeDownloadOptions.js`. Run `node scripts/generate.mjs` after a contract or scenario change. `--check` detects generated-file drift during builds.
 
-Paid POST requests are never automatically retried. Platform users must also avoid retrying a complete flow after an uncertain submission without checking FlashData Jobs. Omitted Google options remain omitted; explicit `false` survives. Standard/extended YouTube searches enforce 20/700 ceilings. Transcript defaults to automatic captions and Captions to uploader captions; neither performs ASR, translation or fallback. License metadata is not a training-rights grant.
+Paid POST requests are never automatically retried. Platform users must also avoid retrying a complete flow after an uncertain submission without checking FlashData Jobs. Omitted Google options remain omitted; explicit `false` survives. Standard/extended YouTube searches enforce 20/700 ceilings. Transcript defaults to automatic captions and Captions to uploader captions; neither performs ASR, translation or switches caption source. License metadata is not a training-rights grant.
 
 The official [contribution policy](https://github.com/activepieces/activepieces/blob/main/CONTRIBUTING.md) currently pauses unsolicited external PRs and permits independent packages. [Piece syncing](https://www.activepieces.com/docs/install/architecture/piece-syncing) distinguishes custom packages from official auto-synced catalogue entries. Track official acceptance independently; do not count local installation or these source guides as fifteen public Activepieces listings.
+
+## Subtitle languages
+
+For transcript and captions, `language` accepts one code or a list of 1–10 distinct
+codes, such as `["en", "es"]`. Omit it to prefer `en-orig`, then `en`, returning one
+track. Explicit strings keep the single-track response. Lists, including one-element
+lists, return `tracks` and per-language `errors` inside each result. Keep available
+tracks and report the failed languages; if none succeed, `tracks` is empty.
+The `auto` choice applies to every language and never switches caption source.
+
+In the language text field, enter `en` or `en,es`. Existing single-code flows keep working.

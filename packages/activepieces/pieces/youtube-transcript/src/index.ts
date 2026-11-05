@@ -16,11 +16,27 @@ export const youtubeTranscript = createTaskPiece({
         "pattern": "^[A-Za-z0-9_-]{11}$"
       },
       "language": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 35,
-        "pattern": "^[A-Za-z0-9-]+$",
-        "default": "en"
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 35,
+            "pattern": "^[A-Za-z0-9-]+$"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 35,
+              "pattern": "^[A-Za-z0-9-]+$"
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "uniqueItems": true
+          }
+        ],
+        "description": "Omit to prefer en-orig and fall back to en, returning one track. A string selects that exact language. An array of 1–10 distinct codes returns tracks and per-language errors. The selected caption source applies to every language."
       },
       "auto": {
         "type": "boolean",

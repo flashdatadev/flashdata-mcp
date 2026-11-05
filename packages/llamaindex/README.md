@@ -149,3 +149,15 @@ HTTP fixtures. They do not establish live API, model, storage-write or public
 directory acceptance. Shared parameter and HTTP contracts come from the reviewed
 FlashData Haystack adapter; `contract-provenance.json` records exact origins and
 differences. No Haystack runtime dependency is needed.
+
+## Subtitle languages
+
+For transcript and captions, `language` accepts one code or a list of 1–10 distinct
+codes, such as `["en", "es"]`. Omit it to prefer `en-orig`, then `en`, returning one
+track. Explicit strings keep the single-track response. Lists, including one-element
+lists, return `tracks` and per-language `errors` inside each result. Keep available
+tracks and report the failed languages; if none succeed, `tracks` is empty.
+The `auto` choice applies to every language and never switches caption source.
+
+The reader keeps each track’s language and timestamps. `subtitle_errors` in document
+metadata records partial failures; an all-failed result produces an error document.

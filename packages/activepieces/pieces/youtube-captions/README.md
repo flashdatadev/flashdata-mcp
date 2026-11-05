@@ -41,7 +41,7 @@ Map the returned data into your own table or research step. Search result conten
 | Field | Type | Requirement | Constraint |
 | --- | --- | --- | --- |
 | `video_id` | string | Required | `^[A-Za-z0-9_-]{11}$` |
-| `language` | string | Optional | `^[A-Za-z0-9-]+$` |
+| `language` | string or array | Optional | One code or 1–10 distinct codes; omit for en-orig, then en. Lists return tracks and per-language errors. |
 | `auto` | boolean | Optional | true / false or documented object |
 
 Defaults and supported nested filter fields are documented in the source guide below. Explicit false values are preserved.

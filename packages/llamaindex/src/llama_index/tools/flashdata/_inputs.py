@@ -117,9 +117,18 @@ class YouTubeMetadataInput(_VideoInput):
 
 
 class YouTubeTranscriptInput(_VideoInput):
-    """YouTube transcript parameters; no implicit language or caption fallback."""
+    """Existing automatic captions, with optional language selection."""
 
-    language: Language = Field(default="en", description="Requested caption language code.")
+    language: Language | Annotated[list[Language], Field(min_length=1, max_length=10, json_schema_extra={"uniqueItems": True})] | None = Field(
+        default=None, description="One code or 1–10 distinct codes. Omit to prefer en-orig, then en. Lists return tracks and per-language errors."
+    )
+
+    @field_validator("language")
+    @classmethod
+    def distinct_languages(cls, value):
+        if isinstance(value, list) and len(set(value)) != len(value):
+            raise ValueError("language codes must be distinct")
+        return value
     auto: bool = Field(
         default=True,
         description="True requests automatic captions; false requests manually authored captions.",
@@ -127,7 +136,7 @@ class YouTubeTranscriptInput(_VideoInput):
 
 
 class YouTubeCaptionsInput(YouTubeTranscriptInput):
-    """Select uploader captions by default, without fallback."""
+    """Select uploaded captions without switching caption source."""
 
     auto: bool = Field(default=False, description="False selects manual; true automatic captions.")
 

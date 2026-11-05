@@ -311,3 +311,27 @@ def test_documented_pipeline_runs_with_fixture(capability, mock_api, capsys):
     example = ROOT / "examples" / f"{capability['source']}.py"
     runpy.run_path(str(example), run_name="__main__")
     assert capsys.readouterr().out
+
+
+@pytest.mark.parametrize(
+    "component", [integration.FlashDataYouTubeTranscript, integration.FlashDataYouTubeCaptions]
+)
+def test_subtitle_language_lists_preserve_partial_results(mock_api, component):
+    body = {
+        "results": [
+            {
+                "tracks": [{"languageCode": "en", "fullText": "Example"}],
+                "errors": [
+                    {"languageCode": "es", "code": "language_unavailable", "message": "Missing"}
+                ],
+            }
+        ]
+    }
+    requests = mock_api(lambda request: httpx.Response(200, json=body))
+    result = component().run(video_id="aircAruvnKk", language=["en", "es"])
+    assert result["result"] == body
+    assert json.loads(requests[0].content)["params"]["language"] == ["en", "es"]
+    for language in [[], ["en", "en"], list("abcdefghijk")]:
+        with pytest.raises(FlashDataError):
+            component().run(video_id="aircAruvnKk", language=language)
+    assert len(requests) == 1

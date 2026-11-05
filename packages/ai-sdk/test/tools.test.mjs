@@ -7,6 +7,22 @@ import * as sdk from '../dist/index.js';
 
 const responses = JSON.parse(readFileSync(new URL('./fixtures/historical-responses.json', import.meta.url)));
 const context = { toolCallId: 'offline-test', messages: [], context: {} };
+
+for (const source of ['youtube_transcript', 'youtube_captions']) {
+  test(`${source}: language lists and partial errors survive tool execution`, async () => {
+    const body = { source, status: 'done', results: [{ tracks: [{ languageCode: 'en', fullText: 'Example' }], errors: [{ languageCode: 'es', code: 'language_unavailable', message: 'Missing' }] }] };
+    const options = mock([body, body]);
+    const tool = sdk.flashdataTools(options)[source];
+    assert.deepEqual(await tool.execute({ video_id: 'aircAruvnKk', language: ['en', 'es'] }, context), body);
+    assert.deepEqual(JSON.parse(options.calls[0].body).params.language, ['en', 'es']);
+    await tool.execute({ video_id: 'aircAruvnKk' }, context);
+    assert.equal(JSON.parse(options.calls[1].body).params.language, undefined);
+    for (const language of [[], ['en', 'en'], [...'abcdefghijk'], ['en', null]]) {
+      await assert.rejects(async () => tool.execute({ video_id: 'aircAruvnKk', language }, context));
+    }
+    assert.equal(options.calls.length, 2);
+  });
+}
 const key = 'test-key-never-send-to-storage';
 const storage = { storage_type: 's3', storage_url: 'example-bucket', access_key: 'storage-access', secret_key: 'storage-secret' };
 const inputs = {

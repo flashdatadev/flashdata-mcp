@@ -122,7 +122,7 @@ def test_caption_default_and_document_citation(network, source, auto):
     docs = FlashDataReader(source).load_data(video_id=f"https://youtu.be/{VIDEO}")
     payload = json.loads(calls[0].content)
     assert payload["video_id"] == VIDEO
-    assert payload["params"] == {"auto": auto, "language": "en"}
+    assert payload["params"] == {"auto": auto}
     segment = FIXTURES[source]["results"][0]["segments"][0]
     assert docs[0].text == segment["text"]
     assert docs[0].metadata["start"] == segment["start"]
@@ -338,3 +338,35 @@ def test_download_is_not_a_document_reader():
     with pytest.raises(ValueError, match="not Documents"):
         to_documents("youtube_download", {"results": []})
     assert len(FlashDataTools(list(CONTRACTS)).to_tool_list()) == 17
+
+
+@pytest.mark.parametrize("source", ["youtube_transcript", "youtube_captions"])
+def test_multilingual_reader_keeps_tracks_and_errors(network, source):
+    errors = [{"languageCode": "es", "code": "language_unavailable", "message": "Missing"}]
+    body = {
+        "results": [
+            {
+                "videoId": VIDEO,
+                "tracks": [
+                    {
+                        "videoId": VIDEO,
+                        "languageCode": "en",
+                        "segments": [{"start": 1.5, "end": 2, "text": "Example"}],
+                    }
+                ],
+                "errors": errors,
+            }
+        ]
+    }
+    calls = network(lambda request: httpx.Response(200, json=body))
+    docs = FlashDataReader(source).load_data(video_id=VIDEO, language=["en", "es"])
+    assert docs[0].text == "Example"
+    assert docs[0].metadata["languageCode"] == "en"
+    assert docs[0].metadata["start"] == 1.5
+    assert docs[0].metadata["subtitle_errors"] == errors
+    assert json.loads(calls[0].content)["params"]["language"] == ["en", "es"]
+    body["results"][0]["tracks"] = []
+    docs = FlashDataReader(source).load_data(video_id=VIDEO, language=["en", "es"])
+    assert docs[0].metadata["subtitle_errors"] == errors
+    assert json.loads(docs[0].text) == {"errors": errors}
+    assert len(calls) == 2

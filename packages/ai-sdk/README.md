@@ -49,8 +49,8 @@ The [examples](https://github.com/rocosen/flashdata-mcp/tree/main/packages/ai-sd
 | [YouTube Search](https://flashdata.dev/docs/sources/youtube_search) | `youtubeSearch` | query; max_results 1–20 (default 20); optional filters | The requested count is a ceiling, not a guaranteed result count. |
 | [YouTube Extended Search](https://flashdata.dev/docs/sources/youtube_search_extended) | `youtubeExtendedSearch` | query; max_results 1–700 (default 20); optional filters | This is a distinct source with a separate higher rate than standard search. Requested count is not guaranteed. |
 | [YouTube Metadata](https://flashdata.dev/docs/sources/youtube_metadata) | `youtubeMetadata` | video_id (11 characters); include_formats/include_chapters (default true) | Metadata is not media download. Chapters and optional fields may be absent. |
-| [YouTube Transcript](https://flashdata.dev/docs/sources/youtube_transcript) | `youtubeTranscript` | video_id; language (default en); auto (default true) | Reads an existing track. No ASR, translation, or automatic fallback to uploader captions. |
-| [YouTube Captions](https://flashdata.dev/docs/sources/youtube_captions) | `youtubeCaptions` | video_id; language (default en); auto (default false) | Defaults to uploader captions. No ASR, translation, or automatic fallback to generated captions. |
+| [YouTube Transcript](https://flashdata.dev/docs/sources/youtube_transcript) | `youtubeTranscript` | video_id; language (one code or a list; see [languages](#subtitle-languages)); auto (default true) | Reads an existing track. No ASR, translation, or automatic fallback to uploader captions. |
+| [YouTube Captions](https://flashdata.dev/docs/sources/youtube_captions) | `youtubeCaptions` | video_id; language (one code or a list; see [languages](#subtitle-languages)); auto (default false) | Defaults to uploader captions. No ASR, translation, or automatic fallback to generated captions. |
 | [YouTube License Metadata](https://flashdata.dev/docs/sources/youtube_trainability) | `youtubeLicense` | video_id (11 characters) | permitted is a license-label signal, not legal training permission or creator third-party training settings. |
 | [YouTube Channel](https://flashdata.dev/docs/sources/youtube_channel) | `youtubeChannel` | handle; video_limit 1–100 (default 20) | A recent-video snapshot is not the complete channel archive. |
 | [YouTube Autocomplete](https://flashdata.dev/docs/sources/youtube_suggestions) | `youtubeSuggestions` | query; language (default en); region (default US, two letters) | Suggestions are not keyword volume or popularity measurements. |
@@ -102,3 +102,12 @@ npm pack --dry-run
 Tests use historical public-shaped fixtures and a mock model with the real AI SDK loop. They do not prove current production source availability or a paid model's behavior. No live paid API, model or customer storage test was run for this release preparation. Candidate registry objects in the source repository's `registry/` are submission materials, not assigned or approved platform entries. The shared package and its 17 tools do not constitute 15 public directory pages.
 
 The vendored download normalizer is copied from this repository's MIT-licensed `src/download/youtubeDownloadOptions.js`; update both contracts together and run the download tests when it changes.
+
+## Subtitle languages
+
+For transcript and captions, `language` accepts one code or a list of 1–10 distinct
+codes, such as `["en", "es"]`. Omit it to prefer `en-orig`, then `en`, returning one
+track. Explicit strings keep the single-track response. Lists, including one-element
+lists, return `tracks` and per-language `errors` inside each result. Keep available
+tracks and report the failed languages; if none succeed, `tracks` is empty.
+The `auto` choice applies to every language and never switches caption source.

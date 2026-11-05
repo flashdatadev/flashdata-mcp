@@ -9,8 +9,8 @@
     },
     "_inputs.py": {
       "source": "packages/haystack/src/flashdata_haystack/_inputs.py",
-      "source_sha256": "b55ea6429ffdaa765adfedb8d985dd2771847d987d97e967bc532b74710518d6",
-      "sha256": "df9057e47cdb9a017326cd379053a386aa4bbb8862d6a723be91322444451ff1"
+      "source_sha256": "b55abc8b57205ce44beaca3b02b39e528bf1a053b57cab326e1cca6b42cd2b48",
+      "sha256": "0cf95fdd5592c1696d1098a65332ee913575d40f0200da8fe836c458e47ed5ad"
     },
     "_storage.py": {
       "source": "packages/haystack/src/flashdata_haystack/_storage.py",

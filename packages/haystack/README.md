@@ -88,3 +88,12 @@ The HTTP, input and storage contracts are vendored from the reviewed Python CLI 
 `scripts/sync_contract.py` reproduces them and records source hashes; only the User-Agent differs.
 Generated component classes have explicit input sockets and fixed sources. Tests use HTTP fixtures
 and block network access; they do not prove production API, model or customer-storage execution.
+
+## Subtitle languages
+
+For transcript and captions, `language` accepts one code or a list of 1–10 distinct
+codes, such as `["en", "es"]`. Omit it to prefer `en-orig`, then `en`, returning one
+track. Explicit strings keep the single-track response. Lists, including one-element
+lists, return `tracks` and per-language `errors` inside each result. Keep available
+tracks and report the failed languages; if none succeed, `tracks` is empty.
+The `auto` choice applies to every language and never switches caption source.

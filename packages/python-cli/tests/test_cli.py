@@ -102,8 +102,8 @@ def test_invalid_input_never_sends_request_or_echoes_values(args):
         ("google_search", {}, {}),
         ("youtube_search", {}, {"max_results": 10}),
         ("youtube_search_extended", {}, {"max_results": 20}),
-        ("youtube_transcript", {}, {"language": "en", "auto": True}),
-        ("youtube_captions", {}, {"language": "en", "auto": False}),
+        ("youtube_transcript", {}, {"auto": True}),
+        ("youtube_captions", {}, {"auto": False}),
     ],
 )
 def test_source_defaults_are_intentional(source, options, expected):
@@ -114,6 +114,32 @@ def test_source_defaults_are_intentional(source, options, expected):
     )
     code, _, _, calls = invoke(source, primary, lambda _: httpx.Response(200, json={"results": []}))
     assert code == 0 and json.loads(calls[0].content)["params"] == expected
+
+
+@pytest.mark.parametrize("source", ["youtube_transcript", "youtube_captions"])
+def test_subtitle_lists_and_partial_errors(source):
+    result = {
+        "results": [
+            {
+                "tracks": [{"languageCode": "en", "fullText": "Example"}],
+                "errors": [
+                    {"languageCode": "es", "code": "language_unavailable", "message": "Missing"}
+                ],
+            }
+        ]
+    }
+    args = ["--video-id", "aircAruvnKk", "--options-json", '{"language":["en","es"]}']
+    code, out, error, calls = invoke(source, args, lambda _: httpx.Response(200, json=result))
+    assert code == 0, error
+    assert json.loads(out) == result
+    assert json.loads(calls[0].content)["params"]["language"] == ["en", "es"]
+    assert len(calls) == 1
+    for language in [[], ["en", "en"], list("abcdefghijk"), ["en", 1]]:
+        args[-1] = json.dumps({"language": language})
+        code, _, _, calls = invoke(
+            source, args, lambda _: pytest.fail("Invalid language dispatched")
+        )
+        assert code != 0 and not calls
 
 
 @pytest.mark.parametrize("status", [401, 402, 403, 429, 500, 302])

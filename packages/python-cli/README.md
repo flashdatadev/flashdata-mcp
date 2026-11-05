@@ -106,3 +106,14 @@ Publication status and platform discovery remain tracked in
 [Source documentation](https://flashdata.dev/docs/sources/google_search) ·
 [Pricing](https://flashdata.dev/pricing) · [Sign up](https://flashdata.dev/signup) ·
 [Privacy](https://flashdata.dev/legal/privacy)
+
+## Subtitle languages
+
+For transcript and captions, `language` accepts one code or a list of 1–10 distinct
+codes, such as `["en", "es"]`. Omit it to prefer `en-orig`, then `en`, returning one
+track. Explicit strings keep the single-track response. Lists, including one-element
+lists, return `tracks` and per-language `errors` inside each result. Keep available
+tracks and report the failed languages; if none succeed, `tracks` is empty.
+The `auto` choice applies to every language and never switches caption source.
+
+Pass a list with `--options-json '{"language":["en","es"]}'`.

@@ -4,7 +4,12 @@ import { createClient, FlashDataError, isObject, type JsonObject } from './clien
 import { normalizeStorage, normalizeYouTubeDownloadOptions } from '../../../src/download/youtubeDownloadOptions.js';
 
 interface Field {
-  type: string;
+  type?: string;
+  oneOf?: Field[];
+  items?: Field;
+  minItems?: number;
+  maxItems?: number;
+  uniqueItems?: boolean;
   default?: unknown;
   enum?: string[];
   minimum?: number;
@@ -36,7 +41,7 @@ const help: Record<string, string> = {
   handle: 'For example @jawed. The @ prefix is optional.',
   filters: 'Optional JSON object, for example {"upload_date":"this_week","type":"video","subtitles":true}. Only documented filters are accepted.',
   language: 'Caption or autocomplete language code, for example en. Captions must already exist in the selected language.',
-  auto: 'True selects automatic captions; false selects uploader captions. No generation, translation or fallback.',
+  auto: 'True selects automatic captions; false selects uploader captions. Never switches caption source or generates missing captions.',
   yt_dlp_format: 'Advanced selector, 1–1024 characters. Overrides video quality, FPS and audio-language selection.',
   start_at: 'H:MM:SS or HH:MM:SS, at most 12:00:00.',
   end_at: 'Later than start, at most 12:00:00. Start defaults to 00:00:00 when only an end is supplied.',
@@ -55,7 +60,7 @@ function properties(task: Task): InputPropertyMap {
     const defaultValue = task.source === 'youtube_download' ? undefined : field.default;
     const base = {
       displayName: labels[name] ?? name.replaceAll('_', ' ').replace(/^./, c => c.toUpperCase()),
-      description: [field.description, help[name], field.maximum === undefined ? '' : `Integer from ${field.minimum} to ${field.maximum}. Actual returned count may be lower.`].filter(Boolean).join(' '),
+      description: [field.description, name === 'language' && field.oneOf ? 'Enter one code (en) or comma-separated codes (en,es).' : help[name], field.maximum === undefined ? '' : `Integer from ${field.minimum} to ${field.maximum}. Actual returned count may be lower.`].filter(Boolean).join(' '),
       required,
     };
     if (field.enum) props[name] = Property.StaticDropdown({ ...base, defaultValue, options: { options: field.enum.map(value => ({ label: value, value })) } });
@@ -131,6 +136,10 @@ export function createTaskPiece(task: Task) {
     if (typeof value.filters === 'string') {
       try { value.filters = JSON.parse(value.filters); }
       catch { throw new FlashDataError('invalid_input', 'Filters must be a JSON object with documented fields.'); }
+    }
+    if (['youtube_transcript', 'youtube_captions'].includes(task.source)
+      && typeof value.language === 'string' && value.language.includes(',')) {
+      value.language = value.language.split(',').map(code => code.trim());
     }
     if (!validate(value)) throw new FlashDataError('invalid_input', `Invalid inputs. Check required fields and limits in https://flashdata.dev/docs/sources/${task.source}.`);
     return value;
