@@ -1,7 +1,7 @@
 {
   "name": "@flashdata-dev/piece-youtube-transcript",
-  "version": "0.1.0",
-  "description": "Read an existing transcript for timestamped notes. Defaults to English automatic captions; no ASR, translation or fallback to another caption track.",
+  "version": "0.2.0",
+  "description": "Read existing automatic captions for timestamped notes. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.",
   "license": "MIT",
   "type": "commonjs",
   "main": "src/index.js",
@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "url": "git+https://github.com/flashdatadev/flashdata-mcp.git",
     "directory": "packages/activepieces/pieces/youtube-transcript"
   },
   "homepage": "https://flashdata.dev/docs/sources/youtube_transcript",
   "bugs": {
-    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+    "url": "https://github.com/flashdatadev/flashdata-mcp/issues"
   },
   "keywords": [
     "activepieces",

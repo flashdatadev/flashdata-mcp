@@ -1,7 +1,7 @@
 {
   "name": "@flashdata-dev/piece-youtube-captions",
-  "version": "0.1.0",
-  "description": "Read existing uploader-provided captions for editorial review. Defaults to English manual captions; no ASR, translation or automatic fallback.",
+  "version": "0.2.0",
+  "description": "Read existing uploader-provided captions. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.",
   "license": "MIT",
   "type": "commonjs",
   "main": "src/index.js",
@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rocosen/flashdata-mcp.git",
+    "url": "git+https://github.com/flashdatadev/flashdata-mcp.git",
     "directory": "packages/activepieces/pieces/youtube-captions"
   },
   "homepage": "https://flashdata.dev/docs/sources/youtube_captions",
   "bugs": {
-    "url": "https://github.com/rocosen/flashdata-mcp/issues"
+    "url": "https://github.com/flashdatadev/flashdata-mcp/issues"
   },
   "keywords": [
     "activepieces",

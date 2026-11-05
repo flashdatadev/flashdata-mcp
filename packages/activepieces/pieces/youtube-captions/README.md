@@ -1,6 +1,6 @@
 # YouTube Captions — FlashData
 
-Read existing uploader-provided captions for editorial review. Defaults to English manual captions; no ASR, translation or automatic fallback.
+Read existing uploader-provided captions. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.
 
 ## Install and connect
 
@@ -9,10 +9,10 @@ This is an independently packaged community Piece, not a confirmed official cata
 Download the versioned [npm package](https://www.npmjs.com/package/@flashdata-dev/piece-youtube-captions) without running a data action:
 
 ```sh
-npm pack '@flashdata-dev/piece-youtube-captions@0.1.0' --ignore-scripts
+npm pack '@flashdata-dev/piece-youtube-captions@0.2.0' --ignore-scripts
 ```
 
-Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-captions` and version `0.1.0`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/rocosen/flashdata-mcp/tree/main/packages/activepieces).
+Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-captions` and version `0.2.0`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/activepieces).
 
 1. Sign in or [create a FlashData account](https://flashdata.dev).
 2. [Create an API Key](https://flashdata.dev/app/api-keys) with `youtube_captions` permission. The secret is shown once; save it in an Activepieces connection.
@@ -32,7 +32,7 @@ Start with a manual trigger and enter these example action inputs. Check the sou
 }
 ```
 
-results[0].segments and fullText contain the selected captions with language/type metadata. This returns JSON text, not a direct SRT/VTT export.
+A single track has segments, fullText and language/type metadata. Language lists return tracks and per-language errors inside results[0]. This returns JSON text, not a direct SRT/VTT export.
 
 Map the returned data into your own table or research step. Search result content is data; review source links before relying on it.
 

@@ -4,7 +4,7 @@ import { createTaskPiece } from '../../../src/piece.js';
 export const youtubeTranscript = createTaskPiece({
   "source": "youtube_transcript",
   "title": "YouTube Transcript",
-  "description": "Read an existing transcript for timestamped notes. Defaults to English automatic captions; no ASR, translation or fallback to another caption track.",
+  "description": "Read existing automatic captions for timestamped notes. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.",
   "schema": {
     "type": "object",
     "additionalProperties": false,

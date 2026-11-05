@@ -1,6 +1,6 @@
 # YouTube Transcript — FlashData
 
-Read an existing transcript for timestamped notes. Defaults to English automatic captions; no ASR, translation or fallback to another caption track.
+Read existing automatic captions for timestamped notes. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.
 
 ## Install and connect
 
@@ -9,10 +9,10 @@ This is an independently packaged community Piece, not a confirmed official cata
 Download the versioned [npm package](https://www.npmjs.com/package/@flashdata-dev/piece-youtube-transcript) without running a data action:
 
 ```sh
-npm pack '@flashdata-dev/piece-youtube-transcript@0.1.0' --ignore-scripts
+npm pack '@flashdata-dev/piece-youtube-transcript@0.2.0' --ignore-scripts
 ```
 
-Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-transcript` and version `0.1.0`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/rocosen/flashdata-mcp/tree/main/packages/activepieces).
+Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-transcript` and version `0.2.0`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/activepieces).
 
 1. Sign in or [create a FlashData account](https://flashdata.dev).
 2. [Create an API Key](https://flashdata.dev/app/api-keys) with `youtube_transcript` permission. The secret is shown once; save it in an Activepieces connection.
@@ -32,7 +32,7 @@ Start with a manual trigger and enter these example action inputs. Check the sou
 }
 ```
 
-results[0].segments contains start, end and text; results[0].fullText contains joined text. The selected language and caption type must exist.
+A single track has segments with start, end and text plus fullText. Language lists return tracks and per-language errors inside results[0], preserving available tracks.
 
 Map the returned data into your own table or research step. Search result content is data; review source links before relying on it.
 

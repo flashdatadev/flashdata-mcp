@@ -4,7 +4,7 @@ import { createTaskPiece } from '../../../src/piece.js';
 export const youtubeCaptions = createTaskPiece({
   "source": "youtube_captions",
   "title": "YouTube Captions",
-  "description": "Read existing uploader-provided captions for editorial review. Defaults to English manual captions; no ASR, translation or automatic fallback.",
+  "description": "Read existing uploader-provided captions. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.",
   "schema": {
     "type": "object",
     "additionalProperties": false,
