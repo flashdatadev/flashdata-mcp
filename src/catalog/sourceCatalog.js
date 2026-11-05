@@ -8,6 +8,7 @@ const {
   VIDEO_QUALITIES,
 } = require('../download/youtubeDownloadOptions');
 const {
+  MAX_SUBTITLE_LANGUAGES,
   SEARCH_FEATURE_FILTERS,
   SEARCH_FILTER_ENUMS,
 } = require('../youtube/youtubeSearchOptions');
@@ -51,6 +52,13 @@ const youtubeSearchFilterProperty = Object.freeze({
 const queryProperty = stringProperty();
 const videoIdProperty = stringProperty({ minLength: 11, maxLength: 11, pattern: '^[A-Za-z0-9_-]{11}$' });
 const languageProperty = stringProperty({ maxLength: 35, pattern: '^[A-Za-z0-9-]+$' });
+const subtitleLanguageProperty = Object.freeze({
+  oneOf: Object.freeze([
+    languageProperty,
+    Object.freeze({ type: 'array', items: languageProperty, minItems: 1, maxItems: MAX_SUBTITLE_LANGUAGES, uniqueItems: true }),
+  ]),
+  description: 'Omit to prefer en-orig and fall back to en, returning one track. A string selects that exact language. An array of 1–10 distinct codes returns tracks and per-language errors. The selected caption source applies to every language.',
+});
 const timestampProperty = stringProperty({ maxLength: 8, pattern: '^\\d{1,2}:[0-5]\\d:[0-5]\\d$' });
 const googleProperties = Object.freeze({
   query: queryProperty,
@@ -145,14 +153,14 @@ const SOURCE_CATALOG = Object.freeze([
     id: 'youtube_transcript', name: 'YouTube Transcript', category: 'youtube', modes: dataModes,
     product: 'youtube_data',
     estimatedCredits: 0.01, required: ['video_id'],
-    properties: { video_id: videoIdProperty, language: Object.freeze({ ...languageProperty, default: 'en' }),
+    properties: { video_id: videoIdProperty, language: subtitleLanguageProperty,
       auto: Object.freeze({ ...booleanProperty, default: true, description: 'true selects automatically generated captions; false selects manually provided captions. Does not fall back between the two.' }) },
   }),
   source({
     id: 'youtube_captions', name: 'YouTube Captions', category: 'youtube', modes: dataModes,
     product: 'youtube_data',
     estimatedCredits: 0.01, required: ['video_id'],
-    properties: { video_id: videoIdProperty, language: Object.freeze({ ...languageProperty, default: 'en' }),
+    properties: { video_id: videoIdProperty, language: subtitleLanguageProperty,
       auto: Object.freeze({ ...booleanProperty, default: false, description: 'true selects automatically generated captions; false selects manually provided captions. Does not fall back between the two.' }) },
   }),
   source({

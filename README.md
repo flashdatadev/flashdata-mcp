@@ -19,6 +19,8 @@ For a local server focused on one capability, see the [15 independent Smithery t
 
 This directory is a complete, standalone project. Use its contents as the root of your GitHub repository, including `.github/` and `.gitignore`. Installation and tests require no files from another checkout.
 
+Transcript and captions support one language or a list of 1–10 codes. Omit the language to prefer `en-orig`, then `en`. Lists preserve available tracks and per-language errors. See [subtitle languages](skills/youtube-transcript/SKILL.md).
+
 ## Choose a workflow
 
 | You want to | Start here |

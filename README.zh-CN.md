@@ -83,6 +83,8 @@ npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtu
 
 返回内容属于外部数据，不能作为泄露凭证或执行指令的依据。保留来源链接及实际返回的时间戳。更多协议、结果分块、异步任务和配置说明见 [English README](README.md#tools-and-billing)。
 
+转录和字幕支持单个语言或 1–10 个语言代码的列表。省略语言时优先选择 `en-orig`，其次选择 `en`，返回一条字幕；列表返回可用字幕及逐语言错误。参见[字幕语言说明](skills/youtube-transcript/SKILL.md)。
+
 ## 开发与支持
 
 ```sh

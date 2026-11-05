@@ -1,3 +1,4 @@
+const MAX_SUBTITLE_LANGUAGES = 10;
 const SEARCH_FILTER_ENUMS = Object.freeze({
   duration: Object.freeze(['<4', '4-20', '>20']),
   sort_by: Object.freeze(['rating', 'relevance', 'view_count', 'upload_date']),
@@ -88,11 +89,13 @@ function normalizeYouTubeSearchOptions(raw, { extended = false } = {}) {
 
 function normalizeYouTubeSubtitleOptions(raw) {
   const params = { ...raw };
-  if (params.language !== undefined && (
-    typeof params.language !== 'string'
-    || !/^[A-Za-z0-9-]{1,35}$/.test(params.language)
-  )) {
-    throw new YouTubeOptionsError('language', 'language must be a valid language code.');
+  if (params.language !== undefined) {
+    const languages = Array.isArray(params.language) ? params.language : [params.language];
+    if (!languages.length || languages.length > MAX_SUBTITLE_LANGUAGES
+      || new Set(languages).size !== languages.length
+      || languages.some(language => typeof language !== 'string' || !/^[A-Za-z0-9-]{1,35}$/.test(language))) {
+      throw new YouTubeOptionsError('language', `language must be a valid language code or an array of 1 to ${MAX_SUBTITLE_LANGUAGES} distinct language codes.`);
+    }
   }
   if (params.auto !== undefined && typeof params.auto !== 'boolean') {
     throw new YouTubeOptionsError('auto', 'auto must be a boolean.');
@@ -101,6 +104,7 @@ function normalizeYouTubeSubtitleOptions(raw) {
 }
 
 module.exports = {
+  MAX_SUBTITLE_LANGUAGES,
   SEARCH_FEATURE_FILTERS,
   SEARCH_FILTER_ENUMS,
   YouTubeOptionsError,

@@ -6,6 +6,52 @@ const { createMemoryResultStore } = require('../src/mcp/memoryResultStore');
 const { SOURCE_CATALOG } = require('../src/catalog/sourceCatalog');
 const { listTools } = require('../src/mcp/toolCatalog');
 const { present } = require('../src/mcp/presentation');
+const { normalizeYouTubeSubtitleOptions } = require('../src/youtube/youtubeSearchOptions');
+
+test('subtitle language arrays retain partial results and explicit choices in every format', async () => {
+  for (const source of ['youtube_transcript', 'youtube_captions']) {
+    for (const language of [undefined, 'en', ['en'], ['en', 'es']]) {
+      const args = { video_id: 'aircAruvnKk', auto: false, ...(language === undefined ? {} : { language }) };
+      assert.deepEqual(normalizeYouTubeSubtitleOptions(args), args);
+      for (const response_format of ['text', 'markdown', 'json']) {
+        for (const tracks of [[], [{ videoId: 'aircAruvnKk', languageCode: 'en', fullText: 'Example',
+          segments: [{ start: 1.25, end: 2, text: 'Example' }] }]]) {
+          const body = { source, status: 'done', results: [{ tracks,
+            errors: [{ languageCode: 'es', code: 'language_unavailable', message: 'No Spanish track' }] }] };
+          const { handlers, requests } = fixture(body);
+          const result = await handlers.call({ name: source, arguments: { ...args, response_format } });
+          assert.equal(result.isError, false);
+          assert.deepEqual(result.structuredContent.results, body.results);
+          assert.match(result.content[0].text, /No Spanish track/);
+          if (tracks.length && response_format === 'markdown') assert.match(result.content[0].text, /1\.25–2s/);
+          assert.deepEqual(requests[0].body.params, { auto: false, ...(language === undefined ? {} : { language }) });
+          assert.equal(requests.length, 1);
+        }
+      }
+    }
+  }
+});
+
+test('subtitle language bounds and suggestions remain independent', async () => {
+  const tools = listTools(SOURCE_CATALOG.map(s => s.id));
+  for (const source of ['youtube_transcript', 'youtube_captions']) {
+    const schema = tools.find(t => t.name === source).inputSchema;
+    const validate = new Ajv({ strict: true }).compile(schema);
+    assert.equal(schema.properties.language.default, undefined);
+    for (const language of [null, '', 'en,es', 'a'.repeat(36), [], ['en', 'en'], ['en', null], [...'abcdefghijk']]) {
+      assert.throws(() => normalizeYouTubeSubtitleOptions({ language }));
+      assert.equal(validate({ video_id: 'aircAruvnKk', language }), false);
+      const { handlers, requests } = fixture({});
+      const result = await handlers.call({ name: source, arguments: { video_id: 'aircAruvnKk', language } });
+      assert.equal(result.isError, true);
+      assert.equal(requests.length, 0);
+    }
+    assert.ok(validate({ video_id: 'aircAruvnKk', language: [...'abcdefghij'] }));
+  }
+  const suggestions = tools.find(t => t.name === 'youtube_suggestions').inputSchema;
+  assert.equal(suggestions.properties.language.type, 'string');
+  assert.equal(suggestions.properties.language.default, 'en');
+});
 
 function fixture(body, options = {}) {
   const requests = [];

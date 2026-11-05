@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Update follow-redirects to 1.16.2 to address the dependency audit finding.
+
+- Add transcript/caption language lists, the omitted-language fallback and guidance for partial results. Other source APIs are unchanged.
+
 ## 0.3.0 — unreleased
 
 - Default local MCP text to Markdown; add explicit text and JSON presentation while preserving structured fields. REST and CLI defaults are unchanged.

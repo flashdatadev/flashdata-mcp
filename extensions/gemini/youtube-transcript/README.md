@@ -198,3 +198,10 @@ presentation; `get_result` inherits the original format. Earlier published
 versions return JSON and do not accept this argument: check the running tool
 schema before using it. CLI calls default to JSON; explicit text formats return
 a document string in the JSON `result` field. Formatting never repeats the query.
+
+## Language lists
+
+The source checkout supports `language: ["en", "es"]` and omitted-language fallback
+(`en-orig`, then `en`). The published `0.1.1` task package shown above accepts one
+explicit language only. See the [current subtitle guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/skills/youtube-transcript/SKILL.md)
+for language lists and partial results when using an updated server.

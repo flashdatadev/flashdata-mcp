@@ -16,6 +16,11 @@ const read = relative => fs.readFileSync(path.join(root, relative), 'utf8').repl
 function publishedInputSchema(source) {
   const schema = listTaskTools(source).find(tool => tool.name === source).inputSchema;
   const { response_format, ...properties } = schema.properties;
+  if (['youtube_transcript', 'youtube_captions'].includes(source)) {
+    properties.language = { type: 'string', minLength: 1, maxLength: 35,
+      pattern: '^[A-Za-z0-9-]+$', default: 'en',
+      description: 'Requested language code. Captions must exist in this language.' };
+  }
   return { ...schema, properties };
 }
 const files = new Map();

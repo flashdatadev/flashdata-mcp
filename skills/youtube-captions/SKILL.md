@@ -49,7 +49,7 @@ Replace the example ID with the video ID from the user's URL. A request succeeds
 | Parameter | Use |
 | --- | --- |
 | `video_id` | Required 11-character video ID. |
-| `language` | Track language code; defaults to `en`. |
+| `language` | One language code or a list of 1–10 distinct codes; omit for `en-orig`, then `en`. |
 | `auto` | `false` for uploader-provided captions (default); `true` for existing automatic captions. |
 
 ### Request uploader-provided Japanese captions
@@ -70,6 +70,25 @@ Read `results[0].segments`, an ordered list of `{start, end, text}` entries in s
 
 SRT/WebVTT conversion is performed locally from the returned JSON. Preserve the original wording and timing; include the source video URL and track language with the export.
 
+## Multiple languages
+
+Omit `language` to prefer `en-orig`, then `en`, returning one track. A string selects
+that exact language. A list of 1–10 distinct codes returns `tracks` and `errors`,
+even for a one-element list. Each code must match `[A-Za-z0-9-]{1,35}`. The `auto`
+choice applies to all languages: transcripts default to automatic captions (`true`),
+captions to uploaded captions (`false`). Neither switches caption source or translates missing tracks.
+
+```json
+{"video_id":"aircAruvnKk","language":["en","es"],"auto":false}
+```
+
+For a language list, read `results[0].tracks` and `results[0].errors`. Each track
+has the usual text, language and timestamp fields. Each error has `languageCode`,
+`code` (`language_unavailable` or `retrieval_failed`) and `message`. Preserve available
+tracks and report missing languages; both lists follow request order. If all languages
+fail, `tracks` is empty. Video-level extraction failures still fail the request.
+Do not resubmit the whole query just because one language failed.
+
 ## Connection and responses
 
 For hosted MCP, connect `https://data.flashdata.dev/mcp` using Streamable HTTP and an `X-API-Key` header in your client's protected settings. Keep keys out of chat and committed files.
@@ -80,6 +99,6 @@ To run in the background, add `"mode":"async"`, then call `get_job` with `{"job_
 
 ## Output format
 
-For agents, prefer Markdown. Local MCP 0.3.0 returns Markdown text by default and retains original fields in `structuredContent`. Use `response_format: "text"` or `"json"` when needed; `get_result` inherits the original format. Check the connected server’s schema before using this option with hosted or older servers.
+For agents, prefer plain text. Select `response_format: "text"` when the connected schema supports it. Local MCP 0.3.0 returns Markdown text by default and retains original fields in `structuredContent`. Use `response_format: "text"` or `"json"` when needed; `get_result` inherits the original format. Check the connected server’s schema before using this option with hosted or older servers.
 
 The bundled Python examples request JSON when supported so programs can read the fields described above. They also work with older JSON-only servers, finish chunk reads before closing, and never retry the original paid call.
