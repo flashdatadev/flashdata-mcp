@@ -44,6 +44,8 @@ and 1 means request or output failure.
 
 ## Inputs and output
 
+This formula installs task CLI `0.1.0`, which accepts one language code and defaults to `en`. Updated source builds support language lists and prefer `en-orig`, then `en`, when language is omitted; see the [current package guide](../../packages/python-cli/README.md#subtitle-languages).
+
 Use `--video-id` for the primary input. Additional options use
 `--options-json` as a JSON object, with strict field/type/range validation. Source is fixed by
 this package.
