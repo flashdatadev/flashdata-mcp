@@ -4,7 +4,7 @@ Retrieve an existing caption track and keep the timestamps beside the text. The 
 
 `@flashdata-dev/youtube-transcript` exposes **youtube_transcript** and the supporting reads for that task. It runs locally and calls the FlashData API. Node.js **22.18 or newer** and a FlashData API key with this source enabled are required.
 
-[Inputs, outputs and source documentation](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [Get an API key](https://flashdata.dev/app/api-keys) · [Current API pricing](https://flashdata.dev/pricing)
+[Inputs, outputs and source documentation](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [Get an API key](https://flashdata.dev/signup?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) · [Current API pricing](https://flashdata.dev/pricing?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task)
 
 **The MIT software is free to install. FlashData API data calls are paid and consume Credits.** Pricing and job reads are free. MCP client/model fees are separate.
 
