@@ -34,7 +34,7 @@ for (const task of tasks) {
   const npmPackage = `@flashdata-dev/${task.slug}@${npmVersion}`;
   const description = task.description.replace('CLI and MCP via', 'Uses');
   const homepage = `https://flashdata.dev/docs/sources/${task.source}`;
-  const apiGuide = read(`npm/docs/${task.slug}/README.md`).replace(/\?utm_source=npm[^)\s]+/g, '');
+  const apiGuide = read(`npm/docs/${task.slug}/README.md`).replace(/\?utm_source=(?:npm|github)[^)\s]+/g, '');
   const scenario = apiGuide.split('\n\n')[1];
   const example = require(`../registry/examples/${task.source}.json`).arguments;
   const server = { command: 'npx', args: ['--yes', npmPackage, 'mcp'], env: { FLASHDATA_API_KEY: '${FLASHDATA_API_KEY}' } };

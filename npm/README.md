@@ -40,7 +40,7 @@ The existing [`@flashdata-dev/mcp`](https://www.npmjs.com/package/@flashdata-dev
 
 ## Source release changes
 
-Task builds from this checkout target 0.2.0 and default MCP text to Markdown, with
+Task builds from this checkout target 0.2.1 and default MCP text to Markdown, with
 `response_format` options for text and JSON. The published 0.1.1 packages pinned
 above retain their existing JSON behavior. Client integration pins change only
 after a new public task release has been verified. CLI defaults stay JSON.
@@ -52,6 +52,8 @@ npm ci
 npm run build:npm-tasks
 npm run test:npm-tasks
 ```
+
+Repository guide links use `utm_source=github`; the build converts those website links to `utm_source=npm` only in the packaged README. Signup and pricing retain the task capability.
 
 The build writes 15 tarballs plus an integrity manifest to `dist/npm`. It refuses to overwrite a task directory. Use a fresh output directory when rebuilding, for example `npm run build:npm-tasks -- /absolute/path/new-output`, then pass the same directory to `npm run test:npm-tasks -- /absolute/path/new-output`.
 

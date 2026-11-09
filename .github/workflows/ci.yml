@@ -30,4 +30,4 @@ jobs:
         env:
           FLASHDATA_TASK_BUNDLE_DIR: dist/smithery
       - run: npm audit --audit-level=high
-      - run: npm pack
+      - run: npm run build:npm

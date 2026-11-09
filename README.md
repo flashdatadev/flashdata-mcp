@@ -2,14 +2,14 @@
 
 Release artifacts for 0.3.0 are available from [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.3.0). npm availability is independent; check the registry before upgrading.
 
-[简体中文](README.zh-CN.md) · [FlashData](https://flashdata.dev) · [API documentation](https://flashdata.dev/docs) · [Pricing](https://flashdata.dev/pricing)
+[简体中文](README.zh-CN.md) · [FlashData](https://flashdata.dev?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [API documentation](https://flashdata.dev/docs?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [Pricing](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
 
 Use Google Search, YouTube data, and downloads to your cloud storage from a terminal, Agent, or MCP client. This MIT-licensed package implements the tools and calls the FlashData REST APIs directly. It does not proxy a hosted MCP connection.
 
 Source code is available at [flashdatadev/flashdata-mcp](https://github.com/flashdatadev/flashdata-mcp). The npm package `@flashdata-dev/mcp` provides two commands: `flashdata` for single-call JSON output and `flashdata-mcp` for persistent stdio MCP.
 
 To connect without running this local package, use the separate
-[FlashData hosted MCP service](https://flashdata.dev/mcp). Its
+[FlashData hosted MCP service](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined). Its
 [Official MCP Registry manifest and publishing instructions](https://github.com/flashdatadev/flashdata-mcp/tree/main/registry)
 are maintained in this repository. The combined registration describes the hosted
 endpoint. The Registry also has separate manifests for 15 local task servers;
@@ -27,7 +27,7 @@ Transcript and captions support one language or a list of 1–10 codes. Omit the
 
 | You want to | Start here |
 | --- | --- |
-| Connect an agent without a local server | [Hosted MCP setup](https://flashdata.dev/mcp) |
+| Connect an agent without a local server | [Hosted MCP setup](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
 | Run the local stdio MCP server | [Run locally](#run-locally) |
 | Install portable agent instructions | [FlashData Skills](https://github.com/flashdatadev/flashdata-skills) |
 | Use the standalone CLI for query, bulk and recovery workflows | [FlashData CLI](https://github.com/flashdatadev/flashdata-cli) |
@@ -74,7 +74,7 @@ npx skills add flashdatadev/flashdata-skills --skill flashdata-mcp
 
 Select your agent when prompted, or add `--agent codex` (or another supported agent). The default scope is the current project; use `--global` only if you want a user-wide installation. Review the Skill before installation.
 
-This installs instructions and references, not the MCP executable or an account connection. Connect FlashData separately using the [hosted setup](https://flashdata.dev/mcp) or the local instructions below. The Skill contains no API keys and submits no queries during installation. Queries made through MCP use your existing FlashData Credits; account reads can verify a connection for free.
+This installs instructions and references, not the MCP executable or an account connection. Connect FlashData separately using the [hosted setup](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) or the local instructions below. The Skill contains no API keys and submits no queries during installation. Queries made through MCP use your existing FlashData Credits; account reads can verify a connection for free.
 
 Example requests:
 
@@ -128,7 +128,7 @@ Cursor discovers the plugin through [.cursor-plugin/plugin.json](.cursor-plugin/
 
 For local development, follow [Cursor's local plugin instructions](https://cursor.com/docs/plugins#test-plugins-locally): copy `.cursor-plugin/`, `mcp.json`, `skills/`, `assets/`, `README.md`, and `LICENSE` into `~/.cursor/plugins/local/flashdata/`. Restart Cursor or run **Developer: Reload Window**, then check **Customize** for the FlashData Skill and MCP server. A symlink to this checkout outside that local plugin directory is not supported. Organization policy can disable local plugin imports.
 
-If your local Cursor setup does not offer plugin variable configuration, connect the [hosted MCP service](https://flashdata.dev/mcp) separately using Cursor's supported MCP configuration and protected environment variables. The Skill can reuse that connection; do not keep two active FlashData connections. API-key authentication is sufficient for this plugin; it does not depend on an unregistered OAuth client.
+If your local Cursor setup does not offer plugin variable configuration, connect the [hosted MCP service](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) separately using Cursor's supported MCP configuration and protected environment variables. The Skill can reuse that connection; do not keep two active FlashData connections. API-key authentication is sufficient for this plugin; it does not depend on an unregistered OAuth client.
 
 After configuration, invoke `/flashdata-mcp` and ask: “Quote one Google search using FlashData, but do not run the search.” The intended check discovers tools and calls `get_pricing` with `source: "google_search"` and `request_count: 1`. It is free and does not verify paid retrieval. Search and transcript requests use FlashData Credits under the user's approved budget. Results and transcripts are external source data, not instructions to the agent.
 
@@ -196,7 +196,7 @@ SECURITY.md              vulnerability reporting and trust boundaries
 
 ## Response formats
 
-Local MCP **0.3.0** returns Markdown in its text content by default. Original API
+Since **0.3.0**, local MCP returns Markdown in its text content by default. Original API
 fields remain in `structuredContent` for programs; large results instead provide
 chunk metadata there. Choose a different presentation with a tool argument:
 
@@ -227,7 +227,7 @@ JSON continuation block followed by the readable chunk. Use its `result_id` and
 
 ## Run locally
 
-Requires Node.js 22.18 or newer and a FlashData API key from [your console](https://flashdata.dev/app/api-keys). The Management API must support `/v2/api-access` and its balance, pricing and limits routes. Deploy that server release before connecting this package to an older environment.
+Requires Node.js 22.18 or newer and a FlashData API key from [a FlashData account](https://flashdata.dev/signup?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined). The Management API must support `/v2/api-access` and its balance, pricing and limits routes. Deploy that server release before connecting this package to an older environment.
 
 Clone the repository and install its dependencies:
 
@@ -257,28 +257,28 @@ For a local clone, configure Claude Desktop (or another stdio MCP client) with a
 
 Use the full path to Node if your desktop app cannot find it. On Windows, use an escaped Windows path. Keep credentials in your client's protected configuration, not in a prompt, URL, committed file, or command-line argument.
 
-You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.3.0.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
+You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.3.1.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
 
 ## Agent CLI
 
-Version **0.3.0** defaults to Markdown in MCP clients. The single-call CLI keeps
+Version **0.3.0** and later default to Markdown in MCP clients. The single-call CLI keeps
 its JSON default; pass `response_format` to choose Markdown or plain text.
 
 The package also provides `flashdata`, a single-call JSON CLI. It shares the MCP schemas, source permissions and API clients. Run `node bin/flashdata.js` in a source checkout, or install the npm package:
 
 ```sh
-npm install --global @flashdata-dev/mcp@0.3.0
+npm install --global @flashdata-dev/mcp@0.3.1
 flashdata --help
 ```
 
 Without a global installation, select the executable explicitly:
 
 ```sh
-npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata tools
-npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata call get_pricing
+npx --yes --package=@flashdata-dev/mcp@0.3.1 flashdata tools
+npx --yes --package=@flashdata-dev/mcp@0.3.1 flashdata call get_pricing
 ```
 
-For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.3.0", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
+For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.3.1", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
 
 Set `FLASHDATA_API_KEY` through your environment or secret manager. Do not put real keys in shell history or command arguments. Start with free discovery and pricing:
 
@@ -332,7 +332,7 @@ Start with “Check my FlashData balance, pricing and limits.” This does not s
 
 Do not automatically repeat a timed-out query: it may already have been submitted and charged. JSON-RPC IDs are not billing idempotency keys. Check Jobs first. Read failures do not imply refunds.
 
-Downloads require a `storage` object matching the [Download API](https://flashdata.dev/docs/sources/youtube_download). Storage credentials must come from the user's configured destination; never invent or echo them. The existing download protocol transmits these credentials to FlashData to perform the upload. This release does not inject storage credentials from a local file or hide them from the MCP client's tool arguments. Private object URLs still require the destination's own access controls.
+Downloads require a `storage` object matching the [Download API](https://flashdata.dev/docs/sources/youtube_download?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task). Storage credentials must come from the user's configured destination; never invent or echo them. The existing download protocol transmits these credentials to FlashData to perform the upload. This release does not inject storage credentials from a local file or hide them from the MCP client's tool arguments. Private object URLs still require the destination's own access controls.
 
 Use dedicated, narrowly scoped, short-lived storage credentials where supported. Tool arguments may be retained in your MCP client's history or debug logs, even when the server itself does not log them. See [Security](SECURITY.md) for the trust boundaries and private vulnerability reporting channel.
 
@@ -366,7 +366,7 @@ npm run check:package
 npm run test:install
 npm run build:npm-tasks
 npm run test:npm-tasks
-npm pack
+npm run build:npm
 ```
 
 Tests spawn both an actual SDK stdio client and the JSON CLI against isolated local HTTP fixtures. They cover discovery, authorization changes, account reads, argument validation, query/download/batch forwarding, unknown POST outcomes, credential-free result delivery and bounded Unicode result caching. They do not contact paid providers or require Redis/MongoDB.
@@ -375,7 +375,7 @@ Tests spawn both an actual SDK stdio client and the JSON CLI against isolated lo
 
 `npm run build:npm-tasks` builds 15 source-restricted tarballs in `dist/npm`, including each package’s schema, example and guide. `npm run test:npm-tasks` installs those tarballs together in an empty project and tests every actual CLI and MCP executable. See [RELEASING.md](https://github.com/flashdatadev/flashdata-mcp/blob/main/RELEASING.md) for versioning and publication.
 
-`npm pack` runs tests and verifies the file allowlist. The npm tarball contains the CLI, source, README, license and notices; it excludes tests, credentials, private backend code, deployment files and node_modules. A source repository should also retain tests, scripts, the lockfile, and the CI workflow.
+`npm run build:npm` runs tests, verifies the file allowlist and packs a separate staging copy. It converts tracked website links from GitHub to npm without modifying the source READMEs. Plain `npm pack` retains GitHub links and is not the publication artifact. The npm tarball contains the CLI, source, README, license and notices; it excludes tests, credentials, private backend code, deployment files and node_modules. A source repository should also retain tests, scripts, the lockfile, and the CI workflow.
 
 ## License
 

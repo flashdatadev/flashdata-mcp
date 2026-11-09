@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { runNpm } = require('./npm');
+const { npmReadme } = require('./npm-readme');
 const { SOURCE_CATALOG, QUERY_MODES } = require('../src/catalog/sourceCatalog');
 const { listTaskTools } = require('../src/mcp/taskTools');
 const catalog = require('../npm/tasks.json');
@@ -53,7 +54,7 @@ for (const task of catalog.tasks) {
     readme = readme.replace(/## Language lists[\s\S]*$/,
       '## Language lists\n\nUse `language: ["en", "es"]` to request several tracks. Omit language to prefer `en-orig`, then `en`, returning one track. A string selects exactly that language and keeps the single-track response. Lists, including one-element lists, return `tracks` and per-language `errors` inside each result. Keep successful tracks and inspect errors; when all fail, tracks is empty. The selected caption source applies to every language.\n');
   }
-  fs.writeFileSync(path.join(directory, 'README.md'), readme);
+  fs.writeFileSync(path.join(directory, 'README.md'), npmReadme(readme));
   fs.mkdirSync(path.join(directory, 'examples'));
   fs.writeFileSync(path.join(directory, 'examples/query.json'), json(require(`../registry/examples/${task.source}.json`).arguments));
   fs.writeFileSync(path.join(directory, 'schema.json'), json(listTaskTools(task.source).find(tool => tool.name === task.source).inputSchema));
