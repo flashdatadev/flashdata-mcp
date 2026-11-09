@@ -27,7 +27,10 @@ try {
     assert.equal(fs.readFileSync(path.join(root, name), 'utf8'), originals[index]);
   }
   for (const file of packed.files.filter(file => /^(src|bin)\//.test(file.path))) {
-    assert.deepEqual(fs.readFileSync(path.join(installed, file.path)), fs.readFileSync(path.join(root, file.path)));
+    let expected = fs.readFileSync(path.join(root, file.path));
+    // npm normalizes only the executable shebang's CRLF on Windows installation.
+    if (file.path.startsWith('bin/')) expected = Buffer.from(expected.toString('utf8').replace(/^(#![^\r\n]*)\r\n/, '$1\n'));
+    assert.deepEqual(fs.readFileSync(path.join(installed, file.path)), expected, file.path);
   }
   assert.throws(() => packCombined(temporary), /Refusing to overwrite/);
   execFileSync(process.execPath, ['--test', path.join(root, 'test/stdio.test.js'), path.join(root, 'test/cli.test.js')], {
