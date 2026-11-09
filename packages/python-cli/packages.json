@@ -4,7 +4,7 @@
     "project": "flashdata-google-search",
     "command": "flashdata-google-search",
     "module": "flashdata_google_search_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-google-search/"
   },
   {
@@ -12,7 +12,7 @@
     "project": "flashdata-google-news",
     "command": "flashdata-google-news",
     "module": "flashdata_google_news_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-google-news/"
   },
   {
@@ -20,7 +20,7 @@
     "project": "flashdata-google-images",
     "command": "flashdata-google-images",
     "module": "flashdata_google_images_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-google-images/"
   },
   {
@@ -28,7 +28,7 @@
     "project": "flashdata-google-shopping",
     "command": "flashdata-google-shopping",
     "module": "flashdata_google_shopping_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-google-shopping/"
   },
   {
@@ -36,7 +36,7 @@
     "project": "flashdata-google-videos",
     "command": "flashdata-google-videos",
     "module": "flashdata_google_videos_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-google-videos/"
   },
   {
@@ -44,7 +44,7 @@
     "project": "flashdata-google-places",
     "command": "flashdata-google-places",
     "module": "flashdata_google_places_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-google-places/"
   },
   {
@@ -52,7 +52,7 @@
     "project": "flashdata-youtube-search",
     "command": "flashdata-youtube-search",
     "module": "flashdata_youtube_search_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-search/"
   },
   {
@@ -60,7 +60,7 @@
     "project": "flashdata-youtube-search-extended",
     "command": "flashdata-youtube-search-extended",
     "module": "flashdata_youtube_search_extended_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-search-extended/"
   },
   {
@@ -68,7 +68,7 @@
     "project": "flashdata-youtube-metadata",
     "command": "flashdata-youtube-metadata",
     "module": "flashdata_youtube_metadata_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-metadata/"
   },
   {
@@ -76,7 +76,7 @@
     "project": "flashdata-youtube-transcript",
     "command": "flashdata-youtube-transcript",
     "module": "flashdata_youtube_transcript_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-transcript/"
   },
   {
@@ -84,7 +84,7 @@
     "project": "flashdata-youtube-captions",
     "command": "flashdata-youtube-captions",
     "module": "flashdata_youtube_captions_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-captions/"
   },
   {
@@ -92,7 +92,7 @@
     "project": "flashdata-youtube-trainability",
     "command": "flashdata-youtube-trainability",
     "module": "flashdata_youtube_trainability_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-trainability/"
   },
   {
@@ -100,7 +100,7 @@
     "project": "flashdata-youtube-channel",
     "command": "flashdata-youtube-channel",
     "module": "flashdata_youtube_channel_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-channel/"
   },
   {
@@ -108,7 +108,7 @@
     "project": "flashdata-youtube-suggestions",
     "command": "flashdata-youtube-suggestions",
     "module": "flashdata_youtube_suggestions_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-suggestions/"
   },
   {
@@ -116,7 +116,7 @@
     "project": "flashdata-youtube-cloud-storage",
     "command": "flashdata-youtube-cloud-storage",
     "module": "flashdata_youtube_cloud_storage_cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "pypi_url": "https://pypi.org/project/flashdata-youtube-cloud-storage/"
   }
 ]
