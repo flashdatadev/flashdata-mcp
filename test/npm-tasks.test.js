@@ -60,7 +60,12 @@ test('15 installed npm CLIs execute their source and reject cross-source access'
     const directory = path.dirname(path.dirname(entry.bin));
     const packagedCatalog = require(path.join(directory, 'runtime/catalog/sourceCatalog.js'));
     assert.deepEqual(packagedCatalog.SOURCE_CATALOG.map(source => source.id), [entry.source]);
+    const readme = fs.readFileSync(path.join(directory, 'README.md'), 'utf8');
+    assert.match(readme, /\/signup\?utm_source=npm/);
+    assert.doesNotMatch(readme, /utm_source=github/);
+    assert.ok(readme.includes(`utm_content=${entry.source}-task`));
     const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'package.json'), 'utf8'));
+    assert.equal(new URL(manifest.homepage).searchParams.get('utm_source'), 'npm');
     assert.deepEqual(Object.keys(manifest.bin), [entry.command]);
     assert.deepEqual(Object.keys(manifest.exports), ['./package.json']);
     assert.equal((await run(['--version'])).stdout.trim(), entry.version);

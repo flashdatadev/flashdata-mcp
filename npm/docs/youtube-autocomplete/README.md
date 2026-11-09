@@ -4,7 +4,7 @@ Query a prefix in a chosen language and region, then save unique suggestion phra
 
 `@flashdata-dev/youtube-autocomplete` exposes **youtube_suggestions** and the supporting reads for that task. It runs locally and calls the FlashData API. Node.js **22.18 or newer** and a FlashData API key with this source enabled are required.
 
-[Inputs, outputs and source documentation](https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task) · [Get an API key](https://flashdata.dev/signup?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task) · [Current API pricing](https://flashdata.dev/pricing?utm_source=npm&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task)
+[Inputs, outputs and source documentation](https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task) · [Get an API key](https://flashdata.dev/signup?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task) · [Current API pricing](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task)
 
 **The MIT software is free to install. FlashData API data calls are paid and consume Credits.** Pricing and job reads are free. MCP client/model fees are separate.
 
@@ -137,7 +137,7 @@ MCP responses longer than 16,000 UTF-16 code units use `result_id`, `chunk` and 
 
 Optional environment settings are `FLASHDATA_REQUEST_TIMEOUT_MS` (1000–120000, default 65000), `FLASHDATA_DATA_API_URL` and `FLASHDATA_MANAGEMENT_API_URL`. Custom URLs must be trusted HTTPS origins; loopback HTTP is accepted for local tests. The package does not load `.env` files automatically.
 
-Support: [support@flashdata.dev](mailto:support@flashdata.dev) · [Source and issue tracker](https://github.com/rocosen/flashdata-mcp) · [FlashData terms](https://flashdata.dev/legal/terms) · [Privacy](https://flashdata.dev/legal/privacy). This is an independent FlashData integration, not an official Google or YouTube package.
+Support: [support@flashdata.dev](mailto:support@flashdata.dev) · [Source and issue tracker](https://github.com/flashdatadev/flashdata-mcp) · [FlashData terms](https://flashdata.dev/legal/terms) · [Privacy](https://flashdata.dev/legal/privacy). This is an independent FlashData integration, not an official Google or YouTube package.
 
 ## MCP presentation
 

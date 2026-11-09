@@ -2,7 +2,7 @@
 
 0.3.0 发布文件可从 [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.3.0) 获取。npm 版本独立发布，升级前请检查仓库中的可用版本。
 
-[English](README.md) · [FlashData](https://flashdata.dev) · [API 文档](https://flashdata.dev/docs) · [价格](https://flashdata.dev/pricing)
+[English](README.md) · [FlashData](https://flashdata.dev?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [API 文档](https://flashdata.dev/docs?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [价格](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
 
 FlashData 官方 MCP 源码仓库，为 agent 和 MCP 客户端提供 Google 搜索、YouTube 数据及媒体交付能力。可以连接托管 MCP，也可以在本机运行本仓库的 stdio 服务；本地服务直接调用 FlashData REST API。
 
@@ -10,7 +10,7 @@ FlashData 官方 MCP 源码仓库，为 agent 和 MCP 客户端提供 Google 搜
 
 | 目标 | 入口 |
 | --- | --- |
-| 无需本地服务，直接连接 agent | [托管 MCP 配置](https://flashdata.dev/mcp) |
+| 无需本地服务，直接连接 agent | [托管 MCP 配置](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
 | 在本机运行 stdio MCP | 下方“本地安装” |
 | 安装可移植的 agent 技能 | [FlashData Skills](https://github.com/flashdatadev/flashdata-skills) |
 | 使用独立 CLI 执行查询、批量任务和恢复操作 | [FlashData CLI](https://github.com/flashdatadev/flashdata-cli) |
@@ -24,9 +24,9 @@ FlashData 官方 MCP 源码仓库，为 agent 和 MCP 客户端提供 Google 搜
 - 地址：`https://data.flashdata.dev/mcp`
 - 传输：Streamable HTTP
 - 认证请求头：`X-API-Key`
-- [获取 API Key](https://flashdata.dev/app/api-keys)
+- [获取 API Key](https://flashdata.dev/signup?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
 
-按照[对应客户端的配置文档](https://flashdata.dev/mcp)设置连接，并将密钥保存在客户端受保护的配置或环境变量中。安装 Skills 不会自动连接账户。配置完成后，可先让 agent 查询 `get_pricing`、余额或限额；报价不会执行付费数据查询。
+按照[对应客户端的配置文档](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)设置连接，并将密钥保存在客户端受保护的配置或环境变量中。安装 Skills 不会自动连接账户。配置完成后，可先让 agent 查询 `get_pricing`、余额或限额；报价不会执行付费数据查询。
 
 ## 本地安装
 
@@ -49,10 +49,10 @@ npm start
 使用已发布 npm 包时，应明确选择可执行文件：
 
 ```sh
-npx --yes --package=@flashdata-dev/mcp@0.3.0 flashdata-mcp
+npx --yes --package=@flashdata-dev/mcp@0.3.1 flashdata-mcp
 ```
 
-客户端配置对应的 `command` 为 `npx`，`args` 为 `["--yes", "--package=@flashdata-dev/mcp@0.3.0", "flashdata-mcp"]`。Windows 客户端可能需要使用 `npx.cmd`。
+客户端配置对应的 `command` 为 `npx`，`args` 为 `["--yes", "--package=@flashdata-dev/mcp@0.3.1", "flashdata-mcp"]`。Windows 客户端可能需要使用 `npx.cmd`。
 
 ## 安装 Skills
 
@@ -66,11 +66,11 @@ npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtu
 
 ## 响应格式
 
-本地 MCP 0.3.0 默认返回 Markdown 文本，并在 `structuredContent` 中保留原始字段；大结果使用分块元数据。通过工具参数 `response_format: "text"` 或 `"json"` 可选择纯文本或 JSON，`get_result` 继承初次调用的格式。所有分块按顺序拼接后，仅在 `encoding: "json"` 时解析 JSON。错误仍返回结构化 JSON。格式转换不会重复查询或改变费用。
+本地 MCP 自 0.3.0 起默认返回 Markdown 文本，并在 `structuredContent` 中保留原始字段；大结果使用分块元数据。通过工具参数 `response_format: "text"` 或 `"json"` 可选择纯文本或 JSON，`get_result` 继承初次调用的格式。所有分块按顺序拼接后，仅在 `encoding: "json"` 时解析 JSON。错误仍返回结构化 JSON。格式转换不会重复查询或改变费用。
 
 该选项同样用于提交回执、任务及账户读取。它是 MCP 工具参数，不是 HTTP 请求头。REST、SDK 和原 npm CLI 默认仍为 JSON；npm CLI 显式选择文本时，将文档字符串放入 JSON 外层的 `result`。Python 示例供程序使用，支持时请求 JSON，并在关闭连接前读完所有分块。
 
-上面的 npm 命令固定到 0.3.0，MCP 默认使用 Markdown。托管 MCP 和独立任务包单独发布，请以已连接工具的 schema 为准。
+上面的 npm 命令固定到候选版本 0.3.1，发布前请检查 npm 可用版本，MCP 默认使用 Markdown。托管 MCP 和独立任务包单独发布，请以已连接工具的 schema 为准。
 
 对于只显示文本的客户端，格式化分块先提供简短 JSON 续读信息，再提供可读内容。使用 `result_id` 和 `next_offset` 读完后，完整文档仍是 Markdown 或纯文本。
 
