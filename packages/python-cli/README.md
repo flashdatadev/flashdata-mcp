@@ -6,12 +6,13 @@ Installation is free; FlashData API requests use paid Credits.
 
 ## Availability
 
-The 0.2.1 attribution patch is prepared locally; it adds PyPI source/task parameters to
-website links without changing API behavior. It is not yet published.
+Version 0.2.1 is published on PyPI for all fifteen distributions. It adds PyPI
+source/task parameters to website links without changing API behavior. Public package
+metadata, wheel/sdist hashes, provenance and isolated installations were verified.
 
 Version 0.2.0 is available as checked wheel/sdist assets in the
 [GitHub release](https://github.com/flashdatadev/flashdata-mcp/releases/tag/python-cli-v0.2.0).
-All fifteen distributions are published on PyPI as version 0.2.0. Each project below
+Each project below
 has its own command, source-specific README and package page. Homebrew users can follow
 the [independent formula guides](../../homebrew/README.md).
 The existing `langchain-flashdata` package is a separate integration and is unchanged.
@@ -61,10 +62,10 @@ No production API, model, or storage write is needed for these checks.
 For a local build, use the wheel path explicitly:
 
 ```sh
-uvx --from ./dist/flashdata_google_search-0.2.0-py3-none-any.whl flashdata-google-search --schema
+uvx --from ./dist/flashdata_google_search-0.2.1-py3-none-any.whl flashdata-google-search --schema
 ```
 
-The PyPI equivalent is `uvx flashdata-google-search@0.2.0 --schema`.
+The PyPI equivalent is `uvx flashdata-google-search@0.2.1 --schema`.
 For a paid query, set `FLASHDATA_API_KEY` through your shell or secret manager, then use
 `--query 'your research topic' --options-json '{"num":5}' --output result.json`.
 The output path must be new. Full JSON is written to stdout if the path is omitted.
@@ -77,11 +78,10 @@ are never accepted as command arguments. Download receipts omit credentials from
 
 ## PyPI publication
 
-Publication is manual and separate from CI. All fifteen projects originally used the
-Trusted Publisher approved for the personal repository below. The 0.2.0
-files are live on PyPI, but their publication route has not been verified; the brand
-repository workflow is still guarded to the personal repository. Confirm the active
-publisher before releasing 0.2.1:
+Publication is manual and separate from CI. Version 0.2.1 was published using the
+existing Trusted Publisher for the personal repository below, with no new publisher
+permissions. The reviewed source is maintained in the brand repository; the publishing
+workflow remains in the personal repository.
 
 | Field | Value |
 | --- | --- |
@@ -98,7 +98,11 @@ of project names and URLs, not a live registry status check.
 
 For a new release, create a matching `python-cli-vVERSION` tag on the reviewed source
 commit, then manually dispatch **Publish Python task CLIs** from `main` with that
-`release_tag`. The existing `python-cli-v0.2.0` release is already published.
+`release_tag`. Versions 0.2.0 and 0.2.1 are already published. The 0.2.1 source tag
+points to `e60742524e593e16436270570a6aa5cdf8482b3e`, reviewed in brand repository PR #2.
+The [first project run](https://github.com/rocosen/flashdata-mcp/actions/runs/42585825462)
+and [remaining fourteen run](https://github.com/rocosen/flashdata-mcp/actions/runs/42586626814)
+completed successfully.
 The workflow checks out that tag and verifies its version and commit before building;
 publishing infrastructure can be repaired without moving the source tag or changing the packages.
 Select one exact project to validate each new release;
