@@ -6,6 +6,9 @@ Installation is free; FlashData API requests use paid Credits.
 
 ## Availability
 
+The 0.2.1 attribution patch is prepared locally; it adds PyPI source/task parameters to
+website links without changing API behavior. It is not yet published.
+
 Version 0.2.0 is available as checked wheel/sdist assets in the
 [GitHub release](https://github.com/flashdatadev/flashdata-mcp/releases/tag/python-cli-v0.2.0).
 All fifteen distributions are published on PyPI as version 0.2.0. Each project below
@@ -74,8 +77,11 @@ are never accepted as command arguments. Download receipts omit credentials from
 
 ## PyPI publication
 
-Publication is manual and separate from CI. All fifteen projects above have an active
-Trusted Publisher, approved by the owner and verified by their 0.2.0 releases:
+Publication is manual and separate from CI. All fifteen projects originally used the
+Trusted Publisher approved for the personal repository below. The 0.2.0
+files are live on PyPI, but their publication route has not been verified; the brand
+repository workflow is still guarded to the personal repository. Confirm the active
+publisher before releasing 0.2.1:
 
 | Field | Value |
 | --- | --- |
