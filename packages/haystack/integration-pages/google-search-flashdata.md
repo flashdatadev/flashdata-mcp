@@ -18,13 +18,13 @@ toc: true
 Give a research agent current Google result snippets and source links before it drafts an answer. The component fetches one search snapshot and the pipeline formats it into evidence context.
 
 This integration uses the `google_search` FlashData source. See the
-[Google Search setup, request fields and pricing](https://flashdata.dev/docs/sources/google_search)
+[Google Search setup, request fields and pricing](https://flashdata.dev/docs/sources/google_search?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task)
 to create an account and API key before running it.
 
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-there is no published PyPI release at this stage.
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
 
 ```bash
 pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
@@ -98,8 +98,8 @@ Secrets deliberately cannot be serialized. Load only pipeline definitions you ha
 ## Cost, limits and errors
 
 Installation is free under MIT. **FlashData API requests consume paid Credits**; see the
-[source guide](https://flashdata.dev/docs/sources/google_search) for its current rate and
-[FlashData pricing](https://flashdata.dev/pricing). Any downstream model or cloud-storage charges are separate.
+[source guide](https://flashdata.dev/docs/sources/google_search?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) for its current rate and
+[FlashData pricing](https://flashdata.dev/pricing?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task). Any downstream model or cloud-storage charges are separate.
 
 Search snippets are not fetched page content. Omitted count and locale are not filled in by the SDK.
 

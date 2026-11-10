@@ -18,13 +18,13 @@ toc: true
 Search for places near a chosen location and hand available addresses, ratings and contact details to a planning pipeline. Missing fields stay missing and the user can verify each business before making arrangements.
 
 This integration uses the `google_places` FlashData source. See the
-[Google Places setup, request fields and pricing](https://flashdata.dev/docs/sources/google_places)
+[Google Places setup, request fields and pricing](https://flashdata.dev/docs/sources/google_places?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task)
 to create an account and API key before running it.
 
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-there is no published PyPI release at this stage.
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
 
 ```bash
 pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
@@ -97,8 +97,8 @@ Secrets deliberately cannot be serialized. Load only pipeline definitions you ha
 ## Cost, limits and errors
 
 Installation is free under MIT. **FlashData API requests consume paid Credits**; see the
-[source guide](https://flashdata.dev/docs/sources/google_places) for its current rate and
-[FlashData pricing](https://flashdata.dev/pricing). Any downstream model or cloud-storage charges are separate.
+[source guide](https://flashdata.dev/docs/sources/google_places?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) for its current rate and
+[FlashData pricing](https://flashdata.dev/pricing?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task). Any downstream model or cloud-storage charges are separate.
 
 Contact details may be missing; verify current hours and availability with the business.
 

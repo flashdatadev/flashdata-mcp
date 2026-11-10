@@ -14,7 +14,7 @@ dependencies = ["llama-index-core>=0.14.25,<0.15", "httpx>=0.28.1,<1", "pydantic
 keywords = ["llamaindex", "google-search", "youtube-transcript", "agent", "rag"]
 
 [project.urls]
-Homepage = "https://flashdata.dev"
+Homepage = "https://flashdata.dev/?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined"
 Documentation = "https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/llamaindex"
 Source = "https://github.com/flashdatadev/flashdata-mcp"
 Issues = "https://github.com/flashdatadev/flashdata-mcp/issues"

@@ -18,13 +18,13 @@ toc: true
 Collect autocomplete suggestions for a seed phrase, language and region. A research agent can use the returned phrases as candidate questions; they are not search-volume or popularity measurements.
 
 This integration uses the `youtube_suggestions` FlashData source. See the
-[YouTube Autocomplete setup, request fields and pricing](https://flashdata.dev/docs/sources/youtube_suggestions)
+[YouTube Autocomplete setup, request fields and pricing](https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task)
 to create an account and API key before running it.
 
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-there is no published PyPI release at this stage.
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
 
 ```bash
 pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
@@ -98,8 +98,8 @@ Secrets deliberately cannot be serialized. Load only pipeline definitions you ha
 ## Cost, limits and errors
 
 Installation is free under MIT. **FlashData API requests consume paid Credits**; see the
-[source guide](https://flashdata.dev/docs/sources/youtube_suggestions) for its current rate and
-[FlashData pricing](https://flashdata.dev/pricing). Any downstream model or cloud-storage charges are separate.
+[source guide](https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task) for its current rate and
+[FlashData pricing](https://flashdata.dev/pricing?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task). Any downstream model or cloud-storage charges are separate.
 
 Suggestions are not keyword volume or popularity measurements.
 

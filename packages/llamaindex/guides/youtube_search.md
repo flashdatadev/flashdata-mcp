@@ -4,7 +4,7 @@ Search for tutorials relevant to a research question. Inspect the returned video
 
 ## Setup and run
 
-Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/signup?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
 Save the [runnable example](../examples/youtube_search.py) as `youtube_search.py`, then run `python youtube_search.py`.
 
@@ -24,11 +24,11 @@ for document in documents:
 - Input: query; max_results 1–20 (default 10); optional filters.
 - API output: results[].results: video search records; totalResults and query; usage.credits.
 - Reader output: LlamaIndex Documents; tool output: ToolOutput with the complete response in raw_output.
-- Contract and current parameters: [YouTube Search API documentation](https://flashdata.dev/docs/sources/youtube_search).
+- Contract and current parameters: [YouTube Search API documentation](https://flashdata.dev/docs/sources/youtube_search?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task).
 
 ## Cost, limits and errors
 
-The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing). Model, embedding and customer-storage charges are separate. The requested count is a ceiling, not a guaranteed result count.
+The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task). Model, embedding and customer-storage charges are separate. The requested count is a ceiling, not a guaranteed result count.
 
 There is no automatic retry. On a timeout or ambiguous submission, inspect FlashData Jobs before paying for another request. This example does not call a model or embedding service. Inspect external content before passing it into an agent.
 

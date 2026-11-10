@@ -18,13 +18,13 @@ toc: true
 Inspect the available Creative Commons license-label signal and retain the result for human review. The API field named permitted is not a decision about legal training rights or the creator's third-party training settings.
 
 This integration uses the `youtube_trainability` FlashData source. See the
-[YouTube License Metadata setup, request fields and pricing](https://flashdata.dev/docs/sources/youtube_trainability)
+[YouTube License Metadata setup, request fields and pricing](https://flashdata.dev/docs/sources/youtube_trainability?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task)
 to create an account and API key before running it.
 
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-there is no published PyPI release at this stage.
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
 
 ```bash
 pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
@@ -95,8 +95,8 @@ Secrets deliberately cannot be serialized. Load only pipeline definitions you ha
 ## Cost, limits and errors
 
 Installation is free under MIT. **FlashData API requests consume paid Credits**; see the
-[source guide](https://flashdata.dev/docs/sources/youtube_trainability) for its current rate and
-[FlashData pricing](https://flashdata.dev/pricing). Any downstream model or cloud-storage charges are separate.
+[source guide](https://flashdata.dev/docs/sources/youtube_trainability?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task) for its current rate and
+[FlashData pricing](https://flashdata.dev/pricing?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task). Any downstream model or cloud-storage charges are separate.
 
 permitted is a license-label signal, not legal training permission or creator third-party training settings.
 
