@@ -18,13 +18,13 @@ toc: true
 Find Google video-search results for a training or research brief. Preserve titles and source URLs so the next step can decide which video pages need further inspection.
 
 This integration uses the `google_videos` FlashData source. See the
-[Google Videos setup, request fields and pricing](https://flashdata.dev/docs/sources/google_videos)
+[Google Videos setup, request fields and pricing](https://flashdata.dev/docs/sources/google_videos?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task)
 to create an account and API key before running it.
 
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-there is no published PyPI release at this stage.
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
 
 ```bash
 pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
@@ -97,8 +97,8 @@ Secrets deliberately cannot be serialized. Load only pipeline definitions you ha
 ## Cost, limits and errors
 
 Installation is free under MIT. **FlashData API requests consume paid Credits**; see the
-[source guide](https://flashdata.dev/docs/sources/google_videos) for its current rate and
-[FlashData pricing](https://flashdata.dev/pricing). Any downstream model or cloud-storage charges are separate.
+[source guide](https://flashdata.dev/docs/sources/google_videos?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task) for its current rate and
+[FlashData pricing](https://flashdata.dev/pricing?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task). Any downstream model or cloud-storage charges are separate.
 
 Search discovers videos; it does not return video files or transcripts.
 

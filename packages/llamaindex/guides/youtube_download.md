@@ -4,7 +4,7 @@ After selecting media you are entitled to process, submit a single delivery to y
 
 ## Setup and run
 
-Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/signup?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
 Save the [runnable example](../examples/youtube_download.py) as `youtube_download.py`, then run `python youtube_download.py` (supply the explicit flags below).
 
@@ -23,11 +23,11 @@ python youtube_download.py --job-id job_YOUR_RECEIPT --result
 - Input: submit: video_id, optional format/quality/clip fields; reads: job_id. Storage comes from FLASHDATA_DOWNLOAD_STORAGE..
 - API output: submit: id/status receipt; reads: job lifecycle; completed result: output JSON delivery manifest.
 - Download returns a job receipt/lifecycle/delivery manifest, not a text Document.
-- Contract and current parameters: [YouTube Download to Cloud Storage API documentation](https://flashdata.dev/docs/sources/youtube_download).
+- Contract and current parameters: [YouTube Download to Cloud Storage API documentation](https://flashdata.dev/docs/sources/youtube_download?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task).
 
 ## Cost, limits and errors
 
-The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing). Model, embedding and customer-storage charges are separate. Paid asynchronous job. Requires customer storage. Save the receipt; never submit again to poll. Result JSON expires after 24 hours; media retention depends on storage.
+The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task). Model, embedding and customer-storage charges are separate. Paid asynchronous job. Requires customer storage. Save the receipt; never submit again to poll. Result JSON expires after 24 hours; media retention depends on storage.
 
 There is no automatic retry. On a timeout or ambiguous submission, inspect FlashData Jobs before paying for another request. Read the same job ID to poll. Completed result JSON expires after 24 hours; media retention is controlled by your storage.
 

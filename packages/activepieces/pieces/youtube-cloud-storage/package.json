@@ -19,7 +19,7 @@
     "url": "git+https://github.com/rocosen/flashdata-mcp.git",
     "directory": "packages/activepieces/pieces/youtube-cloud-storage"
   },
-  "homepage": "https://flashdata.dev/docs/sources/youtube_download",
+  "homepage": "https://flashdata.dev/docs/sources/youtube_download?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task",
   "bugs": {
     "url": "https://github.com/rocosen/flashdata-mcp/issues"
   },

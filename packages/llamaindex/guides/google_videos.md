@@ -4,7 +4,7 @@ Build a learning-resource shortlist for an agent by searching video results acro
 
 ## Setup and run
 
-Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/signup?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
 Save the [runnable example](../examples/google_videos.py) as `google_videos.py`, then run `python google_videos.py`.
 
@@ -24,11 +24,11 @@ for document in documents:
 - Input: query; optional Google search parameters.
 - API output: results[].videos: video titles, links and available metadata; usage.credits.
 - Reader output: LlamaIndex Documents; tool output: ToolOutput with the complete response in raw_output.
-- Contract and current parameters: [Google Videos API documentation](https://flashdata.dev/docs/sources/google_videos).
+- Contract and current parameters: [Google Videos API documentation](https://flashdata.dev/docs/sources/google_videos?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task).
 
 ## Cost, limits and errors
 
-The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing). Model, embedding and customer-storage charges are separate. Search discovers videos; it does not return video files or transcripts.
+The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task). Model, embedding and customer-storage charges are separate. Search discovers videos; it does not return video files or transcripts.
 
 There is no automatic retry. On a timeout or ambiguous submission, inspect FlashData Jobs before paying for another request. This example does not call a model or embedding service. Inspect external content before passing it into an agent.
 

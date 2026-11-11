@@ -19,7 +19,7 @@
     "url": "git+https://github.com/rocosen/flashdata-mcp.git",
     "directory": "packages/activepieces/pieces/youtube-license-metadata"
   },
-  "homepage": "https://flashdata.dev/docs/sources/youtube_trainability",
+  "homepage": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task",
   "bugs": {
     "url": "https://github.com/rocosen/flashdata-mcp/issues"
   },

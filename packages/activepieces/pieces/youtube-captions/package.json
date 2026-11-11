@@ -19,7 +19,7 @@
     "url": "git+https://github.com/flashdatadev/flashdata-mcp.git",
     "directory": "packages/activepieces/pieces/youtube-captions"
   },
-  "homepage": "https://flashdata.dev/docs/sources/youtube_captions",
+  "homepage": "https://flashdata.dev/docs/sources/youtube_captions?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task",
   "bugs": {
     "url": "https://github.com/flashdatadev/flashdata-mcp/issues"
   },

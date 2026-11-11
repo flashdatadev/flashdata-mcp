@@ -19,7 +19,7 @@
     "url": "git+https://github.com/rocosen/flashdata-mcp.git",
     "directory": "packages/activepieces/pieces/youtube-autocomplete"
   },
-  "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions",
+  "homepage": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task",
   "bugs": {
     "url": "https://github.com/rocosen/flashdata-mcp/issues"
   },

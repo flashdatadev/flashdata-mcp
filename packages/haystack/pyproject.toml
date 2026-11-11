@@ -14,7 +14,7 @@ dependencies = ["haystack-ai>=3.4,<4", "httpx>=0.28.1,<1", "pydantic>=2.7.4,<3",
 keywords = ["haystack", "google-search", "youtube-transcript", "agent", "flashdata"]
 
 [project.urls]
-Homepage = "https://flashdata.dev"
+Homepage = "https://flashdata.dev/?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined"
 Documentation = "https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/haystack"
 Source = "https://github.com/flashdatadev/flashdata-mcp"
 Issues = "https://github.com/flashdatadev/flashdata-mcp/issues"

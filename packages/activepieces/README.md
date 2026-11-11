@@ -49,7 +49,7 @@ Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → I
 | YouTube Autocomplete | `@flashdata-dev/piece-youtube-autocomplete` | [Topic planning](pieces/youtube-autocomplete/README.md) |
 | YouTube Cloud Storage | `@flashdata-dev/piece-youtube-cloud-storage` | [Async media delivery](pieces/youtube-cloud-storage/README.md) |
 
-Create an API Key at <https://flashdata.dev/app/api-keys> with permission for the chosen source. Connection validation performs only the free `/v2/api-access` check. Data actions, including **Test step**, consume FlashData Credits. Connector installation is free; [FlashData API usage](https://flashdata.dev/pricing), Activepieces execution/plan costs and storage costs are separate.
+Create an API Key at <https://flashdata.dev/signup?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined> with permission for the chosen source. Connection validation performs only the free `/v2/api-access` check. Data actions, including **Test step**, consume FlashData Credits. Connector installation is free; [FlashData API usage](https://flashdata.dev/pricing?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined), Activepieces execution/plan costs and storage costs are separate.
 
 Download credentials live in a secret-text JSON connection, not ordinary action inputs. The result path verifies job identity/source, requires a completed job, trusts only the origin from the authenticated access contract, and does not forward the API Key to result storage. Output contains the delivery manifest, not media bytes or submitted storage secrets.
 

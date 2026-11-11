@@ -10,7 +10,7 @@ Requires Python 3.11+ and Haystack 3.4. Install from the versioned source releas
 pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
 ```
 
-There is no published PyPI package yet. Installation is free under MIT; FlashData API calls use
+The package is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/). Installation is free under MIT; FlashData API calls use
 paid Credits. Configure `FLASHDATA_API_KEY` through your environment or secret manager after
 creating a key in your FlashData account. Use the linked source guides for current rates and limits.
 
@@ -35,21 +35,21 @@ downloaded. Each example also shows how to format results into context without a
 
 | Capability | Guide and runnable pipeline | Source contract |
 | --- | --- | --- |
-| Google Search | [Web evidence for an agent](integration-pages/google-search-flashdata.md) | [Inputs, outputs, pricing](https://flashdata.dev/docs/sources/google_search) |
-| Google News | [News briefing](integration-pages/google-news-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_news) |
-| Google Images | [Image shortlist](integration-pages/google-images-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_images) |
-| Google Shopping | [Offer comparison](integration-pages/google-shopping-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_shopping) |
-| Google Videos | [Video references](integration-pages/google-videos-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_videos) |
-| Google Places | [Local business shortlist](integration-pages/google-places-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_places) |
-| YouTube Search | [Tutorial discovery](integration-pages/youtube-search-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_search) |
-| YouTube Extended Search | [Larger research inventory](integration-pages/youtube-search-extended-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_search_extended) |
-| YouTube Metadata | [Video inspection](integration-pages/youtube-metadata-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_metadata) |
-| YouTube Transcript | [Timestamped evidence](integration-pages/youtube-transcript-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_transcript) |
-| YouTube Captions | [Uploader caption review](integration-pages/youtube-captions-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_captions) |
-| YouTube License Metadata | [License-label inspection](integration-pages/youtube-trainability-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_trainability) |
-| YouTube Channel | [Channel briefing](integration-pages/youtube-channel-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_channel) |
-| YouTube Autocomplete | [Topic discovery](integration-pages/youtube-suggestions-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_suggestions) |
-| YouTube Delivery | [Saved job and storage delivery](integration-pages/youtube-download-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_download) |
+| Google Search | [Web evidence for an agent](integration-pages/google-search-flashdata.md) | [Inputs, outputs, pricing](https://flashdata.dev/docs/sources/google_search?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-task) |
+| Google News | [News briefing](integration-pages/google-news-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_news?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-task) |
+| Google Images | [Image shortlist](integration-pages/google-images-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_images?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-task) |
+| Google Shopping | [Offer comparison](integration-pages/google-shopping-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_shopping?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-task) |
+| Google Videos | [Video references](integration-pages/google-videos-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_videos?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_videos-task) |
+| Google Places | [Local business shortlist](integration-pages/google-places-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/google_places?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_places-task) |
+| YouTube Search | [Tutorial discovery](integration-pages/youtube-search-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_search?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search-task) |
+| YouTube Extended Search | [Larger research inventory](integration-pages/youtube-search-extended-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-task) |
+| YouTube Metadata | [Video inspection](integration-pages/youtube-metadata-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_metadata?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-task) |
+| YouTube Transcript | [Timestamped evidence](integration-pages/youtube-transcript-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) |
+| YouTube Captions | [Uploader caption review](integration-pages/youtube-captions-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_captions?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task) |
+| YouTube License Metadata | [License-label inspection](integration-pages/youtube-trainability-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_trainability?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-task) |
+| YouTube Channel | [Channel briefing](integration-pages/youtube-channel-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_channel?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_channel-task) |
+| YouTube Autocomplete | [Topic discovery](integration-pages/youtube-suggestions-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-task) |
+| YouTube Delivery | [Saved job and storage delivery](integration-pages/youtube-download-flashdata.md) | [Source guide](https://flashdata.dev/docs/sources/youtube_download?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task) |
 
 These are source documentation and proposed directory pages. They are not proof of 15 approved
 Haystack directory entries. Actual IDs, URLs and review state are tracked separately in `entries.json`.
@@ -67,7 +67,7 @@ defaults to `allow_submit=False`; the operator must explicitly enable a paid sto
 Requests use a 120-second network timeout (15-second connect timeout) and a 20 MiB response limit.
 After an uncertain submission, inspect Jobs before resubmitting to avoid duplicate charges.
 API errors are reported as `FlashDataError` without raw credentials or response bodies.
-Model, storage and API costs are separate. See [pricing](https://flashdata.dev/pricing) and
+Model, storage and API costs are separate. See [pricing](https://flashdata.dev/pricing?utm_source=haystack&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) and
 [privacy](https://flashdata.dev/legal/privacy).
 
 Development:

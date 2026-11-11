@@ -4,7 +4,7 @@ Bring an existing automatic caption track into a retrieval collection. Each segm
 
 ## Setup and run
 
-Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/console) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
+Install with `python -m pip install 'llama-index-tools-flashdata==0.2.0'` (see the [package guide](../README.md)). Get your API Key from the [FlashData console](https://flashdata.dev/signup?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task) and configure `FLASHDATA_API_KEY` in your application's secret manager. Python 3.11+ is required.
 
 Save the [runnable example](../examples/youtube_transcript.py) as `youtube_transcript.py`, then run `python youtube_transcript.py`.
 
@@ -24,13 +24,13 @@ for document in documents:
 - Input: video_id; language (one code or 1–10 distinct codes; omitted: en-orig, then en); auto (default true).
 - API output: results[]: single track with segments/fullText, or tracks and per-language errors for a language list; usage.credits.
 - Reader output: LlamaIndex Documents; tool output: ToolOutput with the complete response in raw_output.
-- Contract and current parameters: [YouTube Transcript API documentation](https://flashdata.dev/docs/sources/youtube_transcript).
+- Contract and current parameters: [YouTube Transcript API documentation](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task).
 
 Pass `language=["en", "es"]` to request several tracks. The reader keeps each track’s language and timestamps, with failures in `subtitle_errors` metadata. If every language fails, it returns an error document.
 
 ## Cost, limits and errors
 
-The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing). Model, embedding and customer-storage charges are separate. Reads an existing track. No ASR, translation, or automatic fallback to uploader captions.
+The package is free to install. FlashData API calls use paid Credits; see [pricing](https://flashdata.dev/pricing?utm_source=llamaindex&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_transcript-task). Model, embedding and customer-storage charges are separate. Reads an existing track. No ASR, translation, or automatic fallback to uploader captions.
 
 There is no automatic retry. On a timeout or ambiguous submission, inspect FlashData Jobs before paying for another request. This example does not call a model or embedding service. Inspect external content before passing it into an agent.
 
