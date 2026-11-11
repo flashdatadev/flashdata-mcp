@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-google-video-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Find videos across websites for a research shortlist, with links and available duration and publisher fields. Does not download video files.",
   "license": "MIT",
   "type": "commonjs",

@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-google-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Collect web evidence for an AI agent with Google result titles, snippets and source URLs. Snippets are not full page content.",
   "license": "MIT",
   "type": "commonjs",

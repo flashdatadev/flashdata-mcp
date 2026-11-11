@@ -9,10 +9,10 @@ This is an independently packaged community Piece, not a confirmed official cata
 Download the versioned [npm package](https://www.npmjs.com/package/@flashdata-dev/piece-youtube-captions) without running a data action:
 
 ```sh
-npm pack '@flashdata-dev/piece-youtube-captions@0.2.0' --ignore-scripts
+npm pack '@flashdata-dev/piece-youtube-captions@0.2.1' --ignore-scripts
 ```
 
-Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-captions` and version `0.2.0`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/activepieces).
+Upload the downloaded `.tgz` via **Platform Admin → Catalogue → Pieces → Install Piece → Upload File**. If your platform offers installation by package name, use `@flashdata-dev/piece-youtube-captions` and version `0.2.1`. Older platform versions may label the page **Settings → My Pieces**. Source build instructions are in the [workspace guide](https://github.com/flashdatadev/flashdata-mcp/tree/main/packages/activepieces).
 
 1. Sign in or [create a FlashData account](https://flashdata.dev/signup?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task).
 2. [Create an API Key](https://flashdata.dev/signup?utm_source=activepieces&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_captions-task) with `youtube_captions` permission. The secret is shown once; save it in an Activepieces connection.

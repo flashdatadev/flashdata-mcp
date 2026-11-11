@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Discover a small set of YouTube videos for a research workflow. Request 1–20 results; actual count can be lower.",
   "license": "MIT",
   "type": "commonjs",

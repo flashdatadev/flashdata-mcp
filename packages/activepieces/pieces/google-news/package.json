@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-google-news",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Monitor a company or topic with Google News headlines and source links for a daily briefing. Does not retrieve article full text.",
   "license": "MIT",
   "type": "commonjs",
