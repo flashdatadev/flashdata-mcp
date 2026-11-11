@@ -4,21 +4,25 @@ The build, tests and source installation are separate from PyPI publication
 and official LlamaIndex directory admission. Confirm the actual project/version
 status on PyPI before registering a publisher or dispatching a release.
 
-Use the existing `flashdata-dev` PyPI account. The initial release requires
-owner approval of this project-specific Trusted Publisher; check for an existing
-binding before adding it:
+Use the existing `flashdata-dev` PyPI account and existing
+`llama-index-tools-flashdata` project. Releases use the maintained brand
+repository after its migration from `rocosen`. Inspect the project's current
+Trusted Publisher binding before dispatching; adding or changing a binding
+requires the project owner's approval:
 
 | Field | Value |
 | --- | --- |
 | PyPI project | `llama-index-tools-flashdata` |
-| GitHub owner | `rocosen` |
+| GitHub owner | `flashdatadev` |
 | Repository | `flashdata-mcp` |
 | Workflow filename | `llamaindex-publish.yml` |
 | GitHub environment | `pypi-llamaindex` |
 
-Confirm the project is still available before registering. Configure the GitHub
-environment under this repository with deployment restricted to tags matching
-`llamaindex-v*`. The checked-in workflow does not configure either platform.
+Inspect the existing GitHub environment under the brand repository and preserve
+its protections. Its deployment policy must restrict releases to tags matching
+`llamaindex-v*`. The checked-in workflow does not configure either platform;
+do not create another PyPI project or assume the migrated repository is already
+authorized. The PyPI project name and existing release history remain unchanged.
 
 The workflow runs only by explicit manual dispatch on a `llamaindex-vVERSION`
 tag matching `pyproject.toml`. A normal push, pull request or tag creation does

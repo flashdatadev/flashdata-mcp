@@ -11,7 +11,7 @@ LlamaIndex endorsement or a claim of 15 LlamaHub listings. Install the
 versioned package from PyPI:
 
 ```sh
-python -m pip install 'llama-index-tools-flashdata==0.2.0'
+python -m pip install 'llama-index-tools-flashdata==0.2.1'
 ```
 
 Requires Python 3.11+ and `llama-index-core` 0.14.25–0.14.x. Get an API key from the

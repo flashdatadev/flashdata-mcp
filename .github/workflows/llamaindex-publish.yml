@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: github.repository == 'rocosen/flashdata-mcp' && github.ref_type == 'tag' && startsWith(github.ref_name, 'llamaindex-v')
+    if: github.repository == 'flashdatadev/flashdata-mcp' && github.ref_type == 'tag' && startsWith(github.ref_name, 'llamaindex-v')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
