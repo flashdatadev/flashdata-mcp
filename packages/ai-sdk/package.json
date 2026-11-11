@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/ai-sdk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Google search and YouTube data tools for AI SDK agents, with asynchronous media delivery to customer storage.",
   "license": "MIT",
   "type": "module",

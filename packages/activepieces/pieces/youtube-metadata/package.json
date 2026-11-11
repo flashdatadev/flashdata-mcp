@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-metadata",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Enrich a known video ID with metadata and available chapters or format information before choosing research sources. Does not download media.",
   "license": "MIT",
   "type": "commonjs",

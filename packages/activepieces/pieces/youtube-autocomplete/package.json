@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-autocomplete",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Expand a topic prefix with YouTube search suggestions for content planning. Defaults to language en and region US; suggestions are not search-volume measurements.",
   "license": "MIT",
   "type": "commonjs",

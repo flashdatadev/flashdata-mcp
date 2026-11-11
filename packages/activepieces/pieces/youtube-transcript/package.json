@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-transcript",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Read existing automatic captions for timestamped notes. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.",
   "license": "MIT",
   "type": "commonjs",

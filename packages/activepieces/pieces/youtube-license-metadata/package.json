@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-license-metadata",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Record a video's Creative Commons license label for a separate rights review. This does not grant training rights or retrieve creator third-party training settings.",
   "license": "MIT",
   "type": "commonjs",

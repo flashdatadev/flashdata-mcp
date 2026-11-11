@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-google-places",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build a local-business shortlist from a category and location, with available addresses, ratings and contact details. Some fields may be absent.",
   "license": "MIT",
   "type": "commonjs",

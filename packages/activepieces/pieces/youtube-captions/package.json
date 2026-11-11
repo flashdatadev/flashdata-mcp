@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-captions",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Read existing uploader-provided captions. Omit language to prefer en-orig, then en, or request one exact code or several languages. No ASR, translation or caption-source switching.",
   "license": "MIT",
   "type": "commonjs",

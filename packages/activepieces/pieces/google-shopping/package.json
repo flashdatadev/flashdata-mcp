@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-google-shopping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Collect product listings for a buying comparison, with available merchant and price fields. Search snapshots do not guarantee stock or checkout prices.",
   "license": "MIT",
   "type": "commonjs",

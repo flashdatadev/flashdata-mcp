@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-google-images",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build an image-reference shortlist with original image URLs, thumbnails and source pages. Does not download or license images.",
   "license": "MIT",
   "type": "commonjs",
