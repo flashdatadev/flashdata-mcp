@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CAPABILITIES = json.loads((ROOT.parent / "python-cli" / "capabilities.json").read_text())
-INSTALL = 'pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"'
+INSTALL = 'pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.1#subdirectory=packages/haystack"'
 
 SCENARIOS = {
     "google_search": (
@@ -224,7 +224,7 @@ class {name}(AuthenticatedComponent):
         '"""FlashData components for Haystack 3.4 pipelines and agents."""\n\n'
         "from ._client import FlashDataError\nfrom .tools import as_tool\nfrom .components import (\n"
         + "".join(f"    {name},\n" for name in names)
-        + ')\n\n__version__ = "0.2.0"\n\n__all__ = '
+        + ')\n\n__version__ = "0.2.1"\n\n__all__ = '
         + repr(["FlashDataError", "as_tool", *names])
         + "\n"
     )
@@ -324,7 +324,7 @@ to create an account and API key before running it.
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.1/).
 
 ```bash
 {INSTALL}
@@ -389,7 +389,7 @@ without embedding raw responses or credentials. Empty results remain empty.
 
 ## Source and license
 
-[Implementation and all component examples](https://github.com/flashdatadev/flashdata-mcp/tree/haystack-v0.2.0/packages/haystack)
+[Implementation and all component examples](https://github.com/flashdatadev/flashdata-mcp/tree/haystack-v0.2.1/packages/haystack)
 are maintained by FlashData under the MIT license. This is a community integration;
 publication in the Haystack directory is subject to its maintainers' review.
 '''

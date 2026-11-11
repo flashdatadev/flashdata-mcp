@@ -24,10 +24,10 @@ to create an account and API key before running it.
 ## Install and configure
 
 Requires Python 3.11+ and Haystack 3.4. The package is installed from a versioned source tag;
-it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.0/).
+it is also available on [PyPI](https://pypi.org/project/flashdata-haystack/0.2.1/).
 
 ```bash
-pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.0#subdirectory=packages/haystack"
+pip install "git+https://github.com/flashdatadev/flashdata-mcp.git@haystack-v0.2.1#subdirectory=packages/haystack"
 ```
 
 Set `FLASHDATA_API_KEY` through your environment or secret manager. Never place a real key in
@@ -121,6 +121,6 @@ without embedding raw responses or credentials. Empty results remain empty.
 
 ## Source and license
 
-[Implementation and all component examples](https://github.com/flashdatadev/flashdata-mcp/tree/haystack-v0.2.0/packages/haystack)
+[Implementation and all component examples](https://github.com/flashdatadev/flashdata-mcp/tree/haystack-v0.2.1/packages/haystack)
 are maintained by FlashData under the MIT license. This is a community integration;
 publication in the Haystack directory is subject to its maintainers' review.
