@@ -1,9 +1,9 @@
 name: Haystack integration
 on:
   push:
-    paths: ['packages/haystack/**', '.github/workflows/haystack.yml']
+    paths: ['packages/haystack/**', '.github/workflows/haystack.yml', '.github/workflows/haystack-publish.yml']
   pull_request:
-    paths: ['packages/haystack/**', '.github/workflows/haystack.yml']
+    paths: ['packages/haystack/**', '.github/workflows/haystack.yml', '.github/workflows/haystack-publish.yml']
 permissions:
   contents: read
 jobs:
