@@ -12,6 +12,47 @@ const { loadLocalConfig } = require('../src/local');
 const bin = process.env.FLASHDATA_MCP_TEST_BIN || path.join(__dirname, '../bin/flashdata-mcp.js');
 const secret = 'test-fixture-api-key';
 
+test('schema-only inspection exposes real definitions without credentials or network and blocks every call', async t => {
+  let requests = 0;
+  const upstream = http.createServer((_req, res) => { requests++; res.writeHead(401); res.end(); });
+  await new Promise(resolve => upstream.listen(0, '127.0.0.1', resolve));
+  const origin = `http://127.0.0.1:${upstream.address().port}`;
+  const client = new Client({ name: 'schema-inspection', version: '1.0.0' });
+  const transport = new StdioClientTransport({ command: process.execPath, args: [bin], stderr: 'pipe', env: {
+    FLASHDATA_SCHEMA_ONLY: 'true', FLASHDATA_API_KEY: '',
+    FLASHDATA_DATA_API_URL: origin, FLASHDATA_MANAGEMENT_API_URL: origin,
+  } });
+  let stderr = '';
+  transport.stderr?.on('data', chunk => { stderr += chunk; });
+  t.after(async () => {
+    await client.close();
+    upstream.closeAllConnections();
+    await new Promise(resolve => upstream.close(resolve));
+  });
+  await client.connect(transport);
+  assert.match(client.getInstructions(), /all tool calls are disabled/);
+  const tools = (await client.listTools()).tools;
+  assert.deepEqual(tools, listTools(SOURCE_CATALOG.map(source => source.id)));
+  for (const name of [...tools.map(tool => tool.name), 'unknown_tool']) {
+    const result = await client.callTool({ name, arguments: {} });
+    assert.equal(result.isError, true);
+    assert.equal(result.structuredContent.code, 'inspection_disabled');
+  }
+  assert.equal(requests, 0);
+  assert.equal(stderr, '');
+});
+
+test('inspection is opt-in and does not bypass normal missing-key validation', () => {
+  for (const mode of ['', 'false', '1', 'TRUE']) {
+    const run = spawnSync(process.execPath, [bin], { encoding: 'utf8', env: {
+      ...process.env, FLASHDATA_API_KEY: '', FLASHDATA_SCHEMA_ONLY: mode,
+    } });
+    assert.equal(run.status, 1);
+    assert.equal(run.stdout, '');
+    assert.match(run.stderr, /Set FLASHDATA_API_KEY/);
+  }
+});
+
 test('configuration failures never echo credentials and stdout stays empty', () => {
   const unsafe = 'https://user:private-password@example.test';
   const run = spawnSync(process.execPath, [bin], { encoding: 'utf8', env: {

@@ -1,6 +1,22 @@
 #!/usr/bin/env node
 const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js');
-const { createLocalServer, loadLocalConfig } = require('../src/local');
+
+function createInspectionServer() {
+  const { Server } = require('@modelcontextprotocol/sdk/server/index.js');
+  const { ListToolsRequestSchema, CallToolRequestSchema } = require('@modelcontextprotocol/sdk/types.js');
+  const { SOURCE_CATALOG } = require('../src/catalog/sourceCatalog');
+  const { listTools } = require('../src/mcp/toolCatalog');
+  const server = new Server({ name: 'flashdata', version: require('../package.json').version }, {
+    capabilities: { tools: {} },
+    instructions: 'Schema-only inspection: tool definitions are public, but all tool calls are disabled. Disable FLASHDATA_SCHEMA_ONLY and supply your own API key for normal use.',
+  });
+  server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: listTools(SOURCE_CATALOG.map(source => source.id)) }));
+  server.setRequestHandler(CallToolRequestSchema, async () => {
+    const error = { code: 'inspection_disabled', message: 'Tool calls are disabled in schema-only inspection mode.' };
+    return { content: [{ type: 'text', text: error.message }], structuredContent: error, isError: true };
+  });
+  return server;
+}
 
 async function main() {
   if (process.argv.includes('--help')) {
@@ -12,7 +28,13 @@ async function main() {
     return;
   }
   if (process.argv.length > 2) throw new Error('Unsupported arguments. Use --help; configure credentials through the environment.');
-  const server = createLocalServer(loadLocalConfig());
+  let server;
+  if (process.env.FLASHDATA_SCHEMA_ONLY === 'true') {
+    server = createInspectionServer();
+  } else {
+    const { createLocalServer, loadLocalConfig } = require('../src/local');
+    server = createLocalServer(loadLocalConfig());
+  }
   let closing;
   const stop = () => { closing ||= server.close().catch(() => { process.exitCode = 1; }); };
   process.once('SIGINT', stop);
