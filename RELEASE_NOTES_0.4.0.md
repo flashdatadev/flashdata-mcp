@@ -15,6 +15,7 @@ Release packages:
 | `flashdata-haystack` | 0.3.0 |
 | `llama-index-tools-flashdata` | 0.3.0 |
 | Activepieces `@flashdata-dev/piece-youtube-cloud-storage` | 0.2.0 |
+| Fifteen direct-install MCPB bundles | 0.3.0 |
 
 The GitHub assets are verified publication candidates. npm and PyPI uploads are
 performed manually and may follow the source release. Client integration pins
