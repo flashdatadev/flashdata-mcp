@@ -1,6 +1,6 @@
 # FlashData MCP
 
-0.3.0 发布文件可从 [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.3.0) 获取。npm 版本独立发布，升级前请检查仓库中的可用版本。
+0.4.0 发布文件可从 [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.4.0) 获取。npm 版本独立发布，升级前请检查仓库中的可用版本。
 
 [English](README.md) · [FlashData](https://flashdata.dev?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [API 文档](https://flashdata.dev/docs?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [价格](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
 
@@ -49,10 +49,10 @@ npm start
 使用已发布 npm 包时，应明确选择可执行文件：
 
 ```sh
-npx --yes --package=@flashdata-dev/mcp@0.3.1 flashdata-mcp
+npx --yes --package=@flashdata-dev/mcp@0.4.0 flashdata-mcp
 ```
 
-客户端配置对应的 `command` 为 `npx`，`args` 为 `["--yes", "--package=@flashdata-dev/mcp@0.3.1", "flashdata-mcp"]`。Windows 客户端可能需要使用 `npx.cmd`。
+客户端配置对应的 `command` 为 `npx`，`args` 为 `["--yes", "--package=@flashdata-dev/mcp@0.4.0", "flashdata-mcp"]`。Windows 客户端可能需要使用 `npx.cmd`。
 
 ## 安装 Skills
 
@@ -70,7 +70,7 @@ npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtu
 
 该选项同样用于提交回执、任务及账户读取。它是 MCP 工具参数，不是 HTTP 请求头。REST、SDK 和原 npm CLI 默认仍为 JSON；npm CLI 显式选择文本时，将文档字符串放入 JSON 外层的 `result`。Python 示例供程序使用，支持时请求 JSON，并在关闭连接前读完所有分块。
 
-上面的 npm 命令固定到候选版本 0.3.1，发布前请检查 npm 可用版本，MCP 默认使用 Markdown。托管 MCP 和独立任务包单独发布，请以已连接工具的 schema 为准。
+上面的 npm 命令固定到候选版本 0.4.0，发布前请检查 npm 可用版本，MCP 默认使用 Markdown。托管 MCP 和独立任务包单独发布，请以已连接工具的 schema 为准。
 
 对于只显示文本的客户端，格式化分块先提供简短 JSON 续读信息，再提供可读内容。使用 `result_id` 和 `next_offset` 读完后，完整文档仍是 Markdown 或纯文本。
 

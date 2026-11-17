@@ -8,10 +8,10 @@ Media delivery uses job tools, not a text reader.
 
 This is an independently maintained integration. It is not an official
 LlamaIndex endorsement or a claim of 15 LlamaHub listings. Install the
-versioned package from PyPI:
+versioned package from PyPI after its registry upload, or use the attached GitHub release wheel:
 
 ```sh
-python -m pip install 'llama-index-tools-flashdata==0.2.1'
+python -m pip install 'llama-index-tools-flashdata==0.3.0'
 ```
 
 Requires Python 3.11+ and `llama-index-core` 0.14.25–0.14.x. Get an API key from the

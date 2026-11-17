@@ -237,7 +237,7 @@ Open **Zed: Open Settings File** and add this local stdio server under `context_
       "command": "npx",
       "args": [
         "--yes",
-        "--package=@flashdata-dev/mcp@0.3.1",
+        "--package=@flashdata-dev/mcp@0.4.0",
         "flashdata-mcp"
       ],
       "env": {
@@ -282,7 +282,7 @@ For any client that supports local stdio MCP servers, use this configuration. Re
       "command": "npx",
       "args": [
         "--yes",
-        "--package=@flashdata-dev/mcp@0.3.1",
+        "--package=@flashdata-dev/mcp@0.4.0",
         "flashdata-mcp"
       ],
       "env": {
@@ -619,7 +619,7 @@ Use Node.js 22.18 or newer with the published local stdio server:
       "command": "npx",
       "args": [
         "--yes",
-        "--package=@flashdata-dev/mcp@0.3.1",
+        "--package=@flashdata-dev/mcp@0.4.0",
         "flashdata-mcp"
       ],
       "env": {
@@ -641,7 +641,7 @@ The local server also accepts a request timeout through `FLASHDATA_REQUEST_TIMEO
       "command": "npx",
       "args": [
         "--yes",
-        "--package=@flashdata-dev/mcp@0.3.1",
+        "--package=@flashdata-dev/mcp@0.4.0",
         "flashdata-mcp"
       ],
       "env": {

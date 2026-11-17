@@ -7,7 +7,7 @@ Give server-side AI SDK agents Google search and YouTube evidence. One MIT packa
 Node.js 22.18+; tested with AI SDK 7.0.143 and Zod 4.1.8.
 
 ```sh
-npm install @flashdata-dev/ai-sdk ai zod
+npm install @flashdata-dev/ai-sdk@0.3.0 ai zod
 ```
 
 Create a [FlashData API Key](https://flashdata.dev/signup?utm_source=vercel-ai-sdk&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) with the required source permissions and available Credits. Set `FLASHDATA_API_KEY` in your server's secret manager. The examples use AI Gateway; separately set `AI_GATEWAY_API_KEY` for your model account. A Vercel deployment is not required. Never put either key in browser code or prompts.

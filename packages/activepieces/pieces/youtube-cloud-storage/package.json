@@ -1,6 +1,6 @@
 {
   "name": "@flashdata-dev/piece-youtube-cloud-storage",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Deliver YouTube video or audio to your cloud storage, then inspect the asynchronous job and delivery manifest. Billed by delivered bytes; use media only with the rights your use requires.",
   "license": "MIT",
   "type": "commonjs",
