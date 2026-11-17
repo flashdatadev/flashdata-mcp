@@ -1,382 +1,742 @@
 # FlashData MCP
 
-Release artifacts for 0.3.0 are available from [GitHub Releases](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.3.0). npm availability is independent; check the registry before upgrading.
+**Google Search, YouTube data, transcripts, and video or audio downloads over the Model Context Protocol.**
 
-[简体中文](README.zh-CN.md) · [FlashData](https://flashdata.dev?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [API documentation](https://flashdata.dev/docs?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) · [Pricing](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
+Connect FlashData to Claude Desktop, Claude Code, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Cline, OpenCode, Zed, Warp, and other MCP clients.
 
-Use Google Search, YouTube data, and downloads to your cloud storage from a terminal, Agent, or MCP client. This MIT-licensed package implements the tools and calls the FlashData REST APIs directly. It does not proxy a hosted MCP connection.
+[Quick Start](#quick-start) · [Pricing](#pricing-and-free-tier) · [Use Cases](#use-cases) · [Tools](#tools-reference-22-tools) · [Agent Skills](#agent-skills) · [Docs](#documentation) · [Support](#support)
 
-Source code is available at [flashdatadev/flashdata-mcp](https://github.com/flashdatadev/flashdata-mcp). The npm package `@flashdata-dev/mcp` provides two commands: `flashdata` for single-call JSON output and `flashdata-mcp` for persistent stdio MCP.
+**Free MCP connection and account checks.** Google and YouTube data calls use FlashData Credits.
 
-To connect without running this local package, use the separate
-[FlashData hosted MCP service](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined). Its
-[Official MCP Registry manifest and publishing instructions](https://github.com/flashdatadev/flashdata-mcp/tree/main/registry)
-are maintained in this repository. The combined registration describes the hosted
-endpoint. The Registry also has separate manifests for 15 local task servers;
-each references a source-restricted MCPB bundle. Neither path publishes to npm.
+---
 
-For independent Registry entries and task-specific examples, use the [15-capability MCP guide index](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/README.md#all-15-capabilities): Google Search, News, Images, Shopping, video search and Places; YouTube search, extended search, metadata, transcripts, uploader captions, license labels, channels, autocomplete and delivery to customer storage. Each guide includes request JSON, selected output fields, limits, costs and the corresponding FlashData documentation.
+## Overview
 
-For a local server focused on one capability, see the [15 independent Smithery task servers](smithery/README.md). Each MCPB bundle has one data tool plus pricing, job and result reads restricted to that source. Installation is free; FlashData data calls use paid Credits.
+FlashData gives your assistant access to Google Search, YouTube data, and media delivery. It exposes **22 tools**, including **15 data capabilities**:
 
-This directory is a complete, standalone project. Use its contents as the root of your GitHub repository, including `.github/` and `.gitignore`. Installation and tests require no files from another checkout.
+- **Google Search** — web, images, news, shopping, videos, and places as structured data.
+- **YouTube Data** — video search, extended search, metadata, available transcripts and uploader captions, channels, autocomplete, and license labels.
+- **YouTube Download** — video, audio, or selected clips delivered to your cloud storage.
+- **Batches and results** — submit multiple queries, check background jobs, and retrieve their output.
+- **Account information** — check your Credit balance, pricing, limits, and usage for free.
 
-Transcript and captions support one language or a list of 1–10 codes. Omit the language to prefer `en-orig`, then `en`. Lists preserve available tracks and per-language errors. See [subtitle languages](skills/youtube-transcript/SKILL.md).
+Two connection options: the hosted server with no installation, or the open-source local MCP server using `npx`.
 
-## Choose a workflow
+---
 
-| You want to | Start here |
-| --- | --- |
-| Connect an agent without a local server | [Hosted MCP setup](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
-| Run the local stdio MCP server | [Run locally](#run-locally) |
-| Install portable agent instructions | [FlashData Skills](https://github.com/flashdatadev/flashdata-skills) |
-| Use the standalone CLI for query, bulk and recovery workflows | [FlashData CLI](https://github.com/flashdatadev/flashdata-cli) |
-| Install a client plugin or a single-source integration | [Task packages](#choose-a-task-package) and the client sections below |
+## Quick Start
 
-This is the official MCP source repository. The separate `flashdata-cli` repository
-provides the standalone Go CLI; this npm package's `flashdata` executable is the
-original JSON tool client described below. Choose the installation matching your
-workflow because both command-line packages expose a command named `flashdata`.
-
-Portable Skills are maintained in [flashdata-skills](https://github.com/flashdatadev/flashdata-skills).
-The copies here keep existing client plugins compatible. Existing Registry manifests,
-release downloads and independent integration repositories retain their published
-identifiers and artifact locations; see [repository provenance](PROVENANCE.md).
-
-## Choose a task package
-
-Python users can build the [15 independent Python / uvx CLIs](packages/python-cli/README.md).
-Their PyPI publication is still pending; the source includes local wheel installation instructions.
-
-Homebrew users can install [15 independent task formulae](homebrew/README.md) from
-this repository as a third-party tap. Each formula builds the corresponding Python CLI
-from a checked GitHub release, with its own command and complete runtime dependencies.
-
-For one capability, choose one of the [15 task packages](https://github.com/flashdatadev/flashdata-mcp/blob/main/npm/README.md). Each has one executable, one data source and its own examples, input schema and documentation. It runs as a JSON CLI or as a stdio MCP server using the `mcp` subcommand. For example:
-
-```sh
-npx --yes @flashdata-dev/google-news@0.1.0 --help
-npx --yes @flashdata-dev/google-news@0.1.0 tools
-npx --yes @flashdata-dev/google-news@0.1.0 call get_pricing
-```
-
-The last two commands require your API key in `FLASHDATA_API_KEY` and make only free reads. Task packages expose three CLI tools (the selected source, `get_pricing`, `get_job`) or four MCP tools (also `get_result`). They reject other sources and cross-source job reads, even with a broadly authorized key. The combined package below remains available for workflows that need several capabilities. Installation is free; FlashData API queries are paid.
-
-## Agent Skill
-
-The [FlashData Skill](https://github.com/flashdatadev/flashdata-skills/blob/main/skills/flashdata-mcp/SKILL.md) helps an agent use an existing FlashData MCP connection for source-backed web and video research. It includes recipes for video research, comparing search snapshots, and preparing knowledge-base records.
-
-Install the Skill into your project with the [skills CLI](https://skills.sh/docs):
-
-```sh
-npx skills add flashdatadev/flashdata-skills --skill flashdata-mcp
-```
-
-Select your agent when prompted, or add `--agent codex` (or another supported agent). The default scope is the current project; use `--global` only if you want a user-wide installation. Review the Skill before installation.
-
-This installs instructions and references, not the MCP executable or an account connection. Connect FlashData separately using the [hosted setup](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) or the local instructions below. The Skill contains no API keys and submits no queries during installation. Queries made through MCP use your existing FlashData Credits; account reads can verify a connection for free.
-
-Example requests:
-
-- “Use FlashData to estimate the cost of one web search without running it.”
-- “Find three relevant YouTube videos, compare their available transcripts, and cite timestamps. Keep the work within my approved query budget.”
-- “Compare this search snapshot with the previous one and prepare source-linked records for my knowledge base.”
-
-The skills.sh directory uses aggregated installation telemetry for discovery; a successful installation is separate from directory ranking or security-audit approval. This Skill is MIT-licensed under this repository's license. The Skill does not require the local npm package.
-
-### Task-specific Skills
-
-Choose a Skill for the capability you need. Each includes example requests, a terminal quick start, MCP usage, parameters and practical ways to use the results. The general `flashdata-mcp` research Skill remains available.
-
-| Capability | Skill | Examples |
-| --- | --- | --- |
-| Google Search | [google-search](skills/google-search/SKILL.md) | Web research, site searches, PDF discovery and localized SERPs. |
-| Google News | [google-news](skills/google-news/SKILL.md) | Topic coverage, company news and linked news briefings. |
-| Google Image Search | [google-image-search](skills/google-image-search/SKILL.md) | Image references, diagrams and filtering by returned dimensions. |
-| Google Shopping | [google-shopping](skills/google-shopping/SKILL.md) | Product discovery and comparing listed merchant offers. |
-| Google Video Search | [google-video-search](skills/google-video-search/SKILL.md) | Tutorials, demonstrations and video discovery across websites. |
-| Google Places Search | [google-places](skills/google-places/SKILL.md) | Local business lists with addresses and available ratings. |
-| YouTube Search | [youtube-search](skills/youtube-search/SKILL.md) | Video discovery using date, duration, subtitle and sorting filters. |
-| YouTube Extended Search | [youtube-extended-search](skills/youtube-extended-search/SKILL.md) | Larger video datasets and creator discovery, up to 700 requested results. |
-| YouTube Video Metadata | [youtube-metadata](skills/youtube-metadata/SKILL.md) | Video details, statistics, chapters and format inspection. |
-| YouTube Transcripts | [youtube-transcript](skills/youtube-transcript/SKILL.md) | Video summaries, timestamped quotes and transcript exports. |
-| YouTube Captions | [youtube-captions](skills/youtube-captions/SKILL.md) | Uploader captions and local SRT/WebVTT conversion. |
-| YouTube Channel Data | [youtube-channel](skills/youtube-channel/SKILL.md) | Channel profiles, recent uploads and video CSV exports. |
-| YouTube Autocomplete | [youtube-autocomplete](skills/youtube-autocomplete/SKILL.md) | Keyword ideas and suggestions by language and region. |
-| YouTube License Check | [youtube-license-check](skills/youtube-license-check/SKILL.md) | Creative Commons license-label classification and its interpretation. |
-| YouTube Video and Audio Download | [youtube-download](skills/youtube-download/SKILL.md) | Video, audio or clips delivered to customer cloud storage. |
-
-Install only the task Skills you want, for example:
-
-```sh
-npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtube-transcript
-```
-
-The CLI's `--list` option lists available Skills before installing. Each selected Skill is self-contained; sibling Skills are not required. Skill names are shared across the ecosystem, so review an existing installation before replacing a same-named Skill from another publisher. Public source, installation and skills.sh indexing are separate milestones. Instructions are free; FlashData API queries are paid.
-
-These new top-level Skills are also discoverable by clients that scan the repository's `skills/` directory. This source update is not a new Cursor or Gemini marketplace approval. The contained Claude plugin continues to bundle its existing shared research Skill.
-
-The MCP research skill was renamed from `flashdata` to `flashdata-mcp`; the `flashdata` skill in the Skills repository now targets the standalone CLI. Update existing MCP skill installations to the new name. This does not alter your MCP connection or credentials.
-
-## Cursor plugin
-
-For a single task, choose one of the [15 independent Cursor plugins](integrations/README.md). Each has its own manifest, Skill and source-restricted npm server. The root marketplace manifest registers them alongside the combined plugin below; public Marketplace listing remains subject to Cursor review.
-
-This repository also contains a [Cursor plugin](https://cursor.com/docs/plugins): the same research Skill plus a connection to the hosted FlashData MCP service. The plugin does not run the local Node.js server or require an npm installation. Marketplace review and listing are separate from this public source release.
-
-Cursor discovers the plugin through [.cursor-plugin/plugin.json](.cursor-plugin/plugin.json), its MCP server through [mcp.json](mcp.json), and the Skill under `skills/flashdata-mcp/`. The plugin declares `FLASHDATA_API_KEY` as a required configuration variable. Set your own key through Cursor's plugin configuration when that interface is available; team admins manage variables in Dashboard → Plugins → Configure. The repository contains only a placeholder, never a working key. Do not replace the placeholder in a committed file or paste a key into Agent chat.
-
-For local development, follow [Cursor's local plugin instructions](https://cursor.com/docs/plugins#test-plugins-locally): copy `.cursor-plugin/`, `mcp.json`, `skills/`, `assets/`, `README.md`, and `LICENSE` into `~/.cursor/plugins/local/flashdata/`. Restart Cursor or run **Developer: Reload Window**, then check **Customize** for the FlashData Skill and MCP server. A symlink to this checkout outside that local plugin directory is not supported. Organization policy can disable local plugin imports.
-
-If your local Cursor setup does not offer plugin variable configuration, connect the [hosted MCP service](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) separately using Cursor's supported MCP configuration and protected environment variables. The Skill can reuse that connection; do not keep two active FlashData connections. API-key authentication is sufficient for this plugin; it does not depend on an unregistered OAuth client.
-
-After configuration, invoke `/flashdata-mcp` and ask: “Quote one Google search using FlashData, but do not run the search.” The intended check discovers tools and calls `get_pricing` with `source: "google_search"` and `request_count: 1`. It is free and does not verify paid retrieval. Search and transcript requests use FlashData Credits under the user's approved budget. Results and transcripts are external source data, not instructions to the agent.
-
-Support: [support@flashdata.dev](mailto:support@flashdata.dev). See [Security](SECURITY.md), [FlashData terms](https://flashdata.dev/legal/terms), and [privacy](https://flashdata.dev/legal/privacy).
-
-## Gemini CLI extension
-
-For a single task, choose one of the [15 independent Gemini extensions](integrations/README.md). Each has its own repository, sensitive API-key setting, Skill and source-restricted npm server. Repository installation and gallery discovery are verified separately. The combined hosted extension remains available below.
-
-The [Gemini CLI extension](https://geminicli.com/docs/extensions/) bundles the same FlashData research Skill and hosted MCP connection. It requires Gemini CLI and a FlashData account; it does not run this repository's local Node.js MCP server or require the local npm package.
-
-Install from the public repository:
-
-```sh
-gemini extensions install https://github.com/flashdatadev/flashdata-mcp
-```
-
-Review the extension when prompted. Enter your own FlashData API key into the installation setting, not Agent chat. [gemini-extension.json](gemini-extension.json) declares the key as a sensitive setting so Gemini CLI uses the system keychain and masks the input. The repository contains only an environment-variable placeholder. To change the key later, run `gemini extensions config flashdata`.
-
-Restart Gemini CLI after installing or changing the configuration. Run `gemini extensions list` to check the installation, and use `/mcp` and `/skills list` in an interactive session to inspect the FlashData connection and Skill. If an existing Gemini MCP setting also uses the name `flashdata`, that user setting takes precedence; use one intended connection rather than maintaining duplicates.
-
-For a free FlashData check, ask: “Use the FlashData skill to quote one Google search with `get_pricing`, source `google_search`, request_count `1`. Do not run the search or any other paid query.” Skill activation and tool execution remain subject to your Gemini CLI permissions. The extension is MIT-licensed and has no separate fee. FlashData queries consume your Credits; account reads and pricing checks are free. Gemini model access and its usage limits are separate from FlashData. Google's [June 2026 transition notice](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli) moves individual/free access to Antigravity CLI; Gemini CLI remains available through supported enterprise licenses and paid API keys. This extension has been validated for Gemini CLI, not Antigravity CLI.
-
-For local development, run `gemini extensions link /absolute/path/to/flashdata-mcp` and restart the CLI. The extension uses Streamable HTTP (`httpUrl`) and automatically discovers `skills/flashdata-mcp/`; no additional commands or persistent context file are required. GitHub installation and [Gemini gallery](https://geminicli.com/extensions/) indexing are separate milestones; a public repository is not proof of a live gallery listing.
-
-## Claude Code plugin
-
-The [Claude plugin](plugins/claude/README.md) bundles the shared research Skill and a hosted MCP connection. Install through FlashData's own GitHub marketplace:
-
-```sh
-claude plugin marketplace add flashdatadev/flashdata-mcp
-claude plugin install flashdata@flashdata
-```
-
-Use Claude Code 2.1.285 or later and enter your key through `/plugin configure flashdata@flashdata` in an interactive session. The sensitive setting uses Claude Code's secure credential store. Restart, inspect `/mcp`, then invoke `/flashdata:flashdata-mcp` and request a free pricing check. Queries use FlashData Credits; model access and fees are separate.
-
-The plugin is contained in `plugins/claude/` so it does not ship this repository's top-level executable. Shared Skill, logo, and license copies are generated by `npm run sync:claude-plugin`; CI checks that they match the originals. Its API-key configuration is for Claude Code; authenticated use in Chat and Cowork requires their connector setup. This GitHub marketplace is independent of Anthropic's official directory, where neither the plugin nor its required separate MCP connector submission has been approved.
-
-## Repository layout
+**Hosted server — no installation.** Add this URL to your MCP client:
 
 ```text
-bin/                      JSON CLI and stdio MCP executables
-src/                      shared tool execution, MCP adapter, API clients and local cache
-test/                     isolated CLI, protocol, HTTP security and cache tests
-scripts/                  package checks and installation verification
-npm/                      15 task package definitions and developer guides
-integrations/             Cursor/Gemini task catalog and native example prompts
-plugins/cursor/           15 self-contained source-specific Cursor plugins
-extensions/gemini/        15 self-contained Gemini extension release directories
-.cursor-plugin/marketplace.json Cursor combined and task plugin registry
-skills/flashdata-mcp/         portable Agent Skill and research recipes
-.cursor-plugin/plugin.json Cursor plugin manifest and variable declaration
-mcp.json                  hosted MCP connection for the Cursor plugin
-gemini-extension.json     Gemini CLI hosted MCP and sensitive key setting
-.claude-plugin/marketplace.json Claude marketplace index
-plugins/claude/           contained Claude plugin and generated shared files
-assets/logo.svg           FlashData plugin logo
-.github/workflows/ci.yml  continuous integration
-package.json              package metadata and commands
-package-lock.json         reproducible dependency installation
-LICENSE                   MIT license
-THIRD_PARTY_NOTICES.md    dependency notices
-SECURITY.md              vulnerability reporting and trust boundaries
+https://data.flashdata.dev/mcp
 ```
 
-## Response formats
+Get your API key from [FlashData API Keys](https://flashdata.dev/app/api-keys?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined). New to FlashData? [Create an account](https://flashdata.dev/signup?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined).
 
-Since **0.3.0**, local MCP returns Markdown in its text content by default. Original API
-fields remain in `structuredContent` for programs; large results instead provide
-chunk metadata there. Choose a different presentation with a tool argument:
+Connection settings:
 
-| `response_format` | Text content |
+| Setting | Value |
 | --- | --- |
-| omitted or `"markdown"` | Markdown with source links and returned timestamps |
-| `"text"` | Indented, readable original fields |
-| `"json"` | Original JSON text |
+| Transport | Streamable HTTP |
+| Endpoint | `https://data.flashdata.dev/mcp` |
+| Authentication header | `X-API-Key: YOUR_API_KEY` |
 
-For example, call `google_search` with `{"query":"battery recycling"}` for
-Markdown, or add `"response_format":"json"` for JSON. This option also applies to
-async receipts, batch submissions, job reads and account reads. `get_result`
-inherits the initial format. Errors remain structured JSON. Formatting does not
-repeat the query, change billing, or persist preferences on a job.
+Choose your client below. Replace `YOUR_API_KEY` with your own key and enable the data sources you want in the FlashData console.
 
-These are MCP tool arguments, not HTTP `Accept` or `X-Respond-With` headers.
-REST and SDK calls still default to JSON. The legacy npm CLI also keeps its JSON
-default. Hosted MCP and pinned task packages are separate releases: inspect their
-live tool schemas before sending `response_format`.
+<details>
+<summary><b>Claude Desktop</b></summary>
 
-The Python examples request JSON when supported and retrieve every result chunk
-before closing the session. Install each complete skill directory so its example
-and `mcp_response.py` helper stay together.
-
-For clients that expose only text, formatted chunk responses include a compact
-JSON continuation block followed by the readable chunk. Use its `result_id` and
-`next_offset` to finish the result; the complete document is still Markdown or text.
-
-## Run locally
-
-Requires Node.js 22.18 or newer and a FlashData API key from [a FlashData account](https://flashdata.dev/signup?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined). The Management API must support `/v2/api-access` and its balance, pricing and limits routes. Deploy that server release before connecting this package to an older environment.
-
-Clone the repository and install its dependencies:
-
-```sh
-git clone https://github.com/flashdatadev/flashdata-mcp.git
-cd flashdata-mcp
-npm ci
-export FLASHDATA_API_KEY='YOUR_API_KEY'
-npm start
-```
-
-The process communicates over stdin/stdout; it does not show a web page or interactive prompt. Use `node bin/flashdata-mcp.js --help` for configuration help. Normal protocol operation writes no banners or request data to stdout or stderr.
-
-For a local clone, configure Claude Desktop (or another stdio MCP client) with an absolute path:
+In Claude Desktop, open **Settings → Developer → Edit Config**. Add this entry to `claude_desktop_config.json`, then fully quit and reopen Claude Desktop. This uses the same hosted server through a local bridge; Node.js is required.
 
 ```json
 {
   "mcpServers": {
     "flashdata": {
-      "command": "node",
-      "args": ["/absolute/path/to/flashdata-mcp/bin/flashdata-mcp.js"],
-      "env": { "FLASHDATA_API_KEY": "YOUR_API_KEY" }
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@0.14.3",
+        "https://data.flashdata.dev/mcp",
+        "--transport",
+        "http-only",
+        "--header",
+        "X-API-Key:${FLASHDATA_API_KEY}"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "YOUR_API_KEY"
+      }
     }
   }
 }
 ```
 
-Use the full path to Node if your desktop app cannot find it. On Windows, use an escaped Windows path. Keep credentials in your client's protected configuration, not in a prompt, URL, committed file, or command-line argument.
+</details>
 
-You can also install the reviewed artifact with `npm install /absolute/path/flashdata-dev-mcp-0.3.1.tgz` in a separate project and run its `node_modules/.bin/flashdata-mcp` executable. For npm installation, use the explicit commands below: the package contains two executables.
+<details>
+<summary><b>Claude Code</b></summary>
 
-## Agent CLI
+Run this in your terminal, then use `/mcp` in Claude Code to check the connection.
 
-Version **0.3.0** and later default to Markdown in MCP clients. The single-call CLI keeps
-its JSON default; pass `response_format` to choose Markdown or plain text.
-
-The package also provides `flashdata`, a single-call JSON CLI. It shares the MCP schemas, source permissions and API clients. Run `node bin/flashdata.js` in a source checkout, or install the npm package:
-
-```sh
-npm install --global @flashdata-dev/mcp@0.3.1
-flashdata --help
+```bash
+claude mcp add --transport http --scope user flashdata 'https://data.flashdata.dev/mcp' \
+  --header 'X-API-Key: YOUR_API_KEY'
 ```
 
-Without a global installation, select the executable explicitly:
+</details>
 
-```sh
-npx --yes --package=@flashdata-dev/mcp@0.3.1 flashdata tools
-npx --yes --package=@flashdata-dev/mcp@0.3.1 flashdata call get_pricing
+<details>
+<summary><b>Cursor</b></summary>
+
+Add to `~/.cursor/mcp.json`, merge with your existing servers, and reopen Cursor.
+
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "url": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      }
+    }
+  }
+}
 ```
 
-For a stdio MCP client, set `command` to `npx` and `args` to `["--yes", "--package=@flashdata-dev/mcp@0.3.1", "flashdata-mcp"]`, with the key in the client's protected environment. On Windows, use `npx.cmd` if required by your client. Do not use bare `npx @flashdata-dev/mcp`: choose one of the two executable names.
+</details>
 
-Set `FLASHDATA_API_KEY` through your environment or secret manager. Do not put real keys in shell history or command arguments. Start with free discovery and pricing:
+<details>
+<summary><b>Codex</b></summary>
 
-```sh
-flashdata tools
-flashdata call get_pricing
-flashdata call get_pricing --input pricing.json
+Add to `~/.codex/config.toml`, then start a new session.
+
+```toml
+[mcp_servers.flashdata]
+url = "https://data.flashdata.dev/mcp"
+http_headers = { "X-API-Key" = "YOUR_API_KEY" }
 ```
 
-`pricing.json` contains `{"source":"google_search","request_count":1}`. `tools` returns the currently authorized tool names, descriptions and JSON input schemas; a fully authorized key has 21 CLI tools. The persistent MCP-only `get_result` is omitted because CLI results are returned whole.
+</details>
 
-Supply arguments with `--input <file>` or `--input -` for stdin. Input must be a JSON object, up to 256 KiB. Use stdin or a protected temporary file for download storage credentials; do not commit it. The CLI does not save keys or inputs.
+<details>
+<summary><b>VS Code</b></summary>
 
-For a paid async web search, create `query.json` containing `{"query":"home battery storage","num":3,"mode":"async"}`, then run:
+Run **MCP: Open User Configuration** in the Command Palette, or add this to `.vscode/mcp.json`. Start the server and enable its tools in Copilot agent mode.
 
-```sh
-flashdata call google_search --input query.json
+```json
+{
+  "servers": {
+    "flashdata": {
+      "type": "http",
+      "url": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      }
+    }
+  }
+}
 ```
 
-The result includes a job id. Put that actual id in `job.json`, for example `{"job_id":"job_REPLACE_WITH_RETURNED_ID"}`, and read it with:
+</details>
 
-```sh
-flashdata call get_job --input job.json > result.json
+<details>
+<summary><b>Windsurf</b></summary>
+
+Add to `~/.codeium/windsurf/mcp_config.json`, then refresh the MCP server list in Cascade.
+
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "serverUrl": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      }
+    }
+  }
+}
 ```
 
-A pending or processing job means work is still running. Repeat only the free `get_job` read as needed, respecting API limits; do not resubmit the query. Completed jobs include their original JSON in `result.output`. Failed jobs return `ok: false` and exit 1. `submit_batch` and `youtube_download` use the same schemas shown by `tools`; downloads always run asynchronously.
+</details>
 
-`tools` and `call` write exactly one JSON object to stdout with `ok` and `result`; call output also includes `tool`. Local failures use `error: {code, message}`. Exit status 0 means the operation succeeded, 1 means a tool/API error, and 2 means invalid command, input or configuration. A successful pending-job read is not completed work. `--help` and `--version` print text and require no key. Normal operation prints no diagnostics to stderr.
+<details>
+<summary><b>Gemini CLI</b></summary>
 
-The npm CLI defaults to an object in `result`. To return a document string inside the same JSON wrapper, add `"response_format":"markdown"` or `"text"` to the input. Error results stay objects.
+Add to `~/.gemini/settings.json`, restart Gemini CLI, and run `/mcp`.
 
-CLI results are not chunked or kept in a cache. Redirect stdout to preserve large results (API responses remain bounded to 4 MiB). If a paid submission returns `query_outcome_unknown`, is interrupted, or loses its output, check Jobs before trying again: the query may already have been charged. The CLI never automatically retries or polls.
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "httpUrl": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
 
-## Tools and billing
+</details>
 
-A fully authorized key discovers 22 tools. Discovery and execution are filtered by the current key's scopes.
+<details>
+<summary><b>Cline</b></summary>
 
-| Tools | Behavior |
+Open **MCP Servers → Configure → Configure MCP Servers** in Cline, add this entry, and enable the server.
+
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "type": "streamableHttp",
+      "url": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      },
+      "disabled": false
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>OpenCode</b></summary>
+
+Add to your project’s `opencode.json`, then run `opencode mcp list`.
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "flashdata": {
+      "type": "remote",
+      "url": "https://data.flashdata.dev/mcp",
+      "enabled": true,
+      "oauth": false,
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>Zed</b></summary>
+
+Open **Zed: Open Settings File** and add this local stdio server under `context_servers`. Requires Node.js 22.18 or newer. Check the server in **Settings → AI → MCP Servers**.
+
+```json
+{
+  "context_servers": {
+    "flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "--package=@flashdata-dev/mcp@0.3.1",
+        "flashdata-mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>Warp</b></summary>
+
+Open **Settings → Agents → MCP servers → Add**, then paste this configuration.
+
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "url": "https://data.flashdata.dev/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>Other clients (local npx)</b></summary>
+
+For any client that supports local stdio MCP servers, use this configuration. Requires Node.js 22.18 or newer. On Windows, use `npx.cmd` if your client requires it.
+
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "--package=@flashdata-dev/mcp@0.3.1",
+        "flashdata-mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+After connecting, try this free check:
+
+> Use FlashData to check my Credit balance and account limits. Do not run any searches or other paid queries.
+
+[More connection guides →](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
+
+---
+
+## Pricing and Free Tier
+
+**MCP access, software installation, and account checks are free.** Data queries use one shared FlashData Credits balance across Google Search, YouTube Data, and downloads.
+
+What's free:
+
+- Connecting an MCP client and installing the open-source software.
+- Checking balance, pricing, account limits, and usage.
+- Reading job status and retrieving existing results.
+- Trying the [public playground](https://flashdata.dev/?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined#playground) without an account.
+
+**Pay as you go — no monthly subscription fee.** Add Credits when you need API access:
+
+| | Google Search | Standard YouTube Data | YouTube Download |
+| --- | --- | --- | --- |
+| **Pay as you go** | $1.00 / 1,000 requests | $0.50 / 1,000 requests | $0.10 / GB delivered ($100 / TB) |
+
+- Subscription plans include Credits, lower usage rates, and higher capacity. Extended Search has a separate rate.
+- Each query is billed individually, including queries in a batch. One prompt may run several queries.
+- Downloads reserve Credits while processing and settle by actual uploaded bytes.
+- Failed requests are not charged. A lost response or timeout does not confirm failure; check the existing job before retrying.
+
+Use `get_pricing` to check your account's rate before a query. For example:
+
+```json
+{
+  "name": "get_pricing",
+  "arguments": { "source": "google_search", "request_count": 1 }
+}
+```
+
+[Full pricing, subscription plans, and volume pricing →](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
+
+---
+
+## Use Cases
+
+### Real-time research
+
+Find current sources with Google Search and keep each title, URL, snippet, and result position in your research notes.
+
+| Task | Tools |
 | --- | --- |
-| `google_search`, `google_images`, `google_news`, `google_shopping`, `google_videos`, `google_places` | Realtime or async Google data |
-| `youtube_search`, `youtube_search_extended`, `youtube_metadata`, `youtube_transcript`, `youtube_captions`, `youtube_trainability`, `youtube_channel`, `youtube_suggestions` | Realtime or async YouTube data |
-| `youtube_download` | Async video/audio delivery to customer storage |
-| `submit_batch` | Submit multiple queries, including downloads, as background jobs |
-| `get_job` | Read task status and completed JSON results |
-| `get_result` | Read another segment of a large response without repeating the query |
-| `get_balance`, `get_pricing`, `get_limits`, `get_usage` | Free account reads |
+| Find sources for a topic | `google_search` |
+| Track news coverage | `google_news` |
+| Find relevant talks and tutorials | `youtube_search`, `youtube_transcript` |
 
-The software is free; queries use your existing FlashData Credits and plan limits. Downloads reserve Credits and settle by actual uploaded bytes. `get_pricing` returns current account pricing; Catalog estimates are not a billing authority. One user task may lead an agent to make multiple paid calls.
+**Example prompt:** “Find five official sources about home battery recycling in the US. Return their titles, URLs, and snippets.”
 
-Start with “Check my FlashData balance, pricing and limits.” This does not submit a paid query. Then ask for the data you need, such as “Find three YouTube videos about home battery storage, retrieve their available transcripts, and include the source URLs.” The agent decides which tools to use.
+### E-commerce intelligence
 
-Do not automatically repeat a timed-out query: it may already have been submitted and charged. JSON-RPC IDs are not billing idempotency keys. Check Jobs first. Read failures do not imply refunds.
+Collect product listings and compare the price, merchant, and other available details returned by Google Shopping.
 
-Downloads require a `storage` object matching the [Download API](https://flashdata.dev/docs/sources/youtube_download?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-task). Storage credentials must come from the user's configured destination; never invent or echo them. The existing download protocol transmits these credentials to FlashData to perform the upload. This release does not inject storage credentials from a local file or hide them from the MCP client's tool arguments. Private object URLs still require the destination's own access controls.
+| Task | Tools |
+| --- | --- |
+| Find product offers | `google_shopping` |
+| Find product images and demonstrations | `google_images`, `google_videos` |
 
-Use dedicated, narrowly scoped, short-lived storage credentials where supported. Tool arguments may be retained in your MCP client's history or debug logs, even when the server itself does not log them. See [Security](SECURITY.md) for the trust boundaries and private vulnerability reporting channel.
+**Example prompt:** “Search Google Shopping for portable power stations and organize the returned offers by product and merchant.”
+
+### Market and competitor analysis
+
+Compare search visibility, news coverage, local businesses, and YouTube activity using structured source records.
+
+| Task | Tools |
+| --- | --- |
+| Research a company or competitor | `google_search`, `google_news` |
+| Discover local businesses | `google_places` |
+| Compare creator and channel information | `youtube_channel`, `youtube_metadata` |
+
+**Example prompt:** “Find EV charger installers in Austin and make a table of the returned businesses and available details.”
+
+### AI agents with reliable web access
+
+Give your assistant Google search results for its next answer. Choose the country and language, then use the returned URLs to read the original pages with your browsing tools.
+
+**Example prompt:** “Search Google for recent heat-pump research in the UK. Keep the source URLs and explain which pages I should read first.”
+
+### Coding agents
+
+Use FlashData from Claude Code, Codex, Cursor, and other coding clients to find documentation, technical articles, and tutorial transcripts.
+
+**Example prompt:** “Find the official PostgreSQL logical replication documentation and relevant conference talks. Keep source links and timestamped transcript excerpts.”
+
+### GEO and brand visibility
+
+Compare Google results for branded queries, product categories, and alternative-provider searches. Keep the query, region, language, and result positions when comparing snapshots.
+
+**Example prompt:** “Search Google for these three product-category queries and show which returned results mention our brand.”
+
+### Social media monitoring
+
+Follow YouTube topics, channels, and videos. Retrieve video metadata, available captions, and autocomplete suggestions for content and audience research.
+
+**Example prompt:** “Find YouTube videos about heat pumps, compare their channels and available video statistics, and collect available English transcripts for the three most relevant videos.”
+
+### Content creation and academic research
+
+Turn available video transcripts into source material for notes, timestamped citations, and drafts. Deliver video, audio, or clips to your own cloud storage for downstream processing.
+
+| Task | Tools |
+| --- | --- |
+| Read timestamped captions | `youtube_transcript`, `youtube_captions` |
+| Inspect a video's details and license label | `youtube_metadata`, `youtube_trainability` |
+| Save media or a clip to your storage | `youtube_download` |
+
+**Example prompt:** “Get the available English transcript of this talk, summarize the key points with timestamp links, and save a 30-second clip to my configured storage.”
+
+---
+
+## Tool Selection: Groups
+
+Tools are organized around three products. Enable the sources you need when creating your API key; the server exposes the tools that key can access.
+
+| Group | Capabilities | Data tools |
+| --- | --- | --- |
+| Google Search | Web, images, news, shopping, videos, places | 6 |
+| YouTube Data | Search, extended search, metadata, transcripts, captions, channels, autocomplete, license labels | 8 |
+| YouTube Download | Video, audio, and clip delivery | 1 |
+
+### Configuration examples
+
+| Workflow | Sources to enable on your key |
+| --- | --- |
+| Web and news research | `google_search`, `google_news` |
+| Video research with timestamped citations | `youtube_search`, `youtube_metadata`, `youtube_transcript` |
+| Media delivery | `youtube_download` |
+
+Create or update the key in [FlashData API Keys](https://flashdata.dev/app/api-keys?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined), then reconnect your client after changing permissions. All workflows use the same hosted endpoint and `X-API-Key` header.
+
+---
+
+## Tools Reference (22 Tools)
+
+### Which tool to use
+
+- **Need web results:** `google_search`. For news, images, products, videos, or places, use the corresponding Google tool.
+- **Need to find videos:** `youtube_search` or `youtube_search_extended` for a larger dataset.
+- **Have a video ID:** `youtube_metadata` for details; `youtube_transcript` or `youtube_captions` for available caption text.
+- **Need channel information or keyword ideas:** `youtube_channel` or `youtube_suggestions`.
+- **Need a media file in your storage:** `youtube_download`, then `get_job` to check delivery.
+- **Need to check costs or usage:** `get_pricing`, `get_balance`, `get_limits`, and `get_usage` are free.
+
+
+<details>
+<summary><b>Google Search — 6 tools</b></summary>
+
+| Tool | What it returns |
+| --- | --- |
+| `google_search` | Web results with titles, URLs, snippets, and positions |
+| `google_images` | Image search results |
+| `google_news` | News search results |
+| `google_shopping` | Product listings and available merchant details |
+| `google_videos` | Video search results |
+| `google_places` | Local business and place results |
+
+**Example:** Search for five English results in the US:
+
+```json
+{
+  "name": "google_search",
+  "arguments": { "query": "battery recycling research", "gl": "us", "hl": "en", "num": 5 }
+}
+```
+
+Read `results[0].organic` for source records. Selected output fields, shown with illustrative values:
+
+```json
+{
+  "source": "google_search",
+  "status": "done",
+  "results": [{ "organic": [{
+    "title": "Example research article",
+    "link": "https://example.com/research",
+    "snippet": "Example search-result snippet.",
+    "position": 1
+  }] }],
+  "http_status": 200
+}
+```
+
+Search results contain snippets; use a browser to read full articles. [Parameters and responses →](https://flashdata.dev/docs/sources/google_search?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
+
+</details>
+
+<details>
+<summary><b>YouTube Data — 8 tools</b></summary>
+
+| Tool | What it returns |
+| --- | --- |
+| `youtube_search` | Video search results |
+| `youtube_search_extended` | Larger video search datasets |
+| `youtube_metadata` | Video metadata, statistics, and available formats |
+| `youtube_transcript` | Existing automatic captions with timestamps |
+| `youtube_captions` | Available uploader captions |
+| `youtube_channel` | Channel details and video listings |
+| `youtube_suggestions` | Autocomplete phrases by query, language, and region |
+| `youtube_trainability` | Creative Commons license-label information |
+
+**Example:** Retrieve an existing English automatic caption track:
+
+```json
+{
+  "name": "youtube_transcript",
+  "arguments": { "video_id": "dQw4w9WgXcQ", "language": "en", "auto": true }
+}
+```
+
+Read `results[0].segments` and preserve `start`, `end`, and `text`. Selected output fields, shown with illustrative values:
+
+```json
+{
+  "source": "youtube_transcript",
+  "status": "done",
+  "results": [{
+    "videoId": "dQw4w9WgXcQ",
+    "languageCode": "en",
+    "isAutoGenerated": true,
+    "segments": [{ "start": 0, "end": 3, "text": "Example transcript." }]
+  }],
+  "http_status": 200
+}
+```
+
+Transcripts require an existing caption track. Autocomplete returns phrases, not search volume. License-label checks report metadata; they do not grant reuse or model-training rights. [Transcript reference →](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
+
+</details>
+
+<details>
+<summary><b>YouTube Download — 1 tool</b></summary>
+
+| Tool | Input | Result |
+| --- | --- | --- |
+| `youtube_download` | Video ID, video/audio type, quality, format, optional clip times, and storage | An asynchronous job; completed output includes the uploaded file location and size |
+
+**Example:** Deliver a 10-second MP4 clip to an S3 bucket:
+
+```json
+{
+  "name": "youtube_download",
+  "arguments": {
+    "video_id": "jNQXAC9IVRw",
+    "mode": "async",
+    "download_type": "audio_video",
+    "video_quality": "<=720",
+    "output_format": "mp4",
+    "start_at": "00:00:00",
+    "end_at": "00:00:10",
+    "storage": {
+      "storage_type": "s3",
+      "storage_url": "your-media-bucket",
+      "access_key": "YOUR_ACCESS_KEY",
+      "secret_key": "YOUR_SECRET_KEY",
+      "region": "us-east-1",
+      "object_prefix": "flashdata-clips"
+    }
+  }
+}
+```
+
+Supply your own storage credentials through your client's protected configuration. Save the returned job ID and call `get_job` with `{"job_id":"RETURNED_JOB_ID"}`. When completed, read `output.results[0]` for `file_url`, `file_size`, and `downloaded_bytes`.
+
+Downloads run asynchronously and are billed by delivered bytes. File access and retention follow your storage settings. [Storage setup and download reference →](https://flashdata.dev/docs/sources/youtube_download?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
+
+</details>
+
+<details>
+<summary><b>Batches, Results, and Account Information — 7 tools</b></summary>
+
+| Tool | What it does | Cost |
+| --- | --- | --- |
+| `submit_batch` | Submits multiple queries as background jobs | Each data query is billed |
+| `get_job` | Checks job status and reads completed output | Free |
+| `get_result` | Retrieves another chunk of an existing result | Free |
+| `get_balance` | Checks available Credits | Free |
+| `get_pricing` | Reads current account pricing | Free |
+| `get_limits` | Reads account limits | Free |
+| `get_usage` | Reviews account usage | Free |
+
+For async work, poll the existing job rather than resubmitting the data query. For chunked output, use the returned `result_id` and `next_offset` with `get_result`, then concatenate the chunks in order.
+
+</details>
+
+---
+
+## Agent Skills
+
+The official [FlashData Skills](https://github.com/flashdatadev/flashdata-skills) provide task instructions, examples, and result-handling guidance for your MCP connection. Install the Skills you need:
+
+```bash
+npx skills add flashdatadev/flashdata-skills --skill google-search --skill youtube-transcript
+```
+
+Or install the shared research Skill:
+
+```bash
+npx skills add flashdatadev/flashdata-skills --skill flashdata-mcp
+```
+
+Connect the MCP server using Quick Start above. Skills provide instructions; data calls use your own FlashData API key and Credits.
+
+---
 
 ## Configuration
 
-| Environment variable | Default / requirement |
-| --- | --- |
-| `FLASHDATA_API_KEY` | Required; user's FlashData key |
-| `FLASHDATA_DATA_API_URL` | `https://data.flashdata.dev` |
-| `FLASHDATA_MANAGEMENT_API_URL` | `https://api.flashdata.dev` |
-| `FLASHDATA_REQUEST_TIMEOUT_MS` | `65000`; integer from 1000 to 120000 |
+### Basic setup (local)
 
-API URLs must be HTTPS origins without credentials, path, query or fragment. Loopback HTTP is allowed for local development. Do not append `/v1` or `/v2`. Set custom origins only to servers you trust: they receive your key and queries. The package does not load `.env` automatically.
+Use Node.js 22.18 or newer with the published local stdio server:
 
-Every tool discovery or call revalidates API access through Management, including reads from the local result cache. Revoked keys and removed scopes cannot continue to access cached results. Management availability is therefore required for local tools; the existing hosted Data API/MCP keeps its own runtime boundaries. API access reads share a limit of 120 requests/minute per client IP; account tools also make their respective read request.
-
-Completed jobs use the signed result URL returned by Management. The result origin must match the origin advertised by the authenticated `/v2/api-access` response, and use HTTPS (or loopback HTTP). API credentials are never sent to object storage, and storage redirects are not followed. This origin must be reachable from the machine running the local package.
-
-## Large results and protocol
-
-The local server uses stdio. The FlashData hosted endpoint continues to use Streamable HTTP. This project implements the public tool contract independently and connects to FlashData through REST APIs. This package does not implement OAuth, scraping, provider credentials, a credit ledger, or a local worker.
-
-In stdio MCP, large responses are split into chunks of at most 16,000 UTF-16 code units without splitting a Unicode character. Use `result_id` and `next_offset` from `structuredContent` to read every chunk in the same session. Concatenate in order; parse only `encoding: "json"`. Other encodings are Markdown or plain-text documents. The in-memory store holds at most four results, each for ten minutes; restart clears it. The limit is per local process, and results are not shared with the hosted MCP cache. Both the upstream response and the cached document are limited to 4 MiB. Async JSON results retain the API's 24-hour window; media retention follows customer storage.
-
-## Development and packaging
-
-```sh
-npm ci
-npm test
-npm run check:package
-npm run test:install
-npm run build:npm-tasks
-npm run test:npm-tasks
-npm run build:npm
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "--package=@flashdata-dev/mcp@0.3.1",
+        "flashdata-mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}
 ```
 
-Tests spawn both an actual SDK stdio client and the JSON CLI against isolated local HTTP fixtures. They cover discovery, authorization changes, account reads, argument validation, query/download/batch forwarding, unknown POST outcomes, credential-free result delivery and bounded Unicode result caching. They do not contact paid providers or require Redis/MongoDB.
+### Advanced configuration
 
-`npm run test:install` also installs the packed tarball into an empty temporary project and runs both the stdio and JSON CLI contracts against the installed executables.
+The local server also accepts a request timeout through `FLASHDATA_REQUEST_TIMEOUT_MS`. For example:
 
-`npm run build:npm-tasks` builds 15 source-restricted tarballs in `dist/npm`, including each package’s schema, example and guide. `npm run test:npm-tasks` installs those tarballs together in an empty project and tests every actual CLI and MCP executable. See [RELEASING.md](https://github.com/flashdatadev/flashdata-mcp/blob/main/RELEASING.md) for versioning and publication.
+```json
+{
+  "mcpServers": {
+    "flashdata": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "--package=@flashdata-dev/mcp@0.3.1",
+        "flashdata-mcp"
+      ],
+      "env": {
+        "FLASHDATA_API_KEY": "YOUR_API_KEY",
+        "FLASHDATA_REQUEST_TIMEOUT_MS": "90000"
+      }
+    }
+  }
+}
+```
 
-`npm run build:npm` runs tests, verifies the file allowlist and packs a separate staging copy. It converts tracked website links from GitHub to npm without modifying the source READMEs. Plain `npm pack` retains GitHub links and is not the publication artifact. The npm tarball contains the CLI, source, README, license and notices; it excludes tests, credentials, private backend code, deployment files and node_modules. A source repository should also retain tests, scripts, the lockfile, and the CI workflow.
+### Environment variables
+
+| Variable | Description | Default |
+| --- | --- | --- |
+| `FLASHDATA_API_KEY` | Your FlashData key; required for the local server | — |
+| `FLASHDATA_REQUEST_TIMEOUT_MS` | Request timeout in milliseconds, from 1,000 to 120,000 | `65000` |
+| `FLASHDATA_DATA_API_URL` | FlashData Data API origin | `https://data.flashdata.dev` |
+| `FLASHDATA_MANAGEMENT_API_URL` | FlashData Management API origin | `https://api.flashdata.dev` |
+
+The hosted connection uses `X-API-Key` in your client's headers. Configure only the sources you need on the key, then reconnect after changing its permissions.
+
+---
+
+## Documentation
+
+| Resource | Link |
+| --- | --- |
+| MCP connection guides | [flashdata.dev/mcp](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| API documentation | [flashdata.dev/docs](https://flashdata.dev/docs?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| Google Search parameters and responses | [Google Search reference](https://flashdata.dev/docs/sources/google_search?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| YouTube transcript parameters and responses | [Transcript reference](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| Download formats and cloud storage | [Download reference](https://flashdata.dev/docs/sources/youtube_download?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| Pricing and plans | [Current pricing](https://flashdata.dev/pricing?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| Local MCP source | [GitHub repository](https://github.com/flashdatadev/flashdata-mcp) |
+| Request and response examples for all 15 capabilities | [MCP guide index](registry/README.md#all-15-capabilities) |
+| Security and credential handling | [Security policy](SECURITY.md) |
+| Development and release process | [Contributing](CONTRIBUTING.md) · [Release guide](RELEASING.md) |
+
+---
+
+## Troubleshooting
+
+<details>
+<summary><b>Common issues and solutions</b></summary>
+
+### Authentication issues
+
+Check that your key is active, replace `YOUR_API_KEY` with that key, and send it in the `X-API-Key` header. For the local server, set `FLASHDATA_API_KEY` in its environment.
+
+### Missing tools
+
+Enable the corresponding Google or YouTube source on your key and reconnect the client.
+
+### "spawn npx ENOENT" error
+
+Install Node.js 22.18 or newer. If your desktop client cannot find `npx`, use its absolute path; Windows clients may need `npx.cmd`.
+
+### Timeouts or pending jobs
+
+Check Request History or use `get_job` with the existing ID before submitting again. Pending or processing means the job is still running. Completed jobs include the result in `output`.
+
+### Transcript unavailable
+
+The video may have no caption track in the requested language. Try another available language or use `youtube_captions` for uploader captions.
+
+### Download not complete
+
+Downloads require a configured storage destination and run asynchronously. Check the job status; completed output includes the uploaded file location and size.
+
+### Large responses
+
+When the response provides `result_id` and `next_offset`, use `get_result` to read the remaining chunks. This retrieves the existing result without another paid data query.
+
+</details>
+
+---
+
+## Contributing
+
+For issues or contributions to the local MCP server, use the [source repository](https://github.com/flashdatadev/flashdata-mcp). Include your client, package version, and a minimal example with placeholders.
+
+---
+
+## Support
+
+| Resource | Link |
+| --- | --- |
+| Account, API, and billing support | [support@flashdata.dev](mailto:support@flashdata.dev) |
+| Connection help | [MCP setup](https://flashdata.dev/mcp?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| API reference | [Documentation](https://flashdata.dev/docs?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined) |
+| Local server issues | [GitHub issues](https://github.com/flashdatadev/flashdata-mcp/issues) |
+
+---
 
 ## License
 
-[MIT](LICENSE), covering this project. The FlashData hosted service and data remain subject to their own terms. Dependency notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The local MCP server is MIT-licensed under this repository's [LICENSE](LICENSE). FlashData's hosted service and data use are covered by the [FlashData terms](https://flashdata.dev/legal/terms?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined).
