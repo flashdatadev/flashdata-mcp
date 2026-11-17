@@ -111,3 +111,32 @@ track. Explicit strings keep the single-track response. Lists, including one-ele
 lists, return `tracks` and per-language `errors` inside each result. Keep available
 tracks and report the failed languages; if none succeed, `tracks` is empty.
 The `auto` choice applies to every language and never switches caption source.
+
+## Temporary storage credentials (STS)
+
+Use `session_token` with the matching temporary `access_key` and `secret_key` for
+`s3`, `s3_compatible` (when the provider supports STS), `oss`, `cos`, `bos` and `tos`.
+Map AWS/BOS/TOS SessionToken, OSS SecurityToken or COS Token to `session_token`.
+Keep the usual bucket, region and `endpoint_url` fields for your provider.
+For example, the storage object can be:
+
+```json
+{
+  "storage_type": "s3",
+  "storage_url": "your-media-bucket",
+  "region": "us-east-1",
+  "access_key": "YOUR_TEMPORARY_ACCESS_KEY",
+  "secret_key": "YOUR_TEMPORARY_SECRET_KEY",
+  "session_token": "YOUR_SESSION_TOKEN",
+  "object_prefix": "flashdata/downloads"
+}
+```
+
+Put this object in the integration's private storage configuration, not a model
+prompt. MCP download arguments use `storage`; the REST API uses `params.storage`.
+Single and batch downloads use the same storage fields. Omit the token for
+long-term keys, GCS (`service_account`) and Azure (`sas_token`). A token must be a
+nonempty string of at most 16,384 characters without whitespace/control characters.
+Credentials must last through queueing, download and upload retries. FlashData does
+not refresh them automatically. Use a release containing this STS update; older
+pinned packages can reject the new field.

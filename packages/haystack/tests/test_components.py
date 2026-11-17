@@ -197,6 +197,7 @@ def test_authorized_download_submits_once_and_redacts_receipt(mock_api, monkeypa
         "storage_url": "customer-owned-bucket",
         "access_key": "private-access",
         "secret_key": "private-secret",
+        "session_token": "private-session-token",
     }
     monkeypatch.setenv("FLASHDATA_DOWNLOAD_STORAGE", json.dumps(storage))
     requests = mock_api(
@@ -220,6 +221,7 @@ def test_authorized_download_submits_once_and_redacts_receipt(mock_api, monkeypa
         "result": {"id": "job_saved", "status": "pending", "source": "youtube_download"}
     }
     assert "private-secret" not in json.dumps(result)
+    assert "private-session-token" not in json.dumps(result)
 
 
 @pytest.mark.parametrize(

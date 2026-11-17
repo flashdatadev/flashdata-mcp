@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Accept and preserve temporary storage `session_token` credentials for S3, S3-compatible storage, OSS, COS, BOS and TOS across MCP and integration packages.
+- Update storage discovery schemas, secret-safe validation, STS examples and generated channel references. GCS and Azure keep their existing authentication fields.
+
 ## 0.3.0 — 2026-11-05
 
 - Update follow-redirects to 1.16.2 to address the dependency audit finding.

@@ -35,7 +35,7 @@ type StorageBase = { storage_url: string; object_prefix?: string };
 export type FlashDataStorage = StorageBase & (
   | { storage_type: 'gcs'; service_account: { project_id: string; client_email: string; private_key: string } }
   | { storage_type: 'azure'; account_name: string; sas_token: string }
-  | { storage_type: 's3' | 's3_compatible' | 'oss' | 'bos' | 'cos' | 'tos'; access_key: string; secret_key: string; region?: string; endpoint_url?: string }
+  | { storage_type: 's3' | 's3_compatible' | 'oss' | 'bos' | 'cos' | 'tos'; access_key: string; secret_key: string; session_token?: string; region?: string; endpoint_url?: string }
 );
 export interface DownloadOptions extends FlashDataOptions {
   /** Trusted server configuration. Never provide storage secrets in a model prompt. */

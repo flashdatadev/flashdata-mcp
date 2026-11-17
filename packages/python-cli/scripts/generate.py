@@ -102,6 +102,12 @@ are s3, s3_compatible, gcs, azure, oss, bos, cos and tos. Use your own bucket/co
 optional object_prefix, and the provider-specific credentials. S3-compatible endpoints must
 use HTTPS. [Storage fields and examples](https://flashdata.dev/docs/sources/youtube_download?utm_source=pypi&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content={source}-task).
 
+For temporary credentials, include `session_token` with the matching temporary `access_key`
+and `secret_key` for s3, s3_compatible (when supported), oss, cos, bos or tos. Keep the token
+in the secret storage configuration and valid through queueing, downloads and upload retries.
+FlashData does not refresh it automatically. GCS and Azure keep their existing authentication
+fields. This requires a package release containing the STS update.
+
 Keep the returned `id`. Read that same job with `--operation status --job-id ID` or
 `--operation result --job-id ID`. Omit submission inputs when resuming. There is no automatic
 polling or resubmission. Only the lifecycle receipt and delivery JSON are exported; media is

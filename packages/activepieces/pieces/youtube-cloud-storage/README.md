@@ -56,7 +56,7 @@ Download defaults are selected together by mode. Leave video quality/FPS empty f
 
 ### Download connection
 
-Enter the following JSON in the **secret connection field**, replacing the placeholders with your own key and storage credentials. Never put it in action inputs or a flow export. The whole value is a secret-text connection. Status/result-only connections may omit storage.
+Enter the following JSON in the **secret connection field**, replacing the placeholders with your own key and storage credentials. Never put it in action inputs or a flow export. The whole value is a secret-text connection. Status/result-only connections may omit storage. Temporary credentials for s3, s3_compatible, oss, cos, bos and tos may include session_token alongside the matching access_key and secret_key. Keep the token in this secret connection, valid through queueing and upload retries; it is not automatically refreshed. GCS and Azure use their existing authentication fields.
 
 ```json
 {

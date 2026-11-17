@@ -39,8 +39,18 @@ def storage_config(raw):
         if kind == "cos"
         else ["access_key", "secret_key", "region", "endpoint_url"]
     )
+    if kind in ("s3", "s3_compatible", "oss", "cos", "bos", "tos"):
+        provider_fields.append("session_token")
     if set(storage) - {"storage_type", "storage_url", "object_prefix", *provider_fields}:
         raise FlashDataError("The storage credential contains fields for a different provider.")
+    if "session_token" in storage:
+        token = storage["session_token"]
+        if any(char.isspace() or ord(char) <= 31 or ord(char) == 127 for char in token):
+            raise FlashDataError("session_token must not contain whitespace or control characters.")
+        if not all(storage.get(key, "").strip() for key in ("access_key", "secret_key")):
+            raise FlashDataError(
+                "session_token requires matching temporary access_key and secret_key."
+            )
     if "object_prefix" in storage:
         prefix = storage["object_prefix"].strip().removesuffix("/")
         if (

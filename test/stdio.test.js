@@ -145,11 +145,11 @@ test('stdio protocol uses REST, rechecks access, and preserves billing and resul
   assert.equal(submitted.headers.cookie, undefined);
   assert.match(submitted.headers['x-request-id'], /^req_/);
 
-  const storage = { storage_type: 's3', storage_url: 'example-output', access_key: 'test-fixture-access', secret_key: 'test-fixture-secret' };
+  const storage = { storage_type: 's3', storage_url: 'example-output', access_key: 'test-fixture-access', secret_key: 'test-fixture-secret', session_token: 'test-fixture-session-token' };
   await call('youtube_download', { video_id: 'abcdefghijk', storage });
   await call('submit_batch', { queries: [{ source: 'youtube_download', video_id: 'abcdefghijk', storage }] });
-  assert.ok(requests.some(req => req.path === '/v1/queries' && req.body.params.storage.storage_url === 'example-output'));
-  assert.ok(requests.some(req => req.path === '/v1/queries/batch' && req.body.queries[0].params.storage.storage_url === 'example-output'));
+  assert.ok(requests.some(req => req.path === '/v1/queries' && req.body.params.storage.session_token === storage.session_token));
+  assert.ok(requests.some(req => req.path === '/v1/queries/batch' && req.body.queries[0].params.storage.session_token === storage.session_token));
   const beforeInvalid = requests.filter(req => req.method === 'POST').length;
   assert.equal((await call('youtube_download', { video_id: 'abcdefghijk' })).isError, true);
   assert.equal((await call('youtube_search', { query: 'example', max_results: 21 })).isError, true);

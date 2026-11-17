@@ -24,7 +24,7 @@ for (const source of ['youtube_transcript', 'youtube_captions']) {
   });
 }
 const key = 'test-key-never-send-to-storage';
-const storage = { storage_type: 's3', storage_url: 'example-bucket', access_key: 'storage-access', secret_key: 'storage-secret' };
+const storage = { storage_type: 's3', storage_url: 'example-bucket', access_key: 'storage-access', secret_key: 'storage-secret', session_token: 'storage-session-token' };
 const inputs = {
   google_search: { query: 'agent search', num: 5 }, google_news: { query: 'space missions', gl: 'us' },
   google_images: { query: 'solar panels', autocorrect: false }, google_shopping: { query: 'usb microphone', page: 2 },
@@ -132,6 +132,7 @@ test('download submit keeps storage outside model schema and returns only receip
   assert.equal(payload.params.output_format, 'm4a');
   assert.equal('video_quality' in payload.params, false);
   assert.deepEqual(payload.params.storage, storage);
+  assert.ok(!JSON.stringify(result).includes(storage.session_token));
 });
 for (const bad of [
   { download_type: 'audio', video_quality: '<=720' }, { download_type: 'audio', output_format: 'mp4' },

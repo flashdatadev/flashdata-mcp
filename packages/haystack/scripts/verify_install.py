@@ -27,6 +27,10 @@ from haystack import Pipeline
 import flashdata_haystack as package
 from importlib.metadata import version
 from flashdata_haystack._inputs import YouTubeTranscriptInput, YouTubeCaptionsInput
+from flashdata_haystack._storage import storage_config
+assert storage_config(json.dumps(dict(storage_type='s3', storage_url='test-bucket',
+                                     access_key='test', secret_key='test',
+                                     session_token='test-session')))['session_token'] == 'test-session'
 assert version("flashdata-haystack") == package.__version__ == sys.argv[2]
 for model in (YouTubeTranscriptInput, YouTubeCaptionsInput):
     assert model(video_id="dQw4w9WgXcQ", language=["en", "es"]).language == ["en", "es"]

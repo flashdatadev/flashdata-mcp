@@ -14,13 +14,13 @@
     },
     "_storage.py": {
       "source": "packages/haystack/src/flashdata_haystack/_storage.py",
-      "source_sha256": "88e24e19c3844ca3c4e07645e11b011b70e244e106d4416e7b12b5bff2c29724",
-      "sha256": "88e24e19c3844ca3c4e07645e11b011b70e244e106d4416e7b12b5bff2c29724"
+      "source_sha256": "fd774b45df79bf6da81ca966a20b2d19a81d64a027d3db3f89cc8bf4ab9ccda2",
+      "sha256": "fd774b45df79bf6da81ca966a20b2d19a81d64a027d3db3f89cc8bf4ab9ccda2"
     },
     "storage.schema.json": {
       "source": "packages/haystack/src/flashdata_haystack/storage.schema.json",
-      "source_sha256": "a690171fc7d129ec18aa2239effafaadf78b490e292aa2196de581d63cdb88f6",
-      "sha256": "a690171fc7d129ec18aa2239effafaadf78b490e292aa2196de581d63cdb88f6"
+      "source_sha256": "d45f5b2aa6734e12cf20962f343b48d9aea944b77247fc96be0b22db5375262c",
+      "sha256": "d45f5b2aa6734e12cf20962f343b48d9aea944b77247fc96be0b22db5375262c"
     }
   }
 }

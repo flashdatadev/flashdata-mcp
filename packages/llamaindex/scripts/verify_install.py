@@ -36,7 +36,8 @@ for model in (YouTubeTranscriptInput, YouTubeCaptionsInput):
 assert len(FlashDataTools(list(CONTRACTS)).to_tool_list()) == 17
 assert FlashDataReader('youtube_transcript').source == 'youtube_transcript'
 assert storage_config(json.dumps(dict(storage_type='s3', storage_url='test-bucket',
-                                     access_key='test', secret_key='test')))
+                                     access_key='test', secret_key='test',
+                                     session_token='test-session')))['session_token'] == 'test-session'
 print('wheel installation and runtime schema: OK')
 """,
             version,

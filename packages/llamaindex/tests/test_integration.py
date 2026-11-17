@@ -30,6 +30,7 @@ STORAGE = {
     "storage_url": "test-bucket",
     "access_key": "abc",
     "secret_key": "secret",
+    "session_token": "fixture-session-token",
 }
 
 

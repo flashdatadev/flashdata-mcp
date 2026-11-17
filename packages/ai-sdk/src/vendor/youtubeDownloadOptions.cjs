@@ -15,6 +15,7 @@ const OBJECT_PREFIX_MAX_LENGTH = 512;
 const OBJECT_PREFIX_SEGMENT_PATTERN = /^[A-Za-z0-9._-]+$/;
 const S3_BUCKET_PATTERN = /^(?!\d{1,3}(?:\.\d{1,3}){3}$)(?!.*\.\.)(?!.*\.-)(?!.*-\.)[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$/;
 const YT_DLP_FORMAT_MAX_LENGTH = 1_024;
+const SESSION_TOKEN_MAX_LENGTH = 16_384;
 
 const ADVANCED_FIELDS = new Set([
   'end_at',
@@ -40,6 +41,7 @@ const STORAGE_FIELDS = new Set([
   'region',
   'sas_token',
   'secret_key',
+  'session_token',
   'service_account',
   'storage_type',
   'storage_url',
@@ -121,6 +123,7 @@ function normalizeStorage(raw, prefix, storageField = 'storage') {
     : storageType === 'azure' ? ['account_name', 'sas_token']
         : storageType === 'cos' ? ['access_key', 'secret_key', 'region']
           : ['access_key', 'secret_key', 'region', 'endpoint_url'];
+  if (['s3', 's3_compatible', 'oss', 'cos', 'bos', 'tos'].includes(storageType)) providerFields.push('session_token');
   for (const key of Object.keys(raw)) {
     if (!['storage_type', 'storage_url', 'object_prefix', ...providerFields].includes(key)) {
       fail(prefix, `${storageField}.${key}`, `Unsupported ${storageType} storage field: ${key}.`, 'unsupported');
@@ -155,6 +158,19 @@ function normalizeStorage(raw, prefix, storageField = 'storage') {
       fail(prefix, `${storageField}.${field}`, `${field} must be a string.`);
     }
     storage[field] = raw[field];
+  }
+  if (raw.session_token !== undefined) {
+    const token = raw.session_token;
+    if (typeof token !== 'string' || !token || token.length > SESSION_TOKEN_MAX_LENGTH
+      || /\s/.test(token) || hasYtDlpFormatControlCharacters(token)) {
+      fail(prefix, `${storageField}.session_token`,
+        `session_token must be a non-empty string of at most ${SESSION_TOKEN_MAX_LENGTH} characters without whitespace or control characters.`);
+    }
+    if (!storage.access_key?.trim() || !storage.secret_key?.trim()) {
+      fail(prefix, `${storageField}.session_token`,
+        'session_token requires the matching temporary access_key and secret_key.');
+    }
+    storage.session_token = token;
   }
   if (storageType === 'gcs') {
     const account = raw.service_account;
@@ -370,6 +386,7 @@ module.exports = {
   AUDIO_QUALITIES,
   DOWNLOAD_TYPES,
   FPS_CONSTRAINT_PATTERN,
+  SESSION_TOKEN_MAX_LENGTH,
   STORAGE_TYPES,
   VIDEO_OUTPUT_FORMATS,
   VIDEO_QUALITIES,

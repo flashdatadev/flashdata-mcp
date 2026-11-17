@@ -1,4 +1,4 @@
-const { STORAGE_TYPES } = require('../download/youtubeDownloadOptions');
+const { SESSION_TOKEN_MAX_LENGTH, STORAGE_TYPES } = require('../download/youtubeDownloadOptions');
 
 // Shape for MCP discovery. The formal Download API normalizer validates provider-specific rules.
 const customerStorageSchema = {
@@ -10,6 +10,8 @@ const customerStorageSchema = {
     object_prefix: { type: 'string', minLength: 1, maxLength: 513, description: 'Optional object folder prefix. Use a distinct prefix when keeping multiple versions of a video.' },
     access_key: { type: 'string', maxLength: 4096 },
     secret_key: { type: 'string', maxLength: 4096 },
+    session_token: { type: 'string', minLength: 1, maxLength: SESSION_TOKEN_MAX_LENGTH, writeOnly: true,
+      description: 'Optional session token for s3, s3_compatible, oss, cos, bos or tos, with the matching temporary access_key and secret_key issued by that storage provider. The provider must support temporary credentials. Use AWS/BOS/TOS SessionToken, OSS SecurityToken or COS Token. Credentials must remain valid through queueing, download and upload retries. Never display this secret.' },
     endpoint_url: { type: 'string', maxLength: 4096, description: 'Provider endpoint, required for S3-compatible storage. Must be reachable from the download Worker.' },
     region: { type: 'string', maxLength: 4096 },
     account_name: { type: 'string', pattern: '^[a-z0-9]{3,24}$' },

@@ -10,7 +10,7 @@ const pieces = Object.fromEntries(tasks.map(task => [task.source, Object.values(
 const { createClient } = require('../dist/test/client.cjs');
 const { parseConnection } = require('../dist/test/piece.cjs');
 const key = 'offline-fake-api-key';
-const storage = { storage_type: 's3', storage_url: 'test-media-bucket', region: 'us-east-1', access_key: 'offline-access', secret_key: 'offline-secret' };
+const storage = { storage_type: 's3', storage_url: 'test-media-bucket', region: 'us-east-1', access_key: 'offline-access', secret_key: 'offline-secret', session_token: 'offline-session-token' };
 const downloadAuth = JSON.stringify({ api_key: key, storage });
 const id = 'job_offline123';
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
@@ -149,6 +149,7 @@ test('download uses async submission, a secret connection and a minimal receipt'
   assert.deepEqual(requests[0].body.params, { download_type: 'audio', output_format: 'm4a', audio_language: 'default', audio_quality: 'best', upload_metadata: false, storage });
   assert.equal(pieces.youtube_download.getAction('submit_download').props.storage, undefined);
   assert.ok(!JSON.stringify(result).includes(storage.secret_key));
+  assert.ok(!JSON.stringify(result).includes(storage.session_token));
 });
 for (const options of [
   { download_type: 'audio', output_format: 'mp4' }, { download_type: 'audio', video_quality: '<=720' },

@@ -1,0 +1,5 @@
+# Vendored contract hashes must match on Windows and Unix checkouts.
+packages/**/_client.py text eol=lf
+packages/**/_inputs.py text eol=lf
+packages/**/_storage.py text eol=lf
+packages/**/storage.schema.json text eol=lf

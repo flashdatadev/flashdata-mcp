@@ -20,6 +20,7 @@ STORAGE = {
     "region": "us-east-1",
     "access_key": "fixture-access-key",
     "secret_key": "fixture-storage-secret",
+    "session_token": "fixture-session-token",
 }
 
 
@@ -246,6 +247,7 @@ def test_submit_posts_once_and_drops_storage_fields_from_receipt():
     assert code == 0 and not error and len(calls) == 1
     assert json.loads(output) == {"id": "job_fixture", "status": "pending"}
     assert STORAGE["secret_key"] not in output
+    assert STORAGE["session_token"] not in output
 
 
 def test_pending_result_reads_once_and_retains_id():
