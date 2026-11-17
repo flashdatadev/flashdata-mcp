@@ -14,7 +14,7 @@ Send a YouTube video, audio track or selected clip directly to your own cloud st
 
 ## Use with OpenClaw
 
-Install this skill from ClawHub with `clawhub install @rocosen/youtube-download-flashdata` in your OpenClaw workspace.
+Install this skill from ClawHub with `clawhub install @flashdatadev/youtube-download-flashdata` in your OpenClaw workspace.
 
 This skill runs Python against hosted FlashData MCP. Use Python 3.10+ and install the pinned Python dependencies shown in Quick start in the environment where OpenClaw executes commands. Set `FLASHDATA_API_KEY` through that environment’s secret configuration, with access to `youtube_download`. Never put the key in a prompt or in this skill folder. Set `FLASHDATA_STORAGE_FILE` to a private JSON file readable from that same environment; see [storage setup](references/storage.md).
 

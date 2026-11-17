@@ -14,7 +14,7 @@ Find news coverage of a topic, company or event and get headlines, publisher nam
 
 ## Use with OpenClaw
 
-Install this skill from ClawHub with `clawhub install @rocosen/google-news-flashdata` in your OpenClaw workspace.
+Install this skill from ClawHub with `clawhub install @flashdatadev/google-news-flashdata` in your OpenClaw workspace.
 
 This skill runs Python against hosted FlashData MCP. Use Python 3.10+ and install the pinned Python dependencies shown in Quick start in the environment where OpenClaw executes commands. Set `FLASHDATA_API_KEY` through that environment’s secret configuration, with access to `google_news`. Never put the key in a prompt or in this skill folder.
 

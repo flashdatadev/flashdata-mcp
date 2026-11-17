@@ -1,10 +1,12 @@
 # FlashData task skills for ClawHub / OpenClaw
 
-**Published on 2026-10-16.** All 15 independent skills are available as version `1.0.0` under [rocosen on ClawHub](https://clawhub.ai/rocosen). The publisher approved MIT-0 for these bundles and authorized the local ClawHub CLI. Each listing passed its security scan; anonymous browser checks confirmed all 15 pages, their version, documentation links and registration entry points. Public availability does not establish search discovery or customer conversion.
+**Current publisher, 2026-11-17:** All 15 existing skills were transferred to [FlashData on ClawHub](https://clawhub.ai/flashdatadev). Their version histories and statistics were retained. Source changes and ClawHub releases are separate.
+
+**Publication history, 2026-10-16.** All 15 independent skills were published as version `1.0.0` under [rocosen on ClawHub](https://clawhub.ai/rocosen). The publisher approved MIT-0 for these bundles and authorized the local ClawHub CLI. Each listing passed its security scan; anonymous browser checks confirmed all 15 pages, their version, documentation links and registration entry points. Public availability does not establish search discovery or customer conversion.
 
 Each skill has one data source, a concrete agent task, Python MCP examples, input/output examples, protected API-key requirements, source-specific docs and cost/limit disclosures. The skill instructions are prepared for ClawHub’s mandatory MIT-0 license; this does not relicense the FlashData CLI or make the paid FlashData API free.
 
-The current source prepares version `1.0.1` with Python examples. The publication history below is for `1.0.0`; source preparation is separate from platform release and readback.
+The current source prepares version `1.1.0` with Python examples. The publication history below is for `1.0.0`; source preparation is separate from platform release and readback.
 
 ## Preview the skills
 
@@ -40,7 +42,7 @@ The generator adapts the maintained `skills/*/SKILL.md` content, task catalog, p
 Use the official ClawHub CLI to preview a release without uploading:
 
 ```sh
-npx --yes clawhub@0.23.3 skill publish integrations/clawhub/skills/google-search-flashdata --owner rocosen --slug google-search-flashdata --name 'Google Search — FlashData' --version 1.0.1 --categories research,integrations --topics google-search,web-research,serp --dry-run --json
+npx --yes clawhub@0.26.0 skill publish integrations/clawhub/skills/google-search-flashdata --owner flashdatadev --slug google-search-flashdata --name 'Google Search — FlashData' --version 1.1.0 --categories research,integrations --topics google-search,web-research,serp --dry-run --json
 ```
 
 Use each entry’s own categories, topics, slug and name from `catalog.json`. The CLI dry run checks local files and version resolution; server-side metadata policy and security scans run only after submission. Do not treat dry-run success as approval or public availability.

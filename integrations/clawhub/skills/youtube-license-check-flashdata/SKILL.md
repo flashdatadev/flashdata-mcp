@@ -14,7 +14,7 @@ Check whether a YouTube video is classified as carrying a Creative Commons licen
 
 ## Use with OpenClaw
 
-Install this skill from ClawHub with `clawhub install @rocosen/youtube-license-check-flashdata` in your OpenClaw workspace.
+Install this skill from ClawHub with `clawhub install @flashdatadev/youtube-license-check-flashdata` in your OpenClaw workspace.
 
 This skill runs Python against hosted FlashData MCP. Use Python 3.10+ and install the pinned Python dependencies shown in Quick start in the environment where OpenClaw executes commands. Set `FLASHDATA_API_KEY` through that environment’s secret configuration, with access to `youtube_trainability`. Never put the key in a prompt or in this skill folder.
 
