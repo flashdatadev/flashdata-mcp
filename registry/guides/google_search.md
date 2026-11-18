@@ -1,18 +1,12 @@
-# Google Search for AI Agent Research — FlashData
+# Google Search MCP: installation and example
 
-Give an AI research assistant Google web-search evidence for a topic such as battery recycling. The MCP returns ranked titles, URLs and snippets; your agent turns those records into a source shortlist, notes what still needs checking, and cites the original links.
+Search Google by keyword, country and language. Each organic result can include a position, title, URL and snippet. Installation is free; you need a FlashData API key and each search page consumes paid Credits.
 
 [Google Search inputs, outputs and account setup](https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide) · [Create an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing)
 
-## Example agent task
-
-> Find sources for a briefing on battery recycling. Quote one Google Search request first; after I approve the cost, return a source shortlist with titles, URLs, snippets and open questions. Keep search snippets separate from claims verified by reading the original pages.
-
-The agent chooses relevant sources and writes the brief. FlashData supplies search data; reading full pages, verifying claims and generating the answer are separate steps.
-
 ## Connect and check cost
 
-The dedicated Registry server is [`io.github.flashdata-dev/google-search`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest), with the local [MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/google-search/server.json). It runs on your machine with Node.js 22.18+ and exposes only `google_search`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+Download [Google Search MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-search-0.3.0.mcpb) from the official FlashData repository and verify its SHA-256 against the [manifest](../servers/google-search/server.json). It runs locally with Node.js 22.18+ and exposes `google_search`, `get_pricing`, `get_job` and `get_result` for this source.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `google_search`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 
@@ -30,9 +24,7 @@ For manual stdio setup, unpack the bundle into a permanent directory and configu
 }
 ```
 
-Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed for the bundle. Keep the key in protected client settings, never in chat or committed configuration. These are the same reviewed 0.1.1 runtime artifacts distributed on Smithery; the release tag identifies their build, not an extra account requirement for direct local use. The full [runtime limits](../README.md#local-task-servers) apply.
-
-A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"request_count":1}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
+Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed. Keep the key in protected client settings. List the tools to confirm the connection before running a paid search.
 
 Call `get_pricing` with `{"source":"google_search","request_count":1}` before running the data request. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Each page or follow-up API request is a separately billed query.
 
@@ -47,7 +39,8 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
     "query": "battery recycling research",
     "gl": "us",
     "hl": "en",
-    "num": 10
+    "num": 10,
+    "response_format": "json"
   }
 }
 ```
@@ -88,7 +81,7 @@ Representative fixture showing selected response fields, **not a live query or a
 }
 ```
 
-For a large result, the response contains `result_id`, `chunk` and `next_offset`. Call `get_result` with that ID and offset, using the same API Key; concatenate chunks in order and parse the complete JSON. Do not repeat the paid query to fetch missing chunks. See [result handling](../README.md#results-and-background-jobs).
+For a large result, call `get_result` with the returned `result_id` and `next_offset` (as `offset`) in the same running process. Concatenate chunks in order. Parse JSON only when `encoding` is `json`; Markdown and plain text are documents. Do not repeat the paid query to fetch missing chunks. See [result handling](../README.md#results-and-background-jobs).
 
 ## Limits and interpretation
 
