@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/youtube-search",
-  "title": "YouTube Video Search MCP",
-  "description": "Find up to 20 YouTube video matches by keyword, with IDs and channel data. Paid FlashData API.",
-  "version": "0.3.0",
+  "title": "YouTube Search — FlashData",
+  "description": "YouTube keyword search with filters and up to 20 requested videos. Paid FlashData API.",
+  "version": "0.1.3",
   "repository": {
     "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-search-0.3.0.mcpb",
-      "version": "0.3.0",
-      "fileSha256": "ed3e8fe5abf0f72513bfb2333120157437892a87b06173ed3ba67b8ebe101484",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-youtube-search-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "df4f1c7eb1e0db43f70c660e712869076917658ee0f64c344af90abf826fdad7",
       "transport": {
         "type": "stdio"
       },
@@ -55,11 +55,10 @@
           "name": "youtube_search",
           "arguments": {
             "query": "battery recycling",
-            "max_results": 10,
-            "response_format": "json"
+            "max_results": 10
           }
         },
-        "useResult": "Read results[0].results. Use videoId to build a watch URL; retain title, channel, channelUrl, viewCount and duration when available. The actual count can be lower. Retrieving a transcript or detailed metadata requires a separate paid call.",
+        "useResult": "Read results[0].results. Retain videoId, title, channel, channelUrl, viewCount and duration. Construct a watch URL from each videoId for traceable follow-up research.",
         "limits": "max_results is 1 to 20; actual results can be fewer. Metadata and transcript enrichment are separate paid calls.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

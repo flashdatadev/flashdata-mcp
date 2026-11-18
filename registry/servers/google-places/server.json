@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/google-places",
-  "title": "Google Places Search MCP",
-  "description": "Find local businesses with addresses, ratings and review counts. Paid FlashData API.",
-  "version": "0.3.0",
+  "title": "Google Places — FlashData",
+  "description": "Google Places businesses, addresses, ratings and review counts. Paid FlashData API.",
+  "version": "0.1.3",
   "repository": {
     "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-places-0.3.0.mcpb",
-      "version": "0.3.0",
-      "fileSha256": "95a437286f6e78743037a204a1b449f5c468d01b36c98e94c04b09fd64ae5e6c",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-google-places-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "48f38e97cc5c658a895be2d26df1af92471ad0d6e3e81874cf5e8ce3253baa6b",
       "transport": {
         "type": "stdio"
       },
@@ -55,11 +55,10 @@
           "name": "google_places",
           "arguments": {
             "query": "coffee shops in Singapore",
-            "num": 20,
-            "response_format": "json"
+            "num": 20
           }
         },
-        "useResult": "Read results[0].places. Compare rating together with ratingCount; a single five-star review means something different from hundreds. Save title and address to distinguish locations. Missing ratings or contact details are unknown, not zero.",
+        "useResult": "Read results[0].places. Keep entries with rating at least 4.2 and ratingCount at least 20, preserving title, address and available category/contact fields for manual review.",
         "limits": "Ratings and contact information can be absent. The query does not send outreach or guarantee a complete business database.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

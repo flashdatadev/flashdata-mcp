@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/google-video-search",
-  "title": "Google Video Search MCP",
-  "description": "Find video pages across sites with Google Video Search. Paid FlashData API.",
-  "version": "0.3.0",
+  "title": "Google Video Search — FlashData",
+  "description": "Google video search across websites, with titles, links and durations. Paid FlashData API.",
+  "version": "0.1.3",
   "repository": {
     "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-video-search-0.3.0.mcpb",
-      "version": "0.3.0",
-      "fileSha256": "08cff9f6f9c20060eaefa1c14f907a01e48ddc016145616983cff36f27e47f05",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-google-video-search-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "acc861d64051268cd4c18e40be8a0c72ac739d2ea9675f8b001416af2f56c4b0",
       "transport": {
         "type": "stdio"
       },
@@ -55,11 +55,10 @@
           "name": "google_videos",
           "arguments": {
             "query": "battery recycling process",
-            "num": 10,
-            "response_format": "json"
+            "num": 10
           }
         },
-        "useResult": "Read results[0].videos. Keep title, link, source and any duration; group the links by hostname to compare sources. Results can come from several video sites and formats. This call returns search records, not media files.",
+        "useResult": "Read results[0].videos. Group by the hostname of each link, retaining title, duration, source and original URL for a source inventory.",
         "limits": "This is Google video search, distinct from YouTube Search. Results contain search metadata, not media files.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

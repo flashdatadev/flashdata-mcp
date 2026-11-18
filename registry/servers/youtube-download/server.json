@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/youtube-download",
-  "title": "YouTube Download to Cloud Storage MCP",
-  "description": "Deliver an authorized YouTube clip to your own storage. Billed by uploaded bytes.",
-  "version": "0.3.0",
+  "title": "YouTube Download to Cloud Storage — FlashData",
+  "description": "Deliver YouTube video, audio or clips to your cloud storage asynchronously. Paid FlashData API.",
+  "version": "0.1.3",
   "repository": {
     "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-download-0.3.0.mcpb",
-      "version": "0.3.0",
-      "fileSha256": "7ff22dd035ed5e2a544cf40a36bf952457fb7cf2bfc95aa63fa288c52ec82e88",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-youtube-download-0.1.1.mcpb",
+      "version": "0.1.1",
+      "fileSha256": "80efd5261574e3834a543fce15e25383755d366175213093c18a5f2de50e78fa",
       "transport": {
         "type": "stdio"
       },
@@ -68,11 +68,10 @@
               "secret_key": "YOUR_SECRET_KEY",
               "region": "us-east-1",
               "object_prefix": "flashdata-clips"
-            },
-            "response_format": "json"
+            }
           }
         },
-        "useResult": "Save the returned id. Call get_job with {\"job_id\":\"RETURNED_JOB_ID\",\"response_format\":\"json\"} and wait for job.status to be completed. Read output.results[0] for file_url, file_size, downloaded_bytes and output_format. Access to the file follows your storage permissions; a private object URL is not a public download link.",
+        "useResult": "Submit once, save the returned id, and call get_job with job_id until job.status is completed. Read output.results[0] for file_url, file_size, downloaded_bytes and output_format. Pending or processing is not completed delivery.",
         "limits": "Only asynchronous delivery is supported. Supply your own destination and credentials; media access and retention follow your storage settings. Private object URLs are not public download links. Charges reserve Credits and settle by uploaded bytes.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

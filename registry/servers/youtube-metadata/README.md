@@ -6,8 +6,8 @@ Look up a single YouTube video by ID. Request chapters for a navigation index, o
 
 ## Install
 
-1. Install Node.js **22.18 or newer** and download the [official MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-metadata-0.3.0.mcpb). Verify its SHA-256 against the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/youtube-metadata/server.json).
-2. Import the bundle into an MCPB-compatible client. Enter your own key in **FlashData API Key**; it must grant `youtube_metadata`. For manual stdio configuration, use the [setup guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md).
+1. Install Node.js **22.18 or newer** and download the [official MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-metadata-0.3.0.mcpb). Expected SHA-256: `077d04087774256d45e349ad65c2fc26891ad6d2611c79a8a762be69c6c1645c`.
+2. Import the bundle into an MCPB-compatible client. Enter your own key in **FlashData API Key**; it must grant `youtube_metadata`. For manual stdio configuration, use the **0.3.0 bundle above** with the [manual configuration example](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md).
 3. List the tools. Call `get_pricing` with `{"request_count":1}` for the price of one query. Pricing, job and result reads are free.
 
 ## Example: read chapters for one video
@@ -28,4 +28,6 @@ Parameters for one paid MCP `tools/call` request:
 
 Read `title`, `description` and any `chapters` in `results[0]`. Each returned chapter can include `start_time` and `end_time`; use them to link back to that point in the video. A video may have no chapters. Transcript retrieval is a separate call.
 
-See the [guide and sample output](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md) for a representative response and instructions for reading large results without repeating the paid request.
+For chunked output, use `get_result` with `result_id` and the returned `next_offset` (as `offset`) in the same running process. Concatenate chunks in order and parse them only when `encoding` is `json`. See the [sample output](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md#use-the-result).
+
+The separate [Official MCP Registry manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/youtube-metadata/server.json) pins the official 0.1.1 compatibility package. The examples above target the direct 0.3.0 download.

@@ -1,12 +1,12 @@
-# YouTube Extended Search MCP: installation and example
+# Map channels across a larger YouTube result set with FlashData MCP
 
-Request a larger set of YouTube video matches for one keyword. Extended search accepts up to 700 requested results and has a higher per-query rate than standard search. Installation is free; each data request uses paid FlashData Credits.
+Identify recurring channels in a larger topic sample before choosing videos for deeper analysis.
 
 [YouTube Extended Search inputs, outputs and account setup](https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-guide) · [Create an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing)
 
 ## Connect and check cost
 
-Download [MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-extended-search-0.3.0.mcpb) from the official FlashData repository and verify its SHA-256 against the [manifest](../servers/youtube-extended-search/server.json). It runs locally with Node.js 22.18+ and exposes `youtube_search_extended`, `get_pricing`, `get_job` and `get_result`.
+The dedicated Registry server is [`io.github.flashdata-dev/youtube-extended-search`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-extended-search/versions/latest), with the local [MCPB package](https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-youtube-extended-search-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/youtube-extended-search/server.json). It runs on your machine with Node.js 22.18+ and exposes only `youtube_search_extended`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `youtube_search_extended`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 
@@ -24,9 +24,11 @@ For manual stdio setup, unpack the bundle into a permanent directory and configu
 }
 ```
 
-If your client cannot find Node, configure its absolute path. The bundle includes its dependencies. Keep the key in protected client settings.
+Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed for the bundle. Keep the key in protected client settings, never in chat or committed configuration. These are the same reviewed 0.1.1 runtime artifacts distributed on Smithery; the release tag identifies their build, not an extra account requirement for direct local use. The full [runtime limits](../README.md#local-task-servers) apply.
 
-Call `get_pricing` with `{"request_count":1}` for the extended-search rate; it estimates one query, not one video.
+A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"request_count":1}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
+
+Call `get_pricing` with `{"source":"youtube_search_extended","request_count":1}` before running the data request. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Each page or follow-up API request is a separately billed query.
 
 ## Tool request
 
@@ -37,8 +39,7 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
   "name": "youtube_search_extended",
   "arguments": {
     "query": "battery recycling",
-    "max_results": 100,
-    "response_format": "json"
+    "max_results": 100
   }
 }
 ```
@@ -53,7 +54,7 @@ The hosted helper sends one tool call and prints its structured response. It doe
 
 ## Use the result
 
-Read `results[0].results`. Group records by `channelId` or `channelUrl` and retain `videoId` for each observed match. `max_results` sets a ceiling; the call does not guarantee that many distinct videos or provide a pagination cursor.
+Read results[0].results and group by channelId or channelUrl. Keep the original video IDs and count observed results per channel; retain channel labels for review.
 
 Representative fixture showing selected response fields, **not a live query or a guaranteed result**:
 
@@ -91,7 +92,7 @@ Representative fixture showing selected response fields, **not a live query or a
 }
 ```
 
-For a chunked response, call `get_result` with the returned `result_id` and `next_offset` (as `offset`) in the same running process. Concatenate the chunks in order. Parse JSON only when `encoding` is `json`; Markdown and plain text are documents. Do not repeat the paid request. See [result handling](../README.md#results-and-background-jobs).
+For a large result, the response contains `result_id`, `chunk` and `next_offset`. Call `get_result` with that ID and offset, using the same API Key; concatenate chunks in order and parse the complete JSON. Do not repeat the paid query to fetch missing chunks. See [result handling](../README.md#results-and-background-jobs).
 
 ## Limits and interpretation
 
