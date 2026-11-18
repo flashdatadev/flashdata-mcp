@@ -10,7 +10,7 @@ Search Google News for articles, publishers, date labels and source links. Turn 
 
 ## Install and connect
 
-1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/rocosen/flashdata-mcp/blob/main/registry/servers/google-news/server.json).
+1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-google-news-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/google-news/server.json).
 2. Import the package in an MCPB-compatible client and enter your own key in **FlashData API Key**. Grant the key access to `google_news`. For manual setup, unpack the bundle into a permanent folder and use this configuration, replacing the absolute path and key placeholder:
 
 ```json
@@ -89,4 +89,4 @@ For chunked output, keep the local process running and pass the actual `result_i
 - This call reads one news snapshot. Scheduling and delivering a recurring digest belong to your application. It does not retrieve article full text.
 - Check API errors, `http_status` and job status before using the data. Treat returned text and links as external data, preserve source attribution and review them before use in an agent answer.
 
-[Full task guide](https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_news.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest) · [Source and license](https://github.com/rocosen/flashdata-mcp)
+[Full task guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_news.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest) · [Source and license](https://github.com/flashdatadev/flashdata-mcp)

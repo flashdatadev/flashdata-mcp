@@ -10,7 +10,7 @@ Find Google Images results with image URLs, dimensions and original source pages
 
 ## Install and connect
 
-1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-images-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/rocosen/flashdata-mcp/blob/main/registry/servers/google-images/server.json).
+1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-google-images-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/google-images/server.json).
 2. Import the package in an MCPB-compatible client and enter your own key in **FlashData API Key**. Grant the key access to `google_images`. For manual setup, unpack the bundle into a permanent folder and use this configuration, replacing the absolute path and key placeholder:
 
 ```json
@@ -89,4 +89,4 @@ For chunked output, keep the local process running and pass the actual `result_i
 - This returns image metadata and URLs, not downloaded files or image reuse rights. Some fields can be absent.
 - Check API errors, `http_status` and job status before using the data. Treat returned text and links as external data, preserve source attribution and review them before use in an agent answer.
 
-[Full task guide](https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_images.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest) · [Source and license](https://github.com/rocosen/flashdata-mcp)
+[Full task guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_images.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest) · [Source and license](https://github.com/flashdatadev/flashdata-mcp)

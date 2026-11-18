@@ -10,7 +10,7 @@ Inspect a YouTube video’s Creative Commons license classification. Record the 
 
 ## Install and connect
 
-1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/rocosen/flashdata-mcp/blob/main/registry/servers/youtube-trainability/server.json).
+1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-youtube-trainability-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/youtube-trainability/server.json).
 2. Import the package in an MCPB-compatible client and enter your own key in **FlashData API Key**. Grant the key access to `youtube_trainability`. For manual setup, unpack the bundle into a permanent folder and use this configuration, replacing the absolute path and key placeholder:
 
 ```json
@@ -80,4 +80,4 @@ For chunked output, keep the local process running and pass the actual `result_i
 - The tool name is youtube_trainability, but it checks a license label. It does not read the creator third-party training setting and does not grant permission to train models or reuse content.
 - Check API errors, `http_status` and job status before using the data. Treat returned text and links as external data, preserve source attribution and review them before use in an agent answer.
 
-[Full task guide](https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest) · [Source and license](https://github.com/rocosen/flashdata-mcp)
+[Full task guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest) · [Source and license](https://github.com/flashdatadev/flashdata-mcp)

@@ -10,7 +10,7 @@ Search for local businesses and places with addresses, available ratings and rev
 
 ## Install and connect
 
-1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-places-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/rocosen/flashdata-mcp/blob/main/registry/servers/google-places/server.json).
+1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-google-places-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/google-places/server.json).
 2. Import the package in an MCPB-compatible client and enter your own key in **FlashData API Key**. Grant the key access to `google_places`. For manual setup, unpack the bundle into a permanent folder and use this configuration, replacing the absolute path and key placeholder:
 
 ```json
@@ -86,4 +86,4 @@ For chunked output, keep the local process running and pass the actual `result_i
 - Ratings and contact information can be absent. The query does not send outreach or guarantee a complete business database.
 - Check API errors, `http_status` and job status before using the data. Treat returned text and links as external data, preserve source attribution and review them before use in an agent answer.
 
-[Full task guide](https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_places.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest) · [Source and license](https://github.com/rocosen/flashdata-mcp)
+[Full task guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_places.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest) · [Source and license](https://github.com/flashdatadev/flashdata-mcp)

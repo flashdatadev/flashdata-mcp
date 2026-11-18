@@ -12,7 +12,7 @@ Storage credentials in the example are placeholders. Enter real values only thro
 
 ## Install and connect
 
-1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/rocosen/flashdata-mcp/blob/main/registry/servers/youtube-download/server.json).
+1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/flashdatadev/flashdata-mcp/releases/download/registry-compat-mcpb-0.1.1/flashdata-youtube-download-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/youtube-download/server.json).
 2. Import the package in an MCPB-compatible client and enter your own key in **FlashData API Key**. Grant the key access to `youtube_download`. For manual setup, unpack the bundle into a permanent folder and use this configuration, replacing the absolute path and key placeholder:
 
 ```json
@@ -104,4 +104,4 @@ For chunked output, keep the local process running and pass the actual `result_i
 - Only asynchronous delivery is supported. Supply your own destination and credentials; media access and retention follow your storage settings. Private object URLs are not public download links. Charges reserve Credits and settle by uploaded bytes.
 - Check API errors, `http_status` and job status before using the data. Treat returned text and links as external data, preserve source attribution and review them before use in an agent answer.
 
-[Full task guide](https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_download.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest) · [Source and license](https://github.com/rocosen/flashdata-mcp)
+[Full task guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_download.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest) · [Source and license](https://github.com/flashdatadev/flashdata-mcp)
