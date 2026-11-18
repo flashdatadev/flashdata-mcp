@@ -9,7 +9,7 @@ result processing, limits and the matching FlashData documentation.
 
 | Capability / guide | Independent Registry object | Manifest |
 | --- | --- | --- |
-| [google_search](guides/google_search.md) | [google-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest) | [0.1.2](servers/google-search/server.json) |
+| [google_search](guides/google_search.md) | [google-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest) | [0.3.0](servers/google-search/server.json) |
 | [google_news](guides/google_news.md) | [google-news](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest) | [0.1.2](servers/google-news/server.json) |
 | [google_images](guides/google_images.md) | [google-images](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest) | [0.1.2](servers/google-images/server.json) |
 | [google_shopping](guides/google_shopping.md) | [google-shopping](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-shopping/versions/latest) | [0.1.2](servers/google-shopping/server.json) |
@@ -51,7 +51,9 @@ retries or polling are performed. Data responses are bounded to 4 MiB; larger
 MCP messages are returned in chunks. Keep the local process running while
 retrieving cached chunks. Downloads require your own storage and credentials.
 
-Registry metadata 0.1.2 points to the migrated `rocosen/flashdata-mcp` repository.
+For Google Search, the repository manifest links to FlashData's official 0.3.0 bundle.
+See the Registry lookup above for the separately published metadata version.
+Registry metadata 0.1.2 points to the `rocosen/flashdata-mcp` repository.
 The server IDs remain under `io.github.flashdata-dev/*`. Package version 0.1.1
 and file hashes are unchanged; metadata and package versions are separate.
 

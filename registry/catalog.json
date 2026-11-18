@@ -9,7 +9,7 @@
     "registryName": "io.github.flashdata-dev/google-search",
     "registryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest",
     "manifest": "servers/google-search/server.json",
-    "packageUrl": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb"
+    "packageUrl": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-search-0.3.0.mcpb"
   },
   {
     "source": "google_news",

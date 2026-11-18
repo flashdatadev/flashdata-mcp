@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/google-search",
-  "title": "Google Search — FlashData",
-  "description": "Google Search rankings, URLs and snippets for localized SERP research. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "Google Search MCP",
+  "description": "Get Google rankings, titles, URLs and snippets by country and language. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/google-search"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/google_search?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_search-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-search-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "c9069c0ca030cb32c0049716cf996838b5b4d9e1d5cb0540231e781a5d0ac959",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-search-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "df34ebbffb1fd89d13619c72a3088a818155dd66aac5c56e553283b0ecd2cd1e",
       "transport": {
         "type": "stdio"
       },
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_search.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_search.md",
         "task": "Export Google Search SERP rankings with source URLs",
         "inputExample": {
           "name": "google_search",
