@@ -1,12 +1,12 @@
-# Inspect YouTube Creative Commons license labels with FlashData MCP
+# YouTube License Metadata MCP: installation and example
 
-Record a video license-label signal as one input to a human rights review.
+Look up whether a YouTube video carries a Creative Commons license label. The underlying tool is named `youtube_trainability`; it reports a label, not a decision about training rights. Installation is free; each data request uses paid FlashData Credits.
 
 [YouTube License Metadata inputs, outputs and account setup](https://flashdata.dev/docs/sources/youtube_trainability?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-guide) · [Create an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing)
 
 ## Connect and check cost
 
-The dedicated Registry server is [`io.github.flashdata-dev/youtube-trainability`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest), with the local [MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/youtube-trainability/server.json). It runs on your machine with Node.js 22.18+ and exposes only `youtube_trainability`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+Download [MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-trainability-0.3.0.mcpb) from the official FlashData repository and verify its SHA-256 against the [manifest](../servers/youtube-trainability/server.json). It runs locally with Node.js 22.18+ and exposes `youtube_trainability`, `get_pricing`, `get_job` and `get_result`.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `youtube_trainability`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 
@@ -24,11 +24,9 @@ For manual stdio setup, unpack the bundle into a permanent directory and configu
 }
 ```
 
-Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed for the bundle. Keep the key in protected client settings, never in chat or committed configuration. These are the same reviewed 0.1.1 runtime artifacts distributed on Smithery; the release tag identifies their build, not an extra account requirement for direct local use. The full [runtime limits](../README.md#local-task-servers) apply.
+If your client cannot find Node, configure its absolute path. The bundle includes its dependencies. Keep the key in protected client settings.
 
-A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"request_count":1}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
-
-Call `get_pricing` with `{"source":"youtube_trainability","request_count":1}` before running the data request. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Each page or follow-up API request is a separately billed query.
+Call `get_pricing` with `{"request_count":1}` for the price of one query. Pricing, job and result reads are free.
 
 ## Tool request
 
@@ -38,7 +36,8 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
 {
   "name": "youtube_trainability",
   "arguments": {
-    "video_id": "dQw4w9WgXcQ"
+    "video_id": "dQw4w9WgXcQ",
+    "response_format": "json"
   }
 }
 ```
@@ -53,7 +52,7 @@ The hosted helper sends one tool call and prints its structured response. It doe
 
 ## Use the result
 
-Read results[0].permitted together with videoId and collection time. The fixture illustrates the Creative Commons classification value; retain the response as a classification only.
+Read `results[0].permitted` alongside `videoId` and the capture time. Preserve the classification as returned. This tool does not read the creator’s third-party training setting or grant permission to train models or reuse the video.
 
 Representative fixture showing selected response fields, **not a live query or a guaranteed result**:
 
@@ -75,7 +74,7 @@ Representative fixture showing selected response fields, **not a live query or a
 }
 ```
 
-For a large result, the response contains `result_id`, `chunk` and `next_offset`. Call `get_result` with that ID and offset, using the same API Key; concatenate chunks in order and parse the complete JSON. Do not repeat the paid query to fetch missing chunks. See [result handling](../README.md#results-and-background-jobs).
+For a chunked response, call `get_result` with the returned `result_id` and `next_offset` (as `offset`) in the same running process. Concatenate the chunks in order. Parse JSON only when `encoding` is `json`; Markdown and plain text are documents. Do not repeat the paid request. See [result handling](../README.md#results-and-background-jobs).
 
 ## Limits and interpretation
 

@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/youtube-extended-search",
-  "title": "YouTube Extended Search — FlashData",
-  "description": "Larger YouTube topic searches with up to 700 requested video results. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "YouTube Extended Search MCP",
+  "description": "Request up to 700 YouTube video matches in one extended search. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-extended-search"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_search_extended?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_search_extended-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-extended-search-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "dc4ba968f3e86a96e84e8a60c89b013201e4e544528574b072e85572ee8acff9",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-extended-search-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "3ccf7571df72fe82dad7d84c423d8286a87732abf0ee19fb540e5888b6103f04",
       "transport": {
         "type": "stdio"
       },
@@ -49,16 +49,17 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_search_extended.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_search_extended.md",
         "task": "Map channels across a larger YouTube result set",
         "inputExample": {
           "name": "youtube_search_extended",
           "arguments": {
             "query": "battery recycling",
-            "max_results": 100
+            "max_results": 100,
+            "response_format": "json"
           }
         },
-        "useResult": "Read results[0].results and group by channelId or channelUrl. Keep the original video IDs and count observed results per channel; retain channel labels for review.",
+        "useResult": "Read results[0].results. Group records by channelId or channelUrl and retain videoId for each observed match. max_results sets a ceiling; the call does not guarantee that many distinct videos or provide a pagination cursor.",
         "limits": "The request limit is 700, not a promise of 700 returned videos or pagination. Extended search has its own rate, higher than standard search.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

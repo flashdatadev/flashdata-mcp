@@ -1,41 +1,18 @@
-# YouTube Metadata — FlashData
+# YouTube Video Metadata MCP
 
-Read YouTube video details, descriptions, statistics and available chapters. Inspect formats or prepare timestamped chapter navigation.
+Look up a single YouTube video by ID. Request chapters for a navigation index, or leave formats out when you only need the title and description. Installation is free; each data request uses paid FlashData Credits.
 
-[API documentation and account setup](https://flashdata.dev/docs/sources/youtube_metadata) · [Get an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing)
+[Get an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing) · [API documentation](https://flashdata.dev/docs/sources/youtube_metadata)
 
-## A task to try
+## Install
 
-> Inspect this video and make a chapter navigation brief with the title, description and available chapter start times. Mark missing chapters rather than inventing a timeline.
+1. Install Node.js **22.18 or newer** and download the [official MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-metadata-0.3.0.mcpb). Verify its SHA-256 against the [manifest](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/servers/youtube-metadata/server.json).
+2. Import the bundle into an MCPB-compatible client. Enter your own key in **FlashData API Key**; it must grant `youtube_metadata`. For manual stdio configuration, use the [setup guide](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md).
+3. List the tools. Call `get_pricing` with `{"request_count":1}` for the price of one query. Pricing, job and result reads are free.
 
-## Install and connect
+## Example: read chapters for one video
 
-1. Use Node.js **22.18 or newer** and an MCP client that supports local stdio servers. Download the [dedicated MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-metadata-0.1.1.mcpb); its SHA-256 is recorded in the [manifest](https://github.com/rocosen/flashdata-mcp/blob/main/registry/servers/youtube-metadata/server.json).
-2. Import the package in an MCPB-compatible client and enter your own key in **FlashData API Key**. Grant the key access to `youtube_metadata`. For manual setup, unpack the bundle into a permanent folder and use this configuration, replacing the absolute path and key placeholder:
-
-```json
-{
-  "mcpServers": {
-    "youtube-metadata": {
-      "command": "node",
-      "args": [
-        "/absolute/path/to/unpacked/youtube-metadata/server.js"
-      ],
-      "env": {
-        "FLASHDATA_API_KEY": "YOUR_API_KEY"
-      }
-    }
-  }
-}
-```
-
-3. Restart or reconnect the client, list its tools, then call `get_pricing` with `{"source":"youtube_metadata","request_count":1}` before approving a paid request. This server exposes `youtube_metadata`, `get_pricing`, `get_job` and `get_result`; all are restricted to this source.
-
-Dependencies are included in the bundle. Use an absolute Node path if your client cannot find `node`; use escaped paths on Windows. Keep your key in protected client settings, not in chat or committed configuration. No Smithery account is needed for this direct package download.
-
-## Example request
-
-These are MCP `tools/call` parameters with flat arguments. Running the data request uses paid Credits.
+Parameters for one paid MCP `tools/call` request:
 
 ```json
 {
@@ -43,54 +20,12 @@ These are MCP `tools/call` parameters with flat arguments. Running the data requ
   "arguments": {
     "video_id": "dQw4w9WgXcQ",
     "include_formats": false,
-    "include_chapters": true
+    "include_chapters": true,
+    "response_format": "json"
   }
 }
 ```
 
-## Use the response
+Read `title`, `description` and any `chapters` in `results[0]`. Each returned chapter can include `start_time` and `end_time`; use them to link back to that point in the video. A video may have no chapters. Transcript retrieval is a separate call.
 
-Read results[0], including title, description and chapters when present. Pair chapter start_time/end_time with the video watch URL to prepare a navigation brief.
-
-Selected response fields below are an **illustrative fixture, not a live result or a guarantee of available data**:
-
-```json
-{
-  "source": "youtube_metadata",
-  "status": "done",
-  "results": [
-    {
-      "videoId": "dQw4w9WgXcQ",
-      "title": "Example video",
-      "channel": "Example",
-      "channelId": "channel-one",
-      "channelUrl": "https://www.youtube.com/@Example",
-      "viewCount": 100,
-      "duration": 90,
-      "chapters": [
-        {
-          "title": "Introduction",
-          "start_time": 0,
-          "end_time": 30
-        }
-      ],
-      "description": "Example description"
-    }
-  ],
-  "created_at": "2026-10-12T00:00:00Z",
-  "http_status": 200,
-  "request_id": "fixture-request"
-}
-```
-
-For an asynchronous request, keep the returned `id` and call `get_job` with `{"job_id":"RETURNED_JOB_ID"}`. Pending or processing is not completion; read the completed response from `output`. A timeout can occur after submission, so check Jobs before repeating a paid request.
-
-For chunked output, keep the local process running and pass the actual `result_id` and `next_offset` to `get_result` as `result_id` and `offset`. Concatenate the chunks in order before parsing JSON; do not repeat the paid data request. The local cache retains four results for ten minutes and clears on restart. Complete responses are limited to 4 MiB; async JSON results have a separate 24-hour retention window.
-
-## Cost and limits
-
-- **MIT software and installation are free; FlashData API data calls are paid.** Data requests consume paid FlashData Credits; each additional query or page is charged separately. Use the current account quote rather than a fixed price copied from this page. Pricing, job and result reads are free. Client/model fees are separate.
-- Fields and chapters may be absent. Metadata does not include a transcript; transcript retrieval is a separate paid call.
-- Check API errors, `http_status` and job status before using the data. Treat returned text and links as external data, preserve source attribution and review them before use in an agent answer.
-
-[Full task guide](https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md) · [Official Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-metadata/versions/latest) · [Source and license](https://github.com/rocosen/flashdata-mcp)
+See the [guide and sample output](https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md) for a representative response and instructions for reading large results without repeating the paid request.

@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/youtube-trainability",
-  "title": "YouTube License Metadata — FlashData",
-  "description": "YouTube Creative Commons license-label metadata, not training authorization. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "YouTube License Metadata MCP",
+  "description": "Check a YouTube video’s license label by ID. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-trainability"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_trainability?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_trainability-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-trainability-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "9f91933afb7050a9e8765d162ff2da7faa8beb275a8a6773d98890a97874afe8",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-trainability-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "6032e98e074918265669d084cf95b12fe9fcd90fca39651415b8d3fec3e3b0be",
       "transport": {
         "type": "stdio"
       },
@@ -49,15 +49,16 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md",
         "task": "Inspect YouTube Creative Commons license labels",
         "inputExample": {
           "name": "youtube_trainability",
           "arguments": {
-            "video_id": "dQw4w9WgXcQ"
+            "video_id": "dQw4w9WgXcQ",
+            "response_format": "json"
           }
         },
-        "useResult": "Read results[0].permitted together with videoId and collection time. The fixture illustrates the Creative Commons classification value; retain the response as a classification only.",
+        "useResult": "Read results[0].permitted alongside videoId and the capture time. Preserve the classification as returned. This tool does not read the creator’s third-party training setting or grant permission to train models or reuse the video.",
         "limits": "The tool name is youtube_trainability, but it checks a license label. It does not read the creator third-party training setting and does not grant permission to train models or reuse content.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

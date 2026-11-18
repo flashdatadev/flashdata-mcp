@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/google-images",
-  "title": "Google Images — FlashData",
-  "description": "Google Images URLs, dimensions and source pages for visual research. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "Google Images Search MCP",
+  "description": "Find Google Images URLs, dimensions and original source pages. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/google-images"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/google_images?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_images-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-images-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "94dfb904b69d74e7e5d1299831c6bec77a10396fc99b1c9a9b6c5a4dd84d5f21",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-images-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "2ebea6354f5a2395fb154eb8845d206ad07d5f9cd7a4c6c00d5e9b8d2e2bd6cc",
       "transport": {
         "type": "stdio"
       },
@@ -49,16 +49,17 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_images.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_images.md",
         "task": "Filter Google Images by dimensions and retain source pages",
         "inputExample": {
           "name": "google_images",
           "arguments": {
             "query": "solar panel diagram",
-            "num": 20
+            "num": 20,
+            "response_format": "json"
           }
         },
-        "useResult": "Read results[0].images. Select entries whose imageWidth meets your threshold, then retain imageUrl, imageWidth, imageHeight and link to the original source page. Exclude unknown dimensions explicitly.",
+        "useResult": "Read results[0].images. Filter on imageWidth and imageHeight when present; keep imageUrl with link so you can visit the source. The response contains metadata, not image files or reuse rights.",
         "limits": "This returns image metadata and URLs, not downloaded files or image reuse rights. Some fields can be absent.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

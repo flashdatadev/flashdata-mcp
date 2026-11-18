@@ -1,12 +1,12 @@
-# Deliver a YouTube clip to S3 or customer cloud storage with FlashData MCP
+# YouTube Download to Cloud Storage MCP: installation and example
 
-Deliver an authorized clip to your own storage and keep a manifest for downstream processing.
+Send an authorized YouTube video or clip to storage you control. The tool starts a background job; the completed job identifies the uploaded file. It does not save media to the MCP client. Installation is free; delivery reserves Credits and settles on actual uploaded bytes.
 
 [YouTube Download inputs, outputs and account setup](https://flashdata.dev/docs/sources/youtube_download?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_download-guide) · [Create an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing)
 
 ## Connect and check cost
 
-The dedicated Registry server is [`io.github.flashdata-dev/youtube-download`](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest), with the local [MCPB package](https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-download-0.1.1.mcpb) pinned by SHA-256 in its [manifest](../servers/youtube-download/server.json). It runs on your machine with Node.js 22.18+ and exposes only `youtube_download`, `get_pricing`, `get_job` and `get_result`. The data tool and all supporting reads are restricted to this source.
+Download [MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-download-0.3.0.mcpb) from the official FlashData repository and verify its SHA-256 against the [manifest](../servers/youtube-download/server.json). It runs locally with Node.js 22.18+ and exposes `youtube_download`, `get_pricing`, `get_job` and `get_result`.
 
 In a client that supports MCPB installation, import that package and enter your own FlashData API Key into **FlashData API Key**. The bundled configuration supplies `FLASHDATA_API_KEY` to the local process. Your key must grant `youtube_download`. Client installation interfaces differ; Registry publication does not mean every client has indexed this entry.
 
@@ -24,11 +24,9 @@ For manual stdio setup, unpack the bundle into a permanent directory and configu
 }
 ```
 
-Use an absolute Node path if your desktop client cannot find it. Dependencies are included; no npm install is needed for the bundle. Keep the key in protected client settings, never in chat or committed configuration. These are the same reviewed 0.1.1 runtime artifacts distributed on Smithery; the release tag identifies their build, not an extra account requirement for direct local use. The full [runtime limits](../README.md#local-task-servers) apply.
+If your client cannot find Node, configure its absolute path. The bundle includes its dependencies. Keep the key in protected client settings.
 
-A runnable first workflow is to list this server's four tools, call `get_pricing` with `{"source":"youtube_download"}`, and then submit the task request below only within your data-call budget. The Registry and the package are free to use; FlashData data calls are paid. Client/model providers have separate fees.
-
-The pricing response gives the current per-TB byte-volume rate, not a per-request quote; `request_count` does not apply to downloads. Pricing reads are free. The software and examples are free; data queries consume paid FlashData Credits, billed separately by FlashData. Download pricing is per delivered byte volume, not per request.
+Call `get_pricing` with `{}` for the per-TB rate. Do not pass `request_count`: delivery cost depends on uploaded bytes.
 
 ## Tool request
 
@@ -52,7 +50,8 @@ MCP `tools/call` parameters use flat arguments, not a REST `params` wrapper. Adj
       "secret_key": "YOUR_SECRET_KEY",
       "region": "us-east-1",
       "object_prefix": "flashdata-clips"
-    }
+    },
+    "response_format": "json"
   }
 }
 ```
@@ -63,7 +62,7 @@ The hosted helper sends one tool call and prints its structured response. It doe
 
 ## Use the result
 
-Submit once, save the returned id, and call get_job with job_id until job.status is completed. Read output.results[0] for file_url, file_size, downloaded_bytes and output_format. Pending or processing is not completed delivery.
+Save the returned `id`. Call `get_job` with `{"job_id":"RETURNED_JOB_ID","response_format":"json"}` and wait for `job.status` to be `completed`. Read `output.results[0]` for `file_url`, `file_size`, `downloaded_bytes` and `output_format`. Access to the file follows your storage permissions; a private object URL is not a public download link.
 
 Representative fixture showing selected response fields, **not a live query or a guaranteed result**:
 
@@ -95,7 +94,7 @@ Representative fixture showing selected response fields, **not a live query or a
 
 For example, after receiving the real id, call `get_job` with `{"job_id":"job_REPLACE_WITH_RETURNED_ID"}`. Poll only the read, not the original download submission. Storage credentials travel to FlashData to perform the upload and may be retained by your MCP client in tool history; use narrowly scoped credentials and your client's protected configuration.
 
-For a large result, the response contains `result_id`, `chunk` and `next_offset`. Call `get_result` with that ID and offset, using the same API Key; concatenate chunks in order and parse the complete JSON. Do not repeat the paid query to fetch missing chunks. See [result handling](../README.md#results-and-background-jobs).
+For a chunked response, call `get_result` with the returned `result_id` and `next_offset` (as `offset`) in the same running process. Concatenate the chunks in order. Parse JSON only when `encoding` is `json`; Markdown and plain text are documents. Do not repeat the paid request. See [result handling](../README.md#results-and-background-jobs).
 
 ## Limits and interpretation
 

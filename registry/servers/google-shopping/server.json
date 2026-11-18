@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/google-shopping",
-  "title": "Google Shopping — FlashData",
-  "description": "Google Shopping product, merchant and price-label snapshots. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "Google Shopping Search MCP",
+  "description": "Compare Google Shopping listings, merchants and displayed price labels. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/google-shopping"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/google_shopping?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_shopping-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-shopping-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "cf761467b7a34c42ecb4170e42a17c7aa6a2e955efb6405ae9e1f65319d438d6",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-shopping-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "4d3e2d7ad3579186995bd60498dff1ce46ff836ba99d086fa07ca698bae73be3",
       "transport": {
         "type": "stdio"
       },
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_shopping.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_shopping.md",
         "task": "Compare Google Shopping price-label snapshots",
         "inputExample": {
           "name": "google_shopping",
@@ -57,10 +57,11 @@
             "query": "wireless headphones",
             "gl": "us",
             "hl": "en",
-            "num": 10
+            "num": 10,
+            "response_format": "json"
           }
         },
-        "useResult": "Read results[0].shopping. Join a stored prior snapshot by productId or link, then compare the original price strings and retain title, source and captured time.",
+        "useResult": "Read results[0].shopping. Keep title, source, the original price string and any productId or link. Compare like currencies and variants; a displayed label does not establish availability, shipping costs or the checkout price.",
         "limits": "Currency-formatted price labels are not normalized numeric prices. This does not calculate exchange rates or guarantee stock, checkout prices or complete market coverage.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

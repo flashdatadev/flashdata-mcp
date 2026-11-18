@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/google-news",
-  "title": "Google News — FlashData",
-  "description": "Google News articles with publishers, date labels and links for topic briefs. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "Google News Search MCP",
+  "description": "Find Google News headlines, publishers, date labels and article links. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/google-news"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/google_news?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=google_news-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-google-news-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "682969937d0ab4ea6049042304e3727096fece4402b1b9bc705768542200ff70",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-google-news-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "ea6cc8fec85695f97948560ca4ffd365bd34eebcf19c2a49ef8497b8be869030",
       "transport": {
         "type": "stdio"
       },
@@ -49,7 +49,7 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_news.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/google_news.md",
         "task": "Build a source-linked Google News topic digest",
         "inputExample": {
           "name": "google_news",
@@ -57,10 +57,11 @@
             "query": "battery recycling",
             "gl": "us",
             "hl": "en",
-            "num": 10
+            "num": 10,
+            "response_format": "json"
           }
         },
-        "useResult": "Read results[0].news and group entries by source. Keep title, link, source, date and snippet; preserve relative date labels rather than inventing absolute publication times.",
+        "useResult": "Read results[0].news. Keep title, source, link, date and any snippet together. A label such as “2 hours ago” is relative to the search; retain the collection time. Open the article URL to read the full story.",
         "limits": "This call reads one news snapshot. Scheduling and delivering a recurring digest belong to your application. It does not retrieve article full text.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/youtube-metadata",
-  "title": "YouTube Metadata — FlashData",
-  "description": "YouTube video metadata, available chapters, statistics and formats. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "YouTube Video Metadata MCP",
+  "description": "Look up a YouTube video’s title, description and available chapters. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-metadata"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_metadata?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_metadata-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-metadata-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "bcf646064b9f27637571bed0cca92c46afadd34d613e832a35a8720f6dea1828",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-metadata-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "077d04087774256d45e349ad65c2fc26891ad6d2611c79a8a762be69c6c1645c",
       "transport": {
         "type": "stdio"
       },
@@ -49,17 +49,18 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_metadata.md",
         "task": "Create a YouTube metadata and chapters brief",
         "inputExample": {
           "name": "youtube_metadata",
           "arguments": {
             "video_id": "dQw4w9WgXcQ",
             "include_formats": false,
-            "include_chapters": true
+            "include_chapters": true,
+            "response_format": "json"
           }
         },
-        "useResult": "Read results[0], including title, description and chapters when present. Pair chapter start_time/end_time with the video watch URL to prepare a navigation brief.",
+        "useResult": "Read title, description and any chapters in results[0]. Each returned chapter can include start_time and end_time; use them to link back to that point in the video. A video may have no chapters. Transcript retrieval is a separate call.",
         "limits": "Fields and chapters may be absent. Metadata does not include a transcript; transcript retrieval is a separate paid call.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",

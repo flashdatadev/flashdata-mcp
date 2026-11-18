@@ -7,23 +7,23 @@ result processing, limits and the matching FlashData documentation.
 
 ## All 15 capabilities
 
-| Capability / guide | Independent Registry object | Manifest |
+| Capability / guide | Independent Registry object | Repository manifest |
 | --- | --- | --- |
 | [google_search](guides/google_search.md) | [google-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-search/versions/latest) | [0.3.0](servers/google-search/server.json) |
-| [google_news](guides/google_news.md) | [google-news](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest) | [0.1.2](servers/google-news/server.json) |
-| [google_images](guides/google_images.md) | [google-images](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest) | [0.1.2](servers/google-images/server.json) |
-| [google_shopping](guides/google_shopping.md) | [google-shopping](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-shopping/versions/latest) | [0.1.2](servers/google-shopping/server.json) |
-| [google_videos](guides/google_videos.md) | [google-video-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-video-search/versions/latest) | [0.1.2](servers/google-video-search/server.json) |
-| [google_places](guides/google_places.md) | [google-places](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest) | [0.1.2](servers/google-places/server.json) |
-| [youtube_search](guides/youtube_search.md) | [youtube-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-search/versions/latest) | [0.1.2](servers/youtube-search/server.json) |
-| [youtube_search_extended](guides/youtube_search_extended.md) | [youtube-extended-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-extended-search/versions/latest) | [0.1.2](servers/youtube-extended-search/server.json) |
-| [youtube_metadata](guides/youtube_metadata.md) | [youtube-metadata](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-metadata/versions/latest) | [0.1.2](servers/youtube-metadata/server.json) |
-| [youtube_transcript](guides/youtube_transcript.md) | [youtube-transcript](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-transcript/versions/latest) | [0.1.2](servers/youtube-transcript/server.json) |
-| [youtube_captions](guides/youtube_captions.md) | [youtube-captions](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-captions/versions/latest) | [0.1.2](servers/youtube-captions/server.json) |
-| [youtube_trainability](guides/youtube_trainability.md) | [youtube-trainability](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest) | [0.1.2](servers/youtube-trainability/server.json) |
-| [youtube_channel](guides/youtube_channel.md) | [youtube-channel](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-channel/versions/latest) | [0.1.2](servers/youtube-channel/server.json) |
-| [youtube_suggestions](guides/youtube_suggestions.md) | [youtube-autocomplete](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest) | [0.1.2](servers/youtube-autocomplete/server.json) |
-| [youtube_download](guides/youtube_download.md) | [youtube-download](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest) | [0.1.2](servers/youtube-download/server.json) |
+| [google_news](guides/google_news.md) | [google-news](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-news/versions/latest) | [0.3.0](servers/google-news/server.json) |
+| [google_images](guides/google_images.md) | [google-images](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-images/versions/latest) | [0.3.0](servers/google-images/server.json) |
+| [google_shopping](guides/google_shopping.md) | [google-shopping](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-shopping/versions/latest) | [0.3.0](servers/google-shopping/server.json) |
+| [google_videos](guides/google_videos.md) | [google-video-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-video-search/versions/latest) | [0.3.0](servers/google-video-search/server.json) |
+| [google_places](guides/google_places.md) | [google-places](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fgoogle-places/versions/latest) | [0.3.0](servers/google-places/server.json) |
+| [youtube_search](guides/youtube_search.md) | [youtube-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-search/versions/latest) | [0.3.0](servers/youtube-search/server.json) |
+| [youtube_search_extended](guides/youtube_search_extended.md) | [youtube-extended-search](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-extended-search/versions/latest) | [0.3.0](servers/youtube-extended-search/server.json) |
+| [youtube_metadata](guides/youtube_metadata.md) | [youtube-metadata](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-metadata/versions/latest) | [0.3.0](servers/youtube-metadata/server.json) |
+| [youtube_transcript](guides/youtube_transcript.md) | [youtube-transcript](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-transcript/versions/latest) | [0.3.0](servers/youtube-transcript/server.json) |
+| [youtube_captions](guides/youtube_captions.md) | [youtube-captions](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-captions/versions/latest) | [0.3.0](servers/youtube-captions/server.json) |
+| [youtube_trainability](guides/youtube_trainability.md) | [youtube-trainability](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-trainability/versions/latest) | [0.3.0](servers/youtube-trainability/server.json) |
+| [youtube_channel](guides/youtube_channel.md) | [youtube-channel](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-channel/versions/latest) | [0.3.0](servers/youtube-channel/server.json) |
+| [youtube_suggestions](guides/youtube_suggestions.md) | [youtube-autocomplete](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-autocomplete/versions/latest) | [0.3.0](servers/youtube-autocomplete/server.json) |
+| [youtube_download](guides/youtube_download.md) | [youtube-download](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.flashdata-dev%2Fyoutube-download/versions/latest) | [0.3.0](servers/youtube-download/server.json) |
 
 The [catalog](catalog.json) records every stable Registry name and package URL.
 These URLs are publication verification targets; the manifest's presence in GitHub
@@ -39,7 +39,7 @@ alone does not prove a live Registry version.
 3. Obtain your own [FlashData API Key](https://flashdata.dev/app/api-keys), grant
    the needed source, and enter it in the client's protected configuration.
    The bundle's **FlashData API Key** setting supplies `FLASHDATA_API_KEY`.
-4. List the four tools and call `get_pricing` with `{"request_count":1}`.
+4. List the four tools and call `get_pricing` with `{"request_count":1}` for one data query. For YouTube Download, use `{}` to read the per-TB rate; billing settles on actual uploaded bytes.
    Submit the task's data request only within your approved data-call budget.
 
 MIT software and installation are free. **FlashData data calls are paid** and
@@ -51,16 +51,11 @@ retries or polling are performed. Data responses are bounded to 4 MiB; larger
 MCP messages are returned in chunks. Keep the local process running while
 retrieving cached chunks. Downloads require your own storage and credentials.
 
-For Google Search, the repository manifest links to FlashData's official 0.3.0 bundle.
-See the Registry lookup above for the separately published metadata version.
-Registry metadata 0.1.2 points to the `rocosen/flashdata-mcp` repository.
-The server IDs remain under `io.github.flashdata-dev/*`. Package version 0.1.1
-and file hashes are unchanged; metadata and package versions are separate.
-
-The 0.1.1 packages are the same reviewed artifacts used for the Smithery task
-servers. Direct local installation requires no Smithery account. Registry
-publication distributes metadata; it does not install software or guarantee
-that a client offers a one-click install button.
+All 15 repository manifests link to the corresponding MCPB 0.3.0 package in
+the [official FlashData release](https://github.com/flashdatadev/flashdata-mcp/releases/tag/v0.4.0).
+The stable Registry IDs remain under `io.github.flashdata-dev/*`. Use the Registry
+lookup for the separately published metadata: updating a manifest in GitHub does
+not publish it to the Registry or refresh a third-party directory.
 
 ## Combined hosted service
 

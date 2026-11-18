@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.flashdata-dev/youtube-autocomplete",
-  "title": "YouTube Autocomplete — FlashData",
-  "description": "YouTube autocomplete suggestions by query prefix, language and region. Paid FlashData API.",
-  "version": "0.1.2",
+  "title": "YouTube Autocomplete MCP",
+  "description": "Get YouTube autocomplete suggestions by prefix, language and region. Paid FlashData API.",
+  "version": "0.3.0",
   "repository": {
-    "url": "https://github.com/rocosen/flashdata-mcp",
+    "url": "https://github.com/flashdatadev/flashdata-mcp",
     "source": "github",
     "subfolder": "registry/servers/youtube-autocomplete"
   },
   "websiteUrl": "https://flashdata.dev/docs/sources/youtube_suggestions?utm_source=official-mcp-registry&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=youtube_suggestions-guide",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/rocosen/flashdata-mcp/main/assets/logo.svg",
+      "src": "https://raw.githubusercontent.com/flashdatadev/flashdata-mcp/main/assets/logo.svg",
       "mimeType": "image/svg+xml",
       "sizes": [
         "any"
@@ -22,9 +22,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/rocosen/flashdata-mcp/releases/download/smithery-task-servers-v0.1.1/flashdata-youtube-autocomplete-0.1.1.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "876c40a143ae18f835bc4728e7a9390cba47e4cd1707d1111326c9496d7000b3",
+      "identifier": "https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-autocomplete-0.3.0.mcpb",
+      "version": "0.3.0",
+      "fileSha256": "6ca1e29b7698654c393355d1dbed0bcfc56cbfd0fe0fef70127fe4f0201e023d",
       "transport": {
         "type": "stdio"
       },
@@ -49,17 +49,18 @@
           "get_result",
           "get_pricing"
         ],
-        "guideUrl": "https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_suggestions.md",
+        "guideUrl": "https://github.com/flashdatadev/flashdata-mcp/blob/main/registry/guides/youtube_suggestions.md",
         "task": "Build a YouTube autocomplete keyword research sheet",
         "inputExample": {
           "name": "youtube_suggestions",
           "arguments": {
             "query": "battery recycling",
             "language": "en",
-            "region": "US"
+            "region": "US",
+            "response_format": "json"
           }
         },
-        "useResult": "Read the suggestion strings in results[0]. Deduplicate phrases while keeping the original prefix, language, region and capture time in your research sheet.",
+        "useResult": "The strings in results[0] are suggested phrases. Keep the prefix and locale beside each phrase when comparing regions. Suggestions contain neither videos nor search-volume measurements.",
         "limits": "Autocomplete returns phrases, not video results or search-volume estimates. A suggestion is not evidence of demand size.",
         "installation": "Local MCPB / stdio; Node.js >=22.18.0; set your own FLASHDATA_API_KEY in protected client settings. See guideUrl for manual setup.",
         "billing": "MIT software and installation are free. FlashData data calls use paid Credits. Pricing/job/result reads are free; client and model fees are separate.",
