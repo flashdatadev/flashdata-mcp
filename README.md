@@ -529,6 +529,12 @@ Read `results[0].segments` and preserve `start`, `end`, and `text`. Selected out
 
 Transcripts require an existing caption track. Autocomplete returns phrases, not search volume. License-label checks report metadata; they do not grant reuse or model-training rights. [Transcript reference →](https://flashdata.dev/docs/sources/youtube_transcript?utm_source=github&utm_medium=integration&utm_campaign=intent_gtm_2026q4&utm_content=combined)
 
+YouTube Transcript MCP:
+
+[![Listed on chen.media/mcp](https://chen.media/mcp/badge/github-flashdata-dev-youtube-transcript.svg)](https://chen.media/mcp/github-flashdata-dev-youtube-transcript)
+
+Find us on the [Chen Media MCP Directory](https://chen.media/mcp)
+
 </details>
 
 <details>
