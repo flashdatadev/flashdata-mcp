@@ -4,6 +4,10 @@ Read a YouTube transcript by video ID and language. By default, `auto: true` sel
 
 [Get an API key](https://flashdata.dev/app/api-keys) · [Current pricing](https://flashdata.dev/pricing) · [API documentation](https://flashdata.dev/docs/sources/youtube_transcript)
 
+[![Listed on chen.media/mcp](https://chen.media/mcp/badge/github-flashdata-dev-youtube-transcript.svg)](https://chen.media/mcp/github-flashdata-dev-youtube-transcript)
+
+Find us on the [Chen Media MCP Directory](https://chen.media/mcp)
+
 ## Install
 
 1. Install Node.js **22.18 or newer** and download the [official MCPB 0.3.0](https://github.com/flashdatadev/flashdata-mcp/releases/download/v0.4.0/flashdata-youtube-transcript-0.3.0.mcpb). Expected SHA-256: `5d94df509edb2d0bf605b82c3d99c140fab8b54c9ceb229bee9d37422c0d6eb1`.
